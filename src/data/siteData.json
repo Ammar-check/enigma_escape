@@ -1,0 +1,241 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "nameEn": "THE BUTCHER",
+      "nameAr": "الجزّار",
+      "image": "https://picsum.photos/seed/butcher/800/400",
+      "players": "2-6",
+      "duration": "60",
+      "hasLivePerformers": true,
+      "genre": "horror",
+      "difficulty": 4,
+      "color": "#ff4444"
+    },
+    {
+      "id": 2,
+      "nameEn": "THE LOST CITY",
+      "nameAr": "المدينة المفقودة",
+      "image": "https://picsum.photos/seed/lostcity/800/400",
+      "players": "2-6",
+      "duration": "60",
+      "hasLivePerformers": true,
+      "genre": "adventure",
+      "difficulty": 3,
+      "color": "#44ff88"
+    },
+    {
+      "id": 3,
+      "nameEn": "SHERLOCK",
+      "subtitleEn": "& THE DOOMSDAY DEVICE",
+      "nameAr": "شيرلوك والجهاز المدمّر",
+      "image": "https://picsum.photos/seed/sherlock/800/400",
+      "players": "2-6",
+      "duration": "60",
+      "hasLivePerformers": true,
+      "genre": "mystery",
+      "difficulty": 4,
+      "color": "#4488ff"
+    },
+    {
+      "id": 4,
+      "nameEn": "VR ROOMS",
+      "nameAr": "ألعاب هروب الواقع الافتراضي",
+      "image": "https://picsum.photos/seed/vrroom/800/400",
+      "players": "2-6",
+      "duration": "60",
+      "hasLivePerformers": false,
+      "genre": null,
+      "difficulty": null,
+      "color": "#00f0ff"
+    },
+    {
+      "id": 5,
+      "nameEn": "OUTDOOR ESCAPE GAMES",
+      "nameAr": "مغامرات هروب خارجية",
+      "image": "https://picsum.photos/seed/outdoor/800/400",
+      "players": "2-6",
+      "duration": "60",
+      "hasLivePerformers": false,
+      "genre": null,
+      "difficulty": null,
+      "color": "#ff8844"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "textEn": "I have had a wonderful time at ENIGMA ESCAPE GAMES it was amazing and loved their treatment please give me free tickets.",
+      "textAr": "لقد قضيت وقتاً رائعاً في إنجما لغرف الهروب، كان مذهلاً وأحببت معاملتهم.",
+      "author": "Chris Wood",
+      "image": "https://picsum.photos/seed/chris/100/100"
+    },
+    {
+      "id": 2,
+      "textEn": "Amazing stuff keep going",
+      "textAr": "أشياء مذهلة، استمروا",
+      "author": "Stephan Smith",
+      "image": "https://picsum.photos/seed/stephan/100/100"
+    },
+    {
+      "id": 3,
+      "textEn": "I love your work. Keep going!",
+      "textAr": "أحب عملكم. استمروا!",
+      "author": "David Biln",
+      "image": "https://picsum.photos/seed/david/100/100"
+    },
+    {
+      "id": 4,
+      "textEn": "Best escape room experience in Saudi Arabia! The puzzles were challenging but fair, and the atmosphere was incredible.",
+      "textAr": "أفضل تجربة غرفة هروب في المملكة العربية السعودية! كانت الألغاز صعبة ولكن عادلة، والأجواء كانت لا تصدق.",
+      "author": "Sarah Ahmed",
+      "image": "https://picsum.photos/seed/sarah/100/100"
+    },
+    {
+      "id": 5,
+      "textEn": "Our team building event was a huge success! The staff was professional and the rooms were well-designed.",
+      "textAr": "كان حدث بناء الفريق لدينا ناجحاً للغاية! كان الموظفون محترفين والغرف مصممة بشكل جيد.",
+      "author": "Mohammed Ali",
+      "image": "https://picsum.photos/seed/mohammed/100/100"
+    },
+    {
+      "id": 6,
+      "textEn": "The Butcher room was terrifying! Exactly what we wanted. Will definitely come back for more.",
+      "textAr": "غرفة الجزار كانت مرعبة! بالضبط ما أردناه. سنعود بالتأكيد لمزيد.",
+      "author": "Fatima Hassan",
+      "image": "https://picsum.photos/seed/fatima/100/100"
+    }
+  ],
+  "gallery": [
+    { "id": 1, "src": "https://picsum.photos/seed/gallery1/600/400", "titleEn": "The Butcher Room", "titleAr": "غرفة الجزار" },
+    { "id": 2, "src": "https://picsum.photos/seed/gallery2/600/400", "titleEn": "Lost City Entrance", "titleAr": "مدخل المدينة المفقودة" },
+    { "id": 3, "src": "https://picsum.photos/seed/gallery3/600/400", "titleEn": "VR Experience", "titleAr": "تجربة الواقع الافتراضي" },
+    { "id": 4, "src": "https://picsum.photos/seed/gallery4/600/400", "titleEn": "Sherlock Room", "titleAr": "غرفة شيرلوك" },
+    { "id": 5, "src": "https://picsum.photos/seed/gallery5/600/400", "titleEn": "Control Room", "titleAr": "غرفة التحكم" },
+    { "id": 6, "src": "https://picsum.photos/seed/gallery6/600/400", "titleEn": "Puzzle Chamber", "titleAr": "غرفة الألغاز" },
+    { "id": 7, "src": "https://picsum.photos/seed/gallery7/600/400", "titleEn": "Team Celebration", "titleAr": "احتفال الفريق" },
+    { "id": 8, "src": "https://picsum.photos/seed/gallery8/600/400", "titleEn": "Outdoor Adventure", "titleAr": "مغامرة خارجية" }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "titleEn": "Parties / Birthday",
+      "titleAr": "حفلات / أعياد الميلاد",
+      "image": "https://picsum.photos/seed/party/800/400",
+      "descriptionEn": "Celebrate your special day with an unforgettable escape room experience!",
+      "descriptionAr": "احتفل بيومك الخاص مع تجربة غرفة هروب لا تُنسى!"
+    },
+    {
+      "id": 2,
+      "titleEn": "Corporate / Team Building",
+      "titleAr": "الشركات / بناء الفريق",
+      "image": "https://picsum.photos/seed/corporate/800/400",
+      "descriptionEn": "Build stronger teams through collaborative puzzle-solving adventures.",
+      "descriptionAr": "ابنِ فرقاً أقوى من خلال مغامرات حل الألغاز التعاونية."
+    },
+    {
+      "id": 3,
+      "titleEn": "External Events / School Trips",
+      "titleAr": "الفعاليات الخارجية / الرحلات المدرسية",
+      "image": "https://picsum.photos/seed/school/800/400",
+      "descriptionEn": "Educational and exciting experiences for students of all ages.",
+      "descriptionAr": "تجارب تعليمية ومثيرة للطلاب من جميع الأعمار."
+    }
+  ],
+  "faqs": [
+    {
+      "id": 1,
+      "questionEn": "WHAT IS ENIGMA ESCAPE ROOM?",
+      "questionAr": "ما هي غرفة هروب إنجما؟",
+      "answerEn": "Enigma Escape Room is an immersive, real-life adventure where you and your team are locked in a themed room and must solve puzzles, find clues, and work together to escape within 60 minutes.",
+      "answerAr": "غرفة هروب إنجما هي مغامرة غامرة في الحياة الواقعية حيث يتم حبسك أنت وفريقك في غرفة ذات طابع معين ويجب عليكم حل الألغاز وإيجاد القرائن والعمل معاً للهروب في غضون 60 دقيقة."
+    },
+    {
+      "id": 2,
+      "questionEn": "HOW EARLY SHOULD I ARRIVE FOR MY GAME?",
+      "questionAr": "كم يجب أن أصل مبكراً للعبتي؟",
+      "answerEn": "We recommend arriving at least 15 minutes before your scheduled game time. This allows time for check-in, a briefing session, and any last-minute questions.",
+      "answerAr": "نوصي بالوصول قبل 15 دقيقة على الأقل من موعد اللعبة المحدد. هذا يسمح بوقت لتسجيل الوصول وجلسة الإحاطة وأي أسئلة في اللحظة الأخيرة."
+    },
+    {
+      "id": 3,
+      "questionEn": "AM I GOING TO ACTUALLY BE LOCKED IN A ROOM?",
+      "questionAr": "هل سأكون محبوساً فعلاً في غرفة؟",
+      "answerEn": "While the theme involves being 'locked in,' your safety is our top priority. All rooms have emergency exits that can be used at any time.",
+      "answerAr": "على الرغم من أن الموضوع يتضمن 'الحبس'، إلا أن سلامتك هي أولويتنا القصوى. جميع الغرف بها مخارج طوارئ يمكن استخدامها في أي وقت."
+    },
+    {
+      "id": 4,
+      "questionEn": "WHAT IF ANY OF OUR GROUP MEMBERS ARRIVE LATE?",
+      "questionAr": "ماذا لو وصل أي من أعضاء مجموعتنا متأخراً؟",
+      "answerEn": "If a group member arrives late, they may join the game in progress if it hasn't been too long since the start. However, we cannot extend the game time.",
+      "answerAr": "إذا وصل أحد أعضاء المجموعة متأخراً، فقد ينضم إلى اللعبة الجارية إذا لم يمض وقت طويل منذ البداية. ومع ذلك، لا يمكننا تمديد وقت اللعبة."
+    },
+    {
+      "id": 5,
+      "questionEn": "IS IT A SCARY OR UNCOMFORTABLE EXPERIENCE?",
+      "questionAr": "هل هي تجربة مخيفة أو غير مريحة؟",
+      "answerEn": "It depends on the room you choose! Our rooms range from family-friendly adventures to horror experiences. The Butcher room features live actors and horror elements.",
+      "answerAr": "يعتمد ذلك على الغرفة التي تختارها! تتراوح غرفنا من المغامرات المناسبة للعائلة إلى تجارب الرعب. غرفة الجزار تتميز بممثلين حقيقيين وعناصر رعب."
+    },
+    {
+      "id": 6,
+      "questionEn": "HOW CAN I BOOK OR RESERVE A GAME?",
+      "questionAr": "كيف يمكنني حجز أو حجز لعبة؟",
+      "answerEn": "You can book online through our website, call us directly at +966 58 386 3748, or visit our location.",
+      "answerAr": "يمكنك الحجز عبر الإنترنت من خلال موقعنا، أو الاتصال بنا مباشرة على +966 58 386 3748، أو زيارة موقعنا."
+    },
+    {
+      "id": 7,
+      "questionEn": "WHAT IF I HAVE A GROUP LARGER THAN THE MAX CAPACITY?",
+      "questionAr": "ماذا لو كان لدي مجموعة أكبر من السعة القصوى؟",
+      "answerEn": "No problem! We can accommodate larger groups by booking multiple rooms simultaneously. Contact us for special group packages.",
+      "answerAr": "لا مشكلة! يمكننا استيعاب المجموعات الأكبر من خلال حجز غرف متعددة في وقت واحد. اتصل بنا للحصول على عروض المجموعات الخاصة."
+    },
+    {
+      "id": 8,
+      "questionEn": "HOW DO I PAY?",
+      "questionAr": "كيف أدفع؟",
+      "answerEn": "We accept cash, credit/debit cards, and mobile payment options. Payment is typically made upon arrival or during online booking.",
+      "answerAr": "نقبل النقد وبطاقات الائتمان/الخصم وخيارات الدفع عبر الهاتف المحمول. يتم الدفع عادةً عند الوصول أو أثناء الحجز عبر الإنترنت."
+    },
+    {
+      "id": 9,
+      "questionEn": "WHAT DO I GET IF MY TEAM COMPLETES THE GAME AND ESCAPES?",
+      "questionAr": "ماذا أحصل إذا أكمل فريقي اللعبة وهرب؟",
+      "answerEn": "Successful teams earn bragging rights and a spot on our leaderboard! We also take a celebratory photo that you can share on social media.",
+      "answerAr": "تحصل الفرق الناجحة على حق التفاخر ومكان في لوحة المتصدرين لدينا! كما نلتقط صورة احتفالية يمكنك مشاركتها على وسائل التواصل الاجتماعي."
+    },
+    {
+      "id": 10,
+      "questionEn": "WHERE DO I PARK?",
+      "questionAr": "أين أركن سيارتي؟",
+      "answerEn": "Free parking is available in front of our location at Shorafat Park. There's ample space for all visitors.",
+      "answerAr": "موقف مجاني متاح أمام موقعنا في شرفات بارك. هناك مساحة واسعة لجميع الزوار."
+    }
+  ],
+  "contactInfo": {
+    "companyNameEn": "Enigma Escape Games",
+    "companyNameAr": "إنجما لغرف الهروب",
+    "phone": "+966 58 386 3748",
+    "email": "info@enigmaescape.sa",
+    "addressEn": "Enigma Escape Games, King Faisal Ibn Abd Al Aziz, Al Khobar 34218, Saudi Arabia",
+    "addressAr": "إنجما لغرف الهروب، الملك فيصل بن عبد العزيز، الخبر 34218، المملكة العربية السعودية",
+    "hours": {
+      "sunWedEn": "Sunday – Wednesday | 2:00 pm – 11:30 am",
+      "sunWedAr": "الأحد – الأربعاء | 2:00 م – 11:30 ص",
+      "thursdayEn": "Thursday | 2:00 pm – 12:30 am",
+      "thursdayAr": "الخميس | 2:00 م – 12:30 ص",
+      "fridayEn": "Friday | 3:50 pm – 12:30 am",
+      "fridayAr": "الجمعة | 3:50 م – 12:30 ص"
+    },
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.5!2d50.2!3d26.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDE4JzAwLjAiTiA1MMKwMTInMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890"
+  },
+  "socialLinks": [
+    { "platform": "instagram", "url": "https://instagram.com", "icon": "bi-instagram" },
+    { "platform": "google", "url": "https://google.com", "icon": "bi-google" },
+    { "platform": "tripadvisor", "url": "https://tripadvisor.com", "icon": "bi-globe" },
+    { "platform": "tiktok", "url": "https://tiktok.com", "icon": "bi-tiktok" }
+  ]
+}
+

@@ -1,0 +1,144 @@
+.pageWrapper {
+  padding-top: 80px;
+}
+
+/* Hero Banner */
+.heroBanner {
+  height: 40vh;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: url('https://picsum.photos/seed/reviewsbanner/1920/600') center/cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.8) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
+}
+
+/* Reviews Section */
+.reviewsSection {
+  background: var(--dark-bg);
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.reviewCard {
+  background: rgba(26, 26, 26, 0.9);
+  border: 1px solid var(--gold-primary);
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.quoteIcon {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  color: var(--gold-primary);
+  opacity: 0.5;
+  line-height: 1;
+  margin-bottom: -20px;
+}
+
+.reviewText {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+}
+
+.reviewAuthor {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.authorImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-primary);
+}
+
+.authorName {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 80px 0;
+  background: linear-gradient(
+    180deg,
+    var(--dark-bg) 0%,
+    rgba(26, 26, 26, 0.8) 50%,
+    var(--dark-bg) 100%
+  );
+}
+
+.ctaTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: var(--gold-primary);
+  margin-bottom: 15px;
+}
+
+.ctaText {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaTitle {
+    font-size: 1.6rem;
+  }
+}
+

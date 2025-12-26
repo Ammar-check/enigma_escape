@@ -1,0 +1,98 @@
+.pageWrapper {
+  padding-top: 80px;
+}
+
+/* Hero Banner */
+.heroBanner {
+  height: 40vh;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: url('https://picsum.photos/seed/gamesbanner/1920/600') center/cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.8) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 3px;
+}
+
+/* Rooms Section */
+.roomsSection {
+  background: var(--dark-bg);
+}
+
+.roomsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Coming Soon */
+.comingSoon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: linear-gradient(135deg, rgba(128, 0, 128, 0.4) 0%, rgba(255, 0, 128, 0.3) 100%);
+  border: 1px solid rgba(128, 0, 128, 0.6);
+  border-radius: 15px;
+}
+
+.comingSoonContent {
+  text-align: center;
+}
+
+.comingSoonContent h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(128, 0, 128, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .roomsGrid {
+    grid-template-columns: 1fr;
+  }
+}

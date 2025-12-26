@@ -1,0 +1,150 @@
+.pageWrapper {
+  padding-top: 80px;
+}
+
+/* Hero Banner */
+.heroBanner {
+  height: 40vh;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: url('https://picsum.photos/seed/contactbanner/1920/600') center/cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.8) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
+}
+
+/* Contact Section */
+.contactSection {
+  background: 
+    url('https://picsum.photos/seed/contactsection/1920/1080') center/cover no-repeat fixed;
+  position: relative;
+}
+
+.contactSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.92);
+}
+
+.contactSection > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contactInfo {
+  padding-right: 30px;
+}
+
+.contactTitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+  margin-bottom: 35px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.contactItem:hover {
+  transform: translateX(10px);
+}
+
+.contactItem i {
+  color: var(--gold-primary);
+  font-size: 1.3rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.contactItem h5 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+  margin-bottom: 8px;
+}
+
+.contactItem p {
+  font-size: 0.95rem;
+  color: var(--gold-primary);
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.contactForm {
+  background: rgba(26, 26, 26, 0.6);
+  padding: 40px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.contactForm .form-control {
+  padding: 15px 5px;
+  font-size: 1rem;
+}
+
+.contactForm textarea.form-control {
+  resize: none;
+}
+
+.mapWrapper {
+  margin-top: 60px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .contactInfo {
+    padding-right: 0;
+  }
+
+  .contactForm {
+    padding: 25px;
+  }
+}
+

@@ -1,0 +1,52 @@
+.reviewCard {
+  background: rgba(26, 26, 26, 0.9);
+  border: 1px solid var(--gold-primary);
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.4s ease;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.quoteIcon {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  color: var(--gold-primary);
+  opacity: 0.5;
+  line-height: 1;
+  margin-bottom: -20px;
+}
+
+.reviewText {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.reviewAuthor {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.authorImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-primary);
+}
+
+.authorName {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+

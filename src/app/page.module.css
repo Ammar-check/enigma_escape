@@ -1,0 +1,388 @@
+/* Hero Section */
+.hero {
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: -80px;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://picsum.photos/seed/enigmahero/1920/1080') center/cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.7) 0%,
+    rgba(10, 10, 10, 0.5) 50%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heroNumber {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+}
+
+.heroMinutes {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 15px;
+  color: #ffffff;
+  margin-top: -20px;
+}
+
+.heroSubtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
+
+.heroGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold-primary);
+  font-size: 2rem;
+  z-index: 3;
+  cursor: pointer;
+}
+
+/* Hero Circuit Divider */
+.heroCircuitDivider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 10;
+}
+
+.circuitLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%23d4a84b' stroke-width='2' fill='none'/%3E%3C/svg%3E") center no-repeat;
+  background-size: 100% auto;
+}
+
+.circuitDot {
+  position: absolute;
+  left: 0;
+  bottom: 27px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--gold-primary), 0 0 30px var(--gold-primary);
+  animation: circuitPulse 2s ease-in-out infinite;
+}
+
+@keyframes circuitPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--gold-primary), 0 0 10px var(--gold-primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--gold-primary), 0 0 40px var(--gold-primary);
+  }
+}
+
+/* Rooms Section */
+.roomsSection {
+  background: var(--dark-bg);
+}
+
+.roomsList {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.roomCard {
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid var(--dark-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  transition: all 0.4s ease;
+}
+
+.roomCard:hover {
+  border-color: var(--gold-primary);
+}
+
+.roomImageWrapper {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.roomImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.roomCard:hover .roomImage {
+  transform: scale(1.1);
+}
+
+.roomOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+}
+
+.roomName {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 5px;
+}
+
+.roomNameAr {
+  font-size: 1.1rem;
+  color: #ffffff;
+  direction: rtl;
+}
+
+.roomBookBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 0.7rem;
+  padding: 8px 20px;
+}
+
+[dir="rtl"] .roomBookBtn {
+  right: auto;
+  left: 15px;
+}
+
+.roomDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(20, 20, 20, 0.9);
+}
+
+.roomInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.roomInfo span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: var(--gold-primary);
+}
+
+.roomInfo i {
+  font-size: 0.9rem;
+}
+
+.difficulty {
+  text-align: right;
+}
+
+[dir="rtl"] .difficulty {
+  text-align: left;
+}
+
+.difficulty span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.difficultyStars {
+  color: var(--gold-primary);
+}
+
+.difficultyStars i {
+  font-size: 0.8rem;
+  margin-left: 2px;
+}
+
+[dir="rtl"] .difficultyStars i {
+  margin-left: 0;
+  margin-right: 2px;
+}
+
+.comingSoon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  background: linear-gradient(135deg, rgba(128, 0, 128, 0.3) 0%, rgba(255, 0, 128, 0.2) 100%);
+  border: 1px solid rgba(128, 0, 128, 0.5);
+}
+
+.comingSoonContent h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
+}
+
+/* Contact Section */
+.contactSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.contactBg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  right: 0;
+  height: 140%;
+  background: url('https://picsum.photos/seed/contactbg/1920/1080') center/cover no-repeat;
+}
+
+.contactOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.92);
+}
+
+.contactInfo {
+  padding-right: 30px;
+}
+
+[dir="rtl"] .contactInfo {
+  padding-right: 0;
+  padding-left: 30px;
+}
+
+.contactTitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3rem;
+  color: var(--gold-primary);
+  margin-bottom: 30px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  cursor: default;
+}
+
+.contactItem i {
+  color: var(--gold-primary);
+  font-size: 1.2rem;
+  margin-top: 3px;
+}
+
+.contactItem h5 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  color: var(--gold-primary);
+  margin-bottom: 5px;
+}
+
+.contactItem p {
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+  opacity: 0.8;
+  margin-bottom: 3px;
+}
+
+.contactForm {
+  background: rgba(26, 26, 26, 0.5);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.mapWrapper {
+  margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroNumber {
+    font-size: 6rem;
+  }
+  
+  .heroMinutes {
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+  }
+  
+  .roomDetails {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .difficulty {
+    text-align: left;
+  }
+
+  .scrollIndicator {
+    bottom: 80px;
+  }
+}

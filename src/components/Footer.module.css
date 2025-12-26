@@ -1,0 +1,158 @@
+.footer {
+  background: linear-gradient(180deg, var(--dark-bg) 0%, #050505 100%);
+  position: relative;
+}
+
+.circuitDivider {
+  height: 60px;
+  position: relative;
+}
+
+.circuitLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%23d4a84b' stroke-width='2' fill='none'/%3E%3C/svg%3E") center no-repeat;
+  background-size: 100% auto;
+}
+
+.circuitDot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--gold-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--gold-primary), 0 0 30px var(--gold-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+[dir="rtl"] .circuitDot {
+  left: auto;
+  right: 0;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--gold-primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--gold-primary), 0 0 40px var(--gold-primary);
+  }
+}
+
+.logoSection {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.logo {
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logoText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.logoMain {
+  color: #ffffff;
+}
+
+.logoIcon {
+  color: var(--gold-primary);
+  margin: 0 3px;
+}
+
+.logoSubtext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 5px;
+  color: var(--gold-primary);
+  margin-top: -5px;
+}
+
+.keyIcon {
+  font-size: 1.2rem;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.socialLink {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  color: var(--gold-primary);
+  background: rgba(212, 168, 75, 0.1);
+  box-shadow: 0 0 20px rgba(212, 168, 75, 0.3);
+}
+
+.dividerLine {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  margin: 20px auto;
+  max-width: 80%;
+}
+
+.copyright {
+  text-align: center;
+  color: var(--gold-primary);
+  font-size: 0.85rem;
+  padding: 20px 0;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+[dir="rtl"] .copyright {
+  direction: rtl;
+}
+
+@media (max-width: 768px) {
+  .logoText {
+    font-size: 2rem;
+  }
+
+  .socialIcons {
+    gap: 20px;
+  }
+
+  .socialLink {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+}

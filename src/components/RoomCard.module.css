@@ -1,0 +1,160 @@
+.roomCard {
+  background: rgba(26, 26, 26, 0.9);
+  border: 1px solid var(--dark-border);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.roomCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--room-color, var(--gold-primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.roomCard:hover::before {
+  opacity: 1;
+}
+
+.roomCard:hover {
+  border-color: var(--gold-primary);
+}
+
+.roomImageWrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.roomImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.roomCard:hover .roomImage {
+  transform: scale(1.1);
+}
+
+.roomOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+}
+
+.roomName {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 5px;
+}
+
+.roomSubtitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--gold-primary);
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.roomNameAr {
+  font-size: 1.1rem;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.roomBookBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.7rem;
+  padding: 10px 25px;
+  z-index: 2;
+}
+
+[dir="rtl"] .roomBookBtn {
+  right: auto;
+  left: 20px;
+}
+
+.roomDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: rgba(15, 15, 15, 0.95);
+}
+
+.roomInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.roomInfo span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+}
+
+.roomInfo i {
+  font-size: 1rem;
+}
+
+.difficulty {
+  text-align: right;
+}
+
+[dir="rtl"] .difficulty {
+  text-align: left;
+}
+
+.difficulty span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.difficultyStars {
+  color: var(--gold-primary);
+}
+
+.difficultyStars i {
+  font-size: 0.85rem;
+  margin-left: 3px;
+}
+
+[dir="rtl"] .difficultyStars i {
+  margin-left: 0;
+  margin-right: 3px;
+}
+
+@media (max-width: 768px) {
+  .roomDetails {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .difficulty {
+    text-align: left;
+  }
+}
+

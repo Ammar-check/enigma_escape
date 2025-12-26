@@ -1,0 +1,204 @@
+.pageWrapper {
+  padding-top: 80px;
+}
+
+/* Hero Banner */
+.heroBanner {
+  height: 50vh;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.parallaxBg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  right: 0;
+  height: 140%;
+  background: url('https://picsum.photos/seed/eventsbanner/1920/1080') center/cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.7) 0%,
+    rgba(10, 10, 10, 0.5) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
+  margin-bottom: 15px;
+}
+
+.heroSubtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 3px;
+}
+
+/* Events Section */
+.eventsSection {
+  background: var(--dark-bg);
+}
+
+.eventsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.eventCard {
+  background: rgba(26, 26, 26, 0.9);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.eventImageWrapper {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.eventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.eventCard:hover .eventImage {
+  transform: scale(1.1);
+}
+
+.eventOverlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.eventContent {
+  padding: 25px 30px;
+}
+
+.eventTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.eventDescription {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* Benefits Section */
+.benefitsSection {
+  background: linear-gradient(
+    180deg,
+    var(--dark-bg) 0%,
+    rgba(20, 20, 20, 1) 100%
+  );
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.benefitCard {
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid var(--dark-border);
+  border-radius: 15px;
+  padding: 35px 25px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.benefitCard:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.benefitIcon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefitIcon i {
+  font-size: 1.8rem;
+  color: var(--dark-bg);
+}
+
+.benefitCard h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  color: var(--gold-primary);
+  margin-bottom: 10px;
+}
+
+.benefitCard p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .eventImageWrapper {
+    height: 200px;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
