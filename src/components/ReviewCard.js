@@ -29,7 +29,7 @@ export default function ReviewCard({ review }) {
         boxShadow: '0 20px 40px rgba(212, 168, 75, 0.2)',
       }}
     >
-      <div className={styles.quoteIcon}>"</div>
+      <div className={styles.quoteIcon}>&ldquo;</div>
       <p className={styles.reviewText}>
         {isArabic ? review.textAr : review.textEn}
       </p>
