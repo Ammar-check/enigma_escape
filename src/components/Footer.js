@@ -23,7 +23,7 @@ export default function Footer() {
         <div className={styles.circuitDot}></div>
       </div>
 
-      <div className="container py-5">
+      <div className="container pt-5">
         {/* Logo */}
         <motion.div 
           className={styles.logoSection}
@@ -34,15 +34,9 @@ export default function Footer() {
         >
           <Link href="/" className={styles.logo}>
             <div className={styles.logoText}>
-              <span className={styles.logoMain}>ENI</span>
-              <span className={styles.logoIcon}>G</span>
-              <span className={styles.logoMain}>MA</span>
+<img src='/logo-enigma-yellow.png' alt='Logo' width='100px' height='80px' />
             </div>
-            <div className={styles.logoSubtext}>
-              <span>ESCAPE</span>
-              <span className={styles.keyIcon}>🔑</span>
-              <span>GAMES</span>
-            </div>
+           
           </Link>
         </motion.div>
 

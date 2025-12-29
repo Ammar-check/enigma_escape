@@ -60,14 +60,9 @@
   transform: scale(1.05);
 }
 
-.logoText {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: 3px;
+.logoText img {
+  width: 200px;
+  height: auto;
 }
 
 .logoMain {
@@ -99,7 +94,7 @@
   display: flex;
   justify-content: center;
   gap: 30px;
-  padding: 30px 0;
+  padding: 10px 0;
 }
 
 .socialLink {
@@ -133,7 +128,7 @@
   text-align: center;
   color: var(--gold-primary);
   font-size: 0.85rem;
-  padding: 20px 0;
+  padding: 10px 0;
   font-family: 'Rajdhani', sans-serif;
 }
 

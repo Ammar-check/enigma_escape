@@ -156,7 +156,6 @@ export default function Home() {
           style={{ y: contactBgY }}
         ></motion.div>
         <div className={styles.contactOverlay}></div>
-
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <motion.h2
             className="section-title"
