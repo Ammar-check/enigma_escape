@@ -97,15 +97,17 @@ export default function Home() {
       {/* Our Rooms Section */}
       <section className={`section-padding ${styles.roomsSection}`}>
         <div className="container">
-          <motion.h2
-            className="section-title"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {t('ourRooms')}
-          </motion.h2>
+         <motion.h2
+  className="section-title"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  style={{ position: 'relative', zIndex: 2 }}  // Ensure position and z-index are set
+>
+  {t('ourRooms')}
+</motion.h2>
+
 
           <motion.div
             className={styles.roomsList}

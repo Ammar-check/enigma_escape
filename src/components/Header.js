@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Header.module.css';
+import Image from 'next/image';
+import logo from '@/images/logo-enigma-yellow.webp';
 
 export default function Header() {
   const pathname = usePathname();
@@ -57,7 +59,7 @@ export default function Header() {
             {/* Logo - Center */}
             <Link href="/" className={styles.logo}>
               <div className={styles.logoWrapper}>
-                <img src='/logo-enigma-yellow.png' alt='Enigma Logo' width='180' height='70' />
+                <Image src={logo} alt="Enigma Logo" width={180} height={70} />
               </div>
             </Link>
 

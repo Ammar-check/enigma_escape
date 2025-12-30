@@ -5,7 +5,7 @@
   --dark-bg: #0a0a0a;
   --dark-secondary: #1a1a1a;
   --dark-border: rgba(212, 168, 75, 0.2);
-  --gold-primary: #d4a84b;
+  --gold-primary: rgb(252, 196, 3);
   --gold-light: #f0c674;
   --gold-dark: #b8923d;
   --text-light: #ffffff;
@@ -79,6 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-gold {
   background: var(--gold-primary);
   color: var(--dark-bg);
+  border-radius: 50px;
 }
 
 .btn-gold:hover {
