@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './RoomCard.module.css';
+import Image from 'next/image';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -56,51 +57,53 @@ export default function RoomCard({ room, showDetails = true }) {
         <Link href="/contact" className={`btn btn-gold ${styles.roomBookBtn}`}>
           {t('bookNow')}
         </Link>
-      </div>
 
-      {showDetails && (
-        <div className={styles.roomDetails}>
-          <div className={styles.roomInfo}>
-            <span>
-              <i className="bi bi-people-fill"></i> {room.players}{' '}
-              {isArabic ? 'لاعبين' : 'Players'}
-            </span>
-            <span>
-              <i className="bi bi-clock-fill"></i> {room.duration}{' '}
-              {isArabic ? 'دقيقة' : 'Min'}
-            </span>
-            {room.hasLivePerformers && (
+        {showDetails && (
+          <div className={styles.roomDetails}>
+            <div className={styles.roomInfo}>
               <span>
-                <i className="bi bi-person-badge-fill"></i>{' '}
-                {isArabic ? 'ممثلين حقيقيين' : 'Live Performers'}
+                <i className="bi bi-people-fill"></i> {room.players}{' '}
+                {isArabic ? 'لاعبين' : 'Players'}
               </span>
-            )}
-            {room.genre && (
               <span>
-                <i className="bi bi-tag-fill"></i>{' '}
-                {isArabic
-                  ? genreLabels[room.genre]?.ar
-                  : genreLabels[room.genre]?.en}
+                <i className="bi bi-clock-fill"></i> {room.duration}{' '}
+                {isArabic ? 'دقيقة' : 'Min'}
               </span>
+              {room.hasLivePerformers && (
+                <span>
+                  <i className="bi bi-person-badge-fill"></i>{' '}
+                  {isArabic ? 'ممثلين حقيقيين' : 'Live Performers'}
+                </span>
+              )}
+              {room.genre && (
+                <span>
+                  <i className="bi bi-tag-fill"></i>{' '}
+                  {isArabic
+                    ? genreLabels[room.genre]?.ar
+                    : genreLabels[room.genre]?.en}
+                </span>
+              )}
+            </div>
+            {room.difficulty && (
+              <div className={styles.difficulty}>
+                <span>{isArabic ? 'الصعوبة' : 'Difficulty'}</span>
+                <div className={styles.difficultyStars}>
+                  {[...Array(5)].map((_, i) => (
+                    <i
+                      key={i}
+                      className={`bi ${
+                        i < room.difficulty ? 'bi-star-fill' : 'bi-star'
+                      }`}
+                    ></i>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
-          {room.difficulty && (
-            <div className={styles.difficulty}>
-              <span>{isArabic ? 'الصعوبة' : 'Difficulty'}</span>
-              <div className={styles.difficultyStars}>
-                {[...Array(5)].map((_, i) => (
-                  <i
-                    key={i}
-                    className={`bi ${
-                      i < room.difficulty ? 'bi-star-fill' : 'bi-star'
-                    }`}
-                  ></i>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+        )}
+      </div>
+
+      
     </motion.div>
   );
 }

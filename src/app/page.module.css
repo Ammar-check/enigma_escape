@@ -246,7 +246,7 @@
   left: 0;
   right: 0;
   height: 140%;
-  background: url('https://picsum.photos/seed/contactbg/1920/1080') center/cover no-repeat;
+  background: url('../images/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 .contactOverlay {

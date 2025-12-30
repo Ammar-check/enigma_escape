@@ -32,7 +32,7 @@
 
 .roomImageWrapper {
   position: relative;
-  height: 220px;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -52,17 +52,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 25px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+  padding: 20px 22px 60px 22px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  z-index: 1;
 }
 
 .roomName {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.7rem;
+  font-size: 3.7rem;
   font-weight: 700;
   color: var(--gold-primary);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  margin-bottom: 5px;
+  margin-bottom: 70px;
 }
 
 .roomSubtitle {
@@ -75,18 +76,18 @@
 }
 
 .roomNameAr {
-  font-size: 1.15rem;
+  font-size: 4.15rem;
   color: #ffffff;
   opacity: 0.9;
 }
 
 .roomBookBtn {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 0.7rem;
-  padding: 10px 25px;
-  z-index: 2;
+  top: 16px;
+  right: 16px;
+  font-size: 0.75rem;
+  padding: 8px 20px;
+  z-index: 4;
 }
 
 [dir="rtl"] .roomBookBtn {
@@ -95,11 +96,17 @@
 }
 
 .roomDetails {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 25px;
-  background: rgba(15, 15, 15, 0.95);
+  padding: 12px 18px;
+  /* background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px); */
+  z-index: 2;
 }
 
 .roomInfo {
@@ -112,7 +119,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.92rem;
+  font-size: 1.2rem;
   color: var(--gold-primary);
 }
 
@@ -156,8 +163,9 @@
 
   .roomDetails {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     align-items: flex-start;
+    padding: 10px 14px;
   }
 
   .roomInfo {
@@ -180,7 +188,7 @@
   }
 
   .roomName {
-    font-size: 1.4rem;
+    font-size: 4.4rem;
   }
 
   .roomBookBtn {
