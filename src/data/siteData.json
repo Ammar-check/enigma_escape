@@ -5,7 +5,7 @@
       "id": 1,
       "nameEn": "THE BUTCHER",
       "nameAr": "الجزّار",
-      "image": "/New Project (9).png",
+      "image": "/index-Recovered_03.png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
@@ -113,14 +113,14 @@
     }
   ],
   "gallery": [
-    { "id": 1, "src": "https://picsum.photos/seed/gallery1/600/400", "titleEn": "The Butcher Room", "titleAr": "غرفة الجزار" },
-    { "id": 2, "src": "https://picsum.photos/seed/gallery2/600/400", "titleEn": "Lost City Entrance", "titleAr": "مدخل المدينة المفقودة" },
-    { "id": 3, "src": "https://picsum.photos/seed/gallery3/600/400", "titleEn": "VR Experience", "titleAr": "تجربة الواقع الافتراضي" },
-    { "id": 4, "src": "https://picsum.photos/seed/gallery4/600/400", "titleEn": "Sherlock Room", "titleAr": "غرفة شيرلوك" },
-    { "id": 5, "src": "https://picsum.photos/seed/gallery5/600/400", "titleEn": "Control Room", "titleAr": "غرفة التحكم" },
-    { "id": 6, "src": "https://picsum.photos/seed/gallery6/600/400", "titleEn": "Puzzle Chamber", "titleAr": "غرفة الألغاز" },
-    { "id": 7, "src": "https://picsum.photos/seed/gallery7/600/400", "titleEn": "Team Celebration", "titleAr": "احتفال الفريق" },
-    { "id": 8, "src": "https://picsum.photos/seed/gallery8/600/400", "titleEn": "Outdoor Adventure", "titleAr": "مغامرة خارجية" }
+    { "id": 1, "src": "/gallery (1).webp", "titleEn": "The Butcher Room", "titleAr": "غرفة الجزار" },
+    { "id": 2, "src": "/gallery (2).webp" , "titleEn": "Lost City Entrance", "titleAr": "مدخل المدينة المفقودة" },
+    { "id": 3, "src": "/gallery (3).webp", "titleEn": "VR Experience", "titleAr": "تجربة الواقع الافتراضي" },
+    { "id": 4, "src": "/gallery (4).webp", "titleEn": "Sherlock Room", "titleAr": "غرفة شيرلوك" },
+    { "id": 5, "src": "/gallery (5).webp", "titleEn": "Control Room", "titleAr": "غرفة التحكم" },
+    { "id": 6, "src": "/gallery (6).webp", "titleEn": "Puzzle Chamber", "titleAr": "غرفة الألغاز" },
+    { "id": 7, "src": "/gallery (7).webp", "titleEn": "Team Celebration", "titleAr": "احتفال الفريق" },
+    { "id": 8, "src": "/gallery (8).webp", "titleEn": "Outdoor Adventure", "titleAr": "مغامرة خارجية" }
   ],
   "events": [
     {

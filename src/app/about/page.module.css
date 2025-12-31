@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('https://picsum.photos/seed/aboutbanner/1920/600') center/cover no-repeat;
+  background: url('/4_03.png') center/cover no-repeat;
 }
 
 .heroOverlay {
@@ -70,6 +70,7 @@
 .videoWrapper {
   position: relative;
   padding: 20px;
+  margin:  0 10px;
 }
 
 .videoContainer {

@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('https://picsum.photos/seed/reviewsbanner/1920/600') center/cover no-repeat;
+  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 .heroOverlay {

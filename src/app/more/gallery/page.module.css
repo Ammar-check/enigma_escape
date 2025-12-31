@@ -4,13 +4,13 @@
 
 /* Hero Banner */
 .heroBanner {
-  height: 40vh;
-  min-height: 300px;
+  height: 20vh;
+  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('https://picsum.photos/seed/gallerybanner/1920/600') center/cover no-repeat;
+  background: url('') center/cover no-repeat;
 }
 
 .heroOverlay {
