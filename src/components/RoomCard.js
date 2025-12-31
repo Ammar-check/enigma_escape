@@ -9,21 +9,19 @@ import Image from 'next/image';
 const cardVariants = {
   hidden: { 
     opacity: 0, 
-    y: 50,
-    scale: 0.95,
+    x: -100,
   },
   visible: {
     opacity: 1,
-    y: 0,
-    scale: 1,
+    x: 0,
     transition: {
-      duration: 0.5,
-      ease: 'easeOut',
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
 
-export default function RoomCard({ room, showDetails = true }) {
+export default function RoomCard({ room, showDetails = true, index = 0 }) {
   const { t, isArabic } = useLanguage();
 
   const genreLabels = {
@@ -36,11 +34,6 @@ export default function RoomCard({ room, showDetails = true }) {
     <motion.div
       className={styles.roomCard}
       variants={cardVariants}
-      whileHover={{
-        scale: 1.03,
-        y: -5,
-        transition: { duration: 0.3 }
-      }}
       style={{ '--room-color': room.color }}
     >
       <div className={styles.roomImageWrapper}>
@@ -60,9 +53,14 @@ export default function RoomCard({ room, showDetails = true }) {
             {isArabic ? room.nameEn : room.nameAr}
           </p>
         </div>
-        <Link href="/contact" className={`btn btn-gold ${styles.roomBookBtn}`}>
+        <a 
+          href={room.bookingUrl || 'https://bookeo.com/enigmaescapesa'} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`btn btn-gold ${styles.roomBookBtn}`}
+        >
           {t('bookNow')}
-        </Link>
+        </a>
 
         {showDetails && (
           <div className={styles.roomDetails}>

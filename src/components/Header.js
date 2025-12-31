@@ -26,7 +26,7 @@ export default function Header() {
 
   const navLinks = [
     { href: '/', label: t('home') },
-    { href: '/games', label: t('games') },
+    { href: '/events', label: t('privateEvents') },
     { href: '/about', label: t('aboutUs') },
     { href: '/contact', label: t('contactUs') },
   ];
@@ -34,7 +34,6 @@ export default function Header() {
   const moreLinks = [
     { href: '/more/reviews', label: t('reviews') },
     { href: '/more/gallery', label: t('gallery') },
-    { href: '/more/events', label: t('privateEvents') },
     { href: '/more/faq', label: t('faqs') },
   ];
 
@@ -52,9 +51,14 @@ export default function Header() {
         <div className="container">
           <div className={styles.topRowContent}>
             {/* Book Now Button */}
-            <Link href="/contact" className={`btn btn-gold ${styles.bookBtn}`}>
+            <a 
+              href="https://bookeo.com/enigmaescapesa" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`btn btn-gold ${styles.bookBtn}`}
+            >
               {t('bookNow')}
-            </Link>
+            </a>
 
             {/* Logo - Center */}
             <Link href="/" className={styles.logo}>

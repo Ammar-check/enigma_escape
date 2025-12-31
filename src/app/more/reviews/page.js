@@ -72,9 +72,14 @@ export default function ReviewsPage() {
                 : 'Book your escape room experience today!'}
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/contact" className="btn btn-gold mt-4">
+              <a 
+                href="https://bookeo.com/enigmaescapesa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-gold mt-4"
+              >
                 {t('bookNow')}
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         </div>

@@ -6,13 +6,13 @@ import { useLanguage } from '@/context/LanguageContext';
 import styles from './EventCard.module.css';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, x: -100 },
   visible: {
     opacity: 1,
-    y: 0,
+    x: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
@@ -24,7 +24,6 @@ export default function EventCard({ event }) {
     <motion.div
       className={styles.eventCard}
       variants={cardVariants}
-      whileHover={{ scale: 1.02, y: -5 }}
     >
       <div className={styles.eventImageWrapper}>
         <img
@@ -37,15 +36,16 @@ export default function EventCard({ event }) {
             {isArabic ? event.titleAr : event.titleEn}
           </h3>
         </div>
-        <motion.div 
-          className={styles.eventBookBtn}
-          whileHover={{ scale: 1.05 }} 
-          whileTap={{ scale: 0.95 }}
-        >
-          <Link href="/contact" className="btn btn-gold">
+        <div className={styles.eventBookBtn}>
+          <a 
+            href="https://bookeo.com/enigmaescapesa" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="btn btn-gold"
+          >
             {t('bookNow')}
-          </Link>
-        </motion.div>
+          </a>
+        </div>
       </div>
     </motion.div>
   );

@@ -12,7 +12,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
@@ -111,11 +111,10 @@ export default function EventsPage() {
               <motion.div
                 key={index}
                 className={styles.benefitCard}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
               >
                 <div className={styles.benefitIcon}>
                   <i className={`bi ${benefit.icon}`}></i>
@@ -130,3 +129,4 @@ export default function EventsPage() {
     </div>
   );
 }
+

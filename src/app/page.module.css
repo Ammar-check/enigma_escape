@@ -193,14 +193,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.7) 100%);
   z-index: 1;
 }
 
 .comingSoon:hover {
   border-color: var(--gold-primary);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 168, 75, 0.3);
-  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(212, 168, 75, 0.4);
 }
 
 .comingSoonContent {

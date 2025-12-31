@@ -1,65 +1,71 @@
 {
+  "bookingUrl": "https://bookeo.com/enigmaescapesa",
   "rooms": [
     {
       "id": 1,
       "nameEn": "THE BUTCHER",
       "nameAr": "الجزّار",
-      "image": "/enigma/public/New Project (4).png",
+      "image": "/New Project (4).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
       "genre": "horror",
       "difficulty": 4,
-      "color": "#ff4444"
+      "color": "#ff4444",
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556WNTPUF18535EC7BE6"
     },
     {
       "id": 2,
       "nameEn": "THE LOST CITY",
       "nameAr": "المدينة المفقودة",
-      "image": "https://picsum.photos/seed/lostcity/800/400",
+      "image": "/New Project (5).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
       "genre": "adventure",
       "difficulty": 3,
-      "color": "#44ff88"
+      "color": "#44ff88",
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556PY7JWP18535E956B5"
     },
     {
       "id": 3,
       "nameEn": "SHERLOCK",
       "subtitleEn": "& THE DOOMSDAY DEVICE",
       "nameAr": "شيرلوك والجهاز المدمّر",
-      "image": "https://picsum.photos/seed/sherlock/800/400",
+      "image": "/New Project (6).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
       "genre": "mystery",
       "difficulty": 4,
-      "color": "#4488ff"
+      "color": "#4488ff",
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556XU9LUT18535F3203E"
     },
     {
       "id": 4,
       "nameEn": "VR ROOMS",
       "nameAr": "ألعاب هروب الواقع الافتراضي",
-      "image": "https://picsum.photos/seed/vrroom/800/400",
+      "image": "/New Project (7).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
       "genre": null,
       "difficulty": null,
-      "color": "#00f0ff"
+      "color": "#00f0ff",
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555MLUYYY194A4AC9BE5"
     },
     {
       "id": 5,
-      "nameEn": "OUTDOOR ESCAPE GAMES",
-      "nameAr": "مغامرات هروب خارجية",
-      "image": "https://picsum.photos/seed/outdoor/800/400",
+      "nameEn": "MINDSHIELD",
+      "nameAr": "درع العقل",
+      "image": "/New Project (8).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
       "genre": null,
       "difficulty": null,
-      "color": "#ff8844"
+      "color": "#ff8844",
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555TR7CLX194D2193401"
     }
   ],
   "reviews": [

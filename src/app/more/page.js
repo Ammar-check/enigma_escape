@@ -159,9 +159,14 @@ export default function MorePage() {
             </p>
             <div className={styles.ctaButtons}>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/contact" className="btn btn-gold">
+                <a 
+                  href="https://bookeo.com/enigmaescapesa" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-gold"
+                >
                   {t('bookNow')}
-                </Link>
+                </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/games" className="btn btn-outline-gold">

@@ -134,15 +134,15 @@ export function LanguageProvider({ children }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const savedLang = localStorage.getItem('enigma-language');
+    const savedLang = typeof window !== 'undefined' ? localStorage.getItem('enigma-language') : null;
     if (savedLang) {
       setLanguage(savedLang);
     }
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (mounted) {
+    if (mounted && typeof window !== 'undefined') {
       localStorage.setItem('enigma-language', language);
       document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
       document.documentElement.lang = language;
@@ -156,6 +156,15 @@ export function LanguageProvider({ children }) {
   const t = (key) => {
     return translations[language][key] || key;
   };
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t, isArabic: language === 'ar' }}>
+        {children}
+      </LanguageContext.Provider>
+    );
+  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t, isArabic: language === 'ar' }}>

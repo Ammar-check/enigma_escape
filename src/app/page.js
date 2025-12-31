@@ -13,7 +13,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
       delayChildren: 0.1,
     },
   },
@@ -22,17 +22,14 @@ const containerVariants = {
 const titleVariants = {
   hidden: { 
     opacity: 0, 
-    y: -50,
-    scale: 0.9,
+    y: -30,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      type: 'spring',
-      stiffness: 150,
-      damping: 15,
+      duration: 0.5,
+      ease: 'easeOut',
     },
   },
 };
@@ -40,18 +37,14 @@ const titleVariants = {
 const comingSoonVariants = {
   hidden: { 
     opacity: 0, 
-    scale: 0.5,
-    rotateY: 90,
+    x: -100,
   },
   visible: {
     opacity: 1,
-    scale: 1,
-    rotateY: 0,
+    x: 0,
     transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 12,
-      duration: 0.8,
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
@@ -189,29 +182,11 @@ export default function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05,
-                y: -10,
-                boxShadow: '0 25px 50px rgba(128, 0, 128, 0.4), 0 0 40px rgba(255, 0, 128, 0.3)',
-                transition: { type: 'spring', stiffness: 400, damping: 15 }
-              }}
-              whileTap={{ scale: 0.98 }}
             >
               <div className={styles.comingSoonContent}>
-                <motion.h3
-                  animate={{ 
-                    opacity: [0.6, 1, 0.6],
-                    scale: [1, 1.05, 1],
-                    textShadow: [
-                      '0 0 20px rgba(212, 168, 75, 0.5)',
-                      '0 0 40px rgba(212, 168, 75, 0.8)',
-                      '0 0 20px rgba(212, 168, 75, 0.5)'
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                >
+                <h3>
                   {t('comingSoon')}
-                </motion.h3>
+                </h3>
               </div>
             </motion.div>
           </motion.div>
