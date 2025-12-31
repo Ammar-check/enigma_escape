@@ -196,12 +196,17 @@
   .roomBookBtn {
     font-size: 0.7rem;
     padding: 8px 20px;
+    margin-top: 40px;
   }
 }
 
 @media (max-width: 576px) {
   .roomImageWrapper {
     height: 220px;
+  }
+  .roomBookBtn {
+  
+    margin-top: -6px;
   }
 
   .roomName {

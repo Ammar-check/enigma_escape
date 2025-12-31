@@ -1,11 +1,11 @@
-.pageWrapper {
+/* .pageWrapper {
   padding-top: 80px;
-}
+} */
 
 /* Hero Banner */
 .heroBanner {
-  height: 40vh;
-  min-height: 300px;
+  height: 25vh;
+  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;

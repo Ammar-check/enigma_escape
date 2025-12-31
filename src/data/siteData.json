@@ -5,26 +5,26 @@
       "id": 1,
       "nameEn": "THE BUTCHER",
       "nameAr": "الجزّار",
-      "image": "/New Project (4).png",
+      "image": "/New Project (9).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
       "genre": "horror",
       "difficulty": 4,
-      "color": "#ff4444",
+      "color": "#fb0102",
       "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556WNTPUF18535EC7BE6"
     },
     {
       "id": 2,
       "nameEn": "THE LOST CITY",
       "nameAr": "المدينة المفقودة",
-      "image": "/New Project (5).png",
+      "image": "/New Project (4).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
       "genre": "adventure",
       "difficulty": 3,
-      "color": "#44ff88",
+      "color": "#d7deba",
       "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556PY7JWP18535E956B5"
     },
     {
@@ -32,33 +32,33 @@
       "nameEn": "SHERLOCK",
       "subtitleEn": "& THE DOOMSDAY DEVICE",
       "nameAr": "شيرلوك والجهاز المدمّر",
-      "image": "/New Project (6).png",
+      "image": "/New Project (5).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
       "genre": "mystery",
       "difficulty": 4,
-      "color": "#4488ff",
+      "color": "#f75707",
       "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556XU9LUT18535F3203E"
     },
     {
       "id": 4,
       "nameEn": "VR ROOMS",
       "nameAr": "ألعاب هروب الواقع الافتراضي",
-      "image": "/New Project (7).png",
+      "image": "/New Project (6).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
       "genre": null,
       "difficulty": null,
-      "color": "#00f0ff",
+      "color": "#ffffff",
       "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555MLUYYY194A4AC9BE5"
     },
     {
       "id": 5,
       "nameEn": "MINDSHIELD",
       "nameAr": "درع العقل",
-      "image": "/New Project (8).png",
+      "image": "/New Project (5).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
@@ -127,7 +127,7 @@
       "id": 1,
       "titleEn": "Parties / Birthday",
       "titleAr": "حفلات / أعياد الميلاد",
-      "image": "/New Project (5).png",
+      "image": "/1_03.png",
       "descriptionEn": "Celebrate your special day with an unforgettable escape room experience!",
       "descriptionAr": "احتفل بيومك الخاص مع تجربة غرفة هروب لا تُنسى!"
     },
@@ -135,7 +135,7 @@
       "id": 2,
       "titleEn": "Corporate / Team Building",
       "titleAr": "الشركات / بناء الفريق",
-      "image": "/New Project (6).png",
+      "image": "/2_03.png",
       "descriptionEn": "Build stronger teams through collaborative puzzle-solving adventures.",
       "descriptionAr": "ابنِ فرقاً أقوى من خلال مغامرات حل الألغاز التعاونية."
     },
@@ -143,7 +143,7 @@
       "id": 3,
       "titleEn": "External Events / School Trips",
       "titleAr": "الفعاليات الخارجية / الرحلات المدرسية",
-      "image": "/New Project (7).png",
+      "image": "/New Project (9).png",
       "descriptionEn": "Educational and exciting experiences for students of all ages.",
       "descriptionAr": "تجارب تعليمية ومثيرة للطلاب من جميع الأعمار."
     }
@@ -296,7 +296,7 @@
       "fridayEn": "Friday | 3:50 pm – 12:30 am",
       "fridayAr": "الجمعة | 3:50 م – 12:30 ص"
     },
-    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.5!2d50.2!3d26.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDE4JzAwLjAiTiA1MMKwMTInMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890"
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3575.2058934439588!2d50.20828207399522!3d26.352201783956147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49ef6a1a013d05%3A0xfaa2241d2b2a4a91!2sEnigma%20Escape%20Games%20%2B%20VR%20Rooms!5e0!3m2!1sen!2s!4v1767201071310!5m2!1sen!2s"
   },
   "socialLinks": [
     { "platform": "instagram", "url": "https://instagram.com", "icon": "bi-instagram" },

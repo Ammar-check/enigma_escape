@@ -11,10 +11,10 @@ export default function Footer() {
   const { t, isArabic } = useLanguage();
   
   const socialLinks = [
-    { icon: 'bi-instagram', href: 'https://instagram.com', label: 'Instagram' },
+    { icon: 'bi-instagram', href: 'https://www.instagram.com/enigmaescapeksa', label: 'Instagram' },
     { icon: 'bi-google', href: 'https://google.com', label: 'Google' },
-    { icon: 'bi-globe', href: 'https://tripadvisor.com', label: 'TripAdvisor' },
-    { icon: 'bi-tiktok', href: 'https://tiktok.com', label: 'TikTok' },
+    { icon: 'bi-youtube', href: 'https://www.youtube.com/@EnigmaEscapeGames', label: 'YouTube' },
+    { icon: 'bi-tiktok', href: 'https://www.tiktok.com/@enigmaescapeksa', label: 'TikTok' },
   ];
 
   return (

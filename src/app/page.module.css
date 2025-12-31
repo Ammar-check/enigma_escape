@@ -176,7 +176,7 @@
   align-items: center;
   justify-content: center;
   min-height: 350px;
-  background: url('../images/New Project (4).png') center/cover no-repeat;
+  background: url('../images/New Project (8).png') center/cover no-repeat;
   border: 1px solid var(--dark-border);
   border-radius: 15px;
   transition: all 0.4s ease;
@@ -469,6 +469,7 @@
 
   .heroNumber {
     font-size: 4.5rem;
+    margin-bottom: 30px;
   }
 
   .heroMinutes {

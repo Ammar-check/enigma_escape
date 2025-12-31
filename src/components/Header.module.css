@@ -396,8 +396,10 @@
   }
 
   .logoWrapper img {
-    width: 120px;
+   width: 76px;
+    margin-right: 80px;
   }
+ 
 
   .langSelector {
     right: 50px;
