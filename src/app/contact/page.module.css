@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('/enigma_escape/New Project (1).jpg') center/cover no-repeat;
+  background: url('/New Project (1).jpg') center/cover no-repeat;
   margin-top: -140px;
   padding-top: 140px;
 }
@@ -47,7 +47,7 @@
 
 /* Contact Section */
 .contactSection {
-  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
   position: relative;
 }
 

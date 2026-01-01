@@ -35,7 +35,7 @@ export default function Footer() {
         >
           <Link href="/" className={styles.logo}>
             <div className={styles.logoText}>
-              <Image src="/enigma_escape/logo-enigma-yellow.webp" alt="Enigma logo" width={100} height={80} />
+              <Image src="/logo-enigma-yellow.webp" alt="Enigma logo" width={100} height={80} />
             </div>
            
           </Link>

@@ -105,7 +105,7 @@ export default function AboutPage() {
                   {!showVideo ? (
                     <>
                       <img
-                        src="/enigma_escape/1_03.png"
+                        src="/1_03.png"
                         alt="Enigma Escape Games Experience"
                         className={styles.videoThumbnail}
                       />

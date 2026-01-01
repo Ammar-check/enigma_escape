@@ -84,7 +84,7 @@ export default function Header() {
             {/* Logo - Center */}
             <Link href="/" className={styles.logo}>
               <div className={styles.logoWrapper}>
-                <Image src="/enigma_escape/logo-enigma-yellow.webp" alt="Enigma Logo" width={180} height={70} />
+                <Image src="/logo-enigma-yellow.webp" alt="Enigma Logo" width={180} height={70} />
               </div>
             </Link>
 

@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('/enigma_escape/4_03.png') center/cover no-repeat;
+  background: url('/4_03.png') center/cover no-repeat;
   margin-top: -140px;
   padding-top: 140px;
 }
@@ -154,7 +154,7 @@
   left: 0;
   right: 0;
   height: 200%;
-  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 .statsOverlay {
