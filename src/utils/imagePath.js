@@ -4,8 +4,8 @@ export function getImagePath(imagePath) {
     return imagePath;
   }
   
-  // Get basePath from next/router or window location
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/enigma_escape';
+  // Get basePath from env (set to '' for root deployments like Netlify)
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   
   // If path already includes basePath, return as-is
   if (imagePath.startsWith(basePath)) {
