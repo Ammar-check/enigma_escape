@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Header.module.css';
 import Image from 'next/image';
-import logo from '@/images/logo-enigma-yellow.webp';
 
 export default function Header() {
   const pathname = usePathname();
@@ -26,6 +25,7 @@ export default function Header() {
 
   const navLinks = [
     { href: '/', label: t('home') },
+    { href: '/#games', label: t('games'), isScroll: true },
     { href: '/events', label: t('privateEvents') },
     { href: '/about', label: t('aboutUs') },
     { href: '/contact', label: t('contactUs') },
@@ -42,6 +42,27 @@ export default function Header() {
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
     setLangDropdown(false);
+  };
+
+  const handleNavClick = (e, link) => {
+    if (link.isScroll && pathname === '/') {
+      e.preventDefault();
+      const gamesSection = document.querySelector('#games-section');
+      if (gamesSection) {
+        const headerHeight = 140;
+        const elementPosition = gamesSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        setMobileMenuOpen(false);
+      }
+    } else if (link.isScroll) {
+      // If not on home page, navigate to home page with hash
+      window.location.href = '/#games';
+    }
   };
 
   return (
@@ -63,7 +84,7 @@ export default function Header() {
             {/* Logo - Center */}
             <Link href="/" className={styles.logo}>
               <div className={styles.logoWrapper}>
-                <Image src={logo} alt="Enigma Logo" width={180} height={70} />
+                <Image src="/enigma_escape/logo-enigma-yellow.webp" alt="Enigma Logo" width={180} height={70} />
               </div>
             </Link>
 
@@ -118,7 +139,13 @@ export default function Header() {
                 <Link
                   href={link.href}
                   className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    if (link.isScroll) {
+                      handleNavClick(e, link);
+                    } else {
+                      setMobileMenuOpen(false);
+                    }
+                  }}
                 >
                   {link.label}
                 </Link>
@@ -130,6 +157,7 @@ export default function Header() {
               className={`${styles.navItem} ${styles.dropdown}`}
               onMouseEnter={() => setMoreDropdown(true)}
               onMouseLeave={() => setMoreDropdown(false)}
+              onClick={() => setMoreDropdown(!moreDropdown)}
             >
               <Link
                 href="/more"

@@ -10,7 +10,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  margin-top: -140px;
+  padding-top: 140px;
 }
 
 .heroOverlay {
@@ -156,7 +158,32 @@
   .faqQuestion span {
     font-size: 0.9rem;
   }
+}
 
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .faqQuestion {
+    font-size: 1rem;
+  }
+
+  .faqQuestion span {
+    font-size: 0.85rem;
+  }
+
+  .faqAnswer {
+    font-size: 0.9rem;
+  }
+
+  .contactCta h3 {
+    font-size: 1.5rem;
+  }
+
+  .contactCta p {
+    font-size: 0.9rem;
+  }
 }
 
 

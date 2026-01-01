@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 import styles from './EventCard.module.css';
 
 const cardVariants = {
@@ -26,10 +27,12 @@ export default function EventCard({ event }) {
       variants={cardVariants}
     >
       <div className={styles.eventImageWrapper}>
-        <img
+        <Image
           src={event.image}
           alt={isArabic ? event.titleAr : event.titleEn}
           className={styles.eventImage}
+          width={500}
+          height={400}
         />
         <div className={styles.eventOverlay}>
           <h3 className={styles.eventTitle}>

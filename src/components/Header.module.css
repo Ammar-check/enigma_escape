@@ -176,12 +176,20 @@
 .mobileToggle {
   display: none;
   background: transparent;
-  border: none;
+  border: 2px solid var(--gold-primary);
+  border-radius: 5px;
   color: var(--gold-primary);
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 5px;
+  padding: 8px 12px;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(212, 168, 75, 0.3);
+}
+
+.mobileToggle:hover {
+  background: rgba(212, 168, 75, 0.1);
+  box-shadow: 0 0 15px rgba(212, 168, 75, 0.5);
 }
 
 /* Bottom Row - Navigation */
@@ -362,35 +370,42 @@
   .dropdownMenu {
     position: static;
     transform: none;
-    background: rgba(26, 26, 26, 0.5);
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
+    background: rgba(26, 26, 26, 0.98);
+    border: 1px solid rgba(212, 168, 75, 0.3);
+    border-radius: 8px;
+    margin: 8px auto;
+    max-width: calc(100% - 40px);
+    width: 90%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
     max-height: 0;
     overflow: hidden;
     padding: 0;
     transition: all 0.3s ease;
   }
 
-  .dropdown:hover .dropdownMenu {
-    max-height: 200px;
+  .dropdownMenu.show {
+    opacity: 1;
+    visibility: visible;
+    max-height: 250px;
     padding: 10px 0;
   }
 
   .dropdownItem {
     text-align: center;
+    padding: 12px 20px;
   }
 
   .dropdownItem:hover {
-    padding-left: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
 @media (max-width: 576px) {
   .bookBtn {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 8px 15px;
     letter-spacing: 1px;
   }
@@ -411,5 +426,48 @@
 
   .flag {
     font-size: 1.1rem;
+  }
+
+  .mobileToggle {
+    font-size: 1.4rem;
+    padding: 6px 10px;
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookBtn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .logoWrapper img {
+    width: 70px;
+  }
+
+  .mobileToggle {
+    font-size: 1.3rem;
+    padding: 5px 9px;
+  }
+}
+
+@media (max-width: 380px) {
+  .bookBtn {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  .logoWrapper img {
+    width: 65px;
+  }
+
+  .mobileToggle {
+    font-size: 1.2rem;
+    padding: 5px 8px;
+  }
+
+  .langSelector {
+    right: 45px;
+    padding: 5px 7px;
   }
 }

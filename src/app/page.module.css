@@ -17,7 +17,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../images/New Project.png') center/cover no-repeat;
+  background: url('/enigma_escape/New Project.jpg') center/cover no-repeat;
 }
 
 .heroOverlay {
@@ -157,7 +157,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../images/Contact-Us_Background-min-1.png') center/cover no-repeat fixed;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat fixed;
   z-index: 0;
 }
 
@@ -176,7 +176,7 @@
   align-items: center;
   justify-content: center;
   min-height: 350px;
-  background: url('../images/New Project (8).png') center/cover no-repeat;
+  background: url('/enigma_escape/New Project (8).png') center/cover no-repeat;
   border: 1px solid var(--dark-border);
   border-radius: 15px;
   transition: all 0.4s ease;
@@ -222,7 +222,7 @@
   position: relative;
   overflow: hidden;
   padding: 0 0 80px 0;
-  background: url('../images/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 /* Contact Circuit Divider - Gold - Home Page Only */
@@ -270,7 +270,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../images/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 .contactOverlay {

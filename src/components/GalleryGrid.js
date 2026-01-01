@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 import styles from './GalleryGrid.module.css';
 
 const containerVariants = {
@@ -47,10 +48,12 @@ export default function GalleryGrid({ images }) {
             whileHover={{ scale: 1.05, y: -10 }}
             onClick={() => setSelectedImage(item)}
           >
-            <img
+            <Image
               src={item.src}
               alt={isArabic ? item.titleAr : item.titleEn}
               className={styles.galleryImage}
+              width={400}
+              height={300}
             />
             <div className={styles.itemOverlay}>
               <span className={styles.itemTitle}>
@@ -79,13 +82,12 @@ export default function GalleryGrid({ images }) {
             >
               <i className="bi bi-x-lg"></i>
             </button>
-            <motion.img
+            <Image
               src={selectedImage.src}
               alt={isArabic ? selectedImage.titleAr : selectedImage.titleEn}
               className={styles.lightboxImage}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              width={1200}
+              height={800}
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>

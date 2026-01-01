@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Footer.module.css';
 import Image from 'next/image';
-import logo from '@/images/logo-enigma-yellow.webp';
 
 export default function Footer() {
   const { t, isArabic } = useLanguage();
@@ -36,7 +35,7 @@ export default function Footer() {
         >
           <Link href="/" className={styles.logo}>
             <div className={styles.logoText}>
-              <Image src={logo} alt="Enigma logo" width={100} height={80} />
+              <Image src="/enigma_escape/logo-enigma-yellow.webp" alt="Enigma logo" width={100} height={80} />
             </div>
            
           </Link>

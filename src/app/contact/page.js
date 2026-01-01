@@ -131,9 +131,17 @@ export default function ContactPage() {
                 <div className={isArabic ? 'text-start' : 'text-end'}>
                   <motion.button
                     type="submit"
-                    className="btn btn-outline-gold"
+                    className="btn btn-gold"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    animate={{
+                      boxShadow: [
+                        '0 2px 15px rgba(212, 168, 75, 0.3)',
+                        '0 5px 30px rgba(212, 168, 75, 0.6)',
+                        '0 2px 15px rgba(212, 168, 75, 0.3)',
+                      ],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>
@@ -141,25 +149,6 @@ export default function ContactPage() {
               </motion.form>
             </div>
           </div>
-
-          {/* Map - Below Contact Form */}
-          <motion.div
-            className={styles.mapWrapper}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <iframe
-              src={contactInfo.mapUrl}
-              width="100%"
-              height="350"
-              style={{ border: 0, borderRadius: '15px' }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </motion.div>
         </div>
       </section>
     </div>

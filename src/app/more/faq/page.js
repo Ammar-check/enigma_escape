@@ -66,7 +66,7 @@ export default function FAQPage() {
             <p>
               {isArabic ? 'لا تتردد في التواصل معنا!' : 'Feel free to reach out to us!'}
             </p>
-            <Link href="/contact" className="btn btn-gold mt-3">
+            <Link href="/contact" className="btn btn-white mt-3">
               {t('contactUs')}
             </Link>
           </motion.div>

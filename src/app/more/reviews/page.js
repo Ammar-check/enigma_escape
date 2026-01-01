@@ -51,39 +51,6 @@ export default function ReviewsPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className={styles.ctaSection}>
-        <div className="container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className={styles.ctaTitle}>
-              {isArabic
-                ? 'هل أنت مستعد لإنشاء قصتك الخاصة؟'
-                : 'Ready to Create Your Own Story?'}
-            </h2>
-            <p className={styles.ctaText}>
-              {isArabic
-                ? 'احجز تجربة غرفة الهروب الخاصة بك اليوم!'
-                : 'Book your escape room experience today!'}
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <a 
-                href="https://bookeo.com/enigmaescapesa" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-gold mt-4"
-              >
-                {t('bookNow')}
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }

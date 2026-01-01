@@ -86,12 +86,16 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--gold-primary);
   color: var(--dark-bg);
   border-radius: 50px;
+  box-shadow: 0 2px 15px rgba(212, 168, 75, 0.3);
+  font-weight: 600;
+  border: none;
 }
 
 .btn-gold:hover {
   background: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(212, 168, 75, 0.4);
+  box-shadow: 0 5px 25px rgba(212, 168, 75, 0.6);
+  color: var(--dark-bg);
 }
 
 .btn-outline-gold {
@@ -105,6 +109,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--dark-bg);
   transform: translateY(-2px);
   box-shadow: 0 5px 20px rgba(212, 168, 75, 0.4);
+}
+
+.btn-white {
+  background: #ffffff;
+  color: var(--dark-bg);
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.btn-white:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--dark-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4);
 }
 
 /* Form Styles */
@@ -249,7 +268,7 @@ a.btn.btn-gold {
 
 @media (max-width: 576px) {
   :root {
-    --section-padding: 40px;
+    --section-padding: 20px;
   }
 
   body {
@@ -275,7 +294,7 @@ a.btn.btn-gold {
 
 @media (max-width: 480px) {
   :root {
-    --section-padding: 30px;
+    --section-padding: 15px;
   }
 
   .section-title {

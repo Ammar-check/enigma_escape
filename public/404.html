@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enigma Escape Games</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #0a0a0a;
+      color: #d4a84b;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+    }
+    .loader {
+      font-size: 3rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+  <script>
+    // Redirect to the correct path with basePath
+    const path = window.location.pathname;
+    const basePath = '/enigma_escape';
+    
+    // If we're at the root or a 404, redirect to the basePath
+    if (path === '/' || path === '/index.html' || !path.startsWith(basePath)) {
+      window.location.replace(basePath + '/');
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <div class="loader">⏳</div>
+    <h1>Enigma Escape Games</h1>
+    <p>Redirecting...</p>
+  </div>
+</body>
+</html>
+
