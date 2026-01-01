@@ -16,9 +16,8 @@
   transition: all 0.3s ease;
   z-index: 999;
 }
-
 .whatsappButton:hover {
-  background: #1fa853;
+  background: #1fa857;
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
 }
