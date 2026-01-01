@@ -10,7 +10,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('/4_03.png') center/cover no-repeat;
+  background: url('/enigma_escape/4_03.png') center/cover no-repeat;
+  margin-top: -140px;
+  padding-top: 140px;
 }
 
 .heroOverlay {
@@ -70,11 +72,16 @@
 .videoWrapper {
   position: relative;
   padding: 20px;
-  margin:  0 10px;
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 .videoContainer {
   position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -82,9 +89,16 @@
 
 .videoThumbnail {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
+}
+
+.videoIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 .videoWrapper:hover .videoThumbnail {
@@ -140,7 +154,7 @@
   left: 0;
   right: 0;
   height: 200%;
-  background: url('https://picsum.photos/seed/statsbg/1920/1080') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 .statsOverlay {
@@ -241,9 +255,25 @@
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .videoContainer {
+    max-width: 350px;
+    height: 260px;
+  }
 }
 
 @media (max-width: 768px) {
+  .videoContainer {
+    max-width: 100%;
+    height: 250px;
+  }
+
+  .playButton {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
   .heroTitle {
     font-size: 2.5rem;
   }
@@ -258,6 +288,36 @@
 
   .statNumber {
     font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .aboutTitle {
+    font-size: 1.5rem;
+  }
+
+  .aboutText {
+    font-size: 1rem;
+  }
+
+  .statNumber {
+    font-size: 2rem;
+  }
+
+  .statLabel {
+    font-size: 0.9rem;
+  }
+
+  .missionCard h3 {
+    font-size: 1.3rem;
+  }
+
+  .missionCard p {
+    font-size: 0.95rem;
   }
 }
 

@@ -5,7 +5,7 @@
       "id": 1,
       "nameEn": "THE BUTCHER",
       "nameAr": "الجزّار",
-      "image": "/index-Recovered_03.png",
+      "image": "/enigma_escape/index-Recovered_03.png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
@@ -18,7 +18,7 @@
       "id": 2,
       "nameEn": "THE LOST CITY",
       "nameAr": "المدينة المفقودة",
-      "image": "/New Project (4).png",
+      "image": "/enigma_escape/New Project (4).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
@@ -32,7 +32,7 @@
       "nameEn": "SHERLOCK",
       "subtitleEn": "& THE DOOMSDAY DEVICE",
       "nameAr": "شيرلوك والجهاز المدمّر",
-      "image": "/New Project (5).png",
+      "image": "/enigma_escape/New Project (5).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
@@ -45,7 +45,7 @@
       "id": 4,
       "nameEn": "VR ROOMS",
       "nameAr": "ألعاب هروب الواقع الافتراضي",
-      "image": "/New Project (6).png",
+      "image": "/enigma_escape/New Project (6).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
@@ -58,7 +58,7 @@
       "id": 5,
       "nameEn": "MINDSHIELD",
       "nameAr": "درع العقل",
-      "image": "/New Project (7).png",
+      "image": "/enigma_escape/New Project (7).png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
@@ -113,21 +113,21 @@
     }
   ],
   "gallery": [
-    { "id": 1, "src": "/gallery (1).webp", "titleEn": "The Butcher Room", "titleAr": "غرفة الجزار" },
-    { "id": 2, "src": "/gallery (2).webp" , "titleEn": "Lost City Entrance", "titleAr": "مدخل المدينة المفقودة" },
-    { "id": 3, "src": "/gallery (3).webp", "titleEn": "VR Experience", "titleAr": "تجربة الواقع الافتراضي" },
-    { "id": 4, "src": "/gallery (4).webp", "titleEn": "Sherlock Room", "titleAr": "غرفة شيرلوك" },
-    { "id": 5, "src": "/gallery (5).webp", "titleEn": "Control Room", "titleAr": "غرفة التحكم" },
-    { "id": 6, "src": "/gallery (6).webp", "titleEn": "Puzzle Chamber", "titleAr": "غرفة الألغاز" },
-    { "id": 7, "src": "/gallery (7).webp", "titleEn": "Team Celebration", "titleAr": "احتفال الفريق" },
-    { "id": 8, "src": "/gallery (8).webp", "titleEn": "Outdoor Adventure", "titleAr": "مغامرة خارجية" }
+    { "id": 1, "src": "/enigma_escape/gallery (1).webp", "titleEn": "The Butcher Room", "titleAr": "غرفة الجزار" },
+    { "id": 2, "src": "/enigma_escape/gallery (2).webp" , "titleEn": "Lost City Entrance", "titleAr": "مدخل المدينة المفقودة" },
+    { "id": 3, "src": "/enigma_escape/gallery (3).webp", "titleEn": "VR Experience", "titleAr": "تجربة الواقع الافتراضي" },
+    { "id": 4, "src": "/enigma_escape/gallery (4).webp", "titleEn": "Sherlock Room", "titleAr": "غرفة شيرلوك" },
+    { "id": 5, "src": "/enigma_escape/gallery (5).webp", "titleEn": "Control Room", "titleAr": "غرفة التحكم" },
+    { "id": 6, "src": "/enigma_escape/gallery (6).webp", "titleEn": "Puzzle Chamber", "titleAr": "غرفة الألغاز" },
+    { "id": 7, "src": "/enigma_escape/gallery (7).webp", "titleEn": "Team Celebration", "titleAr": "احتفال الفريق" },
+    { "id": 8, "src": "/enigma_escape/gallery (8).webp", "titleEn": "Outdoor Adventure", "titleAr": "مغامرة خارجية" }
   ],
   "events": [
     {
       "id": 1,
       "titleEn": "Parties / Birthday",
       "titleAr": "حفلات / أعياد الميلاد",
-      "image": "/1_03.png",
+      "image": "/enigma_escape/1_03.png",
       "descriptionEn": "Celebrate your special day with an unforgettable escape room experience!",
       "descriptionAr": "احتفل بيومك الخاص مع تجربة غرفة هروب لا تُنسى!"
     },
@@ -135,7 +135,7 @@
       "id": 2,
       "titleEn": "Corporate / Team Building",
       "titleAr": "الشركات / بناء الفريق",
-      "image": "/2_03.png",
+      "image": "/enigma_escape/2_03.png",
       "descriptionEn": "Build stronger teams through collaborative puzzle-solving adventures.",
       "descriptionAr": "ابنِ فرقاً أقوى من خلال مغامرات حل الألغاز التعاونية."
     },
@@ -143,7 +143,7 @@
       "id": 3,
       "titleEn": "External Events / School Trips",
       "titleAr": "الفعاليات الخارجية / الرحلات المدرسية",
-      "image": "/New Project (9).png",
+      "image": "/enigma_escape/New Project (9).png",
       "descriptionEn": "Educational and exciting experiences for students of all ages.",
       "descriptionAr": "تجارب تعليمية ومثيرة للطلاب من جميع الأعمار."
     }

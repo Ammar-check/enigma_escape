@@ -11,6 +11,8 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
+  margin-top: -140px;
+  padding-top: 140px;
 }
 
 .parallaxBg {
@@ -19,7 +21,7 @@
   left: 0;
   right: 0;
   height: 140%;
-  background: url('../../images/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
 }
 
 .heroOverlay {
@@ -62,7 +64,7 @@
 
 /* Events Section */
 .eventsSection {
-  background: url('../../images/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
   position: relative;
 }
 
@@ -145,6 +147,28 @@
 
   .benefitsGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .eventCard h3 {
+    font-size: 1.5rem;
+  }
+
+  .eventCard p {
+    font-size: 0.9rem;
+  }
+
+  .benefitCard h4 {
+    font-size: 1.2rem;
+  }
+
+  .benefitCard p {
+    font-size: 0.9rem;
   }
 }
 

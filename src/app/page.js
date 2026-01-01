@@ -150,7 +150,7 @@ export default function Home() {
       </section>
 
       {/* Our Rooms Section */}
-      <section className={`section-padding ${styles.roomsSection}`}>
+      <section id="games-section" className={`section-padding ${styles.roomsSection}`}>
         <div className="container">
          <motion.h2
   className="section-title"
@@ -320,9 +320,17 @@ export default function Home() {
                 <div className={isArabic ? 'text-start' : 'text-end'}>
                   <motion.button
                     type="submit"
-                    className="btn btn-outline-gold"
+                    className="btn btn-gold"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    animate={{
+                      boxShadow: [
+                        '0 2px 15px rgba(212, 168, 75, 0.3)',
+                        '0 5px 30px rgba(212, 168, 75, 0.6)',
+                        '0 2px 15px rgba(212, 168, 75, 0.3)',
+                      ],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>
@@ -330,25 +338,6 @@ export default function Home() {
               </motion.form>
             </div>
           </div>
-
-          {/* Map - Below the form */}
-          <motion.div
-            className={styles.mapWrapper}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <iframe
-              src={contactInfo.mapUrl}
-              width="100%"
-              height="350"
-              style={{ border: 0, borderRadius: '10px' }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </motion.div>
         </div>
       </section>
     </>

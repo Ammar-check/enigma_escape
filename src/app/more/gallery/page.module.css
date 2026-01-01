@@ -10,7 +10,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('') center/cover no-repeat;
+  background: url('/enigma_escape/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  margin-top: -140px;
+  padding-top: 140px;
 }
 
 .heroOverlay {
@@ -52,5 +54,11 @@
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2rem;
   }
 }

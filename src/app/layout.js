@@ -3,6 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import BootstrapClient from '@/components/BootstrapClient';
 import { LanguageProvider } from '@/context/LanguageContext';
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <WhatsAppButton />
         </LanguageProvider>
         <BootstrapClient />
       </body>

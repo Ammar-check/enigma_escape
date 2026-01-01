@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
@@ -9,6 +9,7 @@ import styles from './page.module.css';
 export default function AboutPage() {
   const { t, isArabic } = useLanguage();
   const containerRef = useRef(null);
+  const [showVideo, setShowVideo] = useState(false);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
@@ -99,29 +100,42 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                whileHover={{ scale: 1.02 }}
               >
                 <div className={styles.videoContainer}>
-                  <img
-                    src="https://picsum.photos/seed/enigmavideo/800/450"
-                    alt="Enigma Escape Games Experience"
-                    className={styles.videoThumbnail}
-                  />
-                  <motion.button
-                    className={styles.playButton}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    animate={{
-                      boxShadow: [
-                        '0 0 20px rgba(212, 168, 75, 0.3)',
-                        '0 0 40px rgba(212, 168, 75, 0.6)',
-                        '0 0 20px rgba(212, 168, 75, 0.3)',
-                      ],
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <i className="bi bi-play-fill"></i>
-                  </motion.button>
+                  {!showVideo ? (
+                    <>
+                      <img
+                        src="/enigma_escape/1_03.png"
+                        alt="Enigma Escape Games Experience"
+                        className={styles.videoThumbnail}
+                      />
+                      <motion.button
+                        className={styles.playButton}
+                        onClick={() => setShowVideo(true)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        animate={{
+                          boxShadow: [
+                            '0 0 20px rgba(212, 168, 75, 0.3)',
+                            '0 0 40px rgba(212, 168, 75, 0.6)',
+                            '0 0 20px rgba(212, 168, 75, 0.3)',
+                          ],
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        <i className="bi bi-play-fill"></i>
+                      </motion.button>
+                    </>
+                  ) : (
+                    <iframe
+                      className={styles.videoIframe}
+                      src="https://www.youtube.com/embed/KBIe2-9VG_U?autoplay=1"
+                      title="Enigma Escape Games"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  )}
                 </div>
                 <div className={styles.videoFrame}></div>
               </motion.div>

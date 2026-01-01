@@ -37,10 +37,12 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
       style={{ '--room-color': room.color }}
     >
       <div className={styles.roomImageWrapper}>
-        <img
+        <Image
           src={room.image}
           alt={isArabic ? room.nameAr : room.nameEn}
           className={styles.roomImage}
+          width={500}
+          height={400}
         />
         <div className={styles.roomOverlay}>
           <h3 className={styles.roomName}>

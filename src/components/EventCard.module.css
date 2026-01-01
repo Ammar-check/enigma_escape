@@ -59,12 +59,36 @@
   }
 
   .eventTitle {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .eventBookBtn .btn {
     font-size: 0.7rem;
     padding: 6px 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .eventImageWrapper {
+    height: 250px;
+  }
+
+  .eventTitle {
+    font-size: 1.3rem;
+  }
+
+  .eventOverlay {
+    padding: 15px 20px;
+  }
+
+  .eventBookBtn {
+    top: 12px;
+    right: 12px;
+  }
+
+  .eventBookBtn .btn {
+    font-size: 0.65rem;
+    padding: 6px 14px;
   }
 }
 
