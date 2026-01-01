@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://yourusername.github.io/enigma-escape-games",
-  "scripts": {
-    "dev": "next dev",
+ "scripts": {
+  "dev": "next dev",
   "build": "next build",
-  "start": "next start",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d out"
-  },
+  "start": "next start"
+},
   "dependencies": {
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
