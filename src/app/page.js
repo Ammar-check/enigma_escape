@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import RoomCard from '@/components/RoomCard';
 import siteData from '@/data/siteData.json';
@@ -79,47 +80,82 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <motion.h1
-              className={styles.heroTitle}
-              initial={{ opacity: 0, scale: 0.5, rotateX: 45 }}
-              animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-              transition={{ 
-                type: 'spring',
-                stiffness: 100,
-                damping: 10,
-                delay: 0.5 
-              }}
-            >
-              <motion.span 
-                className={styles.heroNumber}
-                animate={{ 
-                  textShadow: [
-                    '0 0 30px rgba(252, 196, 3, 0.5)',
-                    '0 0 60px rgba(252, 196, 3, 0.8)',
-                    '0 0 30px rgba(252, 196, 3, 0.5)'
-                  ]
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                60
-              </motion.span>
-              <motion.span 
-                className={styles.heroMinutes}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
-                {t('minutes')}
-              </motion.span>
-            </motion.h1>
-            <motion.p
-              className={styles.heroSubtitle}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              {t('heroSubtitle')}
-            </motion.p>
+            {isArabic ? (
+              <>
+                <motion.div
+                  className={styles.heroImageWrapper}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10,
+                    delay: 0.5 
+                  }}
+                >
+                  <Image
+                    src="/60-Minutes_Arabic-2.png"
+                    alt="٦٠ دقيقة"
+                    width={350}
+                    height={200}
+                    className={styles.heroArabicImage}
+                    priority
+                  />
+                </motion.div>
+                <motion.p
+                  className={styles.heroSubtitle}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  {t('heroSubtitle')}
+                </motion.p>
+              </>
+            ) : (
+              <>
+                <motion.h1
+                  className={styles.heroTitle}
+                  initial={{ opacity: 0, scale: 0.5, rotateX: 45 }}
+                  animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                  transition={{ 
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10,
+                    delay: 0.5 
+                  }}
+                >
+                  <motion.span 
+                    className={styles.heroNumber}
+                    animate={{ 
+                      textShadow: [
+                        '0 0 30px rgba(252, 196, 3, 0.5)',
+                        '0 0 60px rgba(252, 196, 3, 0.8)',
+                        '0 0 30px rgba(252, 196, 3, 0.5)'
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    60
+                  </motion.span>
+                  <motion.span 
+                    className={styles.heroMinutes}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
+                  >
+                    {t('minutes')}
+                  </motion.span>
+                </motion.h1>
+                <motion.p
+                  className={styles.heroSubtitle}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  {t('heroSubtitle')}
+                </motion.p>
+              </>
+            )}
           </motion.div>
         </div>
 

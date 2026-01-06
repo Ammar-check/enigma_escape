@@ -62,8 +62,13 @@
   font-size: 12rem;
   font-weight: 900;
   line-height: 1;
-  color: var(--gold-primary);  /* Applying the gold-primary color */
-  text-shadow: 0 0 50px rgba(255, 255, 255, 0.5); /* Glowing effect */
+  color: var(--gold-primary);
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+[dir="rtl"] .heroNumber {
+  font-family: var(--font-arabic);
+  font-size: 10rem;
 }
 
 .heroMinutes {
@@ -74,6 +79,39 @@
   color: var(--gold-primary);
   text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
   margin-top: 10px;
+}
+
+[dir="rtl"] .heroMinutes {
+  font-family: var(--font-arabic);
+  font-size: 4rem;
+  letter-spacing: 5px;
+}
+
+.heroImageWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.heroArabicImage {
+  width: auto;
+  height: auto;
+  max-width: 350px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .heroArabicImage {
+    max-width: 280px;
+    max-height: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroArabicImage {
+    max-width: 220px;
+    max-height: 130px;
+  }
 }
 
 .heroSubtitle {

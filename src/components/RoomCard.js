@@ -49,9 +49,9 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
             <div className={styles.roomHeader}>
               <div className={styles.roomTitles}>
                 <h3 className={styles.roomName}>
-                  {isArabic ? room.nameAr : room.nameEn}
+                  {room.nameEn}
                 </h3>
-                {room.subtitleEn && !isArabic && (
+                {room.subtitleEn && (
                   <span className={styles.roomSubtitle}>{room.subtitleEn}</span>
                 )}
               </div>
@@ -60,7 +60,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
               </span>
             </div>
             <p className={styles.roomNameAr}>
-              {isArabic ? room.nameEn : room.nameAr}
+              {room.nameAr}
             </p>
           </div>
 

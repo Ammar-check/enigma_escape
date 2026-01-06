@@ -101,21 +101,41 @@
   align-self: flex-start;
 }
 
-[dir="rtl"] .roomName,
-[dir="rtl"] .roomSubtitle {
-  text-align: right;
-}
-
-[dir="rtl"] .roomNameAr {
-  text-align: right;
-}
-
-[dir="rtl"] .roomTitles {
-  align-items: flex-end;
+/* RTL Styles for Arabic version */
+[dir="rtl"] .roomOverlay {
+  align-items: flex-end !important;
 }
 
 [dir="rtl"] .roomHeader {
-  flex-direction: row-reverse;
+  flex-direction: row !important;
+  width: 100%;
+  justify-content: space-between !important;
+}
+
+[dir="rtl"] .roomTitles {
+  align-items: flex-end !important;
+  order: 2 !important;
+}
+
+[dir="rtl"] .roomName {
+  font-family: 'Knife Fight Ballet', 'Knife Fight', fantasy, cursive;
+  text-align: right !important;
+}
+
+[dir="rtl"] .roomSubtitle {
+  text-align: right !important;
+}
+
+[dir="rtl"] .roomNameAr {
+  font-family: var(--font-arabic);
+  text-align: right !important;
+  align-self: flex-end !important;
+  direction: rtl;
+}
+
+[dir="rtl"] .roomBookBtn {
+  order: 1 !important;
+  align-self: flex-start !important;
 }
 
 .roomBookBtn {
@@ -135,7 +155,7 @@
   left: 0;
   right: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 12px 18px;
   z-index: 2;
@@ -165,12 +185,16 @@
 
 .difficulty {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: auto;
 }
 
 [dir="rtl"] .difficulty {
-  flex-direction: row-reverse;
+  align-items: flex-start;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .difficulty span {
