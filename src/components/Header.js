@@ -10,12 +10,13 @@ import Image from 'next/image';
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [moreDropdown, setMoreDropdown] = useState(false);
   const [langDropdown, setLangDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { language, setLanguage, t, isArabic } = useLanguage();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -28,16 +29,11 @@ export default function Header() {
     { href: '/#games', label: t('games'), isScroll: true },
     { href: '/events', label: t('privateEvents') },
     { href: '/about', label: t('aboutUs') },
-    { href: '/contact', label: t('contactUs') },
-  ];
-
-  const moreLinks = [
     { href: '/more/reviews', label: t('reviews') },
     { href: '/more/gallery', label: t('gallery') },
     { href: '/more/faq', label: t('faqs') },
+    { href: '/contact', label: t('contactUs') },
   ];
-
-  const isMoreActive = pathname.startsWith('/more');
 
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
@@ -94,10 +90,8 @@ export default function Header() {
               onClick={() => setLangDropdown(!langDropdown)}
               onMouseLeave={() => setLangDropdown(false)}
             >
-              <div className={styles.flagsContainer}>
-                <span className={`${styles.flag} ${language === 'en' ? styles.activeFlag : ''}`}>🇺🇸</span>
-                <span className={`${styles.flag} ${language === 'ar' ? styles.activeFlag : ''}`}>🇸🇦</span>
-              </div>
+              <span className={styles.langCode}>{mounted ? (language === 'en' ? 'US' : 'SA') : 'US'}</span>
+              <span className={styles.langText}>{mounted ? (language === 'en' ? 'EN' : 'AR') : 'EN'}</span>
               <i className={`bi bi-chevron-down ${styles.chevron} ${langDropdown ? styles.rotated : ''}`}></i>
 
               {/* Language Dropdown */}
@@ -106,14 +100,14 @@ export default function Header() {
                   className={`${styles.langOption} ${language === 'en' ? styles.activeLang : ''}`}
                   onClick={(e) => { e.stopPropagation(); handleLanguageChange('en'); }}
                 >
-                  <span className={styles.flag}>🇺🇸</span>
+                  <span className={styles.langCode}>US</span>
                   <span>ENGLISH</span>
                 </button>
                 <button
                   className={`${styles.langOption} ${language === 'ar' ? styles.activeLang : ''}`}
                   onClick={(e) => { e.stopPropagation(); handleLanguageChange('ar'); }}
                 >
-                  <span className={styles.flag}>🇸🇦</span>
+                  <span className={styles.langCode}>SA</span>
                   <span>العربية</span>
                 </button>
               </div>
@@ -151,35 +145,6 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-
-            {/* More Dropdown */}
-            <li
-              className={`${styles.navItem} ${styles.dropdown}`}
-              onMouseEnter={() => setMoreDropdown(true)}
-              onMouseLeave={() => setMoreDropdown(false)}
-              onClick={() => setMoreDropdown(!moreDropdown)}
-            >
-              <Link
-                href="/more"
-                className={`${styles.navLink} ${isMoreActive ? styles.active : ''}`}
-              >
-                {t('more')}
-                <i className="bi bi-chevron-down ms-1"></i>
-              </Link>
-
-              <div className={`${styles.dropdownMenu} ${moreDropdown ? styles.show : ''}`}>
-                {moreLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`${styles.dropdownItem} ${pathname === link.href ? styles.activeItem : ''}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </li>
           </ul>
         </div>
       </nav>

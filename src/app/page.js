@@ -59,14 +59,8 @@ export default function Home() {
     offset: ['start start', 'end start'],
   });
 
-  const { scrollYProgress: contactProgress } = useScroll({
-    target: contactRef,
-    offset: ['start end', 'end start'],
-  });
-
   const heroY = useTransform(heroProgress, [0, 1], [0, 200]);
   const heroOpacity = useTransform(heroProgress, [0, 0.5], [1, 0]);
-  const contactBgY = useTransform(contactProgress, [0, 1], [0, -100]);
 
   const { contactInfo, contactForm } = siteData;
 
@@ -193,18 +187,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section with Circuit Divider Above - Home Page Only */}
+      {/* Contact Section with White Divider Above - Home Page Only */}
       <section className={styles.contactSection} ref={contactRef}>
-        {/* Circuit Divider Above Contact */}
-        <div className={styles.contactCircuitDivider}>
-          <div className={styles.circuitLineGold}></div>
-          <div className={styles.circuitDotGold}></div>
-        </div>
-
-        <motion.div className={styles.contactBg} style={{ y: contactBgY }}></motion.div>
-        <div className={styles.contactOverlay}></div>
+        {/* White Divider SVG - Full Width */}
+        <motion.div 
+          className={styles.whiteDivider}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+            <path d="M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30" stroke="#ffffff" strokeWidth="2" fill="none"/>
+          </svg>
+        </motion.div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+
           <motion.h2
             className="section-title"
             initial={{ opacity: 0, y: -50, scale: 0.9 }}
@@ -320,17 +319,9 @@ export default function Home() {
                 <div className={isArabic ? 'text-start' : 'text-end'}>
                   <motion.button
                     type="submit"
-                    className="btn btn-gold"
+                    className="btn btn-outline-gold"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    animate={{
-                      boxShadow: [
-                        '0 2px 15px rgba(212, 168, 75, 0.3)',
-                        '0 5px 30px rgba(212, 168, 75, 0.6)',
-                        '0 2px 15px rgba(212, 168, 75, 0.3)',
-                      ],
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>
@@ -338,6 +329,24 @@ export default function Home() {
               </motion.form>
             </div>
           </div>
+
+          {/* Map - Below the form */}
+          <motion.div
+            className={styles.mapWrapper}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <iframe
+              src={contactInfo.mapUrl}
+              width="100%"
+              height="350"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </motion.div>
         </div>
       </section>
     </>

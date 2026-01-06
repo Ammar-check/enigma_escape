@@ -1,6 +1,6 @@
 .roomCard {
   background: rgba(26, 26, 26, 0.95);
-  border: 2px solid var(--gold-primary);
+  border: 2px solid transparent;
   border-radius: 15px;
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -10,7 +10,18 @@
 
 .roomCard:hover {
   border-color: var(--room-color, var(--gold-primary));
-  box-shadow: 0 0 20px var(--room-color, rgba(212, 168, 75, 0.4));
+  box-shadow: 0 0 30px var(--room-color, rgba(212, 168, 75, 0.5));
+}
+
+.roomLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.roomLink:hover {
+  color: inherit;
 }
 
 .roomImageWrapper {
@@ -27,25 +38,43 @@
 
 .roomOverlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  padding: 25px 25px 65px 25px;
-  background: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.75) 100%);
+  bottom: 0;
+  padding: 20px 25px 65px 25px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.roomHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.roomTitles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .roomName {
   font-family: 'Knife Fight Ballet', 'Knife Fight', fantasy, cursive;
-  font-size: 3.4rem;
+  font-size: 3.5rem;
   font-weight: 700;
   color: var(--room-color, var(--gold-primary));
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  margin-bottom: 75px;
+  margin-bottom: 5px;
   letter-spacing: 2px;
   line-height: 1.1;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  text-align: left;
 }
 
 .roomSubtitle {
@@ -54,49 +83,51 @@
   color: var(--gold-primary);
   opacity: 0.8;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   letter-spacing: 1px;
 }
 
 .roomNameAr {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 3.8rem;
+  font-family: var(--font-arabic);
+  font-size: 2.8rem;
   color: #ffffff;
   opacity: 0.9;
   line-height: 1.2;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  text-align: right;
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: 50px;
+  align-self: flex-start;
 }
 
 [dir="rtl"] .roomName,
-[dir="rtl"] .roomSubtitle,
+[dir="rtl"] .roomSubtitle {
+  text-align: right;
+}
+
 [dir="rtl"] .roomNameAr {
   text-align: right;
 }
 
-[dir="rtl"] .roomOverlay {
-  text-align: right;
+[dir="rtl"] .roomTitles {
+  align-items: flex-end;
 }
 
-/* Always align Arabic text to the right */
-[dir="ltr"] .roomNameAr {
-  text-align: right;
+[dir="rtl"] .roomHeader {
+  flex-direction: row-reverse;
 }
 
 .roomBookBtn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
   font-size: 0.75rem;
   padding: 8px 20px;
   z-index: 4;
+  background: var(--gold-primary) !important;
+  color: var(--dark-bg) !important;
+  border: none !important;
+  flex-shrink: 0;
 }
 
-[dir="rtl"] .roomBookBtn {
-  right: auto;
-  left: 20px;
-}
 
 .roomDetails {
   position: absolute;
@@ -104,57 +135,64 @@
   left: 0;
   right: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 12px 18px;
   z-index: 2;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .roomInfo {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 18px;
+  align-items: center;
 }
 
 .roomInfo span {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--gold-primary);
+  white-space: nowrap;
 }
 
 .roomInfo i {
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .difficulty {
-  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 [dir="rtl"] .difficulty {
-  text-align: left;
+  flex-direction: row-reverse;
 }
 
 .difficulty span {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
 .difficultyStars {
   color: var(--gold-primary);
+  display: flex;
+  align-items: center;
 }
 
 .difficultyStars i {
-  font-size: 0.88rem;
-  margin-left: 3px;
+  font-size: 0.85rem;
+  margin-left: 2px;
 }
 
 [dir="rtl"] .difficultyStars i {
   margin-left: 0;
-  margin-right: 3px;
+  margin-right: 2px;
 }
 
 @media (max-width: 992px) {
@@ -164,11 +202,16 @@
 
   .roomName {
     font-size: 3rem;
-    margin-bottom: 65px;
   }
 
   .roomNameAr {
-    font-size: 3.3rem;
+    font-size: 2.4rem;
+    margin-bottom: 45px;
+  }
+  
+  .roomBookBtn {
+    font-size: 0.7rem;
+    padding: 7px 16px;
   }
 }
 
@@ -178,56 +221,55 @@
   }
 
   .roomName {
-    font-size: 2.3rem;
-    margin-bottom: 55px;
+    font-size: 2.5rem;
     line-height: 1.15;
   }
 
   .roomNameAr {
-    font-size: 2.6rem;
+    font-size: 2rem;
+    margin-bottom: 40px;
   }
 
   .roomOverlay {
-    padding: 18px 20px 55px 20px;
+    padding: 15px 15px 55px 15px;
+  }
+
+  .roomHeader {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .roomBookBtn {
+    font-size: 0.65rem;
+    padding: 6px 14px;
+    align-self: flex-start;
+  }
+
+  [dir="rtl"] .roomBookBtn {
+    align-self: flex-end;
   }
 
   .roomDetails {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
     padding: 10px 14px;
+    gap: 15px;
   }
 
   .roomInfo {
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
-    max-width: 60%;
   }
 
   .roomInfo span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .difficulty {
-    text-align: right;
-    width: auto;
     margin-left: auto;
   }
 
   [dir="rtl"] .difficulty {
-    text-align: left;
     margin-left: 0;
     margin-right: auto;
-  }
-
-  .roomBookBtn {
-    font-size: 0.7rem;
-    padding: 8px 20px;
-    margin-top: 40px;
   }
 }
 
@@ -235,77 +277,54 @@
   .roomImageWrapper {
     height: 260px;
   }
-  
-  .roomBookBtn {
-    margin-top: -6px;
-  }
 
   .roomName {
-    font-size: 1.7rem;
-    margin-bottom: 45px;
+    font-size: 2rem;
     line-height: 1.2;
   }
 
   .roomNameAr {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 35px;
   }
 
   .roomOverlay {
-    padding: 15px 18px 50px 18px;
+    padding: 12px 12px 50px 12px;
   }
 
   .roomSubtitle {
-    font-size: 0.65rem;
-    margin-bottom: 5px;
+    font-size: 0.6rem;
   }
 
   .roomBookBtn {
-    font-size: 0.65rem;
-    padding: 8px 16px;
-    top: 12px;
-    right: 12px;
-  }
-
-  [dir="rtl"] .roomBookBtn {
-    left: 12px;
+    font-size: 0.6rem;
+    padding: 5px 12px;
   }
 
   .roomDetails {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
     padding: 8px 12px;
+    gap: 10px;
   }
 
   .roomInfo {
-    gap: 10px;
-    max-width: 55%;
+    gap: 8px;
   }
 
   .roomInfo span {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     gap: 4px;
   }
 
   .roomInfo i {
-    font-size: 0.85rem;
-  }
-
-  .difficulty {
-    text-align: right;
-    width: auto;
-  }
-
-  [dir="rtl"] .difficulty {
-    text-align: left;
+    font-size: 0.8rem;
   }
 
   .difficulty span {
-    font-size: 0.95rem;
+    font-size: 0.75rem;
   }
 
   .difficultyStars i {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 }
 
@@ -315,20 +334,37 @@
   }
 
   .roomName {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
+    font-size: 1.7rem;
     line-height: 1.2;
   }
 
   .roomNameAr {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
   }
 
   .roomOverlay {
-    padding: 12px 15px 45px 15px;
+    padding: 10px 10px 45px 10px;
   }
 
   .roomCard {
     margin-top: 20px;
+  }
+  
+  .roomBookBtn {
+    font-size: 0.55rem;
+    padding: 4px 10px;
+  }
+
+  .roomInfo span {
+    font-size: 0.7rem;
+  }
+
+  .difficulty span {
+    font-size: 0.7rem;
+  }
+
+  .difficultyStars i {
+    font-size: 0.6rem;
   }
 }

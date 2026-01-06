@@ -71,17 +71,21 @@
   font-size: 3rem;
   font-weight: 300;
   letter-spacing: 15px;
-   color: var(--gold-primary);  /* Applying the gold-primary color */
+  color: var(--gold-primary);
   text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-  margin-top: -20px;
+  margin-top: 10px;
 }
 
 .heroSubtitle {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-english);
   font-size: 1.2rem;
   letter-spacing: 5px;
-  color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+  color: #ffffff;
   margin-top: 20px;
+}
+
+[dir="rtl"] .heroSubtitle {
+  font-family: var(--font-arabic);
 }
 
 .heroGlow {
@@ -176,7 +180,7 @@
   align-items: center;
   justify-content: center;
   min-height: 350px;
-  background: url('/New Project (8).png') center/cover no-repeat;
+  background: url('/New Project (4).png') center/cover no-repeat;
   border: 1px solid var(--dark-border);
   border-radius: 15px;
   transition: all 0.4s ease;
@@ -221,60 +225,27 @@
 .contactSection {
   position: relative;
   overflow: hidden;
-  padding: 0 0 80px 0;
+  padding: 60px 0 80px 0;
   background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background-attachment: fixed;
 }
 
-/* Contact Circuit Divider - Gold - Home Page Only */
-.contactCircuitDivider {
+/* White Divider SVG above Contact Us heading - Full Width */
+.whiteDivider {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-bottom: 40px;
+  display: block;
   position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.whiteDivider svg {
+  width: 100%;
   height: 60px;
-  margin-bottom: 60px;
-}
-
-.circuitLineGold {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%23d4a84b' stroke-width='2' fill='none'/%3E%3C/svg%3E") center no-repeat;
-  background-size: 100% auto;
-}
-
-.circuitDotGold {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  background: var(--gold-primary);
-  border-radius: 50%;
-  box-shadow: 0 0 15px var(--gold-primary), 0 0 30px var(--gold-primary);
-  animation: circuitPulseGold 2s ease-in-out infinite;
-}
-
-@keyframes circuitPulseGold {
-  0%, 100% {
-    box-shadow: 0 0 5px var(--gold-primary), 0 0 10px var(--gold-primary);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--gold-primary), 0 0 40px var(--gold-primary);
-  }
-}
-
-.contactBg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
-}
-
-.contactOverlay {
-  display: none;
 }
 
 .contactInfo {
@@ -287,10 +258,14 @@
 }
 
 .contactTitle {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-english);
   font-size: 1.3rem;
   color: var(--gold-primary);
   margin-bottom: 30px;
+}
+
+[dir="rtl"] .contactTitle {
+  font-family: var(--font-arabic);
 }
 
 .contactItem {
@@ -307,10 +282,14 @@
 }
 
 .contactItem h5 {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-english);
   font-size: 1rem;
   color: var(--gold-primary);
   margin-bottom: 5px;
+}
+
+[dir="rtl"] .contactItem h5 {
+  font-family: var(--font-arabic);
 }
 
 .contactItem p {
@@ -321,23 +300,33 @@
 }
 
 .contactForm {
-  background: rgba(26, 26, 26, 0.5);
+  background: transparent;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 0;
+  border-bottom: none;
+}
+
+.contactForm .form-control {
+  border: none;
+  border-bottom: 1px solid var(--gold-primary);
+  border-radius: 0;
 }
 
 .mapWrapper {
-  margin: 50px 20px 20px 20px;
-  border-radius: 15px;
+  margin: 50px 0 0 0;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  border: 3px solid #ffffff;
+  box-shadow: none;
+  border: 2px solid #ffffff;
   padding: 20px;
   background: transparent;
 }
 
 .mapWrapper iframe {
-  border-radius: 10px;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  border: none;
 }
 
 /* Responsive */
@@ -388,7 +377,15 @@
   }
 
   .contactSection {
-    padding: 0 0 60px 0;
+    padding: 40px 0 60px 0;
+  }
+
+  .whiteDivider {
+    margin-bottom: 30px;
+  }
+
+  .whiteDivider svg {
+    height: 40px;
   }
 }
 
@@ -424,6 +421,7 @@
   .heroMinutes {
     font-size: 1.5rem;
     letter-spacing: 8px;
+    margin-top: 20px;
   }
 
   .heroGlow {
@@ -436,6 +434,14 @@
 
   .roomsList {
     padding: 0 10px;
+  }
+
+  .comingSoon {
+    min-height: 280px;
+  }
+
+  .comingSoonContent h3 {
+    font-size: 2.5rem;
   }
 
   .contactInfo {
@@ -454,7 +460,8 @@
   }
 
   .mapWrapper {
-    margin-top: 30px;
+    margin: 30px 0 0 0;
+    padding: 0;
   }
 
   .mapWrapper iframe {
@@ -469,12 +476,12 @@
 
   .heroNumber {
     font-size: 4.5rem;
-    margin-bottom: 30px;
   }
 
   .heroMinutes {
     font-size: 1.2rem;
     letter-spacing: 6px;
+    margin-top: 25px;
   }
 
   .heroSubtitle {
@@ -486,17 +493,24 @@
     padding: 30px 0;
   }
 
+  .comingSoon {
+    min-height: 220px;
+  }
+
+  .comingSoonContent h3 {
+    font-size: 2rem;
+  }
+
   .contactSection {
-    padding: 0 0 40px 0;
+    padding: 30px 0 40px 0;
   }
 
-  .contactCircuitDivider {
-    height: 40px;
-    margin-bottom: 40px;
+  .whiteDivider {
+    margin-bottom: 25px;
   }
 
-  .circuitLineGold {
-    height: 40px;
+  .whiteDivider svg {
+    height: 30px;
   }
 
   .contactTitle {
@@ -520,6 +534,7 @@
   .heroMinutes {
     font-size: 1rem;
     letter-spacing: 4px;
+    margin-top: 30px;
   }
 
   .heroSubtitle {
@@ -528,7 +543,24 @@
     margin-top: 15px;
   }
 
+  .comingSoon {
+    min-height: 180px;
+  }
+
+  .comingSoonContent h3 {
+    font-size: 1.6rem;
+  }
+
   .contactForm {
     padding: 15px;
+  }
+
+  .mapWrapper {
+    margin: 20px 0 0 0;
+    padding: 0;
+  }
+
+  .mapWrapper iframe {
+    height: 200px;
   }
 }

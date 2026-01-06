@@ -36,33 +36,33 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
       variants={cardVariants}
       style={{ '--room-color': room.color }}
     >
-      <div className={styles.roomImageWrapper}>
-        <Image
-          src={room.image}
-          alt={isArabic ? room.nameAr : room.nameEn}
-          className={styles.roomImage}
-          width={500}
-          height={400}
-        />
-        <div className={styles.roomOverlay}>
-          <h3 className={styles.roomName}>
-            {isArabic ? room.nameAr : room.nameEn}
-          </h3>
-          {room.subtitleEn && !isArabic && (
-            <span className={styles.roomSubtitle}>{room.subtitleEn}</span>
-          )}
-          <p className={styles.roomNameAr}>
-            {isArabic ? room.nameEn : room.nameAr}
-          </p>
-        </div>
-        <a 
-          href={room.bookingUrl || 'https://bookeo.com/enigmaescapesa'} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className={`btn btn-gold ${styles.roomBookBtn}`}
-        >
-          {t('bookNow')}
-        </a>
+      <Link href={`/rooms/${room.id}`} className={styles.roomLink} prefetch={true}>
+        <div className={styles.roomImageWrapper}>
+          <Image
+            src={room.image}
+            alt={isArabic ? room.nameAr : room.nameEn}
+            className={styles.roomImage}
+            width={500}
+            height={400}
+          />
+          <div className={styles.roomOverlay}>
+            <div className={styles.roomHeader}>
+              <div className={styles.roomTitles}>
+                <h3 className={styles.roomName}>
+                  {isArabic ? room.nameAr : room.nameEn}
+                </h3>
+                {room.subtitleEn && !isArabic && (
+                  <span className={styles.roomSubtitle}>{room.subtitleEn}</span>
+                )}
+              </div>
+              <span className={`btn btn-gold ${styles.roomBookBtn}`}>
+                {t('bookNow')}
+              </span>
+            </div>
+            <p className={styles.roomNameAr}>
+              {isArabic ? room.nameEn : room.nameAr}
+            </p>
+          </div>
 
         {showDetails && (
           <div className={styles.roomDetails}>
@@ -107,9 +107,8 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
             )}
           </div>
         )}
-      </div>
-
-      
+        </div>
+      </Link>
     </motion.div>
   );
 }

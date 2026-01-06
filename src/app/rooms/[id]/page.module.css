@@ -1,0 +1,386 @@
+/* Hero Section */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: -140px;
+  padding-top: 140px;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.4) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.roomTitle {
+  font-family: 'Knife Fight Ballet', 'Knife Fight', fantasy, cursive;
+  font-size: 5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  line-height: 1.1;
+}
+
+.subtitle {
+  display: block;
+  font-size: 2rem;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+.roomTitleAr {
+  font-family: var(--font-arabic);
+  font-size: 3rem;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.bookBtn {
+  font-size: 1.2rem;
+  padding: 15px 50px;
+  margin-top: 20px;
+  background: var(--gold-primary) !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: 700;
+}
+
+.bookBtn:hover {
+  background: var(--gold-light) !important;
+  color: #000000 !important;
+  transform: scale(1.05);
+  box-shadow: 0 5px 25px rgba(212, 168, 75, 0.6);
+}
+
+/* Details Section */
+.detailsSection {
+  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background-attachment: fixed;
+  padding: 60px 0 80px 0;
+  position: relative;
+}
+
+/* Warning */
+.warning {
+  margin-bottom: 30px;
+}
+
+.warningLabel {
+  font-family: var(--font-english);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ff4444;
+  margin-right: 10px;
+}
+
+.warningText {
+  font-family: var(--font-english);
+  font-size: 1.1rem;
+  color: #ff6666;
+}
+
+[dir="rtl"] .warningLabel {
+  font-family: var(--font-arabic);
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+[dir="rtl"] .warningText {
+  font-family: var(--font-arabic);
+}
+
+/* Description */
+.description {
+  margin-bottom: 50px;
+}
+
+.description p {
+  font-family: var(--font-english);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #ffffff;
+  text-align: justify;
+}
+
+[dir="rtl"] .description p {
+  font-family: var(--font-arabic);
+  text-align: right;
+}
+
+/* Room Info */
+.roomInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.infoItem > i {
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  margin-top: 5px;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font-family: var(--font-english);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.infoValue {
+  font-family: var(--font-english);
+  font-size: 1.2rem;
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+[dir="rtl"] .infoLabel,
+[dir="rtl"] .infoValue {
+  font-family: var(--font-arabic);
+}
+
+.difficultyStars {
+  color: var(--gold-primary);
+  font-size: 1rem;
+}
+
+.difficultyStars i {
+  margin-right: 3px;
+}
+
+/* Back Link */
+.backLink {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-english);
+  font-size: 1rem;
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+  color: var(--gold-light);
+  transform: translateX(-5px);
+}
+
+[dir="rtl"] .backBtn {
+  font-family: var(--font-arabic);
+}
+
+[dir="rtl"] .backBtn:hover {
+  transform: translateX(5px);
+}
+
+[dir="rtl"] .backBtn i {
+  transform: rotate(180deg);
+}
+
+/* Not Found */
+.notFound {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.notFound h1 {
+  font-family: var(--font-english);
+  font-size: 2rem;
+  color: var(--gold-primary);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hero {
+    min-height: 60vh;
+  }
+
+  .roomTitle {
+    font-size: 4rem;
+  }
+
+  .subtitle {
+    font-size: 1.6rem;
+  }
+
+  .roomTitleAr {
+    font-size: 2.5rem;
+  }
+
+  .roomInfo {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 50vh;
+    margin-top: -100px;
+    padding-top: 100px;
+  }
+
+  .roomTitle {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+  }
+
+  .roomTitleAr {
+    font-size: 2rem;
+  }
+
+  .bookBtn {
+    font-size: 1rem;
+    padding: 12px 40px;
+  }
+
+  .description p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  [dir="rtl"] .description p {
+    text-align: right;
+  }
+
+  .roomInfo {
+    gap: 25px;
+  }
+
+  .infoItem > i {
+    font-size: 1.3rem;
+  }
+
+  .infoLabel {
+    font-size: 0.85rem;
+  }
+
+  .infoValue {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    min-height: 45vh;
+    margin-top: -90px;
+    padding-top: 90px;
+  }
+
+  .roomTitle {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .roomTitleAr {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .bookBtn {
+    font-size: 0.9rem;
+    padding: 10px 30px;
+  }
+
+  .detailsSection {
+    padding: 40px 0 60px 0;
+  }
+
+  .warningLabel,
+  .warningText {
+    font-size: 1rem;
+  }
+
+  .description p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .roomInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .infoItem {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .roomTitle {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .roomTitleAr {
+    font-size: 1.4rem;
+  }
+
+  .heroContent {
+    padding: 30px 15px;
+  }
+}
+

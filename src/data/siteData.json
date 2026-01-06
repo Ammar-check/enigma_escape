@@ -12,7 +12,11 @@
       "genre": "horror",
       "difficulty": 4,
       "color": "#fb0102",
-      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556WNTPUF18535EC7BE6"
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556WNTPUF18535EC7BE6",
+      "warningEn": "Scary / Bloody / Gory",
+      "warningAr": "مخيف / دموي",
+      "descriptionEn": "Six people have disappeared in the neighborhood in the last two months. Police are expecting a serial killer, but no one has a clue who it could be...until now! You are a team of private investigators who got a tip that the local butcher may be responsible. You decided to gather evidence on the Butcher...But all you remember is getting to his door...and now you're trapped in a tiny wooden cell with a pounding headache trying to understand what's going on! Now you need to escape before the butcher sends you to the slaughterhouse!",
+      "descriptionAr": "اختفى ستة أشخاص في الحي خلال الشهرين الماضيين. تتوقع الشرطة وجود قاتل متسلسل، لكن لا أحد لديه أي فكرة عمن يمكن أن يكون... حتى الآن! أنتم فريق من المحققين الخاصين حصلتم على معلومة بأن الجزار المحلي قد يكون المسؤول. قررتم جمع الأدلة عن الجزار... لكن كل ما تتذكرونه هو الوصول إلى بابه... والآن أنتم محاصرون في زنزانة خشبية صغيرة مع صداع شديد تحاولون فهم ما يحدث! الآن عليكم الهروب قبل أن يرسلكم الجزار إلى المسلخ!"
     },
     {
       "id": 2,
@@ -25,7 +29,11 @@
       "genre": "adventure",
       "difficulty": 3,
       "color": "#d7deba",
-      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556PY7JWP18535E956B5"
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556PY7JWP18535E956B5",
+      "warningEn": null,
+      "warningAr": null,
+      "descriptionEn": "Deep in the jungle lies an ancient city, lost to time and forgotten by civilization. Your expedition team has finally discovered its location after years of research. But the city holds secrets that were meant to stay buried. Navigate through ancient temples, decode mysterious symbols, and uncover the treasure before the city claims you as its own!",
+      "descriptionAr": "في أعماق الغابة تقع مدينة قديمة، ضائعة عبر الزمن ومنسية من قبل الحضارة. فريق البعثة الخاص بكم اكتشف أخيراً موقعها بعد سنوات من البحث. لكن المدينة تحمل أسراراً كان من المفترض أن تبقى مدفونة. تنقلوا عبر المعابد القديمة، فكوا الرموز الغامضة، واكتشفوا الكنز قبل أن تطالب بكم المدينة!"
     },
     {
       "id": 3,
@@ -39,7 +47,11 @@
       "genre": "mystery",
       "difficulty": 4,
       "color": "#f75707",
-      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556XU9LUT18535F3203E"
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42556XU9LUT18535F3203E",
+      "warningEn": null,
+      "warningAr": null,
+      "descriptionEn": "Professor Moriarty has created a doomsday device that threatens to destroy London! Sherlock Holmes needs your help to infiltrate Moriarty's lair and disarm the device before time runs out. Use your detective skills, solve intricate puzzles, and stop the mastermind's evil plan!",
+      "descriptionAr": "ابتكر البروفيسور موريارتي جهازاً مدمراً يهدد بتدمير لندن! يحتاج شيرلوك هولمز إلى مساعدتكم للتسلل إلى وكر موريارتي وتعطيل الجهاز قبل نفاد الوقت. استخدموا مهاراتكم البوليسية، حلوا الألغاز المعقدة، وأوقفوا خطة العقل المدبر الشريرة!"
     },
     {
       "id": 4,
@@ -52,7 +64,11 @@
       "genre": null,
       "difficulty": null,
       "color": "#ffffff",
-      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555MLUYYY194A4AC9BE5"
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555MLUYYY194A4AC9BE5",
+      "warningEn": null,
+      "warningAr": null,
+      "descriptionEn": "Step into a whole new dimension with our cutting-edge Virtual Reality escape rooms! Experience immersive worlds that defy the laws of physics. Choose from multiple VR adventures including space exploration, underwater mysteries, and fantasy realms. Perfect for those who want to experience the impossible!",
+      "descriptionAr": "ادخلوا إلى بُعد جديد تماماً مع غرف الهروب بتقنية الواقع الافتراضي المتطورة! اختبروا عوالم غامرة تتحدى قوانين الفيزياء. اختاروا من بين مغامرات الواقع الافتراضي المتعددة بما في ذلك استكشاف الفضاء والألغاز تحت الماء وعوالم الخيال. مثالية لمن يريدون تجربة المستحيل!"
     },
     {
       "id": 5,
@@ -65,7 +81,11 @@
       "genre": null,
       "difficulty": null,
       "color": "#ff8844",
-      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555TR7CLX194D2193401"
+      "bookingUrl": "https://bookeo.com/enigmaescapesa?type=42555TR7CLX194D2193401",
+      "warningEn": null,
+      "warningAr": null,
+      "descriptionEn": "A top-secret government facility has been developing mind-control technology. When the lead scientist goes rogue, it's up to your team to infiltrate the facility and shut down the MindShield project before it falls into the wrong hands. Can you resist the mind games and complete your mission?",
+      "descriptionAr": "منشأة حكومية سرية للغاية كانت تطور تقنية التحكم بالعقل. عندما يخرج العالم الرئيسي عن السيطرة، يقع على عاتق فريقكم التسلل إلى المنشأة وإيقاف مشروع درع العقل قبل أن يقع في الأيدي الخطأ. هل يمكنكم مقاومة ألعاب العقل وإكمال مهمتكم؟"
     }
   ],
   "reviews": [

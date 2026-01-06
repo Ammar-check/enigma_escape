@@ -104,9 +104,9 @@
 .dividerLine {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
-  margin: 20px auto;
-  max-width: 80%;
+  background: var(--gold-primary);
+  margin: 20px 0;
+  width: 100%;
 }
 
 .copyright {
@@ -114,7 +114,11 @@
   color: var(--gold-primary);
   font-size: 0.85rem;
   padding: 10px 0;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-english);
+}
+
+[dir="rtl"] .copyright {
+  font-family: var(--font-arabic);
 }
 
 [dir="rtl"] .copyright {
@@ -151,8 +155,8 @@
   }
 
   .dividerLine {
-    margin: 15px auto;
-    max-width: 90%;
+    margin: 15px 0;
+    width: 100%;
   }
 
   .copyright {
