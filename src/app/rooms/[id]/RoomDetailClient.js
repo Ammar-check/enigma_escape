@@ -23,11 +23,14 @@ export default function RoomDetailClient({ room }) {
     );
   }
 
+  // Encode image URL to handle spaces in filenames
+  const encodedImage = encodeURI(room.image);
+
   // Prevent hydration mismatch
   if (!mounted) {
     return (
       <div className={styles.hero} style={{ '--room-color': room.color }}>
-        <div className={styles.heroBg} style={{ backgroundImage: `url(${room.image})` }}></div>
+        <div className={styles.heroBg} style={{ backgroundImage: `url(${encodedImage})` }}></div>
         <div className={styles.heroOverlay}></div>
       </div>
     );
@@ -48,7 +51,7 @@ export default function RoomDetailClient({ room }) {
       >
         <div 
           className={styles.heroBg}
-          style={{ backgroundImage: `url(${room.image})` }}
+          style={{ backgroundImage: `url(${encodedImage})` }}
         ></div>
         <div className={styles.heroOverlay}></div>
 
@@ -99,8 +102,12 @@ export default function RoomDetailClient({ room }) {
       </section>
 
       {/* Room Details Section */}
-      <section className={styles.detailsSection}>
-        <div className="container">
+      <section 
+        className={styles.detailsSection}
+        style={{ backgroundImage: `url(${encodedImage})` }}
+      >
+        <div className={styles.detailsOverlay}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           {/* Warning */}
           {(room.warningEn || room.warningAr) && (
             <motion.div

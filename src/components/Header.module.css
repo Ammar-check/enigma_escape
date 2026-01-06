@@ -28,7 +28,7 @@
 
 .bookBtn {
   font-size: 1.25rem;
-  padding: 10px 25px;
+  padding: 0;
   background: transparent !important;
   border: none !important;
   color: var(--gold-primary);
@@ -36,36 +36,26 @@
   font-weight: 700;
   letter-spacing: 2px;
   transition: all 0.3s ease;
-  border-radius: 50px;
-  text-shadow: 0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 30px rgba(212, 168, 75, 0.4);
+  text-shadow: 0 0 10px rgba(252, 196, 3, 0.9), 0 0 20px rgba(252, 196, 3, 0.7), 0 0 30px rgba(252, 196, 3, 0.5), 0 0 40px rgba(252, 196, 3, 0.3);
   animation: glowPulse 2s ease-in-out infinite;
 }
 
 .bookBtn:hover {
-  background: var(--gold-primary) !important;
+  background: transparent !important;
   border: none !important;
-  color: #000000 !important;
+  color: var(--gold-primary) !important;
   transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(212, 168, 75, 0.6);
-  text-shadow: none;
+  box-shadow: none;
+  text-shadow: 0 0 15px rgba(252, 196, 3, 1), 0 0 30px rgba(252, 196, 3, 0.9), 0 0 45px rgba(252, 196, 3, 0.7), 0 0 60px rgba(252, 196, 3, 0.5);
   animation: none;
 }
 
 @keyframes glowPulse {
   0%, 100% {
-    text-shadow: 0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 30px rgba(212, 168, 75, 0.4);
+    text-shadow: 0 0 10px rgba(252, 196, 3, 0.9), 0 0 20px rgba(252, 196, 3, 0.7), 0 0 30px rgba(252, 196, 3, 0.5), 0 0 40px rgba(252, 196, 3, 0.3);
   }
   50% {
-    text-shadow: 0 0 20px rgba(212, 168, 75, 1), 0 0 40px rgba(212, 168, 75, 0.8), 0 0 60px rgba(212, 168, 75, 0.6);
-  }
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 30px rgba(212, 168, 75, 0.4);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(212, 168, 75, 1), 0 0 40px rgba(212, 168, 75, 0.8), 0 0 60px rgba(212, 168, 75, 0.6);
+    text-shadow: 0 0 15px rgba(252, 196, 3, 1), 0 0 30px rgba(252, 196, 3, 0.9), 0 0 45px rgba(252, 196, 3, 0.7), 0 0 60px rgba(252, 196, 3, 0.5);
   }
 }
 
@@ -431,7 +421,7 @@
 @media (max-width: 576px) {
   .bookBtn {
     font-size: 0.9rem;
-    padding: 8px 15px;
+    padding: 0;
     letter-spacing: 1px;
   }
 
@@ -463,7 +453,7 @@
 @media (max-width: 480px) {
   .bookBtn {
     font-size: 0.85rem;
-    padding: 6px 12px;
+    padding: 0;
   }
 
   .logoWrapper img {
@@ -479,7 +469,7 @@
 @media (max-width: 380px) {
   .bookBtn {
     font-size: 0.75rem;
-    padding: 6px 10px;
+    padding: 0;
   }
 
   .logoWrapper img {
