@@ -75,6 +75,13 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   text-align: left;
+  width: 500px;
+  height: 200px;
+  /* overflow:hidden; */
+}
+.EnNameImg{
+  width: 100%;
+  height: 100%;
 }
 
 .roomSubtitle {
@@ -99,6 +106,13 @@
   margin-top: auto;
   margin-bottom: 50px;
   align-self: flex-start;
+   width: 300px;
+  height: 150px;
+}
+
+.ArNameImg{
+  width: 100%;
+  height: 100%;
 }
 
 /* RTL Styles for Arabic version */
@@ -178,6 +192,10 @@
   color: var(--gold-primary);
   white-space: nowrap;
 }
+.roomsIcon{
+    width: 30px;
+    height: 30px;
+  }
 
 .roomInfo i {
   font-size: 1rem;
@@ -247,11 +265,15 @@
   .roomName {
     font-size: 2.5rem;
     line-height: 1.15;
+    width: 220px;
+    height: 100px;
   }
 
   .roomNameAr {
     font-size: 2rem;
     margin-bottom: 40px;
+    width: 200px;
+    height: 100px;
   }
 
   .roomOverlay {
@@ -259,7 +281,7 @@
   }
 
   .roomHeader {
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 10px;
   }
 
@@ -284,12 +306,21 @@
   }
 
   .roomInfo span {
-    font-size: 0.85rem;
+    font-size: 0.69rem;
   }
+  .roomsIcon{
+    width: 20px;
+    height: 20px;
+  }
+  
 
   .difficulty {
     margin-left: auto;
   }
+  .difficultyStars i {
+  font-size: 0.60rem;
+  margin-left: 2px;
+}
 
   [dir="rtl"] .difficulty {
     margin-left: 0;
@@ -305,11 +336,15 @@
   .roomName {
     font-size: 2rem;
     line-height: 1.2;
+    width: 200px;
+    height: 100px;
   }
 
   .roomNameAr {
     font-size: 1.6rem;
     margin-bottom: 35px;
+    width: 160px;
+    height: 100px;
   }
 
   .roomOverlay {
@@ -338,6 +373,10 @@
     font-size: 0.75rem;
     gap: 4px;
   }
+  .roomsIcon{
+    width: 20px;
+    height: 20px;
+  }
 
   .roomInfo i {
     font-size: 0.8rem;
@@ -357,14 +396,19 @@
     height: 240px;
   }
 
+
   .roomName {
     font-size: 1.7rem;
     line-height: 1.2;
+    width: 200px;
+  height: 100px;
   }
 
   .roomNameAr {
     font-size: 1.3rem;
-    margin-bottom: 30px;
+    margin-bottom: 90px;
+     width: 160px;
+  height: 100px;
   }
 
   .roomOverlay {
@@ -380,15 +424,61 @@
     padding: 4px 10px;
   }
 
+  .roomInfo {
+    gap: 6px;
+  }
+
   .roomInfo span {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 
   .difficulty span {
     font-size: 0.7rem;
   }
+  .roomsIcon{
+    width: 15px;
+    height: 15px;
+  }
+  .roomsIcon2{
+    width: 12px !important;
+    height: 12px !important;
+  }
 
   .difficultyStars i {
     font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .roomName {
+    width: 160px;
+  height: 100px;
+  }
+
+  .roomNameAr {
+     width: 120px;
+  height: 60px;
+  }
+   .roomDetails{
+    gap: 0px;
+   }
+   
+  .roomInfo {
+    gap: 4px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .roomInfo span {
+    font-size: 0.5rem;
+  }
+
+  .difficulty span {
+    font-size: 0.6rem;
+  }
+
+
+  .difficultyStars i {
+    font-size: 0.5rem;
   }
 }

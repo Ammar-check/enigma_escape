@@ -5,12 +5,12 @@
 /* Hero Banner */
 .heroBanner {
   height: 20vh;
-  min-height: 200px;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/Rectangle4.svg') center/cover no-repeat;
   margin-top: -140px;
   padding-top: 140px;
 }
@@ -36,7 +36,7 @@
 }
 
 .heroTitle {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'skygraze', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--gold-primary);
@@ -47,7 +47,7 @@
 
 /* Gallery Section */
 .gallerySection {
-  background: var(--dark-bg);
+  background: url('/Rectangle4.svg') center/cover no-repeat;
 }
 
 /* Responsive */

@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  
 }
 
 .galleryItem {
@@ -49,7 +50,7 @@
 }
 
 .itemTitle {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'skygraze', sans-serif;
   font-size: 1rem;
   color: var(--gold-primary);
   margin-bottom: 10px;

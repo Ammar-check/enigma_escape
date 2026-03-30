@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Header.module.css';
 import Image from 'next/image';
+import { color } from 'framer-motion';
 
 export default function Header() {
   const pathname = usePathname();

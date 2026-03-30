@@ -1,5 +1,8 @@
 .footer {
-  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  background: url('/Contact-Us_Background-min-1.png');
+   background-repeat: no-repeat; /* Prevents the image from tiling */
+  background-position: bottom;
+  background-size: cover;
   position: relative;
   overflow: hidden;
 }

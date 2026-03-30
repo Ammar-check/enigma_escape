@@ -17,7 +17,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/New Project.jpg') center/cover no-repeat;
+  background: url('/Rectangle1.svg') center/cover no-repeat;
 }
 
 .heroOverlay {
@@ -58,9 +58,10 @@
 }
 
 .heroNumber { 
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12rem;
-  font-weight: 900;
+  /* font-family: 'Orbitron', sans-serif; */
+  font-family: 'Skygraze', sans-serif;
+  font-size: 10rem;
+  font-weight: 700;
   line-height: 1;
   color: var(--gold-primary);
   text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
@@ -68,12 +69,14 @@
 
 [dir="rtl"] .heroNumber {
   font-family: var(--font-arabic);
+  font-family: 'Skygraze', sans-serif;
   font-size: 10rem;
 }
 
 .heroMinutes {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
+  /* font-family: 'Orbitron', sans-serif; */
+  font-family: 'Skygraze', sans-serif;
+  font-size: 5rem;
   font-weight: 300;
   letter-spacing: 15px;
   color: var(--gold-primary);
@@ -115,11 +118,19 @@
 }
 
 .heroSubtitle {
-  font-family: var(--font-english);
-  font-size: 1.2rem;
+  /* font-family: var(--font-english); */
+  /* font-family: 'Skygraze', sans-serif; */
+  /* font-size: 1.2rem;
   letter-spacing: 5px;
   color: #ffffff;
-  margin-top: 20px;
+  margin-top: 20px; */
+  font-size: 2.3rem;
+line-height: 15px;
+text-transform: uppercase;
+color: #ffffff;
+font-weight: 100;
+font-family: "Montserrat";
+/* text-align: center; */
 }
 
 [dir="rtl"] .heroSubtitle {
@@ -218,7 +229,7 @@
   align-items: center;
   justify-content: center;
   min-height: 350px;
-  background: url('/New Project (4).png') center/cover no-repeat;
+  background: url('/comingSoonImg.png') center/cover no-repeat;
   border: 1px solid var(--dark-border);
   border-radius: 15px;
   transition: all 0.4s ease;
@@ -250,9 +261,9 @@
 }
 
 .comingSoonContent h3 {
-  font-family: 'Knife Fight Ballet', 'Knife Fight', fantasy, cursive;
+  /* font-family: 'Knife Fight Ballet', 'Knife Fight', fantasy, cursive; */
   font-size: 3rem;
-  color: var(--gold-primary);
+  color: #ffff;
   text-shadow: 0 0 20px rgba(212, 168, 75, 0.5);
   letter-spacing: 2px;
   margin: 0;
@@ -383,6 +394,7 @@
 
   .heroMinutes {
     font-size: 2.5rem;
+    font-family: 'Skygraze', sans-serif;
   }
 
   .roomsList {
@@ -492,7 +504,7 @@
   }
 
   .contactItem {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
     gap: 10px;
   }
@@ -591,7 +603,9 @@
 
   .contactForm {
     padding: 15px;
+    margin-top: -50px;
   }
+
 
   .mapWrapper {
     margin: 20px 0 0 0;
@@ -602,3 +616,5 @@
     height: 200px;
   }
 }
+
+

@@ -18,6 +18,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Skygraze';
+  src: url('/fonts/Skygraze.woff2') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* Colors */
   --dark-bg: #0a0a0a;
@@ -114,6 +121,7 @@ p, span, a, li, label, input, textarea, button {
   box-shadow: 0 2px 15px rgba(212, 168, 75, 0.3);
   font-weight: 600;
   border: none;
+  
 }
 
 .btn-gold:hover {
@@ -175,7 +183,7 @@ a.btn.btn-gold {
 }
 
 .form-dark .form-control::placeholder {
-  color: var(--text-muted);
+  color: var(--gold-primary);
 }
 
 /* Animations */

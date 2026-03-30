@@ -39,7 +39,7 @@ export default function EventCard({ event }) {
             {isArabic ? event.titleAr : event.titleEn}
           </h3>
         </div>
-        <div className={styles.eventBookBtn}>
+        <div className={styles.eventBookBtn} style={{background:'var(--gold-primary)',borderRadius:'50px'}}>
           <a 
             href="https://bookeo.com/enigmaescapesa" 
             target="_blank" 

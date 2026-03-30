@@ -17,6 +17,9 @@ export default function FAQPage() {
     setOpenId(openId === id ? null : id);
   };
 
+  const leftFaqs = siteData.faqs.filter((_, i) => i % 2 === 0);  // 0, 2, 4...
+const rightFaqs = siteData.faqs.filter((_, i) => i % 2 !== 0); // 
+
   return (
     <div className={styles.pageWrapper}>
       {/* Hero Section */}
@@ -34,8 +37,8 @@ export default function FAQPage() {
 
       {/* FAQ Section */}
       <section className={`section-padding ${styles.faqSection}`}>
-        <div className="container">
-          <motion.div
+        <div className="container" style={{maxWidth:'1300px'}}>
+          {/* <motion.div
             className={styles.faqGrid}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -50,7 +53,34 @@ export default function FAQPage() {
                 onToggle={() => toggleFAQ(faq.id)}
               />
             ))}
-          </motion.div>
+          </motion.div> */}
+          <motion.div
+            // className={styles.faqGrid}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }} className={styles.faqGrid}>
+  <div className={styles.faqColumn}>
+    {leftFaqs.map((faq) => (
+      <FAQItem
+        key={faq.id}
+        faq={faq}
+        isOpen={openId === faq.id}
+        onToggle={() => toggleFAQ(faq.id)}
+      />
+    ))}
+  </div>
+  <div className={styles.faqColumn}>
+    {rightFaqs.map((faq) => (
+      <FAQItem
+        key={faq.id}
+        faq={faq}
+        isOpen={openId === faq.id}
+        onToggle={() => toggleFAQ(faq.id)}
+      />
+    ))}
+  </div>
+</motion.div>
 
           {/* Contact CTA */}
           <motion.div
@@ -66,7 +96,7 @@ export default function FAQPage() {
             <p>
               {isArabic ? 'لا تتردد في التواصل معنا!' : 'Feel free to reach out to us!'}
             </p>
-            <Link href="/contact" className="btn btn-white mt-3">
+            <Link href="/contact" className="btn btn-white mt-3" style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)'}}>
               {t('contactUs')}
             </Link>
           </motion.div>

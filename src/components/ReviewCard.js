@@ -25,7 +25,7 @@ export default function ReviewCard({ review }) {
       variants={cardVariants}
       whileHover={{ y: -5 }}
     >
-      <div className={styles.quoteIcon}>&quot;</div>
+      <div className={styles.quoteIcon}>“</div>
       <div className={styles.reviewContent}>
         <p className={styles.reviewText}>
           {isArabic ? review.textAr : review.textEn}

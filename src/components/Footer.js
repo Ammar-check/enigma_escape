@@ -65,7 +65,7 @@ export default function Footer() {
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <i className={`bi ${social.icon}`}></i>
+              {index === 2?<Image src='/yt.svg' width={30} height={30} />:<i className={`bi ${social.icon}`}></i>}
             </motion.a>
           ))}
         </motion.div>

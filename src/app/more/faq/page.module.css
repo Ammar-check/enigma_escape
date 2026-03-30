@@ -4,8 +4,8 @@
 
 /* Hero Banner */
 .heroBanner {
-  height: 20vh;
-  min-height: 200px;
+  height: 30vh;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@
 }
 
 .heroTitle {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'skygraze', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--gold-primary);
@@ -47,16 +47,27 @@
 
 /* FAQ Section */
 .faqSection {
-  background: var(--dark-bg);
+  background: url('/Rectangle5.svg') center/cover no-repeat;
 }
 
-.faqGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+/* .faqGrid {
+   columns: 2;
+  column-gap: 15px;
   max-width: 1100px;
   margin: 0 auto;
-  align-items: start;
+} */
+ .faqGrid {
+  display: flex;
+  gap: 15px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.faqColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .faqItem {
@@ -152,7 +163,7 @@
   }
 
   .faqGrid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .faqQuestion span {

@@ -41,6 +41,7 @@ export default function ContactPage() {
         >
           <h1 className={styles.heroTitle}>{t('contactUs')}</h1>
         </motion.div>
+        {/* <div><img src="/contactLayer.svg" style={{position:'absolute',top:'67vh',left:0,zIndex:999,width:'100%'}} alt="design layer" /></div> */}
       </section>
 
       {/* Contact Section */}
@@ -79,7 +80,7 @@ export default function ContactPage() {
                 </motion.div>
 
                 <motion.div className={styles.contactItem} variants={itemVariants}>
-                  <i className="bi bi-telephone-fill"></i>
+                  <img style={{ transform: 'rotate(15deg)' }} src='/smartphone.svg' width={30} height={30} alt='smartphone icon' />
                   <div>
                     <h5>{t('phone')}</h5>
                     <p>{contactInfo.phone}</p>
@@ -124,6 +125,7 @@ export default function ContactPage() {
                         className="form-control"
                         placeholder={isArabic ? field.placeholderAr : field.placeholderEn}
                         required={field.required}
+                        
                       />
                     )}
                   </motion.div>
@@ -142,6 +144,7 @@ export default function ContactPage() {
                       ],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
+                    style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)'}}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>

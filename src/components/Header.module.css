@@ -27,16 +27,24 @@
 }
 
 .bookBtn {
-  font-size: 1.25rem;
-  padding: 0;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
   background: transparent !important;
   border: none !important;
-  color: var(--gold-primary);
+  color: #fff;
   flex-shrink: 0;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 2px;
   transition: all 0.3s ease;
-  text-shadow: 0 0 10px rgba(252, 196, 3, 0.9), 0 0 20px rgba(252, 196, 3, 0.7), 0 0 30px rgba(252, 196, 3, 0.5), 0 0 40px rgba(252, 196, 3, 0.3);
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.3),   /* small inner shine */
+    0 0 10px rgba(252,196,3,1),
+    0 0 20px rgba(252,196,3,1),
+    0 0 40px rgba(252,196,3,1),
+    0 0 80px rgba(252,196,3,1),
+    0 0 120px rgba(252,196,3,0.9);
+  /* text-shadow: 0 0 10px rgba(252, 196, 3, 0.9), 0 0 20px rgba(252, 196, 3, 0.7), 0 0 30px rgba(252, 196, 3, 0.5), 0 0 40px rgba(252, 196, 3, 0.3); */
   animation: glowPulse 2s ease-in-out infinite;
 }
 
@@ -365,12 +373,13 @@
   .navLinks {
     flex-direction: column;
     gap: 5px;
+    align-items: start;
   }
 
   .navLink {
     display: block;
     text-align: center;
-    padding: 15px 20px;
+    padding: 10px 20px;
   }
 
   .navLink.active::after {
@@ -427,12 +436,12 @@
 
   .logoWrapper img {
    width: 76px;
-    margin-right: 80px;
+    margin-right: 90px;
   }
  
 
   .langSelector {
-    right: 50px;
+    right: 60px;
   }
 
   .flagsContainer {
@@ -452,8 +461,8 @@
 
 @media (max-width: 480px) {
   .bookBtn {
-    font-size: 0.85rem;
-    padding: 0;
+    font-size: 0.65rem;
+    padding: 10px;
   }
 
   .logoWrapper img {
@@ -468,8 +477,7 @@
 
 @media (max-width: 380px) {
   .bookBtn {
-    font-size: 0.75rem;
-    padding: 0;
+    padding: 5px;
   }
 
   .logoWrapper img {
@@ -483,6 +491,6 @@
 
   .langSelector {
     right: 45px;
-    padding: 5px 7px;
+    padding: 3px 5px;
   }
 }

@@ -4,15 +4,16 @@
 
 /* Hero Banner */
 .heroBanner {
-  height: 20vh;
-  min-height: 200px;
+  height: 40vh;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url('/New Project (1).jpg') center/cover no-repeat;
+  background: url('/Rectangle2.svg') center/cover no-repeat;
   margin-top: -140px;
   padding-top: 140px;
+  overflow: hidden;
 }
 
 .heroOverlay {
@@ -36,7 +37,7 @@
 }
 
 .heroTitle {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'skygraze', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--gold-primary);
@@ -153,18 +154,26 @@
     font-size: 2.5rem;
   }
 
+  .contactSection{
+    top: -100px;
+    margin-bottom: -100px;
+  }
   .contactInfo {
     padding-right: 0;
   }
 
   .contactForm {
     padding: 25px;
+    margin-top: -40px;
   }
 }
 
 @media (max-width: 576px) {
   .heroTitle {
     font-size: 2rem;
+  }
+  .contactInfo{
+      margin-top: 70px;
   }
 
   .contactInfo h4 {
@@ -191,8 +200,17 @@
     padding: 20px 15px;
   }
 
+  .contactSection{
+    top: -100px;
+    margin-bottom: -100px;
+  }
   .contactForm .form-control {
     font-size: 0.9rem;
   }
 }
 
+@media (max-width: 480px) {
+   .heroTitle{
+    font-size: 1.5rem;
+   }
+}

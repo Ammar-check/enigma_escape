@@ -188,7 +188,7 @@ export default function Home() {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true }}
-  style={{ position: 'relative', zIndex: 2 }}
+  style={{ position: 'relative', zIndex: 2, fontFamily: 'Skygraze, sans-serif' }}
 >
   {t('ourRooms')}
 </motion.h2>
@@ -250,6 +250,7 @@ export default function Home() {
               stiffness: 150,
               damping: 15,
             }}
+            style={{  fontFamily: 'Skygraze, sans-serif',}}
           >
             {t('contactUs')}
           </motion.h2>
@@ -299,7 +300,7 @@ export default function Home() {
                   whileHover={{ x: isArabic ? -10 : 10 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  <i className="bi bi-telephone-fill"></i>
+                  <Image style={{ transform: 'rotate(15deg)' }} src='/smartphone.svg' width={30} height={30} alt='smartphone icon' />
                   <div>
                     <h5>{t('phone')}</h5>
                     <p>{contactInfo.phone}</p>
@@ -358,6 +359,7 @@ export default function Home() {
                     className="btn btn-outline-gold"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)'}}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>

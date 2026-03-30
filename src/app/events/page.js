@@ -102,6 +102,7 @@ export default function EventsPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            style={{fontFamily:'skygraze'}}
           >
             {isArabic ? 'لماذا تختارنا؟' : 'WHY CHOOSE US?'}
           </motion.h2>

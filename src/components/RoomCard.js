@@ -49,7 +49,8 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
             <div className={styles.roomHeader}>
               <div className={styles.roomTitles}>
                 <h3 className={styles.roomName}>
-                  {room.nameEn}
+                  {/* {room.nameEn} */}
+                  <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} />
                 </h3>
                 {room.subtitleEn && (
                   <span className={styles.roomSubtitle}>{room.subtitleEn}</span>
@@ -60,7 +61,8 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
               </span>
             </div>
             <p className={styles.roomNameAr}>
-              {room.nameAr}
+              {/* {room.nameAr} */}
+              <Image className={styles.ArNameImg} src={room.nameAr} width={400} height={400} />
             </p>
           </div>
 
@@ -68,22 +70,22 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
           <div className={styles.roomDetails}>
             <div className={styles.roomInfo}>
               <span>
-                <i className="bi bi-people-fill"></i> {room.players}{' '}
+                <img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
                 {isArabic ? 'لاعبين' : 'Players'}
               </span>
               <span>
-                <i className="bi bi-clock-fill"></i> {room.duration}{' '}
+                <img className={`${styles.roomsIcon2} ${styles.roomsIcon}`} src='./time.svg' style={{width:'20px',height:'20px'}} alt='time icon' /> {room.duration}{' '}
                 {isArabic ? 'دقيقة' : 'Min'}
               </span>
               {room.hasLivePerformers && (
                 <span>
-                  <i className="bi bi-person-badge-fill"></i>{' '}
+                  <img className={styles.roomsIcon} src='./faces.svg' width={30} height={30} alt='face icon' />{' '}
                   {isArabic ? 'ممثلين حقيقيين' : 'Live Performers'}
                 </span>
               )}
               {room.genre && (
                 <span>
-                  <i className="bi bi-tag-fill"></i>{' '}
+                  <img className={styles.roomsIcon} src={room.icon}  alt='hand icon' />{' '}
                   {isArabic
                     ? genreLabels[room.genre]?.ar
                     : genreLabels[room.genre]?.en}
@@ -101,7 +103,9 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
                         i < room.difficulty ? 'bi-star-fill' : 'bi-star'
                       }`}
                     ></i>
+                    
                   ))}
+                  <span style={{ color: 'var(--gold-primary)', marginLeft:'10px' }}>{room.star}</span>
                 </div>
               </div>
             )}
