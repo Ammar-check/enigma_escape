@@ -46,6 +46,11 @@
   text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
 }
 
+[dir='rtl'] .heroTitle{
+  font-size: 4.5rem;
+  font-family: sans-serif;
+}
+
 /* Contact Section */
 .contactSection {
   background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
@@ -213,4 +218,8 @@
    .heroTitle{
     font-size: 1.5rem;
    }
+   [dir='rtl'] .heroTitle{
+  font-size: 2.5rem;
+}
+
 }

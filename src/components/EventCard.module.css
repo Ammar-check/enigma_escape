@@ -41,13 +41,26 @@
   margin: 0;
 }
 
+[dir='rtl'] .eventTitle{
+   font-family: 'Janna LT',sans-serif;
+   font-size: 3.1rem;
+   font-weight: 500;
+}
+
 .eventBookBtn {
   position: absolute;
   top: 15px;
   right: 15px;
   z-index: 5;
 }
+[dir='rtl'] .eventBookBtn{
+  padding: 0px 10px;
+}
+[dir='rtl'] .eventBookBtn a{
+  font-family: 'Myriad',sans-serif;
+  font-weight: bold;
 
+}
 .eventBookBtn .btn {
   font-size: 0.95rem;
   padding: 8px 20px;
@@ -90,5 +103,10 @@
     font-size: 0.65rem;
     padding: 6px 14px;
   }
+
+  [dir='rtl'] .eventTitle{
+   font-size: 1.5rem;
+
+}
 }
 

@@ -45,6 +45,13 @@
   text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
 }
 
+[dir='rtl'] .heroTitle{
+   font-family: 'Janna LT',sans-serif;
+   font-weight: 500;
+   font-size: 4.5rem;
+   text-transform: uppercase;
+}
+
 /* FAQ Section */
 .faqSection {
   background: url('/Rectangle5.svg') center/cover no-repeat;
@@ -149,11 +156,14 @@
   color: var(--gold-primary);
   margin-bottom: 10px;
 }
-
+[dir='rtl'] .contactCta h3{
+  font-family: 'Janna LT',sans-serif;
+}
 .contactCta p {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.7);
+
 }
 
 /* Responsive */
@@ -195,6 +205,11 @@
   .contactCta p {
     font-size: 0.9rem;
   }
+
+  [dir='rtl'] .heroTitle{
+   
+   font-size: 3.5rem;
+}
 }
 
 

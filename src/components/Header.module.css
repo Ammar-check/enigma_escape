@@ -17,6 +17,7 @@
 /* Top Row */
 .topRow {
   /* border-bottom: 1px solid rgba(212, 168, 75, 0.2); */
+  
   padding: 15px 0;
 }
 
@@ -28,17 +29,17 @@
 
 .bookBtn {
   font-size: 1.1rem;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border-radius: 30px;
   background: transparent !important;
   border: none !important;
-  color: #fff;
+  color: hsl(51, 100%, 68%);
   flex-shrink: 0;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 2px;
   transition: all 0.3s ease;
   text-shadow:
-    0 0 5px rgba(255,255,255,0.3),   /* small inner shine */
+    0 0 5px rgba(255,255,255,0.3), 
     0 0 10px rgba(252,196,3,1),
     0 0 20px rgba(252,196,3,1),
     0 0 40px rgba(252,196,3,1),
@@ -46,6 +47,18 @@
     0 0 120px rgba(252,196,3,0.9);
   /* text-shadow: 0 0 10px rgba(252, 196, 3, 0.9), 0 0 20px rgba(252, 196, 3, 0.7), 0 0 30px rgba(252, 196, 3, 0.5), 0 0 40px rgba(252, 196, 3, 0.3); */
   animation: glowPulse 2s ease-in-out infinite;
+}
+
+[dir='rtl'] .bookBtn{
+   font-family: 'Myriad',sans-serif;
+   font-size: 1.1rem;
+   padding: 0px 15px;
+    text-shadow: 
+  0 0 5px #FFD700,
+  0 0 10px #FFD700,
+  0 0 20px #FFD700,
+  0 0 40px #FFA500;
+
 }
 
 .bookBtn:hover {
@@ -56,6 +69,7 @@
   box-shadow: none;
   text-shadow: 0 0 15px rgba(252, 196, 3, 1), 0 0 30px rgba(252, 196, 3, 0.9), 0 0 45px rgba(252, 196, 3, 0.7), 0 0 60px rgba(252, 196, 3, 0.5);
   animation: none;
+
 }
 
 @keyframes glowPulse {
@@ -89,7 +103,7 @@
 .langSelector {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 3px;
   color: #ffffff;
   font-size: 0.85rem;
   cursor: pointer;
@@ -102,15 +116,19 @@
 
 .langSelector:hover {
   background: rgba(212, 168, 75, 0.1);
+  
 }
 
 .langCode {
-  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--gold-primary);
+  color: #fff;
   letter-spacing: 1px;
+  font-size: 0.75rem;
 }
-
+[dir='rtl'] .langCode{
+  font-family: 'Janna LT';
+  font-size: 1rem;
+}
 .langText {
   font-size: 0.9rem;
   font-weight: 600;
@@ -126,7 +144,7 @@
 .chevron {
   transition: transform 0.3s ease;
   font-size: 0.7rem;
-  color: var(--gold-primary);
+  color: #fff;
 }
 
 .chevron.rotated {
@@ -210,6 +228,10 @@
 /* Bottom Row - Navigation */
 .bottomRow {
   padding: 12px 0;
+  background: rgba(0, 0, 0, 0.35);
+width: 1170px;
+height: 56px;
+border-radius: 28px;
 }
 
 .navLinks {
@@ -227,6 +249,7 @@
 }
 
 .navLink {
+  
   font-family: var(--font-english);
   font-size: 0.9rem;
   font-weight: 600;
@@ -427,11 +450,29 @@
   }
 }
 
+@media (max-width: 778px) {
+  [dir='rtl'] .bookBtn {
+    padding: 5px 7px;
+  }
+   [dir='rtl'] .bookBtn{
+   font-family: 'Myriad',sans-serif;
+   font-size: 1rem;
+   padding: 0px 15px;
+  }
+  [dir='rtl'] .langSelector{
+  padding: 0 5px;
+  margin-right: 30px;
+}
+}
+
 @media (max-width: 576px) {
   .bookBtn {
     font-size: 0.9rem;
     padding: 0;
     letter-spacing: 1px;
+  }
+  [dir='rtl'] .bookBtn {
+    padding: 5px 10px;
   }
 
   .logoWrapper img {
@@ -457,6 +498,8 @@
     padding: 6px 10px;
     border-width: 2px;
   }
+
+  
 }
 
 @media (max-width: 480px) {
@@ -473,6 +516,33 @@
     font-size: 1.3rem;
     padding: 5px 9px;
   }
+  .langCode {
+ 
+  font-size: 0.65rem;
+}
+[dir='rtl'] .langCode{
+  font-family: 'Janna LT';
+  font-size: 1rem;
+}
+.langText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+.langSelector{
+  padding: 0 5px;
+}
+
+.flagImg {
+  width: 1.4rem;
+  transition: opacity 0.3s ease;
+}
+ [dir='rtl'] .bookBtn{
+   font-family: 'Myriad',sans-serif;
+   font-size: 0.81rem;
+   padding: 0px 15px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -488,9 +558,31 @@
     font-size: 1.2rem;
     padding: 5px 8px;
   }
+  [dir='rtl'] .bookBtn{
+   font-family: 'Myriad',sans-serif;
+   font-size: 0.71rem;
+   padding: 0px 15px;
+  }
 
   .langSelector {
     right: 45px;
     padding: 3px 5px;
   }
+
+  [dir='rtl'] .langSelector{
+       margin-right: 18px;
+  }
+   .langCode {
+  font-size: 0.55rem;
 }
+[dir='rtl'] .langCode{
+  font-family: 'Janna LT';
+  font-size: 0.65rem;
+}
+.flagImg {
+  width: 1.3rem;
+  transition: opacity 0.3s ease;
+}
+}
+
+

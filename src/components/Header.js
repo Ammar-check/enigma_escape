@@ -73,7 +73,7 @@ export default function Header() {
               href="https://bookeo.com/enigmaescapesa" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`btn btn-gold ${styles.bookBtn}`}
+              className={`btn  ${styles.bookBtn}`}
             >
               {t('bookNow')}
             </a>
@@ -91,8 +91,8 @@ export default function Header() {
               onClick={() => setLangDropdown(!langDropdown)}
               onMouseLeave={() => setLangDropdown(false)}
             >
-              <span className={styles.langCode}>{mounted ? (language === 'en' ? 'US' : 'SA') : 'US'}</span>
-              <span className={styles.langText}>{mounted ? (language === 'en' ? 'EN' : 'AR') : 'EN'}</span>
+              <span className={styles.langCode}>{mounted ? (language === 'en' ? 'ENGLISH' : 'عربي') : <Image className={styles.flagImg} src='/saudiFlag.svg' width={30} height={30} alt='flag'/>}</span>
+              <span className={styles.langText}>{mounted ? (language === 'en' ? <Image className={styles.flagImg} src='/engFlag.svg' width={30} height={30} alt='flag'/> : <Image className={styles.flagImg} src='/saudiFlag.svg' width={30} height={30} alt='flag'/>) : 'us'}</span>
               <i className={`bi bi-chevron-down ${styles.chevron} ${langDropdown ? styles.rotated : ''}`}></i>
 
               {/* Language Dropdown */}

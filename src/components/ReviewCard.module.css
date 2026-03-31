@@ -33,6 +33,12 @@
   left: 12px;
 }
 
+[dir='rtl'] .quoteIcon{
+  left: auto;
+  right: 12px;
+  transform: scaleX(-1);
+}
+
 .reviewContent {
   flex: 1;
   display: flex;
@@ -45,6 +51,12 @@
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: 20px;
+
+}
+
+[dir=rtl] .reviewText{
+   font-family: 'Janna LT';
+   text-align: right;
 }
 
 .reviewAuthor {
@@ -58,14 +70,14 @@
   height: 55px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--gold-primary);
+  /* border: 2px solid var(--gold-primary); */
 }
 
 .authorName {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--gold-primary);
+  color: #ffff;
 }
 
 @media (max-width: 768px) {
@@ -98,4 +110,9 @@
     width: 45px;
     height: 45px;
   }
+
+  .quoteIcon {
+  font-size: 1.7rem;
+  top: 20px;
+}
 }

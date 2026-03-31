@@ -54,6 +54,11 @@
   text-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
   margin-bottom: 15px;
 }
+[dir='rtl'] .heroTitle{
+  font-size: 4.6rem;
+  font-family: 'Janna LT',sans-serif;
+  font-weight: 500;
+}
 
 .heroSubtitle {
   font-family: 'Rajdhani', sans-serif;
@@ -83,6 +88,7 @@
     rgba(20, 20, 20, 1) 100%
   );
 }
+
 
 .benefitsGrid {
   display: grid;
@@ -148,6 +154,10 @@
   .benefitsGrid {
     grid-template-columns: 1fr;
   }
+  [dir='rtl'] .heroTitle{
+  font-size: 3.6rem;
+
+}
 }
 
 @media (max-width: 576px) {
@@ -170,5 +180,9 @@
   .benefitCard p {
     font-size: 0.9rem;
   }
+  [dir='rtl'] .heroTitle{
+  font-size: 1.6rem;
+ 
+}
 }
 

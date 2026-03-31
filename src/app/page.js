@@ -108,7 +108,8 @@ export default function Home() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  {t('heroSubtitle')}
+                  {/* {t('heroSubtitle')} */}
+                  <Image src="/heroArabicSub.svg" width={200} height={100} alt='hero arabic subtitle' className={styles.heroArabicSub} priority />
                 </motion.p>
               </>
             ) : (
@@ -348,6 +349,8 @@ export default function Home() {
                         type={field.type}
                         className="form-control"
                         placeholder={isArabic ? field.placeholderAr : field.placeholderEn}
+                        dir={isArabic ? 'rtl' : 'ltr'}
+                        style={{ textAlign: isArabic ? 'right' : 'left' }}
                         required={field.required}
                       />
                     )}

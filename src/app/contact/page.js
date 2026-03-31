@@ -125,7 +125,8 @@ export default function ContactPage() {
                         className="form-control"
                         placeholder={isArabic ? field.placeholderAr : field.placeholderEn}
                         required={field.required}
-                        
+                         dir={isArabic ? 'rtl' : 'ltr'}
+  style={{ textAlign: isArabic ? 'right' : 'left' }}
                       />
                     )}
                   </motion.div>

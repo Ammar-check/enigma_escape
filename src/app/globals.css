@@ -25,6 +25,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Myriad';
+  src: url('/fonts/Myriad-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Colors */
   --dark-bg: #0a0a0a;
@@ -90,7 +98,7 @@ p, span, a, li, label, input, textarea, button {
 
 .section-title {
   font-family: var(--font-english);
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   font-weight: 700;
   color: var(--gold-primary);
   text-align: center;
