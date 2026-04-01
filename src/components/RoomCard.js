@@ -69,9 +69,11 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
         {showDetails && (
           <div className={styles.roomDetails}>
             <div className={styles.roomInfo}>
-              <span>
-                <img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
-                {isArabic ? 'لاعبين' : 'Players'}
+              <span>{isArabic?(<><img className={styles.roomsIcon} src='./faces.svg' width={30} height={30} alt='face icon' />{' '}
+                  {isArabic ? 'ممثل حي' : 'Live Performers'}</>):(<><img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
+                {isArabic ? 'لاعبين' : 'Players'}</>)}
+                {/* // <img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
+                // {isArabic ? 'لاعبين' : 'Players'} */}
               </span>
               <span>
                 <img className={`${styles.roomsIcon2} ${styles.roomsIcon}`} src='./time.svg' style={{width:'20px',height:'20px'}} alt='time icon' /> {room.duration}{' '}
@@ -79,8 +81,9 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
               </span>
               {room.hasLivePerformers && (
                 <span>
-                  <img className={styles.roomsIcon} src='./faces.svg' width={30} height={30} alt='face icon' />{' '}
-                  {isArabic ? 'ممثلين حقيقيين' : 'Live Performers'}
+                  {isArabic?(<><img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
+                {isArabic ? 'لاعبين' : 'Players'}</>):(<><img className={styles.roomsIcon} src='./faces.svg' width={30} height={30} alt='face icon' />{' '}
+                  {isArabic ? 'ممثل حي' : 'Live Performers'}</>)}
                 </span>
               )}
               {room.genre && (

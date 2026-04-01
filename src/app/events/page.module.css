@@ -5,7 +5,7 @@
 /* Hero Banner */
 .heroBanner {
   height: 50vh;
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,5 +184,10 @@
   font-size: 1.6rem;
  
 }
+
+.heroBanner {
+  min-height: 300px;
+}
+
 }
 

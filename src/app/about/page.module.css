@@ -5,7 +5,7 @@
 /* Hero Banner */
 .heroBanner {
   height: 25vh;
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -336,6 +336,9 @@ font-weight: 700;
 
   .missionCard p {
     font-size: 0.95rem;
+  }
+  .heroBanner {
+  min-height: 300px;
   }
 }
 

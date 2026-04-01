@@ -7,7 +7,7 @@ import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
 
 export default function GalleryPage() {
-  const { t } = useLanguage();
+  const { t ,isArabic } = useLanguage();
 
   return (
     <div className={styles.pageWrapper}>
@@ -20,7 +20,7 @@ export default function GalleryPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className={styles.heroTitle}>{t('gallery')}</h1>
+          <h1 className={styles.heroTitle}>{isArabic ? 'معرض':'Gallery'}</h1>
         </motion.div>
       </section>
 

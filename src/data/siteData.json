@@ -24,7 +24,7 @@
       "id": 2,
       "nameEn": "/LostCityText.svg",
       "nameAr": "/madina.svg ",
-      "image": "/New Project (4).png",
+      "image": "/New-Project-4.png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
@@ -44,7 +44,7 @@
       "nameEn": "/sherLockcrop.svg",
       "subtitleEn": "& THE DOOMSDAY DEVICE",
       "nameAr": "  /jihad.svg",
-      "image": "/New Project (5).png",
+      "image": "/New-Project-5.png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": true,
@@ -63,7 +63,7 @@
       "id": 4,
       "nameEn": "/vrRoom3.svg",
       "nameAr": "/alarab.svg",
-      "image": "/New Project (6).png",
+      "image": "/New-Project-6.png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
@@ -80,7 +80,7 @@
       "id": 5,
       "nameEn": "/outdoor-escape.svg",
       "nameAr": "/kharij.svg ",
-      "image": "/New Project (7).png",
+      "image": "/New-Project-7.png",
       "players": "2-6",
       "duration": "60",
       "hasLivePerformers": false,
@@ -255,7 +255,7 @@
         "labelEn": "Full Name",
         "labelAr": "الاسم الكامل",
         "placeholderEn": "Full Name",
-        "placeholderAr": "أدخل اسمك الكامل",
+        "placeholderAr": "الاسم الكامل",
         "required": true,
         "validation": {
           "minLength": 3,
@@ -269,7 +269,7 @@
         "labelEn": "Phone Number",
         "labelAr": "رقم الهاتف",
         "placeholderEn": "Phone Number",
-        "placeholderAr": "أدخل رقم هاتفك",
+        "placeholderAr": "هاتف",
         "required": true,
         "validation": {
           "pattern": "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$"
@@ -282,7 +282,7 @@
         "labelEn": "Email Address",
         "labelAr": "البريد الإلكتروني",
         "placeholderEn": "Email Address",
-        "placeholderAr": "أدخل بريدك الإلكتروني",
+        "placeholderAr": "البريد الإلكتروني",
         "required": true,
         "validation": {
           "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
@@ -295,7 +295,7 @@
         "labelEn": "Message",
         "labelAr": "الرسالة",
         "placeholderEn": "Message",
-        "placeholderAr": "أدخل رسالتك",
+        "placeholderAr": " رسالة",
         "required": true,
         "rows": 5,
         "validation": {

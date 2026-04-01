@@ -229,6 +229,7 @@
 .bottomRow {
   padding: 12px 0;
   background: rgba(0, 0, 0, 0.35);
+  margin: 0 auto;
 width: 1170px;
 height: 56px;
 border-radius: 28px;
@@ -264,6 +265,10 @@ border-radius: 28px;
 
 [dir="rtl"] .navLink {
   font-family: var(--font-arabic);
+  font-size: 1.09rem;
+  padding: 3px 15px;
+  line-height: 35px;
+  font-weight: bold;
 }
 
 .navLink:hover {
@@ -293,6 +298,7 @@ border-radius: 28px;
   position: absolute;
   top: 100%;
   left: 50%;
+  
   transform: translateX(-50%) translateY(10px);
   min-width: 200px;
   background: rgba(20, 20, 20, 0.98);
@@ -448,6 +454,15 @@ border-radius: 28px;
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  .bottomRow {
+  padding: 12px 0;
+  /* background: rgba(0, 0, 0, 0.35); */
+  height: 500px;
+  border-radius: 0px;
+  
+}
+
 }
 
 @media (max-width: 778px) {

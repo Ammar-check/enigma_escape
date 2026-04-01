@@ -5,7 +5,7 @@
 /* Hero Banner */
 .heroBanner {
   height: 30vh;
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,6 +209,9 @@
   [dir='rtl'] .heroTitle{
    
    font-size: 3.5rem;
+}
+.heroBanner {
+  min-height: 300px;
 }
 }
 

@@ -69,10 +69,10 @@ export default function RoomDetailClient({ room }) {
               transition={{ duration: 0.3, delay: 0.1 }}
               style={{ color: room.color }}
             >
-              {isArabic ? room.nameAr : room.nameEn}
-              {room.subtitleEn && !isArabic && (
+              {isArabic ? <img className={styles.EnNameImg} src={room.nameEn} width={400} height={400} /> : <img className={styles.EnNameImg} src={room.nameEn} width={400} height={400} />}
+              {/* {room.subtitleEn && !isArabic && (
                 <span className={styles.subtitle}>{room.subtitleEn}</span>
-              )}
+              )} */}
             </motion.h1>
 
             <motion.p
@@ -81,7 +81,7 @@ export default function RoomDetailClient({ room }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              {isArabic ? room.nameEn : room.nameAr}
+              {isArabic ? <img className={styles.EnNameImg} src={room.nameAr} width={400} height={400} /> : <img className={styles.EnNameImg} src={room.nameAr} width={400} height={400} />}
             </motion.p>
 
             <motion.a
