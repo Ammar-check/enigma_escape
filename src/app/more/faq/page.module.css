@@ -186,6 +186,10 @@
     font-size: 2rem;
   }
 
+  .faqColumn{
+    gap: 5px;
+  }
+
   .faqQuestion {
     font-size: 1rem;
   }
