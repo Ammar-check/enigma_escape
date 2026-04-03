@@ -34,10 +34,11 @@
   background: transparent !important;
   border: none !important;
   color: hsl(51, 100%, 68%);
-  flex-shrink: 0;
   font-weight: 600;
   letter-spacing: 2px;
-  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+
   text-shadow:
     0 0 5px rgba(255,255,255,0.3), 
     0 0 10px rgba(252,196,3,1),
@@ -45,10 +46,94 @@
     0 0 40px rgba(252,196,3,1),
     0 0 80px rgba(252,196,3,1),
     0 0 120px rgba(252,196,3,0.9);
-  /* text-shadow: 0 0 10px rgba(252, 196, 3, 0.9), 0 0 20px rgba(252, 196, 3, 0.7), 0 0 30px rgba(252, 196, 3, 0.5), 0 0 40px rgba(252, 196, 3, 0.3); */
-  animation: glowPulse 2s ease-in-out infinite;
+
+  /* merge all animations into one line */
+  animation: horrorFlicker 2.5s infinite, distort 3s 0.3s infinite;
+  overflow: visible; /* must be visible for pseudo-elements to show */
 }
 
+/* 👻 Flicker */
+@keyframes horrorFlicker {
+  0%,100% { opacity: 1; }
+  10% { opacity: 0.3; }
+  20% { opacity: 1; }
+  30% { opacity: 0.2; }
+  40% { opacity: 1; }
+  55% { opacity: 0.4; }
+  70% { opacity: 1; }
+  85% { opacity: 0.2; }
+}
+
+/* 😈 Distortion */
+@keyframes distort {
+  0% { transform: skew(0deg); }
+  25% { transform: skew(10deg); }
+  50% { transform: skew(0deg); }
+  75% { transform: skew(-10deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* 💀 Glitch Layers */
+.bookBtn::before,
+.bookBtn::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 🔴 Red glitch */
+.bookBtn::before {
+  color: rgba(255, 0, 0, 0.7);
+  z-index: -1;
+  animation: glitch1 3s infinite;
+}
+
+/* 🔵 Cyan glitch */
+.bookBtn::after {
+  color: rgba(0, 255, 255, 0.7);
+  z-index: -2;
+  animation: glitch2  5s infinite;
+}
+
+/* 🔥 Glitch 1 - Red Layer */
+@keyframes glitch1 {
+  /* active glitch = first 25% (1s out of 4s) */
+  0%   { transform: translate(0) scaleX(1); }
+  2.5% { transform: translate(-3px, 2px) scaleX(1.1); }
+  5%   { transform: translate(-2px, -2px) scaleX(0.9); }
+  7.5% { transform: translate(4px, 1px) scaleX(1.2); }
+  10%  { transform: translate(-1px, -3px) scaleX(0.95); }
+  12.5%{ transform: translate(3px, 2px) scaleX(1.05); }
+  15%  { transform: translate(-2px, -1px) scaleX(0.9); }
+  17.5%{ transform: translate(2px, 3px) scaleX(1.15); }
+  20%  { transform: translate(-3px, -2px) scaleX(0.85); }
+  22.5%{ transform: translate(1px, 2px) scaleX(1.1); }
+  25%  { transform: translate(0) scaleX(1); }
+  /* idle/pause = remaining 75% (3s) */
+  25.1%, 100% { transform: translate(0) scaleX(1); }
+}
+
+/* 🔵 Glitch 2 - Cyan Layer */
+@keyframes glitch2 {
+  /* active glitch = first 16% (1s out of 6s) */
+  0%    { transform: translate(0) scaleX(1); }
+  1.6%  { transform: translate(2px, -2px) scaleX(1.05); }
+  3.2%  { transform: translate(3px, 2px) scaleX(0.95); }
+  4.8%  { transform: translate(-2px, 3px) scaleX(1.1); }
+  6.4%  { transform: translate(1px, -3px) scaleX(0.9); }
+  8%    { transform: translate(-3px, 1px) scaleX(1.2); }
+  9.6%  { transform: translate(2px, -1px) scaleX(0.85); }
+  11.2% { transform: translate(-1px, 2px) scaleX(1.1); }
+  12.8% { transform: translate(3px, -2px) scaleX(0.95); }
+  14.4% { transform: translate(-2px, 3px) scaleX(1.15); }
+  16%   { transform: translate(0) scaleX(1); }
+  /* idle/pause = remaining 84% (5s) */
+  16.1%, 100% { transform: translate(0) scaleX(1); }
+}
 [dir='rtl'] .bookBtn{
    font-family: 'Myriad',sans-serif;
    font-size: 1.1rem;
@@ -262,6 +347,19 @@ border-radius: 28px;
   position: relative;
   display: block;
 }
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  bottom: 0; /* sits exactly at bottom */
+  width: 0%;
+  height: 2px;
+  background: yellow;
+  transition: width 0.6s ease; /* change to 2s if you want slower */
+}
+.navLink:hover::after {
+  width: 100%;
+}
 
 [dir="rtl"] .navLink {
   font-family: var(--font-arabic);
@@ -272,7 +370,16 @@ border-radius: 28px;
 }
 
 .navLink:hover {
-  color: var(--gold-primary);
+  color: white;
+  text-shadow: -3px 0px 10px var(--gold-primary),
+3px 0px 10px var(--gold-primary),
+0px 0px 10px var(--gold-primary),
+-3px -3px 10px #e6ff84,
+/* 3px -3px 10px #e1ff00, */
+0px -3px 10px #ecff6f,
+-3px 3px 10px #e8ff81,
+3px 3px 10px #dff700,
+0px 3px 10px yellow;
 }
 
 .navLink.active {
@@ -343,6 +450,164 @@ border-radius: 28px;
   color: var(--gold-primary);
   background: rgba(212, 168, 75, 0.1);
 }
+
+
+/* new header dropdown  */
+
+/* Has Dropdown */
+.navHasDropdown {
+  position: relative;
+}
+
+/* Dropdown Menu */
+.navDropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 10, 10, 0.97);
+  /* border: 1px solid var(--gold-primary); */
+  /* border-top: 2px solid var(--gold-primary); */
+  border-radius: 0 0 8px 8px;
+  padding: 0;
+  min-width: 220px;
+  list-style: none;
+  z-index: 100;
+
+  /* animation */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.navHasDropdown:hover .navDropdown {
+  max-height: 400px;
+  opacity: 1;
+  padding: 8px 0;
+}
+
+/* RTL */
+[dir='rtl'] .navDropdown {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* Dropdown Item */
+.navDropdownItem {
+  list-style: none;
+}
+
+/* Dropdown Link */
+.navDropdownLink {
+  display: block;
+  padding: 10px 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(212, 168, 75, 0.1);
+}
+
+.navDropdownLink:last-child {
+  border-bottom: none;
+}
+
+.navDropdownLink:hover {
+  color: var(--gold-primary);
+  background: rgba(212, 168, 75, 0.08);
+  padding-left: 28px;
+}
+
+[dir='rtl'] .navDropdownLink:hover {
+  padding-left: 20px;
+  padding-right: 28px;
+}
+
+/* ── Tablet ── */
+@media (max-width: 991px) {
+  .navHasDropdown {
+    position: static;
+  }
+
+  .navDropdown {
+    position: static;
+    transform: none;
+    border: none;
+    border-left: 2px solid var(--gold-primary);
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.03);
+    min-width: unset;
+    margin: 4px 0 4px 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+
+  /* on mobile open via parent navItem having a class */
+  /* .navHasDropdown:hover .navDropdown {
+    max-height: 400px;
+    opacity: 1;
+    padding: 5px 0;
+  } */
+
+  /* ✅ FIX: use separate class selector */
+.mobileDropdownOpen .navDropdown {
+  max-height: 400px;
+  opacity: 1;
+  padding: 5px 0;
+}
+
+
+  [dir='rtl'] .navDropdown {
+    border-left: none;
+    border-right: 2px solid var(--gold-primary);
+    margin: 4px 20px 4px 0;
+    transform: none;
+    right: auto;
+  }
+
+  .navDropdownLink {
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    border-bottom: none;
+  }
+
+  .navDropdownLink:hover {
+    padding-left: 22px;
+  }
+
+  [dir='rtl'] .navDropdownLink:hover {
+    padding-left: 15px;
+    padding-right: 22px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 576px) {
+  .navDropdown {
+    margin-left: 15px;
+  }
+
+  [dir='rtl'] .navDropdown {
+    margin-right: 15px;
+    margin-left: 0;
+  }
+
+  .navDropdownLink {
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+}
+
+
 
 /* Responsive */
 @media (max-width: 991px) {
