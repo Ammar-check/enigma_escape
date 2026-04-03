@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Header.module.css';
 import Image from 'next/image';
-import { color } from 'framer-motion';
 
 export default function Header() {
   const pathname = usePathname();
@@ -15,6 +14,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { language, setLanguage, t, isArabic } = useLanguage();
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     setMounted(true);
@@ -27,12 +27,37 @@ export default function Header() {
 
   const navLinks = [
     { href: '/', label: t('home') },
-    { href: '/#games', label: t('games'), isScroll: true },
-    { href: '/events', label: t('privateEvents') },
+    {
+      href: '#',
+      label: t('games'),
+      dropdown: [
+        { href: `/rooms/1`, label: isArabic ? '!الجزار' : 'THE BUTCHER' },
+        { href: `/rooms/2`, label: isArabic ? 'المدينة المفقودة' : 'THE LOST CITY' },
+        { href: `/rooms/3`, label: isArabic ? 'شيرلوك وجهاز يوم القيامة' : 'SHERLOCK & Doomsday Device' },
+        { href: `/rooms/4`, label: isArabic ? 'غرف الواقع الافتراضي' : 'VR ROOMS' },
+        { href: `/rooms/5`, label: isArabic ? 'مغامرات هروب خارجية' : 'OUTDOOR ESCAPE' },
+      ]
+    },
     { href: '/about', label: t('aboutUs') },
-    { href: '/more/reviews', label: t('reviews') },
-    { href: '/more/gallery', label: t('gallery') },
-    { href: '/more/faq', label: t('faqs') },
+    {
+      href: '#',
+      label: t('privateEvents'),
+      dropdown: [
+        { href: '/events', label: isArabic ? 'حفلات / أعياد الميلاد' : 'Parties / Birthday' },
+        { href: '/events', label: isArabic ? 'الشركات / بناء الفريق' : 'Corporate / Team Building' },
+        { href: '/events', label: isArabic ? 'الفعاليات الخارجية / الرحلات المدرسية' : 'External Events / School Trips' },
+      ]
+    },
+    {
+      href: '#',
+      label: isArabic ? 'المزيد' : 'MORE',
+      dropdown: [
+        { href: '/more/reviews', label: t('reviews') },
+        { href: '/more/gallery', label: t('gallery') },
+        { href: '/more/faq', label: t('faqs') },
+        { href: '/more/offers', label: isArabic ? 'العروض' : 'OFFERS' },
+      ]
+    },
     { href: '/contact', label: t('contactUs') },
   ];
 
@@ -57,9 +82,12 @@ export default function Header() {
         setMobileMenuOpen(false);
       }
     } else if (link.isScroll) {
-      // If not on home page, navigate to home page with hash
       window.location.href = '/#games';
     }
+  };
+
+  const toggleDropdown = (label) => {
+    setOpenDropdown(openDropdown === label ? null : label);
   };
 
   return (
@@ -73,7 +101,8 @@ export default function Header() {
               href="https://bookeo.com/enigmaescapesa" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`btn  ${styles.bookBtn}`}
+              className={`btn  ${styles.bookBtn} `}
+              data-text={isArabic ? 'احجز الآن' : 'BOOK NOW'}
             >
               {t('bookNow')}
             </a>
@@ -130,12 +159,20 @@ export default function Header() {
         <div className="container">
           <ul className={styles.navLinks}>
             {navLinks.map((link) => (
-              <li key={link.href} className={styles.navItem}>
+              <li
+                key={link.label}
+                className={`${styles.navItem} ${link.dropdown ? styles.navHasDropdown : ''} ${
+                  openDropdown === link.label ? styles.mobileDropdownOpen : ''
+                }`}
+              >
                 <Link
                   href={link.href}
                   className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
                   onClick={(e) => {
-                    if (link.isScroll) {
+                    if (link.dropdown) {
+                      e.preventDefault();
+                      toggleDropdown(link.label);
+                    } else if (link.isScroll) {
                       handleNavClick(e, link);
                     } else {
                       setMobileMenuOpen(false);
@@ -143,7 +180,37 @@ export default function Header() {
                   }}
                 >
                   {link.label}
+                  {link.dropdown && (
+                    <i
+                      className="bi bi-chevron-down"
+                      style={{
+                        fontSize: '0.7rem',
+                        marginLeft: '4px',
+                        transition: 'transform 0.3s ease',
+                        transform: openDropdown === link.label ? 'rotate(180deg)' : 'rotate(0deg)',
+                        display: 'inline-block'
+                      }}
+                    ></i>
+                  )}
                 </Link>
+                {link.dropdown && (
+                  <ul className={styles.navDropdown}>
+                    {link.dropdown.map((sub) => (
+                      <li key={sub.label} className={styles.navDropdownItem}>
+                        <Link
+                          href={sub.href}
+                          className={styles.navDropdownLink}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setOpenDropdown(null);
+                          }}
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
