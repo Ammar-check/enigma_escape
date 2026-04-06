@@ -42,21 +42,6 @@
   display: inline-block;
   text-shadow:
     0 0 5px rgba(255,255,255,0.3), 
-<<<<<<< HEAD
-    0 0 10px rgba(252,196,3,1),
-    0 0 20px rgba(252,196,3,1),
-    0 0 40px rgba(252,196,3,1),
-    0 0 80px rgba(252,196,3,1),
-    0 0 120px rgba(252,196,3,0.9);
-=======
-    0 0 5px rgba(252,196,3,1),
-    0 0 10px #fff,
-    0 0 10px rgba(252,196,3,1);
-
-  /* merge all animations into one line */
->>>>>>> cd12b936833b33aea28c8c80df580ee16747ce40
-  animation: horrorFlicker 2.5s infinite, distort 3s 0.3s infinite;
-  overflow: visible;
 }
 
 @keyframes horrorFlicker {
@@ -113,12 +98,6 @@
   20%  { transform: translate(-3px, -2px) scaleX(0.85); }
   22.5%{ transform: translate(1px, 2px) scaleX(1.1); }
   25%  { transform: translate(0) scaleX(1); }
-<<<<<<< HEAD
-  25.1%, 100% { transform: translate(0) scaleX(1); }
-=======
-  /* idle/pause = remaining 75% (3s) */
-  25.1%, 100% { transform: translate(-2px ,5px) scaleX(1); }
->>>>>>> cd12b936833b33aea28c8c80df580ee16747ce40
 }
 
 @keyframes glitch2 {
@@ -133,12 +112,6 @@
   12.8% { transform: translate(3px, -2px) scaleX(0.95); }
   14.4% { transform: translate(-2px, 3px) scaleX(1.15); }
   16%   { transform: translate(0) scaleX(1); }
-<<<<<<< HEAD
-  16.1%, 100% { transform: translate(0) scaleX(1); }
-=======
-  /* idle/pause = remaining 84% (5s) */
-  16.1%, 100% { transform: translate(0,5px) scaleX(1); }
->>>>>>> cd12b936833b33aea28c8c80df580ee16747ce40
 }
 
 [dir='rtl'] .bookBtn{
@@ -362,13 +335,6 @@ border-radius: 28px;
   bottom: 0;
   width: 0%;
   height: 2px;
-<<<<<<< HEAD
-  background: yellow;
-  transition: width 0.6s ease;
-=======
-  background: var(--gold-primary);
-  transition: width 0.6s ease; /* change to 2s if you want slower */
->>>>>>> cd12b936833b33aea28c8c80df580ee16747ce40
 }
 
 .navLink:hover::after {
