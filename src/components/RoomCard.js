@@ -32,8 +32,11 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
 
   return (
     <motion.div
-      className={styles.roomCard}
-      variants={cardVariants}
+      className={`${styles.roomCard} ${styles[`card${index+1}`]}`}
+      initial={{ opacity: 0, x: -100 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
       style={{ '--room-color': room.color }}
     >
       <Link href={`/rooms/${room.id}`} className={styles.roomLink} prefetch={true}>
@@ -50,11 +53,11 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
               <div className={styles.roomTitles}>
                 <h3 className={styles.roomName}>
                   {/* {room.nameEn} */}
-                  <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} />
+                  <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} alt='room name' />
                 </h3>
-                {room.subtitleEn && (
+                {/* {room.subtitleEn && (
                   <span className={styles.roomSubtitle}>{room.subtitleEn}</span>
-                )}
+                )} */}
               </div>
               <span className={`btn btn-gold ${styles.roomBookBtn}`}>
                 {t('bookNow')}
@@ -62,37 +65,57 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
             </div>
             <p className={styles.roomNameAr}>
               {/* {room.nameAr} */}
-              <Image className={styles.ArNameImg} src={room.nameAr} width={400} height={400} />
+              <Image className={styles.ArNameImg} src={room.nameAr} width={400} height={400} alt='room name' />
             </p>
           </div>
 
         {showDetails && (
           <div className={styles.roomDetails}>
             <div className={styles.roomInfo}>
-              <span>{isArabic?(<><img className={styles.roomsIcon} src='./faces.svg' width={30} height={30} alt='face icon' />{' '}
-                  {isArabic ? 'ممثل حي' : 'Live Performers'}</>):(<><img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
-                {isArabic ? 'لاعبين' : 'Players'}</>)}
-              </span>
-              <span>
-                <img className={`${styles.roomsIcon2} ${styles.roomsIcon}`} src='./time.svg' style={{width:'20px',height:'20px'}} alt='time icon' /> {room.duration}{' '}
-                {isArabic ? 'دقيقة' : 'Min'}
-              </span>
-              {room.hasLivePerformers && (
-                <span>
-                  {isArabic?(<><img className={styles.roomsIcon} src='./user.svg'  alt='user icon' /> {room.players}{' '}
-                {isArabic ? 'لاعبين' : 'Players'}</>):(<><img className={styles.roomsIcon} src='./faces.svg' width={30} height={30} alt='face icon' />{' '}
-                  {isArabic ? 'ممثل حي' : 'Live Performers'}</>)}
-                </span>
-              )}
-              {room.genre && (
-                <span>
-                  <img className={styles.roomsIcon} src={room.icon}  alt='hand icon' />{' '}
-                  {isArabic
-                    ? genreLabels[room.genre]?.ar
-                    : genreLabels[room.genre]?.en}
-                </span>
-              )}
-            </div>
+  <span>
+    {isArabic ? (
+      <>
+        <Image className={styles.roomsIcon} src='/faces.svg' width={30} height={30} alt='face icon' />
+        {' '}ممثل حي
+      </>
+    ) : (
+      <>
+        <Image className={styles.roomsIcon} src='/user.svg' width={30} height={30} alt='user icon' />
+        {' '}{room.players}{' '}Players
+      </>
+    )}
+  </span>
+
+  <span>
+    <Image className={`${styles.roomsIcon2} ${styles.roomsIcon}`} src='/time.svg' style={{width:'20px',height:'20px'}} width={30} height={30} alt='time icon' />
+    {' '}{room.duration}{' '}
+    {isArabic ? 'دقيقة' : 'Min'}
+  </span>
+
+  {room.hasLivePerformers && (
+    <span>
+      {isArabic ? (
+        <>
+          <Image className={styles.roomsIcon} src='/user.svg' width={30} height={30} alt='user icon' />
+          {' '}{room.players}{' '}لاعبين
+        </>
+      ) : (
+        <>
+          <Image className={styles.roomsIcon} src='/faces.svg' width={30} height={30} alt='face icon' />
+          {' '}Live Performers
+        </>
+      )}
+    </span>
+  )}
+
+  {room.genre && (
+    <span>
+      <Image className={styles.roomsIcon} src={room.icon} width={30} height={30} alt='hand icon' />
+      {' '}
+      {isArabic ? genreLabels[room.genre]?.ar : genreLabels[room.genre]?.en}
+    </span>
+  )}
+</div>
             {room.difficulty && (
               <div className={styles.difficulty}>
                 <span>{isArabic ? 'الصعوبة' : 'Difficulty'}</span>

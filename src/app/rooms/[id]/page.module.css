@@ -413,3 +413,83 @@ margin: 0 auto;
   }
 }
 
+/* Rooms Section with Background */
+.roomsPageSection {
+  background: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.roomsPageSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat fixed;
+  z-index: 0;
+}
+
+.roomsPageSection > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.roomsPageList {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.comingSoonPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  background: url('/comingSoonImg.png') center/cover no-repeat;
+  border: 1px solid var(--dark-border);
+  border-radius: 15px;
+  transition: all 0.4s ease;
+  margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.comingSoonPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+}
+
+.comingSoonPage:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 20px rgba(212, 168, 75, 0.4);
+}
+
+.comingSoonPageContent {
+  position: relative;
+  z-index: 10;
+   
+}
+
+.comingSoonPageContent h3 {
+  /* font-family: 'Knife Fight Ballet', 'Knife Fight', fantasy, cursive; */
+  font-size: 3rem;
+  color: #ffff;
+  text-shadow: 0 0 20px rgba(212, 168, 75, 0.5);
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
+}
+
+[dir='rtl'] .comingSoonPageContent h3 {
+   font-size: 5rem;
+    font-family: sans-serif;
+}
+
