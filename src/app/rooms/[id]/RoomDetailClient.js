@@ -5,6 +5,10 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './page.module.css';
 import Link from 'next/link';
+import RoomCard from '@/components/RoomCard';
+import siteData from '@/data/siteData.json';
+import Image from 'next/image';
+
 
 export default function RoomDetailClient({ room }) {
   const { t, isArabic } = useLanguage();
@@ -13,6 +17,8 @@ export default function RoomDetailClient({ room }) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  console.log(room);
 
   if (!room) {
     return (
@@ -41,6 +47,48 @@ export default function RoomDetailClient({ room }) {
     adventure: { en: 'Adventure', ar: 'مغامرة' },
     mystery: { en: 'Mystery', ar: 'غموض' },
   };
+
+
+   const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const titleVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: -30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const comingSoonVariants = {
+  hidden: { 
+    opacity: 0, 
+    x: -100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
 
   return (
     <>
@@ -234,6 +282,51 @@ export default function RoomDetailClient({ room }) {
           </motion.div>
         </div>
       </section>
+       
+      {/* Our Rooms Section */}
+      <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
+        <div className="container">
+         <motion.h2
+  className="section-title"
+  variants={titleVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  style={{ position: 'relative', zIndex: 2, fontFamily: 'Skygraze, sans-serif' }}
+>
+  {t('ourRooms')}
+</motion.h2>
+          <motion.div
+            className={styles.roomsPageList}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            {console.log(siteData.rooms)}
+            {siteData.rooms.map((oroom) => (
+             room.id == oroom.id?'': <RoomCard key={oroom.id} room={oroom} />
+            ))}
+
+            {/* Coming Soon Card */}
+            <motion.div
+              className={`${styles.roomPageCard} ${styles.comingSoonPage}`}
+              variants={comingSoonVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <div className={styles.comingSoonPageContent}>
+                <h3>
+                  {t('comingSoon')}
+                </h3>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+
     </>
   );
 }

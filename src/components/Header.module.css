@@ -28,7 +28,7 @@
 }
 
 .bookBtn {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   padding: 5px 20px;
   border-radius: 30px;
   background: transparent !important;
@@ -41,11 +41,9 @@
 
   text-shadow:
     0 0 5px rgba(255,255,255,0.3), 
-    0 0 10px rgba(252,196,3,1),
-    0 0 20px rgba(252,196,3,1),
-    0 0 40px rgba(252,196,3,1),
-    0 0 80px rgba(252,196,3,1),
-    0 0 120px rgba(252,196,3,0.9);
+    0 0 5px rgba(252,196,3,1),
+    0 0 10px #fff,
+    0 0 10px rgba(252,196,3,1);
 
   /* merge all animations into one line */
   animation: horrorFlicker 2.5s infinite, distort 3s 0.3s infinite;
@@ -61,7 +59,7 @@
   40% { opacity: 1; }
   55% { opacity: 0.4; }
   70% { opacity: 1; }
-  85% { opacity: 0.2; }
+  85% { opacity: 1; }
 }
 
 /* 😈 Distortion */
@@ -114,7 +112,7 @@
   22.5%{ transform: translate(1px, 2px) scaleX(1.1); }
   25%  { transform: translate(0) scaleX(1); }
   /* idle/pause = remaining 75% (3s) */
-  25.1%, 100% { transform: translate(0) scaleX(1); }
+  25.1%, 100% { transform: translate(-2px ,5px) scaleX(1); }
 }
 
 /* 🔵 Glitch 2 - Cyan Layer */
@@ -132,17 +130,17 @@
   14.4% { transform: translate(-2px, 3px) scaleX(1.15); }
   16%   { transform: translate(0) scaleX(1); }
   /* idle/pause = remaining 84% (5s) */
-  16.1%, 100% { transform: translate(0) scaleX(1); }
+  16.1%, 100% { transform: translate(0,5px) scaleX(1); }
 }
 [dir='rtl'] .bookBtn{
    font-family: 'Myriad',sans-serif;
-   font-size: 1.1rem;
+   font-size: 1.7rem;
    padding: 0px 15px;
     text-shadow: 
   0 0 5px #FFD700,
-  0 0 10px #FFD700,
-  0 0 20px #FFD700,
-  0 0 40px #FFA500;
+  0 0 5px #FFD700,
+  0 0 15px #fff,
+  0 0 10px #fff;
 
 }
 
@@ -256,7 +254,7 @@
 .langDropdown.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(5px);
+  transform: translateY(0px);
 }
 
 .langOption {
@@ -313,7 +311,7 @@
 /* Bottom Row - Navigation */
 .bottomRow {
   padding: 12px 0;
-  background: rgba(0, 0, 0, 0.35);
+  /* background: rgba(0, 0, 0, 0.35); */
   margin: 0 auto;
 width: 1170px;
 height: 56px;
@@ -340,7 +338,7 @@ border-radius: 28px;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #ffffff;
+  color: var(--gold-primary);
   text-decoration: none;
   padding: 10px 15px;
   transition: all 0.3s ease;
@@ -354,7 +352,7 @@ border-radius: 28px;
   bottom: 0; /* sits exactly at bottom */
   width: 0%;
   height: 2px;
-  background: yellow;
+  background: var(--gold-primary);
   transition: width 0.6s ease; /* change to 2s if you want slower */
 }
 .navLink:hover::after {
@@ -369,17 +367,26 @@ border-radius: 28px;
   font-weight: bold;
 }
 
+[dir="rtl"] .navLink::after{
+  left: auto;
+  right: -5px;
+}
+
+[dir="rtl"] .navLink:hover::after {
+  width: 100%;
+}
+
 .navLink:hover {
-  color: white;
+  color: var(--gold-primary);
   text-shadow: -3px 0px 10px var(--gold-primary),
-3px 0px 10px var(--gold-primary),
-0px 0px 10px var(--gold-primary),
+3px 0px 20px #ffff,
+0px 0px 30px #ffff,
 -3px -3px 10px #e6ff84,
 /* 3px -3px 10px #e1ff00, */
 0px -3px 10px #ecff6f,
 -3px 3px 10px #e8ff81,
-3px 3px 10px #dff700,
-0px 3px 10px yellow;
+3px 3px 10px #ffff,
+0px 3px 10px #fff;
 }
 
 .navLink.active {
@@ -513,6 +520,24 @@ border-radius: 28px;
   white-space: nowrap;
   transition: all 0.2s ease;
   border-bottom: 1px solid rgba(212, 168, 75, 0.1);
+}
+
+.navDropdownItem::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  bottom: 0; /* sits exactly at bottom */
+  width: 0%;
+  height: 2px;
+  background: var(--gold-primary);
+  transition: width 0.6s ease; /* change to 2s if you want slower */
+}
+[dir='rtl'] .navDropdownItem::after{
+  left: auto;
+}
+
+.navDropdownItem:hover::after {
+  width: 100%;
 }
 
 .navDropdownLink:last-child {

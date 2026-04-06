@@ -70,7 +70,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero} ref={heroRef}>
         <motion.div className={styles.heroBg} style={{ y: heroY }}></motion.div>
-        <div className={styles.heroOverlay}></div>
+        {/* <div className={styles.heroOverlay}></div> */}
 
         <div className="container">
           <motion.div
@@ -116,28 +116,20 @@ export default function Home() {
               <>
                 <motion.h1
                   className={styles.heroTitle}
-                  initial={{ opacity: 0, scale: 0.5, rotateX: 45 }}
-                  animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                  transition={{ 
-                    type: 'spring',
-                    stiffness: 100,
-                    damping: 10,
-                    delay: 0.5 
-                  }}
                 >
                   <motion.span 
-                    className={styles.heroNumber}
-                    animate={{ 
-                      textShadow: [
-                        '0 0 30px rgba(252, 196, 3, 0.5)',
-                        '0 0 60px rgba(252, 196, 3, 0.8)',
-                        '0 0 30px rgba(252, 196, 3, 0.5)'
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    60
-                  </motion.span>
+  className={styles.heroNumber}
+  animate={{ 
+    textShadow: [
+      '0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff',
+      '0 0 20px #00bfff, 0 0 40px #00bfff, 0 0 80px #00bfff',
+      '0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff'
+    ]
+  }}
+  // transition={{ duration: 2,  ease: 'easeInOut' }}
+>
+  60
+</motion.span>
                   <motion.span 
                     className={styles.heroMinutes}
                     initial={{ opacity: 0, x: -30 }}
@@ -202,8 +194,8 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            {siteData.rooms.map((room) => (
-              <RoomCard key={room.id} room={room} />
+            {siteData.rooms.map((room,index) => (
+              <RoomCard key={room.id} room={room} index={index} />
             ))}
 
             {/* Coming Soon Card */}
@@ -227,17 +219,21 @@ export default function Home() {
       {/* Contact Section with White Divider Above - Home Page Only */}
       <section className={styles.contactSection} ref={contactRef}>
         {/* White Divider SVG - Full Width */}
-        <motion.div 
-          className={styles.whiteDivider}
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-            <path d="M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30" stroke="#ffffff" strokeWidth="2" fill="none"/>
-          </svg>
-        </motion.div>
+        <motion.div className={styles.whiteDivider}>
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <motion.path
+      d="M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30"
+      stroke="#ffff"           // neon blue color
+      strokeWidth="4"            // thicker line for neon effect
+      fill="none"
+      strokeLinecap="round"      // ✅ smooth rounded ends
+      initial={{ pathLength: 0 }}
+      whileInView={{ pathLength: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 2, ease: "easeInOut" }}
+    />
+  </svg>
+</motion.div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
 

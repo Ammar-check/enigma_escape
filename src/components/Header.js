@@ -133,14 +133,14 @@ export default function Header() {
                   className={`${styles.langOption} ${language === 'en' ? styles.activeLang : ''}`}
                   onClick={(e) => { e.stopPropagation(); handleLanguageChange('en'); }}
                 >
-                  <span className={styles.langCode}>US</span>
+                  {/* <span className={styles.langCode}>US</span> */}
                   <span>ENGLISH</span>
                 </button>
                 <button
                   className={`${styles.langOption} ${language === 'ar' ? styles.activeLang : ''}`}
                   onClick={(e) => { e.stopPropagation(); handleLanguageChange('ar'); }}
                 >
-                  <span className={styles.langCode}>SA</span>
+                  {/* <span className={styles.langCode}>SA</span> */}
                   <span>العربية</span>
                 </button>
               </div>
