@@ -55,6 +55,8 @@
 /* FAQ Section */
 .faqSection {
   background: url('/Rectangle5.svg') center/cover no-repeat;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 /* .faqGrid {
@@ -182,6 +184,11 @@
 }
 
 @media (max-width: 576px) {
+  .faqSection {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
   .heroTitle {
     font-size: 2rem;
   }

@@ -15,7 +15,7 @@ export default function FAQItem({ faq, isOpen, onToggle }) {
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
     >
-      <button className={styles.faqQuestion} onClick={onToggle}>
+      <button type="button" className={styles.faqQuestion} onClick={onToggle}>
         <span>{isArabic ? faq.questionAr : faq.questionEn}</span>
         <motion.i
           className="bi bi-plus-lg"

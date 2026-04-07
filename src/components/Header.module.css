@@ -16,6 +16,8 @@
 
 .layerImg{
   opacity: 0.8;
+  pointer-events: none;
+  z-index: -1;
 }
 /* .header.scrolled .layerImg{
   display: none;

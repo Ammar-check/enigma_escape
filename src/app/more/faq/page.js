@@ -10,11 +10,10 @@ import styles from './page.module.css';
 
 export default function FAQPage() {
   const { t, isArabic } = useLanguage();
-  const [openId, setOpenId] = useState(null);
+  const [openId, setOpenId] = useState(siteData.faqs?.[0]?.id ?? null);
 
   const toggleFAQ = (id) => {
-    // Only open one FAQ at a time - close current if clicking the same one
-    setOpenId(openId === id ? null : id);
+    setOpenId((prev) => (prev === id ? null : id));
   };
 
   const leftFaqs = siteData.faqs.filter((_, i) => i % 2 === 0);  // 0, 2, 4...
