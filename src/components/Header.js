@@ -92,6 +92,7 @@ export default function Header() {
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+      <img src='/layer_4.png' className={styles.layerImg} style={{position:'absolute'}} alt='layer image'/>
       {/* Top Row */}
       <div className={styles.topRow}>
         <div className="container">

@@ -145,7 +145,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section with Parallax */}
-      <section className={styles.statsSection}>
+      {/* <section className={styles.statsSection}>
         <motion.div className={styles.parallaxBg} style={{ y }}></motion.div>
         <div className={styles.statsOverlay}></div>
         <div className="container">
@@ -164,10 +164,10 @@ export default function AboutPage() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Our Mission */}
-      <section className={`section-padding ${styles.missionSection}`}>
+      {/* <section className={`section-padding ${styles.missionSection}`}>
         <div className="container">
           <div className="row">
             <div className="col-lg-6 mb-4 mb-lg-0">
@@ -204,7 +204,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

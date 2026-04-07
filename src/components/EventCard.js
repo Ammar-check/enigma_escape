@@ -23,9 +23,12 @@ export default function EventCard({ event }) {
 
   return (
     <motion.div
-      className={styles.eventCard}
-      variants={cardVariants}
-    >
+  className={styles.eventCard}
+  variants={cardVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+>
       <div className={styles.eventImageWrapper}>
         <Image
           src={event.image}

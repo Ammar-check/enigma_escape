@@ -5,7 +5,7 @@
 /* Hero Banner */
 .heroBanner {
   height: 25vh;
-  min-height: 400px;
+  min-height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +13,7 @@
   background: url('/4_03.png') center/cover no-repeat;
   margin-top: -140px;
   padding-top: 140px;
+  
 }
 
 .heroOverlay {
@@ -152,7 +153,7 @@ font-weight: 700;
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid var(--gold-primary);
+  /* border: 2px solid var(--gold-primary); */
   border-radius: 15px;
   pointer-events: none;
   /* transform: translate(10px, 10px); */

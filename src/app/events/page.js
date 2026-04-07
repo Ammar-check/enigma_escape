@@ -95,7 +95,7 @@ export default function EventsPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className={`section-padding ${styles.benefitsSection}`}>
+      {/* <section className={`section-padding ${styles.benefitsSection}`}>
         <div className="container">
           <motion.h2
             className="section-title"
@@ -126,7 +126,7 @@ export default function EventsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

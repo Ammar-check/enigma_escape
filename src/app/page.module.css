@@ -8,19 +8,23 @@
   position: relative;
   margin-top: -140px;
   padding-top: 140px;
-  overflow: hidden;
+  /* overflow: hidden; */
+
 }
 
 .heroBg {
   position: absolute;
-  top: -240px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: url('/Home-Page_Background.webp') center/cover no-repeat;
+  /* fade from bottom */
+  /* -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 90%);
+  mask-image: linear-gradient(to bottom, black 72%, transparent 90%); */
 }
 
-/* .heroOverlay {
+.heroOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -32,7 +36,7 @@
     rgba(10, 10, 10, 0.3) 50%,
     rgba(10, 10, 10, 0.3) 100%
   );
-} */
+}
 
 .heroContent {
   position: relative;
@@ -61,10 +65,17 @@
   /* font-family: 'Orbitron', sans-serif; */
   font-family: 'Skygraze', sans-serif;
   font-size: 10rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
-  color: var(--gold-primary);
-  text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+  color: #ffff82;
+   -webkit-text-stroke: 3px var(--gold-primary);
+   paint-order: stroke fill;
+  text-shadow: 
+    0 0 10px rgba(212, 168, 75, 0.6),
+    0 0 20px rgba(212, 168, 75, 0.4),
+    0 0 40px rgba(212, 168, 75, 0.2);
+  /* text-shadow: 0 0 50px rgba(255, 255, 255, 0.5); */
+  /* text-shadow: 0 0 8px rgba(212, 168, 75, 0.6), 0 0 15px rgba(212, 168, 75, 0.3); */
 }
 
 [dir="rtl"] .heroNumber {
@@ -79,9 +90,11 @@
   font-size: 5rem;
   font-weight: 300;
   letter-spacing: 15px;
-  color: var(--gold-primary);
+  color: #ffff82;
+  -webkit-text-stroke: 3px var(--gold-primary);
+   paint-order: stroke fill;
   text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 [dir="rtl"] .heroMinutes {
@@ -178,7 +191,7 @@ font-family: "Montserrat";
 /* Hero Circuit Divider - White */
 .heroCircuitDivider {
   position: absolute;
-  bottom: 0;
+  bottom: 17px;
   left: 0;
   right: 0;
   height: 60px;
@@ -191,14 +204,15 @@ font-family: "Montserrat";
   left: 0;
   right: 0;
   height: 60px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E") center no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%2300bfff' stroke-width='4' fill='none'/%3E%3C/svg%3E") center no-repeat;
   background-size: 100% auto;
+
 }
 
 .circuitDot {
   position: absolute;
   left: 0;
-  bottom: 27px;
+  bottom: 53px;
   width: 8px;
   height: 8px;
   background: #ffffff;
@@ -301,7 +315,7 @@ font-family: "Montserrat";
 .contactSection {
   position: relative;
   overflow: hidden;
-  padding: 60px 0 80px 0;
+  padding: 60px 0 140px 0;
   background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
   background-attachment: fixed;
 }
@@ -505,7 +519,7 @@ font-family: "Montserrat";
   .heroMinutes {
     font-size: 1.5rem;
     letter-spacing: 8px;
-    margin-top: 20px;
+    margin-top: 0px;
   }
 
   .heroGlow {

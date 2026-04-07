@@ -10,9 +10,16 @@
 }
 
 .header.scrolled {
-  background: rgba(10, 10, 10, 0.98);
+  background: rgba(10, 10, 10, 0.65);
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
 }
+
+.layerImg{
+  opacity: 0.8;
+}
+/* .header.scrolled .layerImg{
+  display: none;
+} */
 
 /* Top Row */
 .topRow {
@@ -41,7 +48,9 @@
   position: relative;
   display: inline-block;
   text-shadow:
-    0 0 5px rgba(255,255,255,0.3), 
+    0 0 5px rgba(255,255,255,0.3);
+    text-shadow: 0 0 8px rgba(212, 168, 75, 0.6), 0 0 15px rgba(212, 168, 75, 0.3);
+    animation: horrorFlicker 2.5s infinite, distort 0.3s infinite;
 }
 
 @keyframes horrorFlicker {
@@ -59,7 +68,7 @@
   0% { transform: skew(0deg); }
   25% { transform: skew(10deg); }
   50% { transform: skew(0deg); }
-  75% { transform: skew(-10deg); }
+  75% { transform: skew(0deg); }
   100% { transform: skew(0deg); }
 }
 
@@ -87,7 +96,7 @@
 }
 
 @keyframes glitch1 {
-  0%   { transform: translate(0) scaleX(1); }
+  0%   { transform: translate(0,5px) scaleX(1); }
   2.5% { transform: translate(-3px, 2px) scaleX(1.1); }
   5%   { transform: translate(-2px, -2px) scaleX(0.9); }
   7.5% { transform: translate(4px, 1px) scaleX(1.2); }
@@ -97,11 +106,11 @@
   17.5%{ transform: translate(2px, 3px) scaleX(1.15); }
   20%  { transform: translate(-3px, -2px) scaleX(0.85); }
   22.5%{ transform: translate(1px, 2px) scaleX(1.1); }
-  25%  { transform: translate(0) scaleX(1); }
+  25%  { transform: translate(0,5px) scaleX(1); }
 }
 
 @keyframes glitch2 {
-  0%    { transform: translate(0) scaleX(1); }
+  0%    { transform: translate(0,5px) scaleX(1); }
   1.6%  { transform: translate(2px, -2px) scaleX(1.05); }
   3.2%  { transform: translate(3px, 2px) scaleX(0.95); }
   4.8%  { transform: translate(-2px, 3px) scaleX(1.1); }
@@ -111,7 +120,7 @@
   11.2% { transform: translate(-1px, 2px) scaleX(1.1); }
   12.8% { transform: translate(3px, -2px) scaleX(0.95); }
   14.4% { transform: translate(-2px, 3px) scaleX(1.15); }
-  16%   { transform: translate(0) scaleX(1); }
+  16%   { transform: translate(0,5px) scaleX(1); }
 }
 
 [dir='rtl'] .bookBtn{
@@ -320,7 +329,7 @@ border-radius: 28px;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 1px;
-  color: var(--gold-primary);
+  color:#ffff;
   text-decoration: none;
   padding: 10px 15px;
   transition: all 0.3s ease;
@@ -329,12 +338,15 @@ border-radius: 28px;
 }
 
 .navLink::after {
-  content: '';
+    content: '';
   position: absolute;
-  left: -5px;
-  bottom: 0;
+  left: 0;
+  bottom: 0; /* sits exactly at bottom */
   width: 0%;
   height: 2px;
+  background: var(--gold-primary);
+  
+  transition: width 0.6s ease; /* change to 2s if you want slower */
 }
 
 .navLink:hover::after {
@@ -360,14 +372,14 @@ border-radius: 28px;
 
 .navLink:hover {
   color: var(--gold-primary);
-  text-shadow: -3px 0px 10px var(--gold-primary),
+  /* text-shadow: -3px 0px 10px var(--gold-primary),
 3px 0px 20px #ffff,
 0px 0px 30px #ffff,
 -3px -3px 10px #e6ff84,
 0px -3px 10px #ecff6f,
 -3px 3px 10px #e8ff81,
 3px 3px 10px #ffff,
-0px 3px 10px #fff;
+0px 3px 10px #fff; */
 }
 
 .navLink.active {
@@ -558,6 +570,10 @@ border-radius: 28px;
     right: 0;
     min-width: 130px;
   }
+
+   .layerImg{
+  opacity: 0.3;
+}
 
   .mobileToggle {
     display: block;

@@ -24,7 +24,7 @@ export default function Footer() {
       {/* Circuit Divider - Hidden on homepage */}
       {!isHomepage && (
         <div className={styles.circuitDivider}>
-          <div className={styles.circuitLine}></div>
+          {/* <div className={styles.circuitLine}></div> */}
           <div className={styles.circuitDot}></div>
         </div>
       )}

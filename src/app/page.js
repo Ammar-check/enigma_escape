@@ -21,8 +21,8 @@ const containerVariants = {
 };
 
 const titleVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: -30,
   },
   visible: {
@@ -36,8 +36,8 @@ const titleVariants = {
 };
 
 const comingSoonVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     x: -100,
   },
   visible: {
@@ -70,7 +70,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero} ref={heroRef}>
         <motion.div className={styles.heroBg} style={{ y: heroY }}></motion.div>
-        {/* <div className={styles.heroOverlay}></div> */}
+        <div className={styles.heroOverlay}></div>
 
         <div className="container">
           <motion.div
@@ -86,11 +86,11 @@ export default function Home() {
                   className={styles.heroImageWrapper}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
+                  transition={{
                     type: 'spring',
                     stiffness: 100,
                     damping: 10,
-                    delay: 0.5 
+                    delay: 0.5
                   }}
                 >
                   <Image
@@ -117,20 +117,20 @@ export default function Home() {
                 <motion.h1
                   className={styles.heroTitle}
                 >
-                  <motion.span 
-  className={styles.heroNumber}
-  animate={{ 
-    textShadow: [
-      '0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff',
-      '0 0 20px #00bfff, 0 0 40px #00bfff, 0 0 80px #00bfff',
-      '0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff'
-    ]
-  }}
-  // transition={{ duration: 2,  ease: 'easeInOut' }}
->
-  60
-</motion.span>
-                  <motion.span 
+                  <motion.span
+                    className={styles.heroNumber}
+                    animate={{
+                      textShadow: [
+                        '0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 40px rgba(212, 168, 75, 0.4)',
+                        '0 0 20px rgba(212, 168, 75, 0.9), 0 0 40px rgba(212, 168, 75, 0.7), 0 0 80px rgba(212, 168, 75, 0.5)',
+                        '0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 40px rgba(212, 168, 75, 0.4)'
+                      ]
+                    }}
+                  // transition={{ duration: 2,  ease: 'easeInOut' }}
+                  >
+                    60
+                  </motion.span>
+                  <motion.span
                     className={styles.heroMinutes}
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -167,24 +167,26 @@ export default function Home() {
 
         {/* Circuit Divider - White color */}
         <div className={styles.heroCircuitDivider}>
-          <div className={styles.circuitLine}></div>
+          {/* <div className={styles.circuitLine}></div> */}
+          <img src='layer-homeDiv.svg' alt='home layer svg' style={{width:'100%',marginBottom:'10px'}}/>
           <div className={styles.circuitDot}></div>
         </div>
+        <img src='/home-second-bg.svg' alt='' style={{width:'100%',position:'absolute',left:0,top:'513px'}} />
       </section>
 
       {/* Our Rooms Section */}
       <section id="games-section" className={`section-padding ${styles.roomsSection}`}>
         <div className="container">
-         <motion.h2
-  className="section-title"
-  variants={titleVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  style={{ position: 'relative', zIndex: 2, fontFamily: 'Skygraze, sans-serif' }}
->
-  {t('ourRooms')}
-</motion.h2>
+          <motion.h2
+            className="section-title"
+            variants={titleVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            style={{ position: 'relative', zIndex: 2, fontFamily: 'Skygraze, sans-serif' }}
+          >
+            {t('ourRooms')}
+          </motion.h2>
 
 
           <motion.div
@@ -194,7 +196,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            {siteData.rooms.map((room,index) => (
+            {siteData.rooms.map((room, index) => (
               <RoomCard key={room.id} room={room} index={index} />
             ))}
 
@@ -220,20 +222,20 @@ export default function Home() {
       <section className={styles.contactSection} ref={contactRef}>
         {/* White Divider SVG - Full Width */}
         <motion.div className={styles.whiteDivider}>
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-    <motion.path
-      d="M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30"
-      stroke="#ffff"           // neon blue color
-      strokeWidth="4"            // thicker line for neon effect
-      fill="none"
-      strokeLinecap="round"      // ✅ smooth rounded ends
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 2, ease: "easeInOut" }}
-    />
-  </svg>
-</motion.div>
+          <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+            <motion.path
+              d="M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30"
+              stroke="#ffff"           // neon blue color
+              strokeWidth="4"            // thicker line for neon effect
+              fill="none"
+              strokeLinecap="round"      // ✅ smooth rounded ends
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            />
+          </svg>
+        </motion.div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
 
@@ -242,12 +244,12 @@ export default function Home() {
             initial={{ opacity: 0, y: -50, scale: 0.9 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ 
+            transition={{
               type: 'spring',
               stiffness: 150,
               damping: 15,
             }}
-            style={{  fontFamily: 'Skygraze, sans-serif',}}
+            style={{ fontFamily: 'Skygraze, sans-serif', }}
           >
             {t('contactUs')}
           </motion.h2>
@@ -358,7 +360,7 @@ export default function Home() {
                     className="btn btn-outline-gold"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)'}}
+                    style={{ color: 'var(--gold-primary)', border: '1px solid var(--gold-primary)' }}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>

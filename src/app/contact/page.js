@@ -42,6 +42,7 @@ export default function ContactPage() {
           <h1 className={styles.heroTitle}>{t('contactUs')}</h1>
         </motion.div>
         {/* <div><img src="/contactLayer.svg" style={{position:'absolute',top:'67vh',left:0,zIndex:999,width:'100%'}} alt="design layer" /></div> */}
+        <img src='/layer-homeDiv.svg' alt='svg layer' style={{width:'100%',position:'absolute',bottom:0}}/>
       </section>
 
       {/* Contact Section */}
@@ -134,7 +135,7 @@ export default function ContactPage() {
                 <div className={isArabic ? 'text-start' : 'text-end'}>
                   <motion.button
                     type="submit"
-                    className="btn btn-gold"
+                    className=""
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     animate={{
@@ -145,7 +146,7 @@ export default function ContactPage() {
                       ],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)'}}
+                    style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)',background:'transparent',padding:'12px 35px',borderRadius:'5px'}}
                   >
                     {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
                   </motion.button>

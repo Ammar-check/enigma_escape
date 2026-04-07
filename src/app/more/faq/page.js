@@ -83,7 +83,7 @@ const rightFaqs = siteData.faqs.filter((_, i) => i % 2 !== 0); //
 </motion.div>
 
           {/* Contact CTA */}
-          <motion.div
+          {/* <motion.div
             className={styles.contactCta}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ const rightFaqs = siteData.faqs.filter((_, i) => i % 2 !== 0); //
             <Link href="/contact" className="btn btn-white mt-3" style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)'}}>
               {t('contactUs')}
             </Link>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
     </div>

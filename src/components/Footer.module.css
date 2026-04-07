@@ -1,10 +1,11 @@
 .footer {
-  background: url('/Contact-Us_Background-min-1.png');
+  background: url('/cropped-Layer-14.svg');
    background-repeat: no-repeat; /* Prevents the image from tiling */
   background-position: bottom;
   background-size: cover;
   position: relative;
   overflow: hidden;
+  margin-top: -60px;
 }
 
 .footer::before {

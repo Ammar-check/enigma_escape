@@ -87,7 +87,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
   </span>
 
   <span>
-    <Image className={`${styles.roomsIcon2} ${styles.roomsIcon}`} src='/time.svg' style={{width:'20px',height:'20px'}} width={30} height={30} alt='time icon' />
+    <Image className={`${styles.roomsIcon2} ${styles.roomsIcon}`} src='/sand-time.svg' style={{width:'20px',height:'20px'}} width={30} height={30} alt='time icon' />
     {' '}{room.duration}{' '}
     {isArabic ? 'دقيقة' : 'Min'}
   </span>
