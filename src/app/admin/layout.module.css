@@ -1,0 +1,13 @@
+.adminWrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a;
+  font-family: 'Rajdhani', sans-serif;
+  margin-top: -140px;
+}
+
+.adminMain {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}

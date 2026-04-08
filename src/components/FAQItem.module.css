@@ -26,7 +26,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  padding: 20px 15px;
+  height: 70px;
+  padding: 0px 15px;
   background: transparent;
   border: none;
   text-align: left;

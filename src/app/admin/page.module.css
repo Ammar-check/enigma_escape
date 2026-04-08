@@ -1,0 +1,64 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-left: 240px;
+}
+
+.dashHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  margin: 0;
+}
+
+.dashSubtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  margin: 5px 0 0;
+}
+
+.dashDate {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.middleRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard{
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  .middleRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -75,7 +75,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
   <span>
     {isArabic ? (
       <>
-        <Image className={styles.roomsIcon} src='/faces.svg' width={30} height={30} alt='face icon' />
+        <Image className={styles.roomsIcon} src='/carnival-mask.png' width={30} height={30} alt='face icon' />
         {' '}ممثل حي
       </>
     ) : (
@@ -101,7 +101,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
         </>
       ) : (
         <>
-          <Image className={styles.roomsIcon} src='/faces.svg' width={30} height={30} alt='face icon' />
+          <Image className={styles.roomsIcon} src='/carnival-mask.png' width={30} height={30} alt='face icon' />
           {' '}Live Performers
         </>
       )}

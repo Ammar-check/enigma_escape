@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import BootstrapClient from '@/components/BootstrapClient';
 import { LanguageProvider } from '@/context/LanguageContext';
+import LayoutWrapper from '@/components/LayoutWrapper';
 
 export const metadata = {
   title: 'Enigma Escape Games | Immersive Escape Room Experience',
@@ -20,9 +21,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-pattern" suppressHydrationWarning={true}>
         <LanguageProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          {/* <Header /> */}
+          <main>
+            <LayoutWrapper>{children}</LayoutWrapper>
+            </main>
+          {/* <Footer /> */}
           <WhatsAppButton />
         </LanguageProvider>
         <BootstrapClient />

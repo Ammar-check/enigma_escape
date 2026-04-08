@@ -1,0 +1,52 @@
+.card {
+  background: #111111;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(212, 168, 75, 0.5);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.cardLabel {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.cardValue {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.cardIcon {
+  width: 45px;
+  height: 45px;
+  background: rgba(212, 168, 75, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  font-size: 1.2rem;
+}
+
+.cardChange {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}

@@ -1,0 +1,80 @@
+.wrapper {
+  background: #111111;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: var(--gold-primary);
+  margin: 0;
+}
+
+.viewAll {
+  font-size: 0.85rem;
+  color: rgba(212, 168, 75, 0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.viewAll:hover {
+  color: var(--gold-primary);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px 15px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table td {
+  padding: 12px 15px;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.table tr:hover td {
+  background: rgba(212, 168, 75, 0.03);
+}
+
+.customerName {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 0.85rem;
+}
+
+.statusBadge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
