@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import styles from './layout.module.css';
 import Sidebar from '@/components/admin/Sidebar';

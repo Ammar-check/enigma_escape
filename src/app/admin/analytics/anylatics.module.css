@@ -1,3 +1,401 @@
-.analyticsSection{
-    margin-left: 240px;
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 240px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pageTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  margin: 0;
+}
+
+.pageSub {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.85rem;
+  margin: 5px 0 0;
+}
+
+.exportBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(212,168,75,0.1);
+  color: var(--gold-primary);
+  border: 1px solid rgba(212,168,75,0.3);
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.exportBtn:hover { background: rgba(212,168,75,0.2); }
+
+/* KPI Grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.kpiCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: #111111;
+  border: 1px solid rgba(212,168,75,0.15);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.kpiCard:hover { border-color: rgba(212,168,75,0.35); }
+
+.kpiIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.kpiInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpiValue {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kpiSub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.kpiLabel {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 5px;
+}
+
+/* Chart Card */
+.chartCard {
+  background: #111111;
+  border: 1px solid rgba(212,168,75,0.15);
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.chartTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  color: var(--gold-primary);
+  margin: 0;
+}
+
+.metricTabs {
+  display: flex;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.metricTab {
+  padding: 7px 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.metricTab:hover { color: rgba(255,255,255,0.7); }
+
+.metricActive {
+  background: rgba(212,168,75,0.15);
+  color: var(--gold-primary);
+}
+
+/* Bar Chart */
+.barChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 180px;
+}
+
+.barGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+}
+
+.barValue {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.6s ease;
+  min-height: 4px;
+}
+
+.barLabel {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* Bottom Row */
+.bottomRow {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 15px;
+}
+
+/* Room Card */
+.roomCard {
+  background: #111111;
+  border: 1px solid rgba(212,168,75,0.15);
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.roomList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.roomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roomRowHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.roomDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.roomName {
+  flex: 1;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.roomCount {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.roomBar {
+  height: 6px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.roomBarFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+  opacity: 0.8;
+}
+
+.roomStats {
+  display: flex;
+  gap: 15px;
+  font-size: 0.78rem;
+}
+
+/* Right column */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.miniCard {
+  background: #111111;
+  border: 1px solid rgba(212,168,75,0.15);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Donut */
+.donutWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.donut {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donutPct {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.donutLabel {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 3px;
+}
+
+/* Legend */
+.videoLegend, .langLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Language split */
+.langSplit {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.langBar {
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+}
+
+.langFillAr {
+  height: 100%;
+  background: var(--gold-primary);
+  border-radius: 5px 0 0 5px;
+}
+
+.langFillEn {
+  height: 100%;
+  background: #1e88e5;
+  border-radius: 0 5px 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .kpiGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .page{
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+  .kpiGrid { grid-template-columns: 1fr; }
+  .bottomRow { grid-template-columns: 1fr; }
+  .barChart { gap: 6px; }
+}
+
+
+@media (max-width:380px) {
+  .pageTitle{
+     font-size: 1.5rem;
+  }
+  .exportBtn{
+    padding: 3px 5px;
+    
+  }
 }

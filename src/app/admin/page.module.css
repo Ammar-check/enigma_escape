@@ -50,6 +50,7 @@
 @media (max-width: 992px) {
   .dashboard{
     margin-left: 0;
+    margin-top: 50px;
   }
 }
 
@@ -62,3 +63,23 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width:480px) {
+   .dashHeader {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.dashTitle {
+  text-align: center;
+}
+
+.dashSubtitle {
+  text-align: center;
+}
+
+
+}
+

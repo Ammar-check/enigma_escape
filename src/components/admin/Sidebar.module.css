@@ -14,7 +14,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  /* background: rgba(0,0,0,0.5); */
+  background: rgba(0,0,0,0.5);
   z-index: 998;
 }
 
@@ -97,8 +97,8 @@
   position: fixed;
   top: 15px;
   left: 15px;
-  background: #1f2937;
-  border: none;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(212,168,75,0.3);
   color: white;
   font-size: 22px;
   padding: 8px 12px;
@@ -115,11 +115,14 @@
     z-index: 999;
   }
 
-  .sidebar.open {
+  .open {
     transform: translateX(0);
   }
 
-  .mobileToggle {
+  /* .open  */
+
+   .mobileToggle {
     display: block;
   }
+  
 }
