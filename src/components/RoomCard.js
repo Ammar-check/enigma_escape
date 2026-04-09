@@ -80,7 +80,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
       </>
     ) : (
       <>
-        <Image className={styles.roomsIcon} src='/user.svg' width={30} height={30} alt='user icon' />
+        <Image className={styles.roomsIcon} src='/group.png' width={30} height={30} alt='user icon' />
         {' '}{room.players}{' '}Players
       </>
     )}
@@ -96,7 +96,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
     <span>
       {isArabic ? (
         <>
-          <Image className={styles.roomsIcon} src='/user.svg' width={30} height={30} alt='user icon' />
+          <Image className={styles.roomsIcon} src='/group.png' width={30} height={30} alt='user icon' />
           {' '}{room.players}{' '}لاعبين
         </>
       ) : (
