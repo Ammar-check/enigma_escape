@@ -21,7 +21,7 @@ export default function AdminDashboard() {
       <div className={styles.dashHeader}>
         <div>
           <h1 className={styles.dashTitle}>Dashboard</h1>
-          <p className={styles.dashSubtitle}>Welcome back — here's what's happening today</p>
+          <p className={styles.dashSubtitle}>Welcome back — heres whats happening today</p>
         </div>
         <div className={styles.dashDate}>
           {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
