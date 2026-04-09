@@ -142,14 +142,6 @@ export default function Sidebar() {
 
         {/* Bottom */}
         <div className={styles.sidebarBottom}>
-          <Link
-            href="/"
-            className={styles.sidebarLink}
-            onClick={() => setIsOpen(false)} // ✅ Close on click
-          >
-            <i className="bi bi-globe"></i>
-            <span>View Website</span>
-          </Link>
 
           <button
             className={styles.sidebarLink}
