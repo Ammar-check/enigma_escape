@@ -40,7 +40,7 @@ export default function Header() {
     },
     { href: '/about', label: t('aboutUs') },
     {
-      href: '#',
+      href: '/events',
       label: t('privateEvents'),
       dropdown: [
         { href: '/events', label: isArabic ? 'حفلات / أعياد الميلاد' : 'Parties / Birthday' },
@@ -49,7 +49,7 @@ export default function Header() {
       ]
     },
     {
-      href: '#',
+      href: '/more/reviews',
       label: isArabic ? 'المزيد' : 'MORE',
       dropdown: [
         { href: '/more/reviews', label: t('reviews') },
@@ -171,8 +171,12 @@ export default function Header() {
                   className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
                   onClick={(e) => {
                     if (link.dropdown) {
-                      e.preventDefault();
-                      toggleDropdown(link.label);
+                      if (window.innerWidth <= 991) {
+                        e.preventDefault();
+                        toggleDropdown(link.label);
+                      } else {
+                        setMobileMenuOpen(false);
+                      }
                     } else if (link.isScroll) {
                       handleNavClick(e, link);
                     } else {
