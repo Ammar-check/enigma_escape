@@ -303,7 +303,7 @@ const comingSoonVariants = {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            {console.log(siteData.rooms)}
+          
             {siteData.rooms.map((oroom) => (
              room.id == oroom.id?'': <RoomCard key={oroom.id} room={oroom} />
             ))}

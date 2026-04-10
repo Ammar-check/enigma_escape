@@ -125,10 +125,15 @@
 .card3 .roomImage {
    object-position: left center;
 }
-.card4 .roomImage {
-  scale: 1.04;
+/* .card4 .roomImage {
+  width: 105%;
+  height: 105%;
    object-position: left bottom;
+   transform: translateY(-20px);
 }
+.card4 .roomImage:hover {
+  scale: 1.17;
+} */
 
 .card2 .roomName{
     width: 300px;
@@ -391,12 +396,64 @@ text-transform: uppercase;
   margin-left: 2px;
 }
 
+.card1 .EnNameImg{
+  width: 300px;
+ transform: translate(20px,20px);
+}
+.card1 .ArNameImg{
+ transform: translate(20px,20px);
+}
+.card2 .EnNameImg{
+  width: 250px;
+ transform: translate(0px,-30px);
+}
+.card2 .ArNameImg{
+  width: 350px;
+ transform: translate(0px,-60px);
+}
+.card3 .EnNameImg{
+  width: 270px;
+ transform: translate(0px,-30px);
+}
+.card3 .ArNameImg{
+  width: 300px;
+ transform: translate(0px,-80px);
+}
+.card4 .EnNameImg{
+  width: 200px;
+  height: 80px;
+ transform: translate(0px,0px);
+}
+.card4 .ArNameImg{
+  width: 300px;
+ transform: translate(0px,-20px);
+}
+.card5 .EnNameImg{
+  width: 300px;
+  height: 80px;
+ transform: translate(0px,30px);
+}
+.card5 .ArNameImg{
+  width: 300px;
+ transform: translate(0px,0px);
+}
+
 }
 
 @media (max-width: 576px) {
   .roomImageWrapper {
     height: 260px;
   }
+
+   .card3 .roomBookBtn {
+   position: absolute;
+   right: 15px;
+}
+
+   .card4 .roomBookBtn {
+   position: absolute;
+   right: 15px;
+}
 
   .roomName {
     font-size: 2rem;
@@ -454,14 +511,96 @@ text-transform: uppercase;
   .difficultyStars i {
     font-size: 0.55rem;
   }
+
+  .card1 .EnNameImg{
+  width: 200px;
+ transform: translate(0px,0px);
+}
+.card1 .ArNameImg{
+  width: 200px;
+ transform: translate(0px,-20px);
+}
+  .card2 .EnNameImg{
+  width: 180px;
+ transform: translate(0px,-60px);
+}
+.card2 .ArNameImg{
+  width: 230px;
+ transform: translate(0px,-70px);
+}
+  .card3 .EnNameImg{
+  width: 200px;
+ transform: translate(0px,-40px);
+}
+.card3 .ArNameImg{
+  width: 200px;
+ transform: translate(0px,-90px);
+}
+  .card4 .EnNameImg{
+  width: 140px;
+ transform: translate(0px,0px);
+}
+.card4 .ArNameImg{
+  width: 200px;
+ transform: translate(0px,-20px);
+}
+  .card5 .EnNameImg{
+  width: 200px;
+ transform: translate(0px,20px);
+}
+.card5 .ArNameImg{
+  width: 200px;
+ transform: translate(0px,-20px);
+}
+
+[dir='rtl'] .card1 .EnNameImg{
+     width: 250px;
+ transform: translate(0px,0px);
+}
+[dir='rtl'] .card1 .ArNameImg{
+     width: 200px;
+ transform: translate(0px,0px);
+}
+[dir='rtl'] .card3 .EnNameImg{
+     width: 250px;
+ transform: translate(100px,-30px);
+}
+[dir='rtl'] .card3 .ArNameImg{
+     width: 200px;
+ transform: translate(-30px,-80px);
+}
+[dir='rtl'] .card4 .EnNameImg{
+     width: 200px;
+ transform: translate(120px,0px);
+}
+[dir='rtl'] .card4 .ArNameImg{
+     width: 250px;
+ transform: translate(-30px,-20px);
+}
+[dir='rtl'] .card5 .EnNameImg{
+     width: 250px;
+ transform: translate(-30px,0px);
+}
+[dir='rtl'] .card5 .ArNameImg{
+     width: 250px;
+      transform: translate(-30px,-20px);
+} 
+
+[dir='rtl'] .card2 .roomBookBtn {
+   right: auto;
+}
+   [dir='rtl'] .card3 .roomBookBtn {
+   right: auto;
+}
+   [dir='rtl'] .card4 .roomBookBtn {
+   right: auto;
+}
 }
 
 @media (max-width: 480px) {
   .roomImageWrapper {
     height: 240px;
   }
-
-
   .roomName {
     font-size: 1.7rem;
     line-height: 1.2;
@@ -519,6 +658,37 @@ text-transform: uppercase;
   .difficultyStars i {
     font-size: 0.5rem;
   }
+
+  
+[dir='rtl'] .card1 .ArNameImg{
+     width: 200px;
+ transform: translate(0px,-30px);
+}
+[dir='rtl'] .card3 .EnNameImg{
+     width: 250px;
+ transform: translate(0px,-50px);
+}
+[dir='rtl'] .card3 .ArNameImg{
+     width: 200px;
+ transform: translate(-30px,-80px);
+}
+[dir='rtl'] .card4 .EnNameImg{
+     width: 200px;
+ transform: translate(30px,0px);
+}
+[dir='rtl'] .card4 .ArNameImg{
+     width: 250px;
+ transform: translate(-30px,-40px);
+}
+[dir='rtl'] .card5 .EnNameImg{
+     width: 250px;
+ transform: translate(-30px,0px);
+}
+[dir='rtl'] .card5 .ArNameImg{
+     width: 250px;
+      transform: translate(-30px,-20px);
+} 
+
 }
 @media (max-width: 440px) {
     .roomInfo {
@@ -527,6 +697,61 @@ text-transform: uppercase;
     grid-template-columns: repeat(2,1fr);
   }
 }
+
+@media (max-width:380px) {
+    .card2 .roomBookBtn {
+   position: absolute;
+   right: 15px;
+}
+   [dir='rtl'] .card2 .roomBookBtn {
+   right: auto;
+}
+   [dir='rtl'] .card3 .roomBookBtn {
+   right: auto;
+}
+   [dir='rtl'] .card4 .roomBookBtn {
+   right: auto;
+}
+
+[dir='rtl'] .card1 .EnNameImg{
+     width: 200px;
+ transform: translate(0px,0px);
+}
+[dir='rtl'] .card1 .ArNameImg{
+     width: 200px;
+ transform: translate(30px,-30px);
+}
+[dir='rtl'] .card2 .EnNameImg{
+     width: 200px;
+ transform: translate(0px,-30px);
+}
+[dir='rtl'] .card3 .EnNameImg{
+     width: 200px;
+ transform: translate(-90px,-50px);
+}
+[dir='rtl'] .card3 .ArNameImg{
+     width: 200px;
+ transform: translate(0px,-100px);
+}
+[dir='rtl'] .card4 .EnNameImg{
+     width: 140px;
+ transform: translate(-60px,0px);
+}
+[dir='rtl'] .card4 .ArNameImg{
+     width: 200px;
+ transform: translate(-10px,-40px);
+}
+[dir='rtl'] .card5 .EnNameImg{
+     width: 200px;
+ transform: translate(0px,10px);
+}
+[dir='rtl'] .card5 .ArNameImg{
+     width: 200px;
+      transform: translate(0px,-20px);
+} 
+
+}
+
 @media (max-width: 320px) {
   .roomName {
     width: 160px;
@@ -559,4 +784,94 @@ text-transform: uppercase;
   .difficultyStars i {
     font-size: 0.5rem;
   }
+
+  .roomImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+  .card1 .EnNameImg{
+  width: 160px;
+ transform: translate(0px,20px);
+}
+.card1 .ArNameImg{
+  width: 160px;
+ transform: translate(0px,0px);
+}
+  .card2 .EnNameImg{
+  width: 140px;
+ transform: translate(0px,-30px);
+}
+.card2 .ArNameImg{
+  width: 160px;
+ transform: translate(0px,-70px);
+}
+  .card3 .EnNameImg{
+  width: 140px;
+ transform: translate(0px,-40px);
+}
+.card3 .ArNameImg{
+  width: 160px;
+ transform: translate(0px,-90px);
+}
+  .card4 .EnNameImg{
+  width: 120px;
+ transform: translate(0px,0px);
+}
+.card4 .ArNameImg{
+  width: 160px;
+ transform: translate(0px,-20px);
+}
+  .card5 .EnNameImg{
+  width: 160px;
+ transform: translate(0px,20px);
+}
+.card5 .ArNameImg{
+  width: 160px;
+ transform: translate(0px,-20px);
+}
+
+[dir='rtl'] .card1 .EnNameImg{
+     width: 160px;
+ transform: translate(0px,20px);
+}
+[dir='rtl'] .card1 .ArNameImg{
+     width: 200px;
+ transform: translate(40px,0px);
+}
+[dir='rtl'] .card2 .EnNameImg{
+     width: 130px;
+ transform: translate(-50px,-30px);
+}
+[dir='rtl'] .card2 .ArNameImg{
+     width: 160px;
+ transform: translate(0px,-70px);
+}
+[dir='rtl'] .card3 .EnNameImg{
+     width: 160px;
+ transform: translate(-150px,-30px);
+}
+[dir='rtl'] .card3 .ArNameImg{
+     width: 160px;
+ transform: translate(-20px,-90px);
+}
+[dir='rtl'] .card4 .EnNameImg{
+     width: 130px;
+     height: 60px;
+ transform: translate(-100px,30px);
+}
+[dir='rtl'] .card4 .ArNameImg{
+     width: 160px;
+ transform: translate(0px,-20px);
+}
+[dir='rtl'] .card5 .EnNameImg{
+     width: 160px;
+ transform: translate(-10px,30px);
+}
+[dir='rtl'] .card5 .ArNameImg{
+     width: 160px;
+      transform: translate(-10px,-20px);
+} 
+
 }

@@ -337,12 +337,7 @@ font-family: "Montserrat";
   width: 100%;
   height: 60px;
 }
-.whiteDivider svg path {
-   
-  /* filter: drop-shadow(0 0 10px #00bfff)
-          drop-shadow(0 0 20px #00bfff)
-          drop-shadow(0 0 30px #00bfff); */
-}
+
 
 .contactInfo {
   padding-right: 30px;
@@ -519,7 +514,7 @@ font-family: "Montserrat";
   .heroMinutes {
     font-size: 1.5rem;
     letter-spacing: 8px;
-    margin-top: 0px;
+    margin-bottom: 20px;
   }
 
   .heroGlow {
@@ -565,6 +560,11 @@ font-family: "Montserrat";
   .mapWrapper iframe {
     height: 250px;
   }
+  .heroCircuitDivider {
+
+  bottom: -20px;
+ 
+}
 }
 
 @media (max-width: 576px) {
@@ -577,9 +577,9 @@ font-family: "Montserrat";
   }
 
   .heroMinutes {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     letter-spacing: 6px;
-    margin-top: 25px;
+    margin-top: 5px;
   }
 
   .heroSubtitle {
@@ -604,7 +604,7 @@ font-family: "Montserrat";
   }
 
   .whiteDivider {
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
   }
 
   .whiteDivider svg {
@@ -638,19 +638,19 @@ font-family: "Montserrat";
 }
 
   .heroNumber {
-    font-size: 3.5rem;
+    font-size: 5.5rem;
   }
 
   .heroMinutes {
-    font-size: 1rem;
+    font-size: 1.4rem;
     letter-spacing: 4px;
-    margin-top: 30px;
+    margin-top: 0px;
   }
 
   .heroSubtitle {
     font-size: 0.8rem;
     letter-spacing: 2px;
-    margin-top: 15px;
+    margin-top: 5px;
   }
 
   .comingSoon {
@@ -675,10 +675,27 @@ font-family: "Montserrat";
   .mapWrapper iframe {
     height: 200px;
   }
+
+    .heroCircuitDivider {
+
+  bottom: -38px;
+}
+
+.comingSoonContent h3 {
+ font-size: 1.5rem;
+}
+[dir='rtl'] .comingSoonContent h3 {
+ font-size: 2.5rem;
+}
 }
 
 
 @media (max-width: 320px) {
+
+   .hero {
+  height: 60vh;
+   }
+
   [dir="rtl"] .heroContent{
     
     display: flex;
@@ -694,6 +711,10 @@ font-family: "Montserrat";
     transform: translateX(70px);
     max-width: 160px;
    max-height: 120px;
+}
+
+ .heroCircuitDivider {
+  bottom: -44px;
 }
 
 }

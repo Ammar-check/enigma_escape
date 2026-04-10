@@ -191,3 +191,12 @@
 
 }
 
+
+@media (max-width:480px) {
+  /* .heroTitle {
+    font-size: 2.5rem ;
+  } */
+  .heroSubtitle {
+    font-size: 0.75rem ;
+  }
+}

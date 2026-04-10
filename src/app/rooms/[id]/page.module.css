@@ -411,6 +411,8 @@ margin: 0 auto;
   .heroContent {
     padding: 30px 15px;
   }
+
+  
 }
 
 /* Rooms Section with Background */
@@ -429,6 +431,10 @@ margin: 0 auto;
   bottom: 0;
   background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat fixed;
   z-index: 0;
+}
+
+.card1 .roomName{
+  background-color: #ff6666;
 }
 
 .roomsPageSection > .container {
@@ -493,3 +499,13 @@ margin: 0 auto;
     font-family: sans-serif;
 }
 
+
+@media (max-width:778px) {
+  .comingSoonPage{
+    min-height: 240px;
+  }
+
+  .comingSoonPageContent h3 {
+    font-size: 2rem;
+  }
+}
