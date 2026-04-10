@@ -591,7 +591,12 @@ border-radius: 28px;
   .navLinks {
     flex-direction: column;
     gap: 5px;
-    align-items: start;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .navItem {
+    width: 100%;
   }
 
   .navLink {
@@ -622,12 +627,15 @@ border-radius: 28px;
   .navDropdown {
     position: static;
     transform: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     border: none;
-    border-left: 2px solid var(--gold-primary);
+    border-top: 1px solid rgba(212, 168, 75, 0.25);
     border-radius: 0;
     background: rgba(255, 255, 255, 0.03);
     min-width: unset;
-    margin: 4px 0 4px 20px;
+    margin: 0;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -636,15 +644,15 @@ border-radius: 28px;
 
   .navHasDropdown.mobileDropdownOpen .navDropdown {
     max-height: 400px;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.03);
     opacity: 1;
     padding: 5px 0;
   }
 
   [dir='rtl'] .navDropdown {
     border-left: none;
-    border-right: 2px solid var(--gold-primary);
-    margin: 4px 20px 4px 0;
+    border-right: none;
+    margin: 0;
     transform: none;
     right: auto;
   }
@@ -732,15 +740,6 @@ border-radius: 28px;
 }
 
 @media (max-width: 576px) {
-  .navDropdown {
-    margin-left: 15px;
-  }
-
-  [dir='rtl'] .navDropdown {
-    margin-right: 15px;
-    margin-left: 0;
-  }
-
   .navDropdownLink {
     font-size: 0.78rem;
     padding: 7px 12px;
