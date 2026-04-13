@@ -90,14 +90,39 @@
   z-index: -1;
   animation: glitch1 3s infinite;
 }
+[dir="rtl"] .bookBtn::before {
+  transform: translateY(-5px);
+  color: rgba(255, 0, 0, 0.7);
+  z-index: -1;
+  animation: glitch1 3s infinite;
+}
 
 .bookBtn::after {
   color: rgba(0, 255, 255, 0.7);
   z-index: -2;
   animation: glitch2  5s infinite;
 }
+[dir="rtl"] .bookBtn::after {
+  transform: translateY(-5px);
+  color: rgba(0, 255, 255, 0.7);
+  z-index: -2;
+  animation: glitch2  5s infinite;
+}
 
-@keyframes glitch1 {
+/* @keyframes glitch1 {
+  0%   { transform: translate(0,0px) scaleX(1); }
+  2.5% { transform: translate(-3px, 2px) scaleX(1.1); }
+  5%   { transform: translate(-2px, -2px) scaleX(0.9); }
+  7.5% { transform: translate(4px, 1px) scaleX(1.2); }
+  10%  { transform: translate(-1px, -3px) scaleX(0.95); }
+  12.5%{ transform: translate(3px, 2px) scaleX(1.05); }
+  15%  { transform: translate(-2px, -1px) scaleX(0.9); }
+  17.5%{ transform: translate(2px, 3px) scaleX(1.15); }
+  20%  { transform: translate(-3px, -2px) scaleX(0.85); }
+  22.5%{ transform: translate(1px, 2px) scaleX(1.1); }
+  25%  { transform: translate(0,0px) scaleX(1); }
+} */
+ @keyframes  glitch1 {
   0%   { transform: translate(0,5px) scaleX(1); }
   2.5% { transform: translate(-3px, 2px) scaleX(1.1); }
   5%   { transform: translate(-2px, -2px) scaleX(0.9); }
@@ -108,11 +133,11 @@
   17.5%{ transform: translate(2px, 3px) scaleX(1.15); }
   20%  { transform: translate(-3px, -2px) scaleX(0.85); }
   22.5%{ transform: translate(1px, 2px) scaleX(1.1); }
-  25%  { transform: translate(0,5px) scaleX(1); }
+  25%  { transform: translate(0,0px) scaleX(1); }
 }
 
 @keyframes glitch2 {
-  0%    { transform: translate(0,5px) scaleX(1); }
+  0%    { transform: translate(0,0px) scaleX(1); }
   1.6%  { transform: translate(2px, -2px) scaleX(1.05); }
   3.2%  { transform: translate(3px, 2px) scaleX(0.95); }
   4.8%  { transform: translate(-2px, 3px) scaleX(1.1); }
@@ -122,7 +147,7 @@
   11.2% { transform: translate(-1px, 2px) scaleX(1.1); }
   12.8% { transform: translate(3px, -2px) scaleX(0.95); }
   14.4% { transform: translate(-2px, 3px) scaleX(1.15); }
-  16%   { transform: translate(0,5px) scaleX(1); }
+  16%   { transform: translate(0,0px) scaleX(1); }
 }
 [dir='rtl'] .bookBtn{
    font-family: 'Myriad',sans-serif;
@@ -132,7 +157,7 @@
   0 0 5px #FFD700,
   0 0 5px #FFD700,
   0 0 15px #fff,
-  0 0 10px #fff;
+  0 0 10px #000;
 
 }
 .bookBtn:hover {
@@ -141,7 +166,12 @@
   color: var(--gold-primary) !important;
   transform: scale(1.05);
   box-shadow: none;
-  text-shadow: 0 0 15px rgba(252, 196, 3, 1), 0 0 30px rgba(252, 196, 3, 0.9), 0 0 45px rgba(252, 196, 3, 0.7), 0 0 60px rgba(252, 196, 3, 0.5);
+  /* text-shadow: 0 0 2px #fff, 0 0 10px rgba(252, 196, 3, 0.9), 0 0 5px rgba(252, 196, 3, 0.7), 0 0 10px rgba(252, 196, 3, 0.5); */
+  text-shadow: 
+  0 0 5px #fffacd,
+  0 0 5px #fffacd,
+  0 0 10px #ffe066,
+  0 0 20px #ffd700;
   animation: none;
 
 }
@@ -822,6 +852,11 @@ border-radius: 28px;
    font-size: 0.81rem;
    padding: 0px 15px;
   }
+
+  
+
+
+
 }
 
 @media (max-width: 380px) {

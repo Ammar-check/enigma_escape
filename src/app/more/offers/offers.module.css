@@ -1,0 +1,76 @@
+.offersPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('/Rectangle3.svg');
+  object-fit: cover;
+  background-repeat: no-repeat;
+  padding: 40px 20px;
+}
+
+.overlay{
+    background: black;
+    position: absolute;
+    top: 0;
+    
+}
+
+/* 🔥 Title */
+.title {
+  font-family: 'Skygraze', sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--gold-primary);
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+
+  /* neon glow */
+  /* text-shadow:
+    0 0 5px rgba(255,255,255,0.4),
+    0 0 10px rgba(252,196,3,1),
+    0 0 20px rgba(252,196,3,1),
+    0 0 40px rgba(252,196,3,0.8); */
+}
+
+/* ✨ Subtitle */
+.subtitle {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* 🚀 Instagram Button */
+.instaBtn {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: 1px solid var(--gold-primary);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+  color: var(--gold-primary);
+  /* background: linear-gradient(45deg, #fcc403, #ffea70); */
+  background: transparent;
+
+  transition: all 0.3s ease;
+
+  /* glow */
+  box-shadow:
+    0 0 10px rgba(252,196,3,0.6),
+    0 0 20px rgba(252,196,3,0.5);
+}
+
+.instaBtn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: var(--gold-primary);
+  color: black;
+  box-shadow:
+    0 0 20px rgba(252,196,3,0.9),
+    0 0 40px rgba(252,196,3,0.7);
+}

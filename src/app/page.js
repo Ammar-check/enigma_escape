@@ -168,12 +168,13 @@ export default function Home() {
         {/* Circuit Divider - White color */}
         <div className={styles.heroCircuitDivider}>
           {/* <div className={styles.circuitLine}></div> */}
-          <img src='layer-homeDiv.svg' alt='home layer svg' style={{width:'100%',marginBottom:'10px'}}/>
+          {/* <img src='layer-homeDiv.svg' alt='home layer svg' style={{width:'100%',marginBottom:'10px'}}/> */}
           <div className={styles.circuitDot}></div>
         </div>
-        <img src='/home-second-bg.svg' alt='' style={{width:'100%',position:'absolute',left:0,top:'513px'}} />
+        
+        {/* <img src='/home-second-bg.svg' alt='' style={{width:'100%',position:'absolute',left:0,top:'513px'}} /> */}
       </section>
-
+       
       {/* Our Rooms Section */}
       <section id="games-section" className={`section-padding ${styles.roomsSection}`}>
         <div className="container">
@@ -216,12 +217,13 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
+        {/* <Image style={{position:'absolute',bottom:0,left:0,width:'100%',height:'150vh',zIndex:-1}} src='/Layer 22.png' width={33} height={33} alt='bg' /> */}
       </section>
 
       {/* Contact Section with White Divider Above - Home Page Only */}
       <section className={styles.contactSection} ref={contactRef}>
         {/* White Divider SVG - Full Width */}
-        <motion.div className={styles.whiteDivider}>
+        {/* <motion.div className={styles.whiteDivider}>
           <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
             <motion.path
               d="M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30"
@@ -235,7 +237,7 @@ export default function Home() {
               transition={{ duration: 2, ease: "easeInOut" }}
             />
           </svg>
-        </motion.div>
+        </motion.div> */}
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
 

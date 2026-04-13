@@ -9,6 +9,7 @@
   margin-top: -140px;
   padding-top: 140px;
   /* overflow: hidden; */
+  z-index: 1;
 
 }
 
@@ -232,21 +233,30 @@ font-family: "Montserrat";
 
 /* Rooms Section with Background */
 .roomsSection {
-  background: var(--dark-bg);
+  /* background: var(--dark-bg); */
+  background: url('/Layer 14.png');
+  background-size: cover ;
+  background-repeat: no-repeat;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
+  z-index: 10;
+  margin-top: 0px;
+  padding-bottom: 200px;
 }
 
 .roomsSection::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: -80px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat fixed;
+  background: url('/Layer 14.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   z-index: 0;
 }
+
 
 .roomsSection > .container {
   position: relative;
@@ -314,11 +324,30 @@ font-family: "Montserrat";
 /* Contact Section - Home Page Only */
 .contactSection {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 60px 0 140px 0;
-  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
-  background-attachment: fixed;
+  /* background: url('/Layer 14.png') center/cover no-repeat; */
+  background: url('/Layer 14.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  z-index: 30;
+  /* background-attachment: fixed; */
+  margin-top: -80px;
 }
+
+/* .contactSection::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/Layer 14.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+} */
 
 /* White Divider SVG above Contact Us heading - Full Width */
 .whiteDivider {
@@ -521,8 +550,25 @@ font-family: "Montserrat";
     display: none;
   }
 
+  .contactSection {
+  margin-top: -40px;
+}
+
+.contactSection::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/Layer 14.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
   .roomsSection {
-    padding: 40px 0;
+    padding: 40px 0 120px 0;
   }
 
   .roomsList {
@@ -569,7 +615,7 @@ font-family: "Montserrat";
 
 @media (max-width: 576px) {
   .hero {
-    min-height: 400px;
+    min-height: 600px;
   }
 
   .heroNumber {
@@ -588,7 +634,7 @@ font-family: "Montserrat";
   }
 
   .roomsSection {
-    padding: 30px 0;
+    padding: 30px 0 100px 0;
   }
 
   .comingSoon {
@@ -625,6 +671,11 @@ font-family: "Montserrat";
 }
 
 @media (max-width: 480px) {
+
+  .hero{
+    height: 60vh;
+  }
+
   [dir="rtl"] .heroContent{
     
     display: flex;

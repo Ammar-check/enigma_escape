@@ -10,13 +10,15 @@
 }
 
 .faqItem:hover {
+  background-color: black;
   border: 1px solid rgba(0, 123, 253,0.3);
   /* border-color: rgba(212, 168, 75, 0.3); */
   box-shadow: 0 0 30px rgba(0, 123, 253, 0.3);
 }
 
 .faqItem.active {
-  border-color: var(--gold-primary);
+  /* border-color: var(--gold-primary); */
+  border-color: rgba(0, 123, 253,0.3);
   box-shadow: 0 5px 20px rgba(212, 168, 75, 0.15);
 }
 
@@ -40,7 +42,7 @@
 }
 
 .faqQuestion:hover {
-  background: rgba(212, 168, 75, 0.05);
+  background: black;
 }
 
 .faqQuestion span {

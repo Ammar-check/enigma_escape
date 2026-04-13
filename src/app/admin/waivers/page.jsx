@@ -20,10 +20,24 @@ export default function WaiversPage() {
     w.phone.includes(search)
   );
 
+  // const handleNewWaiver = (data) => {
+  //   setWaivers([{ id: Date.now(), ...data, signed: true }, ...waivers]);
+  //   setShowForm(false);
+  // };
+
   const handleNewWaiver = (data) => {
-    setWaivers([{ id: Date.now(), ...data, signed: true }, ...waivers]);
-    setShowForm(false);
-  };
+  setWaivers(prev => {
+    const updated = [
+      { id: Date.now(), ...data, signed: true },
+      ...prev
+    ];
+    console.log("UPDATED WAIVERS:", updated);
+    return updated;
+  });
+
+  setShowForm(false);
+  setSearch('');
+};
 
   return (
     <div className={styles.page}>

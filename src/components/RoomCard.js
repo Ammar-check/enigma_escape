@@ -110,7 +110,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
 
   {room.genre && (
     <span>
-      <Image className={styles.roomsIcon} src={room.icon} width={30} height={30} alt='hand icon' />
+      <Image className={styles.roomicon3}  src={room.icon} width={25} height={25} alt='hand icon' />
       {' '}
       {isArabic ? genreLabels[room.genre]?.ar : genreLabels[room.genre]?.en}
     </span>

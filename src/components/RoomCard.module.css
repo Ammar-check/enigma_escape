@@ -136,8 +136,10 @@
 } */
 
 .card2 .roomName{
-    width: 300px;
+    width: 400px;
     height: 200px;
+    transform: translateY(-30px);
+    
 }
 .card2 .roomNameAr{
     width: 500px;
@@ -153,7 +155,7 @@
 }
 .card4 .roomName{
     width: 350px;
-    height: 100px;
+    height: 50px;
 }
 .card4 .roomNameAr{
     width: 500px;
@@ -330,6 +332,7 @@ text-transform: uppercase;
   }
 }
 
+
 @media (max-width: 768px) {
   .roomImageWrapper {
     height: 300px;
@@ -375,7 +378,7 @@ text-transform: uppercase;
   }
 
   .roomInfo {
-    gap: 10px;
+    gap: 0px;
     flex-wrap: wrap;
   }
 
@@ -383,6 +386,11 @@ text-transform: uppercase;
     font-size: 0.69rem;
   }
   .roomsIcon{
+    width: 20px;
+    height: 20px;
+  }
+
+  .roomicon3{
     width: 20px;
     height: 20px;
   }
@@ -408,21 +416,75 @@ text-transform: uppercase;
  transform: translate(0px,-30px);
 }
 .card2 .ArNameImg{
-  width: 350px;
+  width: 300px;
  transform: translate(0px,-60px);
 }
+.card2 .roomBookBtn{
+  transform: translateX(-50px);
+}
 .card3 .EnNameImg{
-  width: 270px;
+  width: 250px;
  transform: translate(0px,-30px);
 }
 .card3 .ArNameImg{
-  width: 300px;
+  width: 270px;
  transform: translate(0px,-80px);
+}
+.card3 .roomBookBtn{
+  transform: translateX(-50px);
 }
 .card4 .EnNameImg{
   width: 200px;
+  height: 40px;
+ transform: translate(0px,20px);
+}
+.card4 .ArNameImg{
+  width: 300px;
+ transform: translate(0px,-20px);
+}
+.card5 .EnNameImg{
+  width: 300px;
   height: 80px;
+ transform: translate(0px,30px);
+}
+.card5 .ArNameImg{
+  width: 300px;
  transform: translate(0px,0px);
+}
+
+[dir='rtl'] .card1 .EnNameImg{
+  width: 280px;
+ transform: translate(20px,20px);
+}
+.card1 .ArNameImg{
+ transform: translate(20px,20px);
+}
+[dir='rtl'] .card2 .EnNameImg{
+  width: 250px;
+ transform: translate(-60px,-30px);
+}
+[dir='rtl'] .card2 .ArNameImg{
+  width: 300px;
+ transform: translate(0px,-60px);
+}
+[dir='rtl'] .card2 .roomBookBtn{
+  transform: translateX(10px);
+}
+[dir='rtl'] .card3 .EnNameImg{
+  width: 250px;
+ transform: translate(-60px,-30px);
+}
+[dir='rtl'] .card3 .ArNameImg{
+  width: 270px;
+ transform: translate(0px,-80px);
+}
+[dir='rtl'] .card3 .roomBookBtn{
+  transform: translateX(10px);
+}
+.card4 .EnNameImg{
+  width: 200px;
+  height: 40px;
+ transform: translate(0px,20px);
 }
 .card4 .ArNameImg{
   width: 300px;
@@ -538,6 +600,7 @@ text-transform: uppercase;
 }
   .card4 .EnNameImg{
   width: 140px;
+  height: 30px;
  transform: translate(0px,0px);
 }
 .card4 .ArNameImg{
@@ -650,6 +713,10 @@ text-transform: uppercase;
     width: 15px;
     height: 15px;
   }
+  .roomicon3{
+    width: 15px ;
+    height: 15px;
+  }
   .roomsIcon2{
     width: 12px !important;
     height: 12px !important;
@@ -659,26 +726,64 @@ text-transform: uppercase;
     font-size: 0.5rem;
   }
 
+ .card1 .ArNameImg{
+ transform: translate(0px,-40px);
+}
+ .card2 .ArNameImg{
+ transform: translate(0px,-90px);
+}
+ .card3 .ArNameImg{
+  width: 180px;
+ transform: translate(0px,-100px);
+}
+ .card2 .EnNameImg{
+     width: 200px;
+ transform: translate(0px,-30px);
+}
+.card2 .roomBookBtn{
+  position: absolute;
+  right: -34px;
+}
+.card3 .roomBookBtn{
+  transform: translate(0px, 0);
+}
+ .card4 .EnNameImg{
+ transform: translate(0px,30px);
+}
+ .card4 .ArNameImg{
+ transform: translate(0px,10px);
+}
+
   
 [dir='rtl'] .card1 .ArNameImg{
      width: 200px;
  transform: translate(0px,-30px);
 }
+[dir='rtl'] .card2 .EnNameImg{
+     width: 220px;
+ transform: translate(-20px,-30px);
+}
+[dir='rtl'] .card2 .ArNameImg{
+     width: 240px;
+ transform: translate(-20px,-80px);
+}
 [dir='rtl'] .card3 .EnNameImg{
-     width: 250px;
+     width: 220px;
  transform: translate(0px,-50px);
 }
 [dir='rtl'] .card3 .ArNameImg{
      width: 200px;
- transform: translate(-30px,-80px);
+ transform: translate(-30px,-100px);
 }
 [dir='rtl'] .card4 .EnNameImg{
      width: 200px;
- transform: translate(30px,0px);
+     
+ transform: translate(30px,30px);
 }
 [dir='rtl'] .card4 .ArNameImg{
      width: 250px;
- transform: translate(-30px,-40px);
+     
+ transform: translate(-30px,0px);
 }
 [dir='rtl'] .card5 .EnNameImg{
      width: 250px;
@@ -696,10 +801,38 @@ text-transform: uppercase;
     display: grid;
     grid-template-columns: repeat(2,1fr);
   }
+
+  [dir='rtl'] .card2 .EnNameImg{
+     width: 170px;
+ transform: translate(-80px,-10px);
+}
+  [dir='rtl'] .card3 .EnNameImg{
+     width: 170px;
+     position: absolute;
+     right: 20px;
+}
+  [dir='rtl'] .card4 .EnNameImg{
+     width: 120px;
+     height: 20px;
+     position: absolute;
+     right: 60px;
+}
+[dir='rtl'] .card5 .EnNameImg{
+     width: 180px;
+}
+  [dir='rtl'] .card3 .ArNameImg{
+     width: 170px;
+}
+  [dir='rtl'] .card4 .ArNameImg{
+     width: 180px;
+}
+  [dir='rtl'] .card5 .ArNameImg{
+     width: 180px;
 }
 
+}
 @media (max-width:380px) {
-    .card2 .roomBookBtn {
+    .card1 .roomBookBtn {
    position: absolute;
    right: 15px;
 }
@@ -750,6 +883,105 @@ text-transform: uppercase;
       transform: translate(0px,-20px);
 } 
 
+}
+
+
+@media (max-width:350px) {
+   .roomDetails{
+    padding: 6px 6px;
+   }
+
+     .card1 .EnNameImg{
+     width: 160px;
+}
+    [dir='rtl'] .card1 .EnNameImg{
+     width: 160px;
+      transform: translateX(60px);
+}
+    [dir='rtl'] .card1 .ArNameImg{
+     width: 140px;
+      transform: translate(0px,-20px);
+}
+    [dir='rtl'] .card1 .roomBookBtn{
+     right: auto;
+}
+     .card2 .EnNameImg{
+     width: 160px;
+}
+    [dir="rtl"] .card2 .EnNameImg{
+     width: 140px;
+
+     transform: translate(-140px,0);
+}
+    [dir="rtl"] .card2 .ArNameImg{
+     width: 160px;
+     /* transform: translate(-70px,0); */
+}
+     .card3 .EnNameImg{
+     width: 160px;
+ /* transform: translate(-60px,0px); */
+}
+    [dir='rtl'] .card3 .EnNameImg{
+     width: 140px;
+ transform: translate(0px,-60px);
+}
+    [dir='rtl'] .card3 .ArNameImg{
+     width: 140px;
+ transform: translate(-20px,-90px);
+}
+     .card4 .EnNameImg{
+     width: 120px;
+     height: 20px;
+}
+    [dir='rtl'] .card4 .EnNameImg{
+     width: 120px;
+     height: 20px;
+     transform: translate(40px,30px);
+}
+    [dir='rtl'] .card4 .ArNameImg{
+      width: 160px;
+     transform: translate(0px,20px);
+}
+     .card5 .EnNameImg{
+     width: 120px;
+ /* transform: translate(-60px,0px); */
+}
+     .card1 .ArNameImg{
+     width: 160px;
+ transform: translate(0px,-10px);
+}
+     .card2 .ArNameImg{
+     width: 170px;
+ /* transform: translate(0px,-10px); */
+}
+     .card3 .ArNameImg{
+     width: 140px;
+ /* transform: translate(0px,-10px); */
+}
+     .card4 .ArNameImg{
+     width: 140px;
+ /* transform: translate(0px,-10px); */
+}
+     .card5 .ArNameImg{
+     width: 140px;
+ /* transform: translate(0px,-10px); */
+}
+    [dir='rtl']  .card5 .EnNameImg{
+     width: 160px;
+ transform: translate(50px,10px);
+}
+    [dir='rtl']  .card5 .ArNameImg{
+     width: 160px;
+ transform: translate(-20px,-20px);
+}
+
+.card5 .roomBookBtn{
+  position: absolute;
+  right: 10px;
+}
+[dir='rtl'] .card5 .roomBookBtn{
+   right: auto;
+}
 }
 
 @media (max-width: 320px) {
@@ -817,11 +1049,12 @@ text-transform: uppercase;
 }
   .card4 .EnNameImg{
   width: 120px;
- transform: translate(0px,0px);
+  height: 20px;
+ transform: translate(0px,30px);
 }
 .card4 .ArNameImg{
   width: 160px;
- transform: translate(0px,-20px);
+ transform: translate(0px,20px);
 }
   .card5 .EnNameImg{
   width: 160px;
@@ -834,7 +1067,7 @@ text-transform: uppercase;
 
 [dir='rtl'] .card1 .EnNameImg{
      width: 160px;
- transform: translate(0px,20px);
+ transform: translate(90px,20px);
 }
 [dir='rtl'] .card1 .ArNameImg{
      width: 200px;
@@ -842,7 +1075,7 @@ text-transform: uppercase;
 }
 [dir='rtl'] .card2 .EnNameImg{
      width: 130px;
- transform: translate(-50px,-30px);
+ transform: translate(-150px,-10px);
 }
 [dir='rtl'] .card2 .ArNameImg{
      width: 160px;
@@ -850,24 +1083,24 @@ text-transform: uppercase;
 }
 [dir='rtl'] .card3 .EnNameImg{
      width: 160px;
- transform: translate(-150px,-30px);
+ transform: translate(0px,-50px);
 }
 [dir='rtl'] .card3 .ArNameImg{
      width: 160px;
  transform: translate(-20px,-90px);
 }
 [dir='rtl'] .card4 .EnNameImg{
-     width: 130px;
-     height: 60px;
- transform: translate(-100px,30px);
+     width: 120px;
+     height: 20px;
+ transform: translate(30px,30px);
 }
 [dir='rtl'] .card4 .ArNameImg{
      width: 160px;
- transform: translate(0px,-20px);
+ transform: translate(-20px,20px);
 }
 [dir='rtl'] .card5 .EnNameImg{
      width: 160px;
- transform: translate(-10px,30px);
+ transform: translate(80px,30px);
 }
 [dir='rtl'] .card5 .ArNameImg{
      width: 160px;

@@ -28,7 +28,7 @@ export default function Header() {
   const navLinks = [
     { href: '/', label: t('home') },
     {
-      href: '#',
+      href: '/#games-section',
       label: t('games'),
       dropdown: [
         { href: `/rooms/1`, label: isArabic ? '!الجزار' : 'THE BUTCHER' },
@@ -55,7 +55,7 @@ export default function Header() {
         { href: '/more/reviews', label: t('reviews') },
         { href: '/more/gallery', label: t('gallery') },
         { href: '/more/faq', label: t('faqs') },
-        { href: '/more/offers', label: isArabic ? 'العروض' : 'OFFERS' },
+        { href: '/more/offers', label: isArabic ? 'العروض' : 'OFFERS & PROMOTIONS' },
       ]
     },
     { href: '/contact', label: t('contactUs') },

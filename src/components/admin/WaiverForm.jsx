@@ -42,7 +42,7 @@ export default function WaiverForm({ onSubmit }) {
 
   const draw = (e) => {
     if (!isDrawing) return;
-    e.preventDefault();
+    // e.preventDefault();
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const rect = canvas.getBoundingClientRect();
@@ -65,11 +65,29 @@ export default function WaiverForm({ onSubmit }) {
     setHasSigned(false);
   };
 
+  // const handleSubmit = () => {
+  //   if (!hasSigned) return alert('Please sign the waiver');
+  //   const signature = canvasRef.current.toDataURL();
+  //   onSubmit({ ...form, signature });
+  // };
+
   const handleSubmit = () => {
-    if (!hasSigned) return alert('Please sign the waiver');
-    const signature = canvasRef.current.toDataURL();
-    onSubmit({ ...form, signature });
+  console.log("CLICKED SUBMIT"); // 👈 add this
+
+  if (!hasSigned) return alert('Please sign the waiver');
+
+  const signature = canvasRef.current.toDataURL();
+
+  const formattedData = {
+    ...form,
+    videoConsent: form.videoConsent === 'Yes',
+    socialConsent: form.socialConsent === 'Yes',
   };
+
+  console.log("SENDING DATA:", formattedData); // 👈 add this
+
+  onSubmit({ ...formattedData, signature });
+};
 
   return (
     <div className={styles.form}>
@@ -128,8 +146,8 @@ export default function WaiverForm({ onSubmit }) {
             <div className={styles.inputGroup}>
               <label>Language</label>
               <select value={form.language} onChange={(e) => update('language', e.target.value)} className={styles.input}>
-                <option value="en">English</option>
-                <option value="ar">Arabic</option>
+                <option style={{background:'black'}} value="en">English</option>
+                <option style={{background:'black'}} value="ar">Arabic</option>
               </select>
             </div>
           </div>

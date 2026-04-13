@@ -1,267 +1,137 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import styles from './WaiverForm.module.css';
+import { useState } from 'react';
+import styles from './WaiverForm.module.css'
+import WaiverForm from '@/components/admin/WaiverForm';
 
-const rooms = ['Butcher', 'Sherlock', 'Lost City', 'VR Rooms', 'Mindshield', 'Outdoor Escape'];
+const dummyWaivers = [
+  { id: 1, name: 'Ahmed Al-Rashid', phone: '+966501234567', email: 'ahmed@email.com', room: 'Butcher', date: '2024-01-15', time: '2:00 PM', signed: true, videoConsent: true, language: 'ar' },
+  { id: 2, name: 'Sara Mohammed', phone: '+966507654321', email: 'sara@email.com', room: 'Sherlock', date: '2024-01-15', time: '3:30 PM', signed: true, videoConsent: false, language: 'ar' },
+  { id: 3, name: 'Khalid Ibrahim', phone: '+966512345678', email: 'khalid@email.com', room: 'Lost City', date: '2024-01-14', time: '11:00 AM', signed: true, videoConsent: true, language: 'en' },
+];
 
-export default function WaiverForm({ onSubmit }) {
-  const canvasRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [hasSigned, setHasSigned] = useState(false);
-  const [step, setStep] = useState(1);
+export default function WaiversPage() {
+  const [showForm, setShowForm] = useState(false);
+  const [waivers, setWaivers] = useState(dummyWaivers);
+  const [search, setSearch] = useState('');
 
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    birthday: '',
-    room: '',
-    language: 'en',
-    experience: '',
-    scary: '',
-    videoConsent: '',
-    socialConsent: '',
-    date: new Date().toISOString().split('T')[0],
-    time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+  const filtered = waivers.filter((w) =>
+    w.name.toLowerCase().includes(search.toLowerCase()) ||
+    w.phone.includes(search)
+  );
+
+  // const handleNewWaiver = (data) => {
+  //   setWaivers([{ id: Date.now(), ...data, signed: true }, ...waivers]);
+  //   setShowForm(false);
+  // };
+
+//   const handleNewWaiver = (data) => {
+//   console.log("RECEIVED IN PARENT:", data); // 👈 MUST LOG
+
+//   setWaivers(prev => [
+//     { id: Date.now(), ...data, signed: true },
+//     ...prev
+//   ]);
+
+//   setShowForm(false);
+// };
+
+const handleNewWaiver = (data) => {
+  setWaivers(prev => {
+    const updated = [
+      { id: Date.now(), ...data, signed: true },
+      ...prev
+    ];
+    console.log("UPDATED WAIVERS:", updated);
+    return updated;
   });
 
-  const update = (field, value) => setForm({ ...form, [field]: value });
-
-  // Signature canvas
-  const startDraw = (e) => {
-    setIsDrawing(true);
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  };
-
-  const draw = (e) => {
-    if (!isDrawing) return;
-    e.preventDefault();
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = '#d4a84b';
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-    setHasSigned(true);
-  };
-
-  const stopDraw = () => setIsDrawing(false);
-
-  const clearSignature = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setHasSigned(false);
-  };
-
-  const handleSubmit = () => {
-    if (!hasSigned) return alert('Please sign the waiver');
-    const signature = canvasRef.current.toDataURL();
-    onSubmit({ ...form, signature });
-  };
+  setShowForm(false);
+  setSearch('');
+};
 
   return (
-    <div className={styles.form}>
-      {/* Step indicators */}
-      <div className={styles.steps}>
-        {[1, 2, 3].map((s) => (
-          <div
-            key={s}
-            className={`${styles.step} ${step === s ? styles.activeStep : ''} ${step > s ? styles.doneStep : ''}`}
-          >
-            {step > s ? <i className="bi bi-check-lg"></i> : s}
-          </div>
-        ))}
-        <div className={styles.stepLine}></div>
+    <div className={styles.page}>
+      {/* Header */}
+      <div className={styles.pageHeader}>
+        <div>
+          <h1 className={styles.pageTitle}>Waivers</h1>
+          <p className={styles.pageSub}>{waivers.length} total waivers</p>
+        </div>
+        <button className={styles.newBtn} onClick={() => setShowForm(true)}>
+          <i className="bi bi-plus-lg"></i> New Waiver
+        </button>
       </div>
 
-      {/* Step 1 — Personal Info */}
-      {step === 1 && (
-        <div className={styles.stepContent}>
-          <h4 className={styles.stepTitle}>Personal Information</h4>
+      {/* Search */}
+      <div className={styles.searchBox}>
+        <i className="bi bi-search"></i>
+        <input
+          type="text"
+          placeholder="Search by name or phone..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className={styles.searchInput}
+        />
+      </div>
 
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Full Name *</label>
-              <input type="text" placeholder="Enter full name" value={form.name}
-                onChange={(e) => update('name', e.target.value)} className={styles.input} />
+      {/* Table */}
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Room</th>
+              <th>Date & Time</th>
+              <th>Language</th>
+              <th>Video Consent</th>
+              <th>Signed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((w) => (
+              <tr key={w.id} className={styles.tableRow}>
+                <td>
+                  <div className={styles.nameCell}>
+                    <div className={styles.avatar}>{w.name.charAt(0)}</div>
+                    <div>
+                      <div className={styles.name}>{w.name}</div>
+                      <div className={styles.muted}>{w.email}</div>
+                    </div>
+                  </div>
+                </td>
+                <td className={styles.muted}>{w.phone}</td>
+                <td><span className={styles.roomTag}>{w.room}</span></td>
+                <td className={styles.muted}>{w.date} · {w.time}</td>
+                <td>{w.language === 'ar' ? '🇸🇦 AR' : '🇺🇸 EN'}</td>
+                <td>
+                  <span className={w.videoConsent ? styles.yes : styles.no}>
+                    {w.videoConsent ? '✓ Yes' : '✗ No'}
+                  </span>
+                </td>
+                <td>
+                  <span className={styles.signed}>
+                    <i className="bi bi-pen-fill"></i> Signed
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Waiver Form Modal */}
+      {showForm && (
+        <div className={styles.modalOverlay} onClick={() => setShowForm(false)}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>New Waiver Form</h3>
+              <button className={styles.closeBtn} onClick={() => setShowForm(false)}>
+                <i className="bi bi-x-lg"></i>
+              </button>
             </div>
-            <div className={styles.inputGroup}>
-              <label>Phone *</label>
-              <input type="tel" placeholder="+966..." value={form.phone}
-                onChange={(e) => update('phone', e.target.value)} className={styles.input} />
-            </div>
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Email</label>
-              <input type="email" placeholder="email@example.com" value={form.email}
-                onChange={(e) => update('email', e.target.value)} className={styles.input} />
-            </div>
-            <div className={styles.inputGroup}>
-              <label>Birthday</label>
-              <input type="date" value={form.birthday}
-                onChange={(e) => update('birthday', e.target.value)} className={styles.input} />
-            </div>
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Room *</label>
-              <select value={form.room} onChange={(e) => update('room', e.target.value)} className={styles.input}>
-                <option value="">Select room</option>
-                {rooms.map((r) => <option key={r} value={r} style={{background:'black'}}>{r}</option>)}
-              </select>
-            </div>
-            <div className={styles.inputGroup}>
-              <label>Language</label>
-              <select value={form.language} onChange={(e) => update('language', e.target.value)} className={styles.input}>
-                <option style={{background:'black'}} value="en">English</option>
-                <option style={{background:'black'}} value="ar">Arabic</option>
-              </select>
-            </div>
-          </div>
-
-          <button
-            className={styles.nextBtn}
-            onClick={() => setStep(2)}
-            disabled={!form.name || !form.phone || !form.room}
-          >
-            Next <i className="bi bi-arrow-right"></i>
-          </button>
-        </div>
-      )}
-
-      {/* Step 2 — Preferences */}
-      {step === 2 && (
-        <div className={styles.stepContent}>
-          <h4 className={styles.stepTitle}>Experience & Preferences</h4>
-
-          <div className={styles.questionGroup}>
-            <label>Have you played an escape room before?</label>
-            <div className={styles.btnGroup}>
-              {['Yes', 'No'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.experience === opt ? styles.optActive : ''}`}
-                  onClick={() => update('experience', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.questionGroup}>
-            <label>Scary or Not Scary experience?</label>
-            <div className={styles.btnGroup}>
-              {['Scary', 'Not Scary'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.scary === opt ? styles.optActive : ''}`}
-                  onClick={() => update('scary', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.questionGroup}>
-            <label>Do you consent to video recording?</label>
-            <div className={styles.btnGroup}>
-              {['Yes', 'No'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.videoConsent === opt ? styles.optActive : ''}`}
-                  onClick={() => update('videoConsent', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.questionGroup}>
-            <label>Do you consent to social media posting?</label>
-            <div className={styles.btnGroup}>
-              {['Yes', 'No'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.socialConsent === opt ? styles.optActive : ''}`}
-                  onClick={() => update('socialConsent', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.navBtns}>
-            <button className={styles.backBtn} onClick={() => setStep(1)}>
-              <i className="bi bi-arrow-left"></i> Back
-            </button>
-            <button
-              className={styles.nextBtn}
-              onClick={() => setStep(3)}
-              disabled={!form.experience || !form.scary || !form.videoConsent || !form.socialConsent}
-            >
-              Next <i className="bi bi-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Step 3 — Signature */}
-      {step === 3 && (
-        <div className={styles.stepContent}>
-          <h4 className={styles.stepTitle}>Digital Signature</h4>
-          <p className={styles.signatureNote}>
-            By signing below, I agree to the terms and conditions of Enigma Escape Room.
-          </p>
-
-          <div className={styles.canvasWrapper}>
-            <canvas
-              ref={canvasRef}
-              width={500}
-              height={150}
-              className={styles.canvas}
-              onMouseDown={startDraw}
-              onMouseMove={draw}
-              onMouseUp={stopDraw}
-              onMouseLeave={stopDraw}
-              onTouchStart={startDraw}
-              onTouchMove={draw}
-              onTouchEnd={stopDraw}
-            />
-            <button className={styles.clearBtn} onClick={clearSignature}>
-              <i className="bi bi-arrow-counterclockwise"></i> Clear
-            </button>
-          </div>
-
-          <div className={styles.navBtns}>
-            <button className={styles.backBtn} onClick={() => setStep(2)}>
-              <i className="bi bi-arrow-left"></i> Back
-            </button>
-            <button
-              className={styles.submitBtn}
-              onClick={handleSubmit}
-              disabled={!hasSigned}
-            >
-              <i className="bi bi-check-lg"></i> Submit Waiver
-            </button>
+            <WaiverForm onSubmit={handleNewWaiver} />
           </div>
         </div>
       )}
