@@ -86,6 +86,7 @@ const menuItems = [
   { href: '/admin/bookings', label: 'Bookings', icon: 'bi-calendar-check' },
   { href: '/admin/waivers', label: 'Waivers', icon: 'bi-file-earmark-text' },
   { href: '/admin/game-results', label: 'Game Results', icon: 'bi-trophy-fill' },
+  { href: '/admin/contact-messages', label: 'Contact Messages', icon: 'bi-envelope-paper-fill' },
   { href: '/admin/videos', label: 'Video Queue', icon: 'bi-camera-video-fill' },
   { href: '/admin/analytics', label: 'Analytics', icon: 'bi-bar-chart-fill' },
 ];

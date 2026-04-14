@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
@@ -28,6 +29,52 @@ const itemVariants = {
 export default function ContactPage() {
   const { t, isArabic } = useLanguage();
   const { contactInfo, contactForm } = siteData;
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: '', text: '' });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setStatus({ type: '', text: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setStatus({ type: 'error', text: result.error || 'Failed to send message.' });
+        return;
+      }
+
+      setStatus({ type: 'success', text: result.message || 'Message sent successfully.' });
+      setFormData({
+        fullName: '',
+        phone: '',
+        email: '',
+        message: '',
+      });
+    } catch {
+      setStatus({ type: 'error', text: 'Network error. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.pageWrapper}>
@@ -107,6 +154,7 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
+                onSubmit={handleSubmit}
               >
                 {contactForm.fields.map((field) => (
                   <motion.div key={field.id} className="mb-4" whileHover={{ scale: 1.01 }}>
@@ -118,6 +166,11 @@ export default function ContactPage() {
                         rows={field.rows || 5}
                         placeholder={isArabic ? field.placeholderAr : field.placeholderEn}
                         required={field.required}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        minLength={field.validation?.minLength}
+                        maxLength={field.validation?.maxLength}
+                        disabled={loading}
                       ></textarea>
                     ) : (
                       <input
@@ -127,12 +180,22 @@ export default function ContactPage() {
                         className="form-control"
                         placeholder={isArabic ? field.placeholderAr : field.placeholderEn}
                         required={field.required}
-                         dir={isArabic ? 'rtl' : 'ltr'}
-  style={{ textAlign: isArabic ? 'right' : 'left' }}
+                        dir={isArabic ? 'rtl' : 'ltr'}
+                        style={{ textAlign: isArabic ? 'right' : 'left' }}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        minLength={field.validation?.minLength}
+                        maxLength={field.validation?.maxLength}
+                        disabled={loading}
                       />
                     )}
                   </motion.div>
                 ))}
+                {status.text && (
+                  <p style={{ color: status.type === 'error' ? '#ff6666' : '#7dff9b', marginBottom: '16px' }}>
+                    {status.text}
+                  </p>
+                )}
                 <div className={isArabic ? 'text-start' : 'text-end'}>
                   <motion.button
                     type="submit"
@@ -148,8 +211,9 @@ export default function ContactPage() {
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                     style={{color:'var(--gold-primary)',border:'1px solid var(--gold-primary)',background:'transparent',padding:'12px 35px',borderRadius:'5px'}}
+                    disabled={loading}
                   >
-                    {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
+                    {loading ? (isArabic ? '...جاري الإرسال' : 'Sending...') : (isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn)}
                   </motion.button>
                 </div>
               </motion.form>

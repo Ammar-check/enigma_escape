@@ -1,0 +1,82 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 240px;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pageTitle {
+  margin: 0;
+  color: var(--gold-primary);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+}
+
+.pageSub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.9rem;
+}
+
+.tableWrapper {
+  background: #111111;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: top;
+}
+
+.table th {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.table td {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.86rem;
+}
+
+.messageCell {
+  min-width: 260px;
+  line-height: 1.5;
+}
+
+.stateText,
+.errorText {
+  padding: 28px 20px;
+}
+
+.stateText {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.errorText {
+  color: #ff6666;
+}
+
+@media (max-width: 992px) {
+  .page {
+    margin-left: 0;
+    margin-top: 50px;
+  }
+}

@@ -55,6 +55,14 @@ export default function Home() {
   const heroRef = useRef(null);
   const contactRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: '', text: '' });
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -73,6 +81,44 @@ export default function Home() {
   const heroOpacity = useTransform(heroProgress, [0, 0.5], [1, 0]);
 
   const { contactInfo, contactForm } = siteData;
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setStatus({ type: '', text: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setStatus({ type: 'error', text: result.error || 'Failed to send message.' });
+        return;
+      }
+
+      setStatus({ type: 'success', text: result.message || 'Message sent successfully.' });
+      setFormData({
+        fullName: '',
+        phone: '',
+        email: '',
+        message: '',
+      });
+    } catch {
+      setStatus({ type: 'error', text: 'Network error. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -331,6 +377,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
+                onSubmit={handleSubmit}
               >
                 {contactForm.fields.map((field) => (
                   <div key={field.id} className="mb-4">
@@ -342,6 +389,11 @@ export default function Home() {
                         rows={field.rows}
                         placeholder={isArabic ? field.placeholderAr : field.placeholderEn}
                         required={field.required}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        minLength={field.validation?.minLength}
+                        maxLength={field.validation?.maxLength}
+                        disabled={loading}
                       ></textarea>
                     ) : (
                       <input
@@ -353,10 +405,20 @@ export default function Home() {
                         dir={isArabic ? 'rtl' : 'ltr'}
                         style={{ textAlign: isArabic ? 'right' : 'left' }}
                         required={field.required}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        minLength={field.validation?.minLength}
+                        maxLength={field.validation?.maxLength}
+                        disabled={loading}
                       />
                     )}
                   </div>
                 ))}
+                {status.text && (
+                  <p style={{ color: status.type === 'error' ? '#ff6666' : '#7dff9b', marginBottom: '16px' }}>
+                    {status.text}
+                  </p>
+                )}
                 <div className={isArabic ? 'text-start' : 'text-end'}>
                   <motion.button
                     type="submit"
@@ -364,8 +426,9 @@ export default function Home() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     style={{ color: 'var(--gold-primary)', border: '1px solid var(--gold-primary)' }}
+                    disabled={loading}
                   >
-                    {isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn}
+                    {loading ? (isArabic ? '...جاري الإرسال' : 'Sending...') : (isArabic ? contactForm.submitButtonAr : contactForm.submitButtonEn)}
                   </motion.button>
                 </div>
               </motion.form>
