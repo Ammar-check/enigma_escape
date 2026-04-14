@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
@@ -54,6 +54,15 @@ export default function Home() {
   const { t, isArabic } = useLanguage();
   const heroRef = useRef(null);
   const contactRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const updateIsMobile = (event) => setIsMobile(event.matches);
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener('change', updateIsMobile);
+    return () => mediaQuery.removeEventListener('change', updateIsMobile);
+  }, []);
 
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
@@ -69,7 +78,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className={styles.hero} ref={heroRef}>
-        <motion.div className={styles.heroBg} style={{ y: heroY }}></motion.div>
+        <motion.div className={styles.heroBg} style={isMobile ? undefined : { y: heroY }}></motion.div>
         <div className={styles.heroOverlay}></div>
 
         <div className="container">
@@ -117,19 +126,11 @@ export default function Home() {
                 <motion.h1
                   className={styles.heroTitle}
                 >
-                  <motion.span
+                  <span
                     className={styles.heroNumber}
-                    animate={{
-                      textShadow: [
-                        '0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 40px rgba(212, 168, 75, 0.4)',
-                        '0 0 20px rgba(212, 168, 75, 0.9), 0 0 40px rgba(212, 168, 75, 0.7), 0 0 80px rgba(212, 168, 75, 0.5)',
-                        '0 0 10px rgba(212, 168, 75, 0.8), 0 0 20px rgba(212, 168, 75, 0.6), 0 0 40px rgba(212, 168, 75, 0.4)'
-                      ]
-                    }}
-                  // transition={{ duration: 2,  ease: 'easeInOut' }}
                   >
                     60
-                  </motion.span>
+                  </span>
                   <motion.span
                     className={styles.heroMinutes}
                     // initial={{ opacity: 0, x: -30 }}

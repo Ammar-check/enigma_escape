@@ -1,12 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './globals.css';
+import { Montserrat, Orbitron } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import BootstrapClient from '@/components/BootstrapClient';
 import { LanguageProvider } from '@/context/LanguageContext';
 import LayoutWrapper from '@/components/LayoutWrapper';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-english',
+});
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-orbitron',
+});
 
 export const metadata = {
   title: 'Enigma Escape Games | Immersive Escape Room Experience',
@@ -19,7 +32,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-pattern" suppressHydrationWarning={true}>
+      <body className={`bg-pattern ${montserrat.variable} ${orbitron.variable}`} suppressHydrationWarning={true}>
         <LanguageProvider>
           {/* <Header /> */}
           <main>

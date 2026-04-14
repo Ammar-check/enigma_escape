@@ -47,13 +47,14 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
             className={styles.roomImage}
             width={500}
             height={400}
+            sizes="(max-width: 576px) 100vw, (max-width: 1200px) 90vw, 500px"
           />
           <div className={styles.roomOverlay}>
             <div className={styles.roomHeader}>
               <div className={styles.roomTitles}>
                 <h3 className={styles.roomName}>
                   {/* {room.nameEn} */}
-                  <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} alt='room name' />
+                  <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} alt='room name' sizes="(max-width: 576px) 200px, (max-width: 992px) 280px, 400px" />
                 </h3>
                 {/* {room.subtitleEn && (
                   <span className={styles.roomSubtitle}>{room.subtitleEn}</span>
@@ -65,7 +66,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
             </div>
             <p className={styles.roomNameAr}>
               {/* {room.nameAr} */}
-              <Image className={styles.ArNameImg} src={room.nameAr} width={400} height={400} alt='room name' />
+              <Image className={styles.ArNameImg} src={room.nameAr} width={400} height={400} alt='room name' sizes="(max-width: 576px) 220px, (max-width: 992px) 300px, 400px" />
             </p>
           </div>
 

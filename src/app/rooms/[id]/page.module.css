@@ -293,6 +293,10 @@ margin: 0 auto;
 }
 
 @media (max-width: 768px) {
+  .detailsSection {
+    background-attachment: scroll;
+  }
+
   .hero {
     min-height: 50vh;
     margin-top: -100px;
@@ -502,6 +506,10 @@ margin: 0 auto;
 
 
 @media (max-width:778px) {
+  .roomsPageSection::before {
+    background-attachment: scroll;
+  }
+
   .comingSoonPage{
     min-height: 240px;
   }

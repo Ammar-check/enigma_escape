@@ -513,6 +513,10 @@ font-family: "Montserrat";
 }
 
 @media (max-width: 768px) {
+  .heroBg {
+    transform: none !important;
+  }
+
   .hero {
     justify-content: center;
     text-align: center;
@@ -549,6 +553,11 @@ font-family: "Montserrat";
 
   .heroGlow {
     display: none;
+  }
+
+  .circuitDot {
+    animation: none;
+    box-shadow: none;
   }
 
   .contactSection {
