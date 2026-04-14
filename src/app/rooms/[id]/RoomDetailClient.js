@@ -117,7 +117,7 @@ const comingSoonVariants = {
               transition={{ duration: 0.3, delay: 0.1 }}
               style={{ color: room.color }}
             >
-              {isArabic ? <img className={styles.EnNameImg} src={room.nameEn} width={400} height={400} /> : <img className={styles.EnNameImg} src={room.nameEn} width={400} height={400} />}
+              {isArabic ? <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} /> : <Image className={styles.EnNameImg} src={room.nameEn} width={400} height={400} />}
               {/* {room.subtitleEn && !isArabic && (
                 <span className={styles.subtitle}>{room.subtitleEn}</span>
               )} */}
@@ -129,7 +129,7 @@ const comingSoonVariants = {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              {isArabic ? <img className={styles.EnNameImg} src={room.nameAr} width={400} height={400} /> : <img className={styles.EnNameImg} src={room.nameAr} width={400} height={400} />}
+              {isArabic ? <Image className={styles.EnNameImg} src={room.nameAr} width={400} height={400} /> : <Image className={styles.EnNameImg} src={room.nameAr} width={400} height={400} />}
             </motion.p>
 
             <motion.a

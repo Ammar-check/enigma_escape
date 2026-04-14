@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
+import Image from 'next/image';
 
 export default function AboutPage() {
   const { t, isArabic } = useLanguage();
@@ -104,7 +105,9 @@ export default function AboutPage() {
                 <div className={styles.videoContainer}>
                   {!showVideo ? (
                     <>
-                      <img
+                      <Image
+                        width={30}
+                        height={30}
                         src="/1_03.png"
                         alt="Enigma Escape Games Experience"
                         className={styles.videoThumbnail}
