@@ -771,3 +771,48 @@ font-family: "Montserrat";
 
 }
 
+@media (max-width: 280px) {
+  .hero {
+    min-height: 520px;
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+
+  .heroNumber {
+    font-size: 4rem;
+  }
+
+  .heroMinutes {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  .heroSubtitle {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  .heroArabicImage {
+    max-width: 140px;
+    max-height: 90px;
+  }
+
+  .heroArabicSub {
+    max-width: 130px;
+    max-height: 80px;
+    transform: translateX(40px);
+  }
+
+  .roomsList {
+    padding: 0 6px;
+  }
+
+  .comingSoon {
+    min-height: 160px;
+  }
+
+  .comingSoonContent h3 {
+    font-size: 1.25rem;
+  }
+}
+

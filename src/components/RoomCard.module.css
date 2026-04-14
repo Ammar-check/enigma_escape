@@ -1108,3 +1108,54 @@ text-transform: uppercase;
 } 
 
 }
+
+@media (max-width: 280px) {
+  .roomImageWrapper {
+    height: 220px;
+  }
+
+  .roomOverlay {
+    padding: 8px 8px 42px 8px;
+  }
+
+  .roomName {
+    width: 130px;
+    height: 72px;
+  }
+
+  .roomNameAr {
+    width: 100px;
+    height: 52px;
+    margin-bottom: 42px;
+  }
+
+  .roomDetails {
+    padding: 5px 6px;
+  }
+
+  .roomInfo {
+    gap: 3px;
+    grid-template-columns: 1fr;
+  }
+
+  .roomInfo span {
+    font-size: 0.47rem;
+    gap: 3px;
+  }
+
+  .roomsIcon,
+  .roomicon3 {
+    width: 12px;
+    height: 12px;
+  }
+
+  .roomsIcon2 {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  .roomBookBtn {
+    font-size: 0.5rem;
+    padding: 4px 8px;
+  }
+}

@@ -304,8 +304,8 @@ const comingSoonVariants = {
             viewport={{ once: true, margin: '-100px' }}
           >
           
-            {siteData.rooms.map((oroom) => (
-             room.id == oroom.id?'': <RoomCard key={oroom.id} room={oroom} />
+            {siteData.rooms.map((oroom, index) => (
+              room.id === oroom.id ? null : <RoomCard key={oroom.id} room={oroom} index={index} />
             ))}
 
             {/* Coming Soon Card */}

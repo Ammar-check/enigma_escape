@@ -377,3 +377,38 @@
   
 }
 }
+
+@media (max-width: 280px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .pageTitle {
+    font-size: 1.1rem;
+  }
+
+  .searchBox {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .filters,
+  .select,
+  .tabGroup {
+    width: 100%;
+  }
+
+  .tabGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .videoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .videoCard {
+    padding: 14px;
+  }
+}

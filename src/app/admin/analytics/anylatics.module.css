@@ -399,3 +399,41 @@
     
   }
 }
+
+@media (max-width: 280px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .pageTitle {
+    font-size: 1.1rem;
+  }
+
+  .exportBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .kpiGrid,
+  .bottomRow {
+    grid-template-columns: 1fr;
+  }
+
+  .chartCard,
+  .roomCard,
+  .miniCard {
+    padding: 14px;
+  }
+
+  .metricTabs {
+    width: 100%;
+  }
+
+  .metricTab {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+}

@@ -509,3 +509,43 @@ margin: 0 auto;
     font-size: 2rem;
   }
 }
+
+@media (max-width: 280px) {
+  .hero {
+    min-height: 42vh;
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+
+  .roomTitle,
+  .roomTitleAr {
+    width: 180px;
+    height: 56px;
+  }
+
+  .bookBtn {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+  }
+
+  .description p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .roomInfo {
+    gap: 14px;
+  }
+
+  .roomsPageList {
+    padding: 0 6px;
+  }
+
+  .comingSoonPage {
+    min-height: 160px;
+  }
+
+  .comingSoonPageContent h3 {
+    font-size: 1.2rem;
+  }
+}

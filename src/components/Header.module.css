@@ -899,4 +899,70 @@ border-radius: 28px;
 }
 }
 
+@media (max-width: 280px) {
+  .topRow {
+    padding: 8px 0;
+  }
+
+  .bookBtn {
+    font-size: 0.58rem;
+    letter-spacing: 0.3px;
+    padding: 0;
+    max-width: 95px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  [dir='rtl'] .bookBtn {
+    font-size: 0.62rem;
+    padding: 0 4px;
+  }
+
+  .logoWrapper img {
+    width: 52px;
+    margin-right: 0;
+  }
+
+  .langSelector {
+    right: 34px;
+    padding: 0 3px;
+    gap: 2px;
+  }
+
+  .langCode {
+    font-size: 0.5rem;
+  }
+
+  [dir='rtl'] .langCode {
+    font-size: 0.58rem;
+  }
+
+  .flagImg {
+    width: 1rem;
+  }
+
+  .mobileToggle {
+    font-size: 1rem;
+    padding: 2px 6px;
+  }
+
+  .bottomRow {
+    padding: 10px 0;
+  }
+
+  .navLink {
+    padding: 9px 12px;
+    font-size: 0.66rem;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  [dir='rtl'] .navLink {
+    font-size: 0.82rem;
+    padding: 6px 12px;
+    line-height: 1.35;
+  }
+}
+
 

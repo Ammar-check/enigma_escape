@@ -379,4 +379,45 @@ a.btn.btn-gold {
   }
 }
 
+@media (max-width: 280px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    padding-top: 82px;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .section-title {
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    word-break: break-word;
+  }
+
+  .btn {
+    max-width: 100%;
+    white-space: normal;
+    padding: 7px 12px;
+    font-size: 0.72rem;
+  }
+
+  img,
+  video,
+  iframe,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 
