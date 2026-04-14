@@ -1,288 +1,516 @@
+// 'use client';
+
+// import { useState, useRef } from 'react';
+// import styles from './WaiverForm.module.css';
+
+// const rooms = ['Butcher', 'Sherlock', 'Lost City', 'VR Rooms', 'Mindshield', 'Outdoor Escape'];
+
+// export default function WaiverForm({ onSubmit }) {
+//   const canvasRef = useRef(null);
+//   const [isDrawing, setIsDrawing] = useState(false);
+//   const [hasSigned, setHasSigned] = useState(false);
+//   const [step, setStep] = useState(1);
+
+//   const [form, setForm] = useState({
+//     name: '',
+//     phone: '',
+//     email: '',
+//     birthday: '',
+//     room: '',
+//     language: 'en',
+//     experience: '',
+//     scary: '',
+//     videoConsent: '',
+//     socialConsent: '',
+//     date: new Date().toISOString().split('T')[0],
+//     time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+//   });
+
+//   const update = (field, value) => setForm({ ...form, [field]: value });
+
+//   // Signature canvas
+//   const startDraw = (e) => {
+//     setIsDrawing(true);
+//     const canvas = canvasRef.current;
+//     const ctx = canvas.getContext('2d');
+//     const rect = canvas.getBoundingClientRect();
+//     const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+//     const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+//     ctx.beginPath();
+//     ctx.moveTo(x, y);
+//   };
+
+//   const draw = (e) => {
+//     if (!isDrawing) return;
+//     // e.preventDefault();
+//     const canvas = canvasRef.current;
+//     const ctx = canvas.getContext('2d');
+//     const rect = canvas.getBoundingClientRect();
+//     const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+//     const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+//     ctx.lineTo(x, y);
+//     ctx.strokeStyle = '#d4a84b';
+//     ctx.lineWidth = 2;
+//     ctx.lineCap = 'round';
+//     ctx.stroke();
+//     setHasSigned(true);
+//   };
+
+//   const stopDraw = () => setIsDrawing(false);
+
+//   const clearSignature = () => {
+//     const canvas = canvasRef.current;
+//     const ctx = canvas.getContext('2d');
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     setHasSigned(false);
+//   };
+
+//   // const handleSubmit = () => {
+//   //   if (!hasSigned) return alert('Please sign the waiver');
+//   //   const signature = canvasRef.current.toDataURL();
+//   //   onSubmit({ ...form, signature });
+//   // };
+
+//   const handleSubmit = () => {
+//   console.log("CLICKED SUBMIT"); // 👈 add this
+
+//   if (!hasSigned) return alert('Please sign the waiver');
+
+//   const signature = canvasRef.current.toDataURL();
+
+//   const formattedData = {
+//     ...form,
+//     videoConsent: form.videoConsent === 'Yes',
+//     socialConsent: form.socialConsent === 'Yes',
+//   };
+
+//   console.log("SENDING DATA:", formattedData); // 👈 add this
+
+//   onSubmit({ ...formattedData, signature });
+// };
+
+//   return (
+//     <div className={styles.form}>
+//       {/* Step indicators */}
+//       <div className={styles.steps}>
+//         {[1, 2, 3].map((s) => (
+//           <div
+//             key={s}
+//             className={`${styles.step} ${step === s ? styles.activeStep : ''} ${step > s ? styles.doneStep : ''}`}
+//           >
+//             {step > s ? <i className="bi bi-check-lg"></i> : s}
+//           </div>
+//         ))}
+//         <div className={styles.stepLine}></div>
+//       </div>
+
+//       {/* Step 1 — Personal Info */}
+//       {step === 1 && (
+//         <div className={styles.stepContent}>
+//           <h4 className={styles.stepTitle}>Personal Information</h4>
+
+//           <div className={styles.row}>
+//             <div className={styles.inputGroup}>
+//               <label>Full Name *</label>
+//               <input type="text" placeholder="Enter full name" value={form.name}
+//                 onChange={(e) => update('name', e.target.value)} className={styles.input} />
+//             </div>
+//             <div className={styles.inputGroup}>
+//               <label>Phone *</label>
+//               <input type="tel" placeholder="+966..." value={form.phone}
+//                 onChange={(e) => update('phone', e.target.value)} className={styles.input} />
+//             </div>
+//           </div>
+
+//           <div className={styles.row}>
+//             <div className={styles.inputGroup}>
+//               <label>Email</label>
+//               <input type="email" placeholder="email@example.com" value={form.email}
+//                 onChange={(e) => update('email', e.target.value)} className={styles.input} />
+//             </div>
+//             <div className={styles.inputGroup}>
+//               <label>Birthday</label>
+//               <input type="date" value={form.birthday}
+//                 onChange={(e) => update('birthday', e.target.value)} className={styles.input} />
+//             </div>
+//           </div>
+
+//           <div className={styles.row}>
+//             <div className={styles.inputGroup}>
+//               <label>Room *</label>
+//               <select value={form.room} onChange={(e) => update('room', e.target.value)} className={styles.input}>
+//                 <option value="">Select room</option>
+//                 {rooms.map((r) => <option key={r} value={r} style={{background:'black'}}>{r}</option>)}
+//               </select>
+//             </div>
+//             <div className={styles.inputGroup}>
+//               <label>Language</label>
+//               <select value={form.language} onChange={(e) => update('language', e.target.value)} className={styles.input}>
+//                 <option style={{background:'black'}} value="en">English</option>
+//                 <option style={{background:'black'}} value="ar">Arabic</option>
+//               </select>
+//             </div>
+//           </div>
+
+//           <button
+//             className={styles.nextBtn}
+//             onClick={() => setStep(2)}
+//             disabled={!form.name || !form.phone || !form.room}
+//           >
+//             Next <i className="bi bi-arrow-right"></i>
+//           </button>
+//         </div>
+//       )}
+
+//       {/* Step 2 — Preferences */}
+//       {step === 2 && (
+//         <div className={styles.stepContent}>
+//           <h4 className={styles.stepTitle}>Experience & Preferences</h4>
+
+//           <div className={styles.questionGroup}>
+//             <label>Have you played an escape room before?</label>
+//             <div className={styles.btnGroup}>
+//               {['Yes', 'No'].map((opt) => (
+//                 <button
+//                   key={opt}
+//                   className={`${styles.optBtn} ${form.experience === opt ? styles.optActive : ''}`}
+//                   onClick={() => update('experience', opt)}
+//                 >
+//                   {opt}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+
+//           <div className={styles.questionGroup}>
+//             <label>Scary or Not Scary experience?</label>
+//             <div className={styles.btnGroup}>
+//               {['Scary', 'Not Scary'].map((opt) => (
+//                 <button
+//                   key={opt}
+//                   className={`${styles.optBtn} ${form.scary === opt ? styles.optActive : ''}`}
+//                   onClick={() => update('scary', opt)}
+//                 >
+//                   {opt}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+
+//           <div className={styles.questionGroup}>
+//             <label>Do you consent to video recording?</label>
+//             <div className={styles.btnGroup}>
+//               {['Yes', 'No'].map((opt) => (
+//                 <button
+//                   key={opt}
+//                   className={`${styles.optBtn} ${form.videoConsent === opt ? styles.optActive : ''}`}
+//                   onClick={() => update('videoConsent', opt)}
+//                 >
+//                   {opt}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+
+//           <div className={styles.questionGroup}>
+//             <label>Do you consent to social media posting?</label>
+//             <div className={styles.btnGroup}>
+//               {['Yes', 'No'].map((opt) => (
+//                 <button
+//                   key={opt}
+//                   className={`${styles.optBtn} ${form.socialConsent === opt ? styles.optActive : ''}`}
+//                   onClick={() => update('socialConsent', opt)}
+//                 >
+//                   {opt}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+
+//           <div className={styles.navBtns}>
+//             <button className={styles.backBtn} onClick={() => setStep(1)}>
+//               <i className="bi bi-arrow-left"></i> Back
+//             </button>
+//             <button
+//               className={styles.nextBtn}
+//               onClick={() => setStep(3)}
+//               disabled={!form.experience || !form.scary || !form.videoConsent || !form.socialConsent}
+//             >
+//               Next <i className="bi bi-arrow-right"></i>
+//             </button>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* Step 3 — Signature */}
+//       {step === 3 && (
+//         <div className={styles.stepContent}>
+//           <h4 className={styles.stepTitle}>Digital Signature</h4>
+//           <p className={styles.signatureNote}>
+//             By signing below, I agree to the terms and conditions of Enigma Escape Room.
+//           </p>
+
+//           <div className={styles.canvasWrapper}>
+//             <canvas
+//               ref={canvasRef}
+//               width={500}
+//               height={150}
+//               className={styles.canvas}
+//               onMouseDown={startDraw}
+//               onMouseMove={draw}
+//               onMouseUp={stopDraw}
+//               onMouseLeave={stopDraw}
+//               onTouchStart={startDraw}
+//               onTouchMove={draw}
+//               onTouchEnd={stopDraw}
+//             />
+//             <button className={styles.clearBtn} onClick={clearSignature}>
+//               <i className="bi bi-arrow-counterclockwise"></i> Clear
+//             </button>
+//           </div>
+
+//           <div className={styles.navBtns}>
+//             <button className={styles.backBtn} onClick={() => setStep(2)}>
+//               <i className="bi bi-arrow-left"></i> Back
+//             </button>
+//             <button
+//               className={styles.submitBtn}
+//               onClick={handleSubmit}
+//               disabled={!hasSigned}
+//             >
+//               <i className="bi bi-check-lg"></i> Submit Waiver
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+
+
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import styles from './WaiverForm.module.css';
+import { useLanguage } from '@/context/LanguageContext';
 
-const rooms = ['Butcher', 'Sherlock', 'Lost City', 'VR Rooms', 'Mindshield', 'Outdoor Escape'];
+export default function WaiverForm() {
+  const [count, setCount] = useState(1);
+  const [errors, setErrors] = useState({});
 
-export default function WaiverForm({ onSubmit }) {
-  const canvasRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [hasSigned, setHasSigned] = useState(false);
-  const [step, setStep] = useState(1);
 
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    birthday: '',
-    room: '',
-    language: 'en',
-    experience: '',
-    scary: '',
-    videoConsent: '',
-    socialConsent: '',
-    date: new Date().toISOString().split('T')[0],
-    time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+  const nameRegex = /^[A-Za-z\s]{3,}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^[0-9]{8,15}$/;
+
+   const { t, isArabic } = useLanguage();
+  const participants = Array.from({ length: count }, (_, i) => i + 1);
+
+  const validate = () => {
+  let newErrors = {};
+
+  participants.forEach((_, index) => {
+    const name = document.getElementsByName(`name-${index}`)[0]?.value;
+    const email = document.getElementsByName(`email-${index}`)[0]?.value;
+    const phone = document.getElementsByName(`phone-${index}`)[0]?.value;
+
+    if (!nameRegex.test(name || '')) {
+      newErrors[`name-${index}`] = isArabic
+        ? 'الاسم غير صالح'
+        : 'Invalid name';
+    }
+
+    if (!emailRegex.test(email || '')) {
+      newErrors[`email-${index}`] = isArabic
+        ? 'بريد إلكتروني غير صالح'
+        : 'Invalid email';
+    }
+
+    if (!phoneRegex.test(phone || '')) {
+      newErrors[`phone-${index}`] = isArabic
+        ? 'رقم هاتف غير صالح'
+        : 'Invalid phone';
+    }
   });
 
-  const update = (field, value) => setForm({ ...form, [field]: value });
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+ 
+ const handleSubmit = (e) => {
+  e.preventDefault();
 
-  // Signature canvas
-  const startDraw = (e) => {
-    setIsDrawing(true);
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  };
+  if (!validate()) return;
 
-  const draw = (e) => {
-    if (!isDrawing) return;
-    // e.preventDefault();
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = '#d4a84b';
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-    setHasSigned(true);
-  };
-
-  const stopDraw = () => setIsDrawing(false);
-
-  const clearSignature = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setHasSigned(false);
-  };
-
-  // const handleSubmit = () => {
-  //   if (!hasSigned) return alert('Please sign the waiver');
-  //   const signature = canvasRef.current.toDataURL();
-  //   onSubmit({ ...form, signature });
-  // };
-
-  const handleSubmit = () => {
-  console.log("CLICKED SUBMIT"); // 👈 add this
-
-  if (!hasSigned) return alert('Please sign the waiver');
-
-  const signature = canvasRef.current.toDataURL();
-
-  const formattedData = {
-    ...form,
-    videoConsent: form.videoConsent === 'Yes',
-    socialConsent: form.socialConsent === 'Yes',
-  };
-
-  console.log("SENDING DATA:", formattedData); // 👈 add this
-
-  onSubmit({ ...formattedData, signature });
+  console.log("Form valid ✅");
 };
 
+
   return (
-    <div className={styles.form}>
-      {/* Step indicators */}
-      <div className={styles.steps}>
-        {[1, 2, 3].map((s) => (
-          <div
-            key={s}
-            className={`${styles.step} ${step === s ? styles.activeStep : ''} ${step > s ? styles.doneStep : ''}`}
-          >
-            {step > s ? <i className="bi bi-check-lg"></i> : s}
-          </div>
-        ))}
-        <div className={styles.stepLine}></div>
-      </div>
 
-      {/* Step 1 — Personal Info */}
-      {step === 1 && (
-        <div className={styles.stepContent}>
-          <h4 className={styles.stepTitle}>Personal Information</h4>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Full Name *</label>
-              <input type="text" placeholder="Enter full name" value={form.name}
-                onChange={(e) => update('name', e.target.value)} className={styles.input} />
-            </div>
-            <div className={styles.inputGroup}>
-              <label>Phone *</label>
-              <input type="tel" placeholder="+966..." value={form.phone}
-                onChange={(e) => update('phone', e.target.value)} className={styles.input} />
-            </div>
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Email</label>
-              <input type="email" placeholder="email@example.com" value={form.email}
-                onChange={(e) => update('email', e.target.value)} className={styles.input} />
-            </div>
-            <div className={styles.inputGroup}>
-              <label>Birthday</label>
-              <input type="date" value={form.birthday}
-                onChange={(e) => update('birthday', e.target.value)} className={styles.input} />
-            </div>
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Room *</label>
-              <select value={form.room} onChange={(e) => update('room', e.target.value)} className={styles.input}>
-                <option value="">Select room</option>
-                {rooms.map((r) => <option key={r} value={r} style={{background:'black'}}>{r}</option>)}
-              </select>
-            </div>
-            <div className={styles.inputGroup}>
-              <label>Language</label>
-              <select value={form.language} onChange={(e) => update('language', e.target.value)} className={styles.input}>
-                <option style={{background:'black'}} value="en">English</option>
-                <option style={{background:'black'}} value="ar">Arabic</option>
-              </select>
-            </div>
-          </div>
-
-          <button
-            className={styles.nextBtn}
-            onClick={() => setStep(2)}
-            disabled={!form.name || !form.phone || !form.room}
-          >
-            Next <i className="bi bi-arrow-right"></i>
-          </button>
-        </div>
-      )}
-
-      {/* Step 2 — Preferences */}
-      {step === 2 && (
-        <div className={styles.stepContent}>
-          <h4 className={styles.stepTitle}>Experience & Preferences</h4>
-
-          <div className={styles.questionGroup}>
-            <label>Have you played an escape room before?</label>
-            <div className={styles.btnGroup}>
-              {['Yes', 'No'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.experience === opt ? styles.optActive : ''}`}
-                  onClick={() => update('experience', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.questionGroup}>
-            <label>Scary or Not Scary experience?</label>
-            <div className={styles.btnGroup}>
-              {['Scary', 'Not Scary'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.scary === opt ? styles.optActive : ''}`}
-                  onClick={() => update('scary', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.questionGroup}>
-            <label>Do you consent to video recording?</label>
-            <div className={styles.btnGroup}>
-              {['Yes', 'No'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.videoConsent === opt ? styles.optActive : ''}`}
-                  onClick={() => update('videoConsent', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.questionGroup}>
-            <label>Do you consent to social media posting?</label>
-            <div className={styles.btnGroup}>
-              {['Yes', 'No'].map((opt) => (
-                <button
-                  key={opt}
-                  className={`${styles.optBtn} ${form.socialConsent === opt ? styles.optActive : ''}`}
-                  onClick={() => update('socialConsent', opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.navBtns}>
-            <button className={styles.backBtn} onClick={() => setStep(1)}>
-              <i className="bi bi-arrow-left"></i> Back
-            </button>
-            <button
-              className={styles.nextBtn}
-              onClick={() => setStep(3)}
-              disabled={!form.experience || !form.scary || !form.videoConsent || !form.socialConsent}
-            >
-              Next <i className="bi bi-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Step 3 — Signature */}
-      {step === 3 && (
-        <div className={styles.stepContent}>
-          <h4 className={styles.stepTitle}>Digital Signature</h4>
-          <p className={styles.signatureNote}>
-            By signing below, I agree to the terms and conditions of Enigma Escape Room.
+    <div className={styles.wrap}>
+      <form onSubmit={handleSubmit}>
+      <div className={styles.formCard}>
+        
+        {/* Header */}
+        <div className={styles.formHeader}>
+          <h2 className={styles.formTitle}>{isArabic?"الإقرار الرقمي والملاحظات":"Digital Waiver & Feedback"}</h2>
+          <p className={styles.formSub}>
+          {isArabic?"يرجى تعبئة جميع التفاصيل قبل تجربتك":"Please fill in all details before your experience"}
           </p>
-
-          <div className={styles.canvasWrapper}>
-            <canvas
-              ref={canvasRef}
-              width={500}
-              height={150}
-              className={styles.canvas}
-              onMouseDown={startDraw}
-              onMouseMove={draw}
-              onMouseUp={stopDraw}
-              onMouseLeave={stopDraw}
-              onTouchStart={startDraw}
-              onTouchMove={draw}
-              onTouchEnd={stopDraw}
-            />
-            <button className={styles.clearBtn} onClick={clearSignature}>
-              <i className="bi bi-arrow-counterclockwise"></i> Clear
-            </button>
-          </div>
-
-          <div className={styles.navBtns}>
-            <button className={styles.backBtn} onClick={() => setStep(2)}>
-              <i className="bi bi-arrow-left"></i> Back
-            </button>
-            <button
-              className={styles.submitBtn}
-              onClick={handleSubmit}
-              disabled={!hasSigned}
-            >
-              <i className="bi bi-check-lg"></i> Submit Waiver
-            </button>
-          </div>
         </div>
-      )}
+
+        <div className={styles.formBody}>
+
+          <h1 className={styles.personalDetail}>{isArabic?"التفاصيل الشخصية":"PERSONAL DETAILS"}</h1>
+          
+          {/* Participants Count */}
+          <div className={styles.participantsSelector}>
+            <span className={styles.participantsLabel}>
+              {isArabic?"كم عدد المشاركين؟":"How many participants?"}
+            </span>
+
+            <div className={styles.countRow}>
+              <select
+                className={styles.countSelect}
+                value={count}
+                onChange={(e) => setCount(Number(e.target.value))}
+              >
+                {[1,2,3,4,5,6,7,8].map(n => (
+                  <option key={n} value={n}>{n}</option>
+                ))}
+              </select>
+
+            </div>
+          </div>
+
+          {/* Participants */}
+          <div className={styles.participantsArea}>
+            {participants.map((num) => (
+              <div key={num} className={styles.participantBlock}>
+                
+                <div className={styles.participantHeader}>
+                  <div className={styles.participantNum}>{num}</div>
+                  <div className={styles.participantTitle}>
+                    {isArabic?"مشارك":"Participant"} {num}
+                  </div>
+                </div>
+
+                <div className={styles.row}>
+                  <div className={styles.field}>
+                    <label>{isArabic?"الاسم الكامل":"Full Name"}</label>
+                    <input
+  name={`name-${num-1}`}
+  type="text"
+  placeholder={isArabic?"أدخل الاسم الكامل":"Enter full name"}
+/>
+{errors[`name-${num-1}`] && (
+  <span className={styles.error}>{errors[`name-${num-1}`]}</span>
+)}
+                  </div>
+
+                  <div className={styles.field}>
+                    <label>{isArabic?"البريد الإلكتروني":"Email"}</label>
+                    <input
+  name={`email-${num-1}`}
+  type="email"
+  placeholder="email@example.com"
+/>
+{errors[`email-${num-1}`] && (
+  <span className={styles.error}>{errors[`email-${num-1}`]}</span>
+)}
+                  </div>
+                </div>
+
+                <div className={styles.row}>
+                  <div className={styles.field}>
+                    <label>{isArabic?"رقم الهاتف":"Phone Number"}</label>
+                    <input
+  name={`phone-${num-1}`}
+  type="tel"
+  placeholder="+966..."
+/>
+{errors[`phone-${num-1}`] && (
+  <span className={styles.error}>{errors[`phone-${num-1}`]}</span>
+)}
+                  </div>
+
+                  <div className={styles.field}>
+                    <label>{isArabic?"تاريخ الميلاد":"Date of Birth"}</label>
+                    <input style={{color:'white'}} type="date" />
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+          <hr className={styles.divider} />
+
+          {/* Game Section */}
+          <div className={styles.gameSection}>
+            <div className={styles.sectionTitle}>
+              {isArabic?"تفاصيل اللعبة":"Game Details"}
+            </div>
+
+            <div className={styles.row3}>
+              <div className={styles.field}>
+                <label>{isArabic?"غرفة":"Room"}</label>
+                <select>
+                  <option>{isArabic?"نوع الغرفة":"Room Type"}</option>
+                  <option>The Butcher</option>
+                  <option>Sherlock</option>
+                  <option>The Lost City</option>
+                  <option>VR Rooms</option>
+                  <option>Mindshield</option>
+                  <option>Outdoor Escape</option>
+                </select>
+              </div>
+
+              <div className={styles.field}>
+                <label>{isArabic?"اللغة":"Language"}</label>
+                <select>
+                  <option>{isArabic?"الإنجليزية":"English"}</option>
+                  <option>{isArabic?"العربية":"Arabic"}</option>
+                </select>
+              </div>
+
+              <div className={styles.field}>
+                <label>{isArabic?"هل هذه أول تجربة لك في غرفة الهروب؟":"First Escape Room?"}</label>
+                <select>
+                  <option>{isArabic?"نعم":"Yes"}</option>
+                  <option>{isArabic?"لا":"No"}</option>
+                </select>
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.field}>
+                <label>{isArabic?"مخيفة / غير مخيفة":"Scary / Not Scary"}</label>
+                <select>
+                  <option>{isArabic?"مخيفة":"Scary"}</option>
+                  <option>{isArabic?"غير مخيفة":"Not Scary"}</option>
+                </select>
+              </div>
+
+              <div className={styles.field}>
+                <label>{isArabic?"الموافقة على تسجيل الفيديو":"Video Recording Consent"}</label>
+                <select>
+                  <option>{isArabic?"نعم — أوافق":"Yes — I consent"}</option>
+                  <option>{isArabic?"لا — أرفض":"No — I decline"}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" className={styles.submitBtn}>
+            {isArabic?"إرسال الإقرار":"Submit Waiver"}
+          </button>
+
+        </div>
+      </div>
+      </form>
     </div>
   );
 }
