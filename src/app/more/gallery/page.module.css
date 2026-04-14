@@ -53,6 +53,9 @@
 /* Gallery Section */
 .gallerySection {
   background: url('/Rectangle4.svg') center/cover no-repeat;
+
+  padding-bottom: 160px;
+  margin-bottom: -100px;
 }
 
 /* Responsive */
@@ -72,4 +75,11 @@
 .heroBanner {
   min-height: 300px;
 }
+}
+
+
+@media (max-width:480px) {
+  .gallerySection{
+    padding-bottom: 100px;
+  }
 }

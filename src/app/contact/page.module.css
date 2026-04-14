@@ -53,8 +53,29 @@
 
 /* Contact Section */
 .contactSection {
-  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat;
+  /* background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat; */
+  background: url('/Layer 14.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 11;
   position: relative;
+}
+
+.contactSection{
+
+    margin-bottom: -100px;
+  }
+
+.contactSection::before{
+  content: '';
+  position: absolute;
+  top:0;
+  left:0;
+  bottom: 0px;
+  background: url('/Layer 14.png');
+  background-size: contain ;
+  background-repeat: no-repeat;
+
 }
 
 .contactSection > * {
@@ -161,7 +182,7 @@
 
   .contactSection{
     top: -100px;
-    margin-bottom: -100px;
+    margin-bottom: -200px;
   }
   .contactInfo {
     padding-right: 0;
@@ -226,4 +247,8 @@
   font-size: 2.5rem;
 }
 
+.contactSection{
+
+    margin-bottom: -180px;
+  }
 }

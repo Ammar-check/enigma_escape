@@ -344,6 +344,11 @@ font-weight: 700;
 }
 
 @media (max-width: 480px) {
+  
+   .aboutSection{
+    padding-bottom: 100px;
+   }
+
   .statsGrid {
     margin: -40px 0;
   }

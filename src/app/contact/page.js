@@ -42,7 +42,7 @@ export default function ContactPage() {
           <h1 className={styles.heroTitle}>{t('contactUs')}</h1>
         </motion.div>
         {/* <div><img src="/contactLayer.svg" style={{position:'absolute',top:'67vh',left:0,zIndex:999,width:'100%'}} alt="design layer" /></div> */}
-        <img src='/layer-homeDiv.svg' alt='svg layer' style={{width:'100%',position:'absolute',bottom:0}}/>
+        {/* <img src='/layer-homeDiv.svg' alt='svg layer' style={{width:'100%',position:'absolute',bottom:0}}/> */}
       </section>
 
       {/* Contact Section */}

@@ -182,6 +182,9 @@
 }
 
 @media (max-width: 480px) {
+   /* .footer{
+    margin-top: -30px;
+   } */
   .logoText img {
     width: 150px;
   }

@@ -13,6 +13,7 @@
   overflow: hidden;
   margin-top: -140px;
   padding-top: 140px;
+
 }
 
 .parallaxBg {
@@ -42,6 +43,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
+  
 }
 
 .heroTitle {
@@ -71,6 +73,7 @@
 .eventsSection {
   background: url('/Rectangle3.svg') center/cover no-repeat;
   position: relative;
+  padding-bottom: 150px;
 }
 
 .eventsGrid {
@@ -149,6 +152,10 @@
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 2.5rem;
+  }
+
+  .eventsSection{
+    margin-bottom: -120px;
   }
 
   .benefitsGrid {

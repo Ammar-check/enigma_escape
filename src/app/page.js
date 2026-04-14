@@ -75,23 +75,23 @@ export default function Home() {
         <div className="container">
           <motion.div
             className={styles.heroContent}
-            style={{ opacity: heroOpacity }}
-            initial={{ opacity: 0, x: isArabic ? 50 : -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            // style={{ opacity: heroOpacity }}
+            // initial={{ opacity: 0, x: isArabic ? 50 : -50 }}
+            // animate={{ opacity: 1, x: 0 }}
+            // transition={{ duration: 1, delay: 0.3 }}
           >
             {isArabic ? (
               <>
                 <motion.div
                   className={styles.heroImageWrapper}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 100,
-                    damping: 10,
-                    delay: 0.5
-                  }}
+                  // initial={{ opacity: 0, scale: 0.5 }}
+                  // animate={{ opacity: 1, scale: 1 }}
+                  // transition={{
+                  //   type: 'spring',
+                  //   stiffness: 100,
+                  //   damping: 10,
+                  //   delay: 0.5
+                  // }}
                 >
                   <Image
                     src="/60-Minutes_Arabic-2.png"
@@ -132,9 +132,9 @@ export default function Home() {
                   </motion.span>
                   <motion.span
                     className={styles.heroMinutes}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8, duration: 0.6 }}
+                    // initial={{ opacity: 0, x: -30 }}
+                    // animate={{ opacity: 1, x: 0 }}
+                    // transition={{ delay: 0.8, duration: 0.6 }}
                   >
                     {t('minutes')}
                   </motion.span>

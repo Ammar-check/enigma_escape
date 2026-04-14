@@ -334,6 +334,7 @@ font-family: "Montserrat";
   z-index: 30;
   /* background-attachment: fixed; */
   margin-top: -80px;
+  padding-top: 100px;
 }
 
 /* .contactSection::before {
