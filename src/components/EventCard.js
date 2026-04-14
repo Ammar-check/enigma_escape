@@ -44,7 +44,7 @@ export default function EventCard({ event }) {
         </div>
         <div className={styles.eventBookBtn} style={{background:'var(--gold-primary)',borderRadius:'50px'}}>
           <a 
-            href="https://bookeo.com/enigmaescapesa" 
+            href="" 
             target="_blank" 
             rel="noopener noreferrer"
             className="btn btn-gold"

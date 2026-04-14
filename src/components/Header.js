@@ -99,7 +99,7 @@ export default function Header() {
           <div className={styles.topRowContent}>
             {/* Book Now Button */}
             <a 
-              href="https://bookeo.com/enigmaescapesa" 
+              href="" 
               target="_blank" 
               rel="noopener noreferrer"
               className={`btn  ${styles.bookBtn} `}

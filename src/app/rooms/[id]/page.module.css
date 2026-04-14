@@ -49,8 +49,8 @@
 }
 
 .EnNameImg{
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 50px;
 
 }
 
@@ -65,7 +65,7 @@
 .roomTitleAr {
 margin: 0 auto;
   height: 100px;
-  width: 300px;
+  width: 200px;
   /* margin-top: 20px; */
   /* font-family: var(--font-arabic);
   font-size: 3rem;
@@ -420,6 +420,8 @@ margin: 0 auto;
   background: var(--dark-bg);
   position: relative;
   overflow: hidden;
+  margin-bottom: -100px;
+  padding-bottom: 150px;
 }
 
 .roomsPageSection::before {
@@ -510,6 +512,11 @@ margin: 0 auto;
   }
 }
 
+@media (max-width:480px) {
+  .roomsPageSection{
+    padding-bottom: 100px;
+  }
+}
 @media (max-width: 280px) {
   .hero {
     min-height: 42vh;

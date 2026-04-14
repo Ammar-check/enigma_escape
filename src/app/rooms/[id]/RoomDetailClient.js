@@ -133,7 +133,7 @@ const comingSoonVariants = {
             </motion.p>
 
             <motion.a
-              href={room.bookingUrl || 'https://bookeo.com/enigmaescapesa'}
+              href=""
               target="_blank"
               rel="noopener noreferrer"
               className={`btn btn-gold ${styles.bookBtn}`}
