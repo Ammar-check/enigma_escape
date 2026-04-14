@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './ReviewCard.module.css';
+import Image from 'next/image';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -31,7 +32,8 @@ export default function ReviewCard({ review }) {
           {isArabic ? review.textAr : review.textEn}
         </p>
         <div className={styles.reviewAuthor}>
-          <img
+          <Image
+            width={30} height={30}
             src={review.image}
             alt={review.author}
             className={styles.authorImage}

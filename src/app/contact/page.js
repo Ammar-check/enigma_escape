@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
+import Image from 'next/image';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -81,7 +82,7 @@ export default function ContactPage() {
                 </motion.div>
 
                 <motion.div className={styles.contactItem} variants={itemVariants}>
-                  <img style={{ transform: 'rotate(15deg)' }} src='/smartphone.svg' width={30} height={30} alt='smartphone icon' />
+                  <Image style={{ transform: 'rotate(15deg)' }} src='/smartphone.svg' width={30} height={30} alt='smartphone icon' />
                   <div>
                     <h5>{t('phone')}</h5>
                     <p>{contactInfo.phone}</p>
