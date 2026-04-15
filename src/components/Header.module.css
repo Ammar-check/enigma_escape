@@ -814,7 +814,7 @@ border-radius: 28px;
 @media (max-width: 480px) {
   .bookBtn {
     font-size: 0.65rem;
-    padding: 10px;
+    padding: 5px;
   }
 
   .logoWrapper img {

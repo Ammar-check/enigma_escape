@@ -4,3 +4,10 @@
     background: black;
     
 }
+
+
+@media (max-width:576px) {
+    .waiverSection{
+        padding-bottom: 100px;
+    }
+}

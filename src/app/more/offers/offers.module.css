@@ -97,7 +97,7 @@
 @media (max-width: 480px) {
   .offersPage {
     padding: 24px 12px;
-    min-height: 70vh;
+    min-height: 60vh;
   }
 
   .title {

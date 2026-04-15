@@ -287,229 +287,271 @@
 //   );
 // }
 
+"use client";
 
-
-'use client';
-
-import { useState } from 'react';
-import styles from './WaiverForm.module.css';
-import { useLanguage } from '@/context/LanguageContext';
+import { useState } from "react";
+import styles from "./WaiverForm.module.css";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function WaiverForm() {
   const [count, setCount] = useState(1);
   const [errors, setErrors] = useState({});
 
-
   const nameRegex = /^[A-Za-z\s]{3,}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^[0-9]{8,15}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]{8,15}$/;
 
-   const { t, isArabic } = useLanguage();
+  const { t, isArabic } = useLanguage();
   const participants = Array.from({ length: count }, (_, i) => i + 1);
 
   const validate = () => {
-  let newErrors = {};
+    let newErrors = {};
 
-  participants.forEach((_, index) => {
-    const name = document.getElementsByName(`name-${index}`)[0]?.value;
-    const email = document.getElementsByName(`email-${index}`)[0]?.value;
-    const phone = document.getElementsByName(`phone-${index}`)[0]?.value;
+    participants.forEach((_, index) => {
+      const name = document.getElementsByName(`name-${index}`)[0]?.value;
+      const email = document.getElementsByName(`email-${index}`)[0]?.value;
+      const phone = document.getElementsByName(`phone-${index}`)[0]?.value;
 
-    if (!nameRegex.test(name || '')) {
-      newErrors[`name-${index}`] = isArabic
-        ? 'الاسم غير صالح'
-        : 'Invalid name';
-    }
+      if (!nameRegex.test(name || "")) {
+        newErrors[`name-${index}`] = isArabic
+          ? "الاسم غير صالح"
+          : "Invalid name";
+      }
 
-    if (!emailRegex.test(email || '')) {
-      newErrors[`email-${index}`] = isArabic
-        ? 'بريد إلكتروني غير صالح'
-        : 'Invalid email';
-    }
+      if (!emailRegex.test(email || "")) {
+        newErrors[`email-${index}`] = isArabic
+          ? "بريد إلكتروني غير صالح"
+          : "Invalid email";
+      }
 
-    if (!phoneRegex.test(phone || '')) {
-      newErrors[`phone-${index}`] = isArabic
-        ? 'رقم هاتف غير صالح'
-        : 'Invalid phone';
-    }
-  });
+      if (!phoneRegex.test(phone || "")) {
+        newErrors[`phone-${index}`] = isArabic
+          ? "رقم هاتف غير صالح"
+          : "Invalid phone";
+      }
+    });
 
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
- 
- const handleSubmit = (e) => {
-  e.preventDefault();
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-  if (!validate()) return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  console.log("Form valid ✅");
-};
+    if (!validate()) return;
 
+    console.log("Form valid ✅");
+  };
 
   return (
-
     <div className={styles.wrap}>
       <form onSubmit={handleSubmit}>
-      <div className={styles.formCard}>
-        
-        {/* Header */}
-        <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>{isArabic?"الإقرار الرقمي والملاحظات":"Digital Waiver & Feedback"}</h2>
-          <p className={styles.formSub}>
-          {isArabic?"يرجى تعبئة جميع التفاصيل قبل تجربتك":"Please fill in all details before your experience"}
-          </p>
+        <div className={styles.formCard}>
+          {/* Header */}
+          <div className={styles.formHeader}>
+            <h2 className={styles.formTitle}>
+              {isArabic
+                ? "الإقرار الرقمي والملاحظات"
+                : "Digital Waiver & Feedback"}
+            </h2>
+            {/* <p className={styles.formSub}>
+              {isArabic
+                ? "يرجى تعبئة جميع التفاصيل قبل تجربتك"
+                : "Please fill in all details before your experience"}
+            </p> */}
+          </div>
+
+          <div className={styles.formBody}>
+            <h1 className={styles.personalDetail}>
+              {isArabic ? "التفاصيل الشخصية" : "PERSONAL DETAILS"}
+            </h1>
+
+            {/* Participants Count */}
+            <div className={styles.participantsSelector}>
+              <span className={styles.participantsLabel}>
+                {isArabic ? "كم عدد المشاركين؟" : "How many participants?"}
+              </span>
+
+              <div className={styles.countRow}>
+                <select
+                  className={styles.countSelect}
+                  value={count}
+                  onChange={(e) => setCount(Number(e.target.value))}
+                >
+                  {[1, 2, 3, 4, 5, 6].map((n) => (
+                    <option key={n} value={n}>
+                      {n}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Participants */}
+            <div className={styles.participantsArea}>
+              {participants.map((num) => (
+                <div key={num} className={styles.participantBlock}>
+                  <div className={styles.participantHeader}>
+                    <div className={styles.participantNum}>{num}</div>
+                    <div className={styles.participantTitle}>
+                      {isArabic ? "مشارك" : "Participant"} {num}
+                    </div>
+                  </div>
+
+                  <div className={styles.row}>
+                    <div className={styles.field}>
+                      <label>{isArabic ? "الاسم الكامل" : "Full Name"}</label>
+                      <input
+                        name={`name-${num - 1}`}
+                        type="text"
+                        placeholder={
+                          isArabic ? "أدخل الاسم الكامل" : "Enter full name"
+                        }
+                      />
+                      {errors[`name-${num - 1}`] && (
+                        <span className={styles.error}>
+                          {errors[`name-${num - 1}`]}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className={styles.field}>
+                      <label>{isArabic ? "البريد الإلكتروني" : "Email"}</label>
+                      <input
+                        name={`email-${num - 1}`}
+                        type="email"
+                        placeholder="email@example.com"
+                      />
+                      {errors[`email-${num - 1}`] && (
+                        <span className={styles.error}>
+                          {errors[`email-${num - 1}`]}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className={styles.row}>
+                    <div className={styles.field}>
+                      <label>{isArabic ? "رقم الهاتف" : "Phone Number"}</label>
+                      <input
+                        name={`phone-${num - 1}`}
+                        type="tel"
+                        placeholder="+966..."
+                      />
+                      {errors[`phone-${num - 1}`] && (
+                        <span className={styles.error}>
+                          {errors[`phone-${num - 1}`]}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className={styles.field}>
+                      <label>
+                        {isArabic ? "تاريخ الميلاد" : "Date of Birth"}
+                      </label>
+                      <input style={{color:'gray'}} className={styles.dateInput} type="date" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <hr className={styles.divider} />
+
+            {/* Game Section */}
+            <div className={styles.gameSection}>
+              <div className={styles.sectionTitle}>
+                {isArabic ? "تفاصيل اللعبة" : "Game Details"}
+              </div>
+
+              <div className={styles.row3}>
+                <div className={styles.field}>
+                  <label>{isArabic ? "غرفة" : "Room"}</label>
+                  <div className={styles.selectCont}>
+                  <select>
+                    <option>{isArabic ? "نوع الغرفة" : "Room Type"}</option>
+                    <option>{isArabic ? "!الجزار" : "The Butcher"}</option>
+                    <option>
+                      {isArabic ? "شيرلوك وجهاز يوم القيامة" : "Sherlock"}
+                    </option>
+                    <option>
+                      {isArabic ? "المدينة المفقودة" : "The Lost City"}
+                    </option>
+                    <option>
+                      {isArabic ? "غرف الواقع الافتراضي" : "VR Rooms"}
+                    </option>
+                    {/* <option>Mindshield</option> */}
+                    <option>
+                      {isArabic ? "مغامرات هروب خارجية" : "Outdoor Escape"}
+                    </option>
+                  </select>
+                  </div>
+                </div>
+
+                <div className={styles.field}>
+                  <label>{isArabic ? "اللغة" : "Language"}</label>
+                  <div className={styles.selectCont}>
+                  <select>
+                    <option>{isArabic ? "الإنجليزية" : "English"}</option>
+                    <option>{isArabic ? "العربية" : "Arabic"}</option>
+                  </select>
+                  </div>
+                </div>
+
+                <div className={styles.field}>
+                  <label>
+                    {isArabic
+                      ? "هل هذه أول تجربة لك في غرفة الهروب؟"
+                      : "First Escape Room?"}
+                  </label>
+                  <div className={styles.selectCont}>
+
+                  <select>
+                    <option>{isArabic ? "نعم" : "Yes"}</option>
+                    <option>{isArabic ? "لا" : "No"}</option>
+                  </select>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.field}>
+                  <label>
+                    {isArabic ? "مخيفة / غير مخيفة" : "Scary / Not Scary"}
+                  </label>
+                  <div className={styles.selectCont}>
+
+                  <select>
+                    <option>{isArabic ? "مخيفة" : "Scary"}</option>
+                    <option>{isArabic ? "غير مخيفة" : "Not Scary"}</option>
+                  </select>
+                  </div>
+                </div>
+
+                <div className={styles.field}>
+                  <label>
+                    {isArabic
+                      ? "الموافقة على تسجيل الفيديو"
+                      : "Video Recording Consent"}
+                  </label>
+                  <div className={styles.selectCont}>
+
+                  <select>
+                    <option>
+                      {isArabic ? "نعم — أوافق" : "Yes — I consent"}
+                    </option>
+                    <option>{isArabic ? "لا — أرفض" : "No — I decline"}</option>
+                  </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" className={styles.submitBtn}>
+              {isArabic ? "إرسال " : "Submit"}
+            </button>
+          </div>
         </div>
-
-        <div className={styles.formBody}>
-
-          <h1 className={styles.personalDetail}>{isArabic?"التفاصيل الشخصية":"PERSONAL DETAILS"}</h1>
-          
-          {/* Participants Count */}
-          <div className={styles.participantsSelector}>
-            <span className={styles.participantsLabel}>
-              {isArabic?"كم عدد المشاركين؟":"How many participants?"}
-            </span>
-
-            <div className={styles.countRow}>
-              <select
-                className={styles.countSelect}
-                value={count}
-                onChange={(e) => setCount(Number(e.target.value))}
-              >
-                {[1,2,3,4,5,6,7,8].map(n => (
-                  <option key={n} value={n}>{n}</option>
-                ))}
-              </select>
-
-            </div>
-          </div>
-
-          {/* Participants */}
-          <div className={styles.participantsArea}>
-            {participants.map((num) => (
-              <div key={num} className={styles.participantBlock}>
-                
-                <div className={styles.participantHeader}>
-                  <div className={styles.participantNum}>{num}</div>
-                  <div className={styles.participantTitle}>
-                    {isArabic?"مشارك":"Participant"} {num}
-                  </div>
-                </div>
-
-                <div className={styles.row}>
-                  <div className={styles.field}>
-                    <label>{isArabic?"الاسم الكامل":"Full Name"}</label>
-                    <input
-  name={`name-${num-1}`}
-  type="text"
-  placeholder={isArabic?"أدخل الاسم الكامل":"Enter full name"}
-/>
-{errors[`name-${num-1}`] && (
-  <span className={styles.error}>{errors[`name-${num-1}`]}</span>
-)}
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>{isArabic?"البريد الإلكتروني":"Email"}</label>
-                    <input
-  name={`email-${num-1}`}
-  type="email"
-  placeholder="email@example.com"
-/>
-{errors[`email-${num-1}`] && (
-  <span className={styles.error}>{errors[`email-${num-1}`]}</span>
-)}
-                  </div>
-                </div>
-
-                <div className={styles.row}>
-                  <div className={styles.field}>
-                    <label>{isArabic?"رقم الهاتف":"Phone Number"}</label>
-                    <input
-  name={`phone-${num-1}`}
-  type="tel"
-  placeholder="+966..."
-/>
-{errors[`phone-${num-1}`] && (
-  <span className={styles.error}>{errors[`phone-${num-1}`]}</span>
-)}
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>{isArabic?"تاريخ الميلاد":"Date of Birth"}</label>
-                    <input style={{color:'white'}} type="date" />
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-
-          <hr className={styles.divider} />
-
-          {/* Game Section */}
-          <div className={styles.gameSection}>
-            <div className={styles.sectionTitle}>
-              {isArabic?"تفاصيل اللعبة":"Game Details"}
-            </div>
-
-            <div className={styles.row3}>
-              <div className={styles.field}>
-                <label>{isArabic?"غرفة":"Room"}</label>
-                <select>
-                  <option>{isArabic?"نوع الغرفة":"Room Type"}</option>
-                  <option>The Butcher</option>
-                  <option>Sherlock</option>
-                  <option>The Lost City</option>
-                  <option>VR Rooms</option>
-                  <option>Mindshield</option>
-                  <option>Outdoor Escape</option>
-                </select>
-              </div>
-
-              <div className={styles.field}>
-                <label>{isArabic?"اللغة":"Language"}</label>
-                <select>
-                  <option>{isArabic?"الإنجليزية":"English"}</option>
-                  <option>{isArabic?"العربية":"Arabic"}</option>
-                </select>
-              </div>
-
-              <div className={styles.field}>
-                <label>{isArabic?"هل هذه أول تجربة لك في غرفة الهروب؟":"First Escape Room?"}</label>
-                <select>
-                  <option>{isArabic?"نعم":"Yes"}</option>
-                  <option>{isArabic?"لا":"No"}</option>
-                </select>
-              </div>
-            </div>
-
-            <div className={styles.row}>
-              <div className={styles.field}>
-                <label>{isArabic?"مخيفة / غير مخيفة":"Scary / Not Scary"}</label>
-                <select>
-                  <option>{isArabic?"مخيفة":"Scary"}</option>
-                  <option>{isArabic?"غير مخيفة":"Not Scary"}</option>
-                </select>
-              </div>
-
-              <div className={styles.field}>
-                <label>{isArabic?"الموافقة على تسجيل الفيديو":"Video Recording Consent"}</label>
-                <select>
-                  <option>{isArabic?"نعم — أوافق":"Yes — I consent"}</option>
-                  <option>{isArabic?"لا — أرفض":"No — I decline"}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <button type="submit" className={styles.submitBtn}>
-            {isArabic?"إرسال الإقرار":"Submit Waiver"}
-          </button>
-
-        </div>
-      </div>
       </form>
     </div>
   );

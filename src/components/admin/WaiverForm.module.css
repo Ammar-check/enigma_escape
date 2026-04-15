@@ -253,8 +253,8 @@ Nav buttons
 .formCard {
   max-width: 900px;
   margin: auto;
-  background: #0d0d0d;
-  border: 1px solid rgba(212,168,75,0.2);
+  background: #000;
+  /* border: 1px solid rgba(212,168,75,0.2); */
   /* border-radius: 12px; */
   overflow: hidden;
 }
@@ -269,7 +269,7 @@ Nav buttons
 
 .formHeader {
   padding: 32px 40px 24px;
-  border-bottom: 1px solid rgba(212,168,75,0.15);
+  /* border-bottom: 1px solid rgba(212,168,75,0.15); */
 }
 
 .formTitle {
@@ -300,6 +300,7 @@ Nav buttons
   color: var(--gold-primary);
   margin: 10px 0;
   font-family: "skygraze",sans-serif;
+  font-size: 1.5rem;
 }
 
 
@@ -309,12 +310,12 @@ Nav buttons
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-family: "skygraze",sans-serif;
   color: var(--gold-primary);
   letter-spacing: 3px;
   margin-bottom: 18px;
-  border-bottom: 1px solid rgba(212,168,75,0.15);
+  /* border-bottom: 1px solid rgba(212,168,75,0.15); */
   padding-bottom: 10px;
 }
 
@@ -340,19 +341,41 @@ Nav buttons
   display: flex;
   flex-direction: column;
   gap: 6px;
+ color: rgba(255,255,255,0.35);
+
 }
 .field label{
   color: #ffff;
 }
 
-.field input,
-.field select {
+.selectCont{
+   background: black;
+  border: 1px solid #ffff;
+  border-radius: 8px;
+  padding: 0px 5px;
+  padding-right: 10px;
+}
+
+
+
+.field input{
   background: black;
-  border: 1px solid rgba(212,168,75,0.2);
+  border: 1px solid #ffff;
   border-radius: 8px;
   padding: 11px 14px;
-  color: white;
+  color: gray;
+  width: 100%;
 }
+.field select {
+  background: black;
+  padding: 10px 14px;
+  border: none;
+  color: gray;
+  width: 100%;
+  outline: none;
+}
+
+
 
 .participantsSelector {
   margin-bottom: 28px;
@@ -379,6 +402,17 @@ Nav buttons
   background: black;
 }
 
+.dateInput {
+  background-color: black;
+  color: gray;
+}
+
+/* calendar icon white */
+.dateInput::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
 .participantsArea {
   margin-bottom: 20px;
   background-color: black;
@@ -386,7 +420,7 @@ Nav buttons
 
 .participantBlock {
   background: rgba(212,168,75,0.03);
-  border: 1px solid rgba(212,168,75,0.12);
+  /* border: 1px solid rgba(212,168,75,0.12); */
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 16px;
@@ -419,23 +453,24 @@ Nav buttons
 
 .submitBtn {
   width: 100%;
-  padding: 16px;
-  background: transparent;
-  color: var(--gold-primary);
-  border: 2px solid var(--gold-primary);
-  border-radius: 8px;
+  padding: 8px 16px;
+  background: var(--gold-primary);
+  color: white;
+  /* border: 2px solid var(--gold-primary); */
+  /* border-radius: 8px; */
+  border: none;
   font-weight: bold;
   cursor: pointer;
   transition: 0.5s ease;
 }
 
-.submitBtn:hover{
+/* .submitBtn:hover{
   color: black;
   background: var(--gold-primary);
    box-shadow:
     0 0 20px rgba(252,196,3,0.9),
     0 0 40px rgba(252,196,3,0.7);
-}
+} */
 
 /* ✅ RESPONSIVE */
 @media (max-width: 768px) {
@@ -458,5 +493,26 @@ Nav buttons
      .sectionTitle{
        font-size: 1.5rem;
      }
+}
+
+@media (max-width:340px) {
+    .field input{
+      /* padding: 7px 0px ; */
+      width: 100%;
+    }
+
+    .formTitle {
+   font-size: 1rem;
+}
+.formSub{
+  font-size: 0.7rem;
+}
+.personalDetail{
+  font-size: 1rem;
+}
+
+.sectionTitle{
+  font-size: 1rem;
+}
 }
 
