@@ -8,7 +8,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import RoomCard from '@/components/RoomCard';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
