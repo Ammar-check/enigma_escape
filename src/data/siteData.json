@@ -138,6 +138,17 @@
       "image": "https://picsum.photos/seed/fatima/100/100"
     }
   ],
+ "vrRoomCards" : [
+  { "id": 1, "image": "/vr-room/Dragon-Tower-Dramatic-1 (1).png", "players": "2-4" },
+  { "id": 2, "image": "/vr-room/Manor-of-Escape-Dramatic-1 (1).png", "players": "2-4" },
+  { "id": 3, "image": "/vr-room/Pirates-Plague-Dramatic-1 (1).png", "players": "2-4" },
+  { "id": 4, "image": "/vr-room/Runaway-Train-Screenshot-1 (1).png", "players": "2-4" },
+  { "id": 5, "image": "/vr-room/Depths-of-Osiris-Dramatic-1 (1).png", "players": "2-4" },
+  { "id": 6, "image": "/vr-room/Ninja-Trials-Screenshot-1 (1).png", "players": "2-4" },
+  { "id": 7, "image": "/vr-room/Time-Travel-Paradox-Dramatic-1 (1).png", "players": "2-4" },
+  { "id": 8, "image": "/vr-room/Space-Station-Tiberia-Dramatic-2 (1).png", "players": "2-4" },
+  { "id": 9, "image": "/vr-room/Laserbots-Dramatic-1 (1).png", "players": "2-4" }
+],
  "gallery": [
   { "id": 1, "src": "/gallary-img/gal-1.jpg" },
   { "id": 2, "src": "/gallary-img/gal-2.jpg" },

@@ -90,17 +90,17 @@ const comingSoonVariants = {
   },
 };
 
-const vrRoomCards = [
-  { id: 1, image: "/vr-room/Dragon-Tower-Dramatic-1 (1).png", players: "2-4" },
-  { id: 2, image: "/vr-room/Manor-of-Escape-Dramatic-1 (1).png", players: "2-4" },
-  { id: 3, image: "/vr-room/Pirates-Plague-Dramatic-1 (1).png", players: "2-4" },
-  { id: 4, image: "/vr-room/Runaway-Train-Screenshot-1 (1).png", players: "2-4" },
-  { id: 5, image: "/vr-room/Depths-of-Osiris-Dramatic-1 (1).png", players: "2-4" },
-  { id: 6, image: "/vr-room/Ninja-Trials-Screenshot-1 (1).png", players: "2-4" },
-  { id: 7, image: "/vr-room/Time-Travel-Paradox-Dramatic-1 (1).png", players: "2-4" },
-  { id: 8, image: "/vr-room/Space-Station-Tiberia-Dramatic-2 (1).png", players: "2-4" },
-  { id: 9, image: "/vr-room/Laserbots-Dramatic-1 (1).png", players: "2-4" },
-];
+// const vrRoomCards = [
+//   { id: 1, image: "/vr-room/Dragon-Tower-Dramatic-1 (1).png", players: "2-4" },
+//   { id: 2, image: "/vr-room/Manor-of-Escape-Dramatic-1 (1).png", players: "2-4" },
+//   { id: 3, image: "/vr-room/Pirates-Plague-Dramatic-1 (1).png", players: "2-4" },
+//   { id: 4, image: "/vr-room/Runaway-Train-Screenshot-1 (1).png", players: "2-4" },
+//   { id: 5, image: "/vr-room/Depths-of-Osiris-Dramatic-1 (1).png", players: "2-4" },
+//   { id: 6, image: "/vr-room/Ninja-Trials-Screenshot-1 (1).png", players: "2-4" },
+//   { id: 7, image: "/vr-room/Time-Travel-Paradox-Dramatic-1 (1).png", players: "2-4" },
+//   { id: 8, image: "/vr-room/Space-Station-Tiberia-Dramatic-2 (1).png", players: "2-4" },
+//   { id: 9, image: "/vr-room/Laserbots-Dramatic-1 (1).png", players: "2-4" },
+// ];
 
   return (
     <>
@@ -316,15 +316,16 @@ const vrRoomCards = [
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
             >
-              {vrRoomCards.map((card) => (
+              {siteData.vrRoomCards.map((card) => (
                 <motion.a
                   key={card.id}
-                  href={room.bookingUrl || siteData.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  // href={room.bookingUrl || siteData.bookingUrl}
+                  // target="_blank"
+                  // rel="noopener noreferrer"
                   className={styles.vrCard}
                   variants={comingSoonVariants}
                 >
+                  <Link href={`/vr/${card.id}`}>
                   <div className={styles.vrImageWrap}>
                     <Image
                       src={card.image}
@@ -362,6 +363,7 @@ const vrRoomCards = [
                   <div className={styles.vrCardOverlay}>
                     <span className={styles.vrBookButton}>BOOK<br />NOW</span>
                   </div>
+                  </Link>
                 </motion.a>
               ))}
             </motion.div>
