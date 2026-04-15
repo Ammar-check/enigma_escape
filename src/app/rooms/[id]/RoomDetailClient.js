@@ -90,6 +90,18 @@ const comingSoonVariants = {
   },
 };
 
+const vrRoomCards = [
+  { id: 1, image: "/vr-room/Dragon-Tower-Dramatic-1 (1).png", players: "2-4" },
+  { id: 2, image: "/vr-room/Manor-of-Escape-Dramatic-1 (1).png", players: "2-4" },
+  { id: 3, image: "/vr-room/Pirates-Plague-Dramatic-1 (1).png", players: "2-4" },
+  { id: 4, image: "/vr-room/Runaway-Train-Screenshot-1 (1).png", players: "2-4" },
+  { id: 5, image: "/vr-room/Depths-of-Osiris-Dramatic-1 (1).png", players: "2-4" },
+  { id: 6, image: "/vr-room/Ninja-Trials-Screenshot-1 (1).png", players: "2-4" },
+  { id: 7, image: "/vr-room/Time-Travel-Paradox-Dramatic-1 (1).png", players: "2-4" },
+  { id: 8, image: "/vr-room/Space-Station-Tiberia-Dramatic-2 (1).png", players: "2-4" },
+  { id: 9, image: "/vr-room/Laserbots-Dramatic-1 (1).png", players: "2-4" },
+];
+
   return (
     <>
       {/* Hero Section with Room Image */}
@@ -283,48 +295,117 @@ const comingSoonVariants = {
         </div>
       </section>
        
-      {/* Our Rooms Section */}
-      <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
-        <div className="container">
-         <motion.h2
-  className="section-title"
-  variants={titleVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  style={{ position: 'relative', zIndex: 2, fontFamily: 'Skygraze, sans-serif' }}
->
-  {t('ourRooms')}
-</motion.h2>
-          <motion.div
-            className={styles.roomsPageList}
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-          
-            {siteData.rooms.map((oroom, index) => (
-              room.id === oroom.id ? null : <RoomCard key={oroom.id} room={oroom} index={index} />
-            ))}
-
-            {/* Coming Soon Card */}
-            <motion.div
-              className={`${styles.roomPageCard} ${styles.comingSoonPage}`}
-              variants={comingSoonVariants}
+      {room.id === 4 ? (
+        <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
+          <div className="container">
+            <motion.h2
+              className={`section-title ${styles.vrRoomsTitle}`}
+              variants={titleVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              style={{ position: "relative", zIndex: 2, fontFamily: "Skygraze, sans-serif" }}
             >
-              <div className={styles.comingSoonPageContent}>
-                <h3>
-                  {t('comingSoon')}
-                </h3>
-              </div>
+              VR ROOM
+            </motion.h2>
+
+            <motion.div
+              className={styles.vrCardGrid}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {vrRoomCards.map((card) => (
+                <motion.a
+                  key={card.id}
+                  href={room.bookingUrl || siteData.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.vrCard}
+                  variants={comingSoonVariants}
+                >
+                  <div className={styles.vrImageWrap}>
+                    <Image
+                      src={card.image}
+                      alt={`VR room ${card.id}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 576px) 100vw, 33vw"
+                      className={styles.vrCardImage}
+                    />
+                  </div>
+
+                  <div className={styles.vrCardTopBadge}>
+                    <Image
+                      src="/vr-room/vr-glasses-300x300 (2).png"
+                      alt="VR glasses"
+                      width={54}
+                      height={54}
+                      className={styles.vrGlassesIcon}
+                    />
+                  </div>
+
+                  <div className={styles.vrPlayersTag}>
+                    <div className={styles.vrPlayersDefault}>
+                      <i className="bi bi-people"></i>
+                      <span>{card.players}</span>
+                    </div>
+                    <Image
+                      src="/vr-room/IMG_3046 (1) (1).png"
+                      alt={`Players ${card.players}`}
+                      width={74}
+                      height={50}
+                      className={styles.vrPlayersHoverImage}
+                    />
+                  </div>
+
+                  <div className={styles.vrCardOverlay}>
+                    <span className={styles.vrBookButton}>BOOK<br />NOW</span>
+                  </div>
+                </motion.a>
+              ))}
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
+      ) : (
+        <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
+          <div className="container">
+            <motion.h2
+              className="section-title"
+              variants={titleVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              style={{ position: 'relative', zIndex: 2, fontFamily: 'Skygraze, sans-serif' }}
+            >
+              {t('ourRooms')}
+            </motion.h2>
+            <motion.div
+              className={styles.roomsPageList}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+            >
+              {siteData.rooms.map((oroom, index) => (
+                room.id === oroom.id ? null : <RoomCard key={oroom.id} room={oroom} index={index} />
+              ))}
+
+              <motion.div
+                className={`${styles.roomPageCard} ${styles.comingSoonPage}`}
+                variants={comingSoonVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <div className={styles.comingSoonPageContent}>
+                  <h3>{t('comingSoon')}</h3>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
 
     </>

@@ -449,7 +449,7 @@ export default function WaiverForm() {
                       <label>
                         {isArabic ? "تاريخ الميلاد" : "Date of Birth"}
                       </label>
-                      <input style={{color:'gray'}} className={styles.dateInput} type="date" />
+                      <input className={styles.dateInput} type="date" />
                     </div>
                   </div>
                 </div>
