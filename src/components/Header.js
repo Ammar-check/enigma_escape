@@ -43,9 +43,9 @@ export default function Header() {
       href: '/events',
       label: t('privateEvents'),
       dropdown: [
-        { href: '/events', label: isArabic ? 'حفلات / أعياد الميلاد' : 'Parties / Birthday' },
-        { href: '/events', label: isArabic ? 'الشركات / بناء الفريق' : 'Corporate / Team Building' },
-        { href: '/events', label: isArabic ? 'الفعاليات الخارجية / الرحلات المدرسية' : 'External Events / School Trips' },
+        { href: '/eventPage/1', label: isArabic ? 'حفلات / أعياد الميلاد' : 'Parties / Birthday' },
+        { href: '/eventPage/2', label: isArabic ? 'الشركات / بناء الفريق' : 'Corporate / Team Building' },
+        { href: '/eventPage/3', label: isArabic ? 'الفعاليات الخارجية / الرحلات المدرسية' : 'External Events / School Trips' },
       ]
     },
     {

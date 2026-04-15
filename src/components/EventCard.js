@@ -29,6 +29,7 @@ export default function EventCard({ event }) {
   whileInView="visible"
   viewport={{ once: true, amount: 0.2 }}
 >
+   <Link href={`/eventPage/${event.id}`}>
       <div className={styles.eventImageWrapper}>
         <Image
           src={event.image}
@@ -53,6 +54,7 @@ export default function EventCard({ event }) {
           </a>
         </div>
       </div>
+      </Link>
     </motion.div>
   );
 }
