@@ -292,17 +292,24 @@
 import { useState } from "react";
 import styles from "./WaiverForm.module.css";
 import { useLanguage } from "@/context/LanguageContext";
+import { supabase } from "@/lib/supabase";
 
 export default function WaiverForm() {
   const [count, setCount] = useState(1);
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const nameRegex = /^[A-Za-z\s]{3,}$/;
+  // Allow any language, at least 3 characters
+  const nameRegex = /^.{3,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^[0-9]{8,15}$/;
+  // Reuse contact-style phone pattern: supports +966... etc
+  const phoneRegex =
+    /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
 
   const { t, isArabic } = useLanguage();
   const participants = Array.from({ length: count }, (_, i) => i + 1);
+  const today = new Date().toISOString().split("T")[0];
 
   const validate = () => {
     let newErrors = {};
@@ -312,19 +319,19 @@ export default function WaiverForm() {
       const email = document.getElementsByName(`email-${index}`)[0]?.value;
       const phone = document.getElementsByName(`phone-${index}`)[0]?.value;
 
-      if (!nameRegex.test(name || "")) {
+      if (!nameRegex.test((name || "").trim())) {
         newErrors[`name-${index}`] = isArabic
           ? "الاسم غير صالح"
           : "Invalid name";
       }
 
-      if (!emailRegex.test(email || "")) {
+      if ((email || "").trim() && !emailRegex.test((email || "").trim())) {
         newErrors[`email-${index}`] = isArabic
           ? "بريد إلكتروني غير صالح"
           : "Invalid email";
       }
 
-      if (!phoneRegex.test(phone || "")) {
+      if (!phoneRegex.test((phone || "").trim())) {
         newErrors[`phone-${index}`] = isArabic
           ? "رقم هاتف غير صالح"
           : "Invalid phone";
@@ -335,12 +342,83 @@ export default function WaiverForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formEl = e.currentTarget;
 
     if (!validate()) return;
 
-    console.log("Form valid ✅");
+    try {
+      setSubmitting(true);
+
+      const roomSelect = document.querySelector("select[name='room']");
+      const languageSelect = document.querySelector("select[name='language']");
+      const firstEscapeSelect = document.querySelector(
+        "select[name='firstEscape']"
+      );
+      const scarySelect = document.querySelector("select[name='scary']");
+      const videoConsentSelect = document.querySelector(
+        "select[name='videoConsent']")
+      ;
+
+      const room = roomSelect?.value || "";
+      const language = languageSelect?.value || (isArabic ? "ar" : "en");
+      const firstEscape = firstEscapeSelect?.value || "";
+      const scary = scarySelect?.value || "";
+      const videoConsent = videoConsentSelect?.value || "";
+
+      const now = new Date();
+      const date = now.toISOString().split("T")[0];
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      const participantData = participants.map((_, index) => {
+        const name =
+          document.getElementsByName(`name-${index}`)[0]?.value || "";
+        const email =
+          document.getElementsByName(`email-${index}`)[0]?.value || "";
+        const phone =
+          document.getElementsByName(`phone-${index}`)[0]?.value || "";
+        const birthday =
+          document.getElementsByName(`birthday-${index}`)?.[0]?.value || "";
+
+        return {
+          name,
+          email,
+          phone,
+          birthday,
+        };
+      });
+
+      const { error } = await supabase.from("waiver_forms").insert([
+        {
+          participants_count: count,
+          participants: participantData,
+          room,
+          language,
+          first_escape_room: firstEscape,
+          scary_preference: scary,
+          video_consent: videoConsent,
+        },
+      ]);
+      if (error) {
+        console.error("Supabase insert error", error);
+        alert("Something went wrong submitting the waiver. Please try again.");
+        return;
+      }
+
+      // Clear form and state after successful submit
+      formEl.reset();
+      setCount(1);
+      setErrors({});
+
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 4000);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -449,7 +527,12 @@ export default function WaiverForm() {
                       <label>
                         {isArabic ? "تاريخ الميلاد" : "Date of Birth"}
                       </label>
-                      <input className={styles.dateInput} type="date" />
+                      <input
+                        className={styles.dateInput}
+                        type="date"
+                        name={`birthday-${num - 1}`}
+                        max={today}
+                      />
                     </div>
                   </div>
                 </div>
@@ -468,7 +551,7 @@ export default function WaiverForm() {
                 <div className={styles.field}>
                   <label>{isArabic ? "غرفة" : "Room"}</label>
                   <div className={styles.selectCont}>
-                  <select>
+                  <select name="room">
                     <option>{isArabic ? "نوع الغرفة" : "Room Type"}</option>
                     <option>{isArabic ? "!الجزار" : "The Butcher"}</option>
                     <option>
@@ -491,7 +574,7 @@ export default function WaiverForm() {
                 <div className={styles.field}>
                   <label>{isArabic ? "اللغة" : "Language"}</label>
                   <div className={styles.selectCont}>
-                  <select>
+                  <select name="language">
                     <option>{isArabic ? "الإنجليزية" : "English"}</option>
                     <option>{isArabic ? "العربية" : "Arabic"}</option>
                   </select>
@@ -506,7 +589,7 @@ export default function WaiverForm() {
                   </label>
                   <div className={styles.selectCont}>
 
-                  <select>
+                  <select name="firstEscape">
                     <option>{isArabic ? "نعم" : "Yes"}</option>
                     <option>{isArabic ? "لا" : "No"}</option>
                   </select>
@@ -521,7 +604,7 @@ export default function WaiverForm() {
                   </label>
                   <div className={styles.selectCont}>
 
-                  <select>
+                  <select name="scary">
                     <option>{isArabic ? "مخيفة" : "Scary"}</option>
                     <option>{isArabic ? "غير مخيفة" : "Not Scary"}</option>
                   </select>
@@ -536,7 +619,7 @@ export default function WaiverForm() {
                   </label>
                   <div className={styles.selectCont}>
 
-                  <select>
+                  <select name="videoConsent">
                     <option>
                       {isArabic ? "نعم — أوافق" : "Yes — I consent"}
                     </option>
@@ -547,12 +630,26 @@ export default function WaiverForm() {
               </div>
             </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              {isArabic ? "إرسال " : "Submit"}
+            <button type="submit" className={styles.submitBtn} disabled={submitting}>
+              {submitting
+                ? isArabic
+                  ? "جاري الإرسال..."
+                  : "Submitting..."
+                : isArabic
+                ? "إرسال "
+                : "Submit"}
             </button>
           </div>
         </div>
       </form>
+
+      {success && (
+        <div className={styles.successToast}>
+          {isArabic
+            ? "تم إرسال الإقرار بنجاح!"
+            : "Waiver submitted successfully!"}
+        </div>
+      )}
     </div>
   );
 }

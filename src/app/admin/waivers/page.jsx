@@ -1,19 +1,60 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './page.module.css'
 import WaiverForm from '@/components/admin/WaiverForm';
-
-const dummyWaivers = [
-  { id: 1, name: 'Ahmed Al-Rashid', phone: '+966501234567', email: 'ahmed@email.com', room: 'Butcher', date: '2024-01-15', time: '2:00 PM', signed: true, videoConsent: true, language: 'ar' },
-  { id: 2, name: 'Sara Mohammed', phone: '+966507654321', email: 'sara@email.com', room: 'Sherlock', date: '2024-01-15', time: '3:30 PM', signed: true, videoConsent: false, language: 'ar' },
-  { id: 3, name: 'Khalid Ibrahim', phone: '+966512345678', email: 'khalid@email.com', room: 'Lost City', date: '2024-01-14', time: '11:00 AM', signed: true, videoConsent: true, language: 'en' },
-];
+import { supabase } from '@/lib/supabase';
 
 export default function WaiversPage() {
   const [showForm, setShowForm] = useState(false);
-  const [waivers, setWaivers] = useState(dummyWaivers);
+  const [waivers, setWaivers] = useState([]);
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchWaivers = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('waiver_forms')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (!error && data) {
+        setWaivers(
+          data.map((w) => {
+            const participants = Array.isArray(w.participants)
+              ? w.participants
+              : [];
+            const primary = participants[0] || {};
+
+            return {
+              id: w.id,
+              participants,
+              name: primary.name || '',
+              phone: primary.phone || '',
+              email: primary.email || '',
+              room: w.room || '',
+              date: w.created_at ? w.created_at.split('T')[0] : '',
+              time: w.created_at
+                ? new Date(w.created_at).toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })
+                : '',
+              language: w.language || 'en',
+              videoConsent:
+                typeof w.video_consent === 'boolean'
+                  ? w.video_consent
+                  : w.video_consent === 'Yes — I consent',
+            };
+          })
+        );
+      }
+      setLoading(false);
+    };
+
+    fetchWaivers();
+  }, []);
 
   const filtered = waivers.filter((w) =>
     w.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -26,18 +67,13 @@ export default function WaiversPage() {
   // };
 
   const handleNewWaiver = (data) => {
-  setWaivers(prev => {
-    const updated = [
+    setWaivers(prev => [
       { id: Date.now(), ...data, signed: true },
       ...prev
-    ];
-    console.log("UPDATED WAIVERS:", updated);
-    return updated;
-  });
-
-  setShowForm(false);
-  setSearch('');
-};
+    ]);
+    setShowForm(false);
+    setSearch('');
+  };
 
   return (
     <div className={styles.page}>
@@ -45,7 +81,9 @@ export default function WaiversPage() {
       <div className={styles.pageHeader}>
         <div>
           <h1 className={styles.pageTitle}>Waivers</h1>
-          <p className={styles.pageSub}>{waivers.length} total waivers</p>
+          <p className={styles.pageSub}>
+            {loading ? 'Loading waivers…' : `${waivers.length} total waivers`}
+          </p>
         </div>
         <button className={styles.newBtn} onClick={() => setShowForm(true)}>
           <i className="bi bi-plus-lg"></i> New Waiver
@@ -69,25 +107,63 @@ export default function WaiversPage() {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Customer</th>
+              <th>Participants</th>
               <th>Phone</th>
               <th>Room</th>
               <th>Date & Time</th>
               <th>Language</th>
               <th>Video Consent</th>
-              <th>Signed</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((w) => (
               <tr key={w.id} className={styles.tableRow}>
                 <td>
-                  <div className={styles.nameCell}>
-                    <div className={styles.avatar}>{w.name.charAt(0)}</div>
-                    <div>
-                      <div className={styles.name}>{w.name}</div>
-                      <div className={styles.muted}>{w.email}</div>
-                    </div>
+                  <div className={styles.participantsCell}>
+                    {Array.isArray(w.participants) && w.participants.length > 0 ? (
+                      w.participants.map((p, idx) => (
+                        <div key={idx} className={styles.participantItem}>
+                          <div className={styles.participantLabel}>
+                            {`Participant ${idx + 1}`}
+                          </div>
+                          <div className={styles.participantDetails}>
+                            <div className={styles.participantName}>
+                              <strong>{p.name || 'Unnamed'}</strong>
+                            </div>
+                            {p.email && (
+                              <div className={styles.participantMeta}>
+                                {p.email}
+                              </div>
+                            )}
+                            {p.phone && (
+                              <div className={styles.participantMeta}>
+                                {p.phone}
+                              </div>
+                            )}
+                            {p.birthday && (
+                              <div className={styles.participantMeta}>
+                                {p.birthday}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className={styles.participantItem}>
+                        <div className={styles.participantLabel}>Participant 1</div>
+                        <div className={styles.participantDetails}>
+                          <div className={styles.participantName}>
+                            <strong>{w.name || 'Unnamed'}</strong>
+                          </div>
+                          {w.email && (
+                            <div className={styles.participantMeta}>{w.email}</div>
+                          )}
+                          {w.phone && (
+                            <div className={styles.participantMeta}>{w.phone}</div>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </td>
                 <td className={styles.muted}>{w.phone}</td>
@@ -97,11 +173,6 @@ export default function WaiversPage() {
                 <td>
                   <span className={w.videoConsent ? styles.yes : styles.no}>
                     {w.videoConsent ? '✓ Yes' : '✗ No'}
-                  </span>
-                </td>
-                <td>
-                  <span className={styles.signed}>
-                    <i className="bi bi-pen-fill"></i> Signed
                   </span>
                 </td>
               </tr>
