@@ -1,5 +1,5 @@
 import siteData from '@/data/siteData.json';
-import VrDetailClient from './vrDetailClient';
+import VrDetailClient from './VrDetailClient';
 
 
 // Generate static params for all rooms
