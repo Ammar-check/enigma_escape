@@ -1,6 +1,661 @@
-.vrSec{
-    width: 100%;
-    height: 100vh;
-    margin-top: 100px;
+/* Hero Section */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: -140px;
+  padding-top: 140px;
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.4) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.roomTitle {
+    font-family: 'Reey';
+    margin: 60px auto;
+    font-size: 3rem;
 
 }
+
+[dir="rtl"] .roomTitle{
+    
+    font-family: 'Reey';
+}
+
+
+.roomTitleAr {
+margin: 0 auto;
+  font-size: 4rem;
+  font-family: 'Lava', sans-serif;
+}
+
+[dir="rtl"] .roomTitleAr{
+    
+    font-family: 'Lava', sans-serif;
+}
+
+.bookBtn {
+  font-size: 1.2rem;
+  padding: 10px 26px;
+  margin-top: 20px;
+  border:2px solid var(--gold-primary) !important;
+  color: #ffff !important;
+  /* border: none !important; */
+  font-weight: 700;
+  border-radius: 0px;
+}
+
+
+.bookBtn:hover {
+  background: var(--gold-light) !important;
+  color: #000000 !important;
+  transform: scale(1.05);
+  box-shadow: 0 5px 25px rgba(212, 168, 75, 0.6);
+}
+
+/* Details Section */
+.detailsSection {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 0 80px 0;
+  position: relative;
+}
+
+.detailsOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(10, 10, 10, 0.9) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  z-index: 0;
+}
+
+
+/* Description */
+.description {
+  margin-bottom: 50px;
+}
+
+.description p {
+  font-family: var(--font-english);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #ffffff;
+  text-align: justify;
+}
+
+[dir="rtl"] .description p {
+  font-family: var(--font-arabic);
+  text-align: right;
+}
+
+/* Room Info */
+.roomInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.infoItem > i {
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  margin-top: 5px;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font-family: var(--font-english);
+  font-size: 0.9rem;
+  color: #ffff;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.infoValue {
+  font-family: var(--font-english);
+  font-size: 1.2rem;
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+[dir="rtl"] .infoLabel,
+[dir="rtl"] .infoValue {
+  font-family: var(--font-arabic);
+}
+
+.difficultyStars {
+  color: var(--gold-primary);
+  font-size: 1rem;
+}
+
+.difficultyStars i {
+  margin-right: 3px;
+}
+
+/* Back Link */
+.backLink {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-english);
+  font-size: 1rem;
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+  color: var(--gold-light);
+  transform: translateX(-5px);
+}
+
+[dir="rtl"] .backBtn {
+  font-family: var(--font-arabic);
+}
+
+[dir="rtl"] .backBtn:hover {
+  transform: translateX(5px);
+}
+
+[dir="rtl"] .backBtn i {
+  transform: rotate(180deg);
+}
+
+/* Not Found */
+.notFound {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.notFound h1 {
+  font-family: var(--font-english);
+  font-size: 2rem;
+  color: var(--gold-primary);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hero {
+    min-height: 60vh;
+  }
+
+  .roomTitle {
+    font-size: 4rem;
+  }
+
+  .subtitle {
+    font-size: 1.6rem;
+  }
+
+  .roomTitleAr {
+    font-size: 2.5rem;
+  }
+
+  .roomInfo {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailsSection {
+    background-attachment: scroll;
+  }
+
+  .hero {
+    min-height: 50vh;
+    margin-top: -100px;
+    padding-top: 100px;
+  }
+
+  .roomTitle {
+    width: 400px;
+  font-size: 2rem;
+  /* margin-top: -200px; */
+}
+
+  .subtitle {
+    font-size: 0.7rem;
+  }
+
+  
+
+  .bookBtn {
+    font-size: 1rem;
+    padding: 12px 40px;
+  }
+
+  .description p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  [dir="rtl"] .description p {
+    text-align: right;
+  }
+
+  .roomInfo {
+    gap: 25px;
+  }
+
+  .infoItem > i {
+    font-size: 1.3rem;
+  }
+
+  .infoLabel {
+    font-size: 0.85rem;
+  }
+
+  .infoValue {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    min-height: 45vh;
+    margin-top: -90px;
+    padding-top: 90px;
+  }
+
+  .roomTitle {
+    font-size: 1.8rem;
+    margin-top: 100px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .roomTitleAr {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .bookBtn {
+    font-size: 0.9rem;
+    padding: 10px 30px;
+  }
+
+  .detailsSection {
+    padding: 40px 0 60px 0;
+  }
+
+  .warningLabel,
+  .warningText {
+    font-size: 1rem;
+  }
+
+  .description p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .roomInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .infoItem {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  
+
+  /* .subtitle {
+    font-size: 0.9rem;
+  } */
+
+  .roomTitleAr {
+     font-size: 2.4rem;
+  }
+
+  .heroContent {
+    padding: 30px 15px;
+  }
+
+  
+}
+
+/* Rooms Section with Background */
+.roomsPageSection {
+  background: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -100px;
+  padding-bottom: 150px;
+}
+
+.roomsPageSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/Contact-Us_Background-min-1.png') center/cover no-repeat fixed;
+  z-index: 0;
+}
+
+.card1 .roomName{
+  background-color: #ff6666;
+}
+
+.roomsPageSection > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.roomsPageList {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width:380px) {
+    .roomTitle{
+        font-size: 1.7rem;
+        width: 240px;
+    }
+}
+
+@media (max-width: 280px) {
+  .hero {
+    min-height: 42vh;
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+
+  .roomTitle,
+  .roomTitleAr {
+    width: 180px;
+    height: 56px;
+  }
+
+  .bookBtn {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+  }
+
+  .description p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .roomInfo {
+    gap: 14px;
+  }
+
+  .roomsPageList {
+    padding: 0 6px;
+  }
+}
+
+.vrRoomsTitle {
+  margin-bottom: 28px;
+}
+
+.vrCardGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.vrCard {
+  position: relative;
+  display: block;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  background: #090909;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.vrCard:hover {
+  transform: translateY(-5px);
+  border-color: transparent;
+  box-shadow: 0 0 30px rgba(212, 168, 75, 0.3);
+}
+
+.vrImageWrap {
+  position: relative;
+  aspect-ratio: 3 / 5;
+}
+
+.vrCardImage {
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.vrPlayersTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  min-width: auto;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  font-weight: 700;
+  line-height: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.vrPlayersDefault {
+  display: none;
+}
+
+.vrPlayersHoverImage {
+  display: block;
+  width: 62px;
+  height: auto;
+}
+
+.vrCardTopBadge {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  z-index: 3;
+  transform: translateX(-50%);
+  transition: opacity 0.25s ease;
+}
+
+.vrGlassesIcon {
+  width: 92px;
+  height: auto;
+  object-fit: contain;
+}
+
+.vrCardOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 15%, rgba(0, 0, 0, 0.5) 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.vrCard:hover .vrCardOverlay {
+  opacity: 1;
+}
+
+.vrCard:hover .vrCardImage {
+  transform: scale(1.08);
+}
+
+.vrCard:hover .vrCardTopBadge {
+  opacity: 0;
+}
+
+.vrCard:hover .vrPlayersDefault {
+  display: none;
+}
+
+.vrCard:hover .vrPlayersTag {
+  opacity: 1;
+}
+
+.vrCard:hover .vrPlayersHoverImage {
+  display: block;
+}
+
+.vrBookButton {
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  background: rgba(53, 79, 112, 0.82);
+  color: #ffffff;
+  padding: 9px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+}
+
+
+
+@media (max-width:778px) {
+  .roomsPageSection::before {
+    background-attachment: scroll;
+  }
+
+  .vrCardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width:480px) {
+  .roomsPageSection{
+    padding-bottom: 100px;
+  }
+
+  .vrCardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .vrPlayersTag {
+    top: 8px;
+  }
+
+  .vrPlayersHoverImage {
+    width: 52px;
+  }
+
+  .vrGlassesIcon {
+    width: 74px;
+  }
+
+  .vrBookButton {
+    font-size: 0.8rem;
+    padding: 7px 10px;
+  }
+}
+
+@media (hover: none) {
+  .vrCardOverlay {
+    opacity: 1;
+  }
+}
+@media (max-width: 280px) {
+  .hero {
+    min-height: 42vh;
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+
+  .roomTitle,
+  .roomTitleAr {
+    width: 180px;
+    height: 56px;
+  }
+
+  .bookBtn {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+  }
+
+  .description p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .roomInfo {
+    gap: 14px;
+  }
+
+  .roomsPageList {
+    padding: 0 6px;
+  }
+  }
