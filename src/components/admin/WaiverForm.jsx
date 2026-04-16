@@ -292,7 +292,6 @@
 import { useState } from "react";
 import styles from "./WaiverForm.module.css";
 import { useLanguage } from "@/context/LanguageContext";
-import { supabase } from "@/lib/supabase";
 
 export default function WaiverForm() {
   const [count, setCount] = useState(1);
@@ -391,6 +390,9 @@ export default function WaiverForm() {
           birthday,
         };
       });
+
+      // Load Supabase client dynamically so it only runs in the browser
+      const { supabase } = await import("@/lib/supabase");
 
       const { error } = await supabase.from("waiver_forms").insert([
         {

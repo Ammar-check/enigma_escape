@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import styles from './page.module.css'
 import WaiverForm from '@/components/admin/WaiverForm';
-import { supabase } from '@/lib/supabase';
 
 export default function WaiversPage() {
   const [showForm, setShowForm] = useState(false);
@@ -14,6 +13,10 @@ export default function WaiversPage() {
   useEffect(() => {
     const fetchWaivers = async () => {
       setLoading(true);
+
+      // Load Supabase client dynamically so it only runs in the browser
+      const { supabase } = await import("@/lib/supabase");
+
       const { data, error } = await supabase
         .from('waiver_forms')
         .select('*')
