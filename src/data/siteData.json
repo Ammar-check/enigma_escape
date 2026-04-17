@@ -220,6 +220,7 @@
     "descriptionEn": "A rogue scientist has stolen a time machine and stranded your team in the age of dinosaurs. Travel through time, survive prehistoric dangers, and stop him before he destroys the timeline forever.",
     "descriptionAr": "عالم شرير سرق آلة الزمن وترككم في عصر الديناصورات. سافروا عبر الزمن، ونجوا من الأخطار، وأوقفوه قبل أن يدمر خط الزمن بالكامل."
   }
+  
 ],
   "gallery": [
     { "id": 1, "src": "/gallary-img/gal-1.jpg" },
@@ -452,5 +453,84 @@
       "icon": "bi-globe"
     },
     { "platform": "tiktok", "url": "https://tiktok.com", "icon": "bi-tiktok" }
+  ],
+  "bookingCard": [
+    {
+      "id": 1,
+      "title": "The Butcher",
+      "image": "/book-img/butcher.jpg",
+      "info": "Six people have disappeared in the neighborhood in the last two months. Police are expecting a serial killer, but no one has a clue who it could be…until now! You are a team of private investigators who got a tip that the local butcher may be responsible. You decided to gather evidence on the Butcher…But all you remember is getting to his door…and now you’re trapped in a tiny wooden cell with a pounding headache trying to understand what’s going on! Now you need to escape before the butcher sends you to the slaughterhouse!",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 2,
+      "title": "The Lost City",
+      "image": "/book-img/lostcity.jpg",
+      "info": "Investigate the haunted manor and uncover the truth behind Count Malum.",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 3,
+      "title": "Sherlock",
+      "image": "/book-img/sherlock.jpg",
+      "info": "Find the cure to a deadly pirate curse before your crew turns into monsters.",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 4,
+      "title": "VR Room",
+      "image": "/book-img/vrroom.jpg",
+      "info": "Introducing the next level of escape room adventure Enigma new VR Room! This immersive experience combines the thrill of traditional escape rooms with cutting-edge virtual reality, bringing players into a world where anything is possible..",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 5,
+      "title": "Mind Shield",
+      "image": "/book-img/mindshield.jpg",
+      "info": "Repair the station and stop a meteor from destroying Earth.",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    }
   ]
+
+  
 }
+
+
+
+
+

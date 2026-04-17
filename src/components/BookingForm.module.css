@@ -1,0 +1,345 @@
+.bookContainer {
+width: 90%;
+margin: 0 auto;
+padding-bottom: 100px;
+z-index: 1;
+}
+
+@media (min-width: 768px) {
+.bookContainer {
+width: 85%;
+}
+}
+
+@media (min-width: 1200px) {
+.bookContainer {
+width: 80%;
+}
+}
+
+/* ================= TOP ROW ================= */
+
+.topRow {
+background: #1a1a1a;
+display: flex;
+flex-direction: column;
+gap: 12px;
+padding: 12px;
+padding-bottom: 5px;
+margin-bottom: 10px;
+}
+
+.filterBtn {
+display: flex;
+align-items: center;
+gap: 8px;
+background: transparent;
+border: 1px solid var(--gold-primary);
+color: var(--gold-primary);
+padding: 8px 16px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 14px;
+width: fit-content;
+}
+
+.filterBtn:hover {
+background: rgba(255, 215, 0, 0.08);
+}
+
+.filterPanel {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 0 14px;
+border: 0.5px solid transparent;
+border-radius: 8px;
+/* width: 100%; */
+width: fit-content;
+
+max-height: 0;
+overflow: hidden;
+opacity: 0;
+transform: translateY(-10px);
+
+transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.open {
+padding: 12px 14px;
+border: 0.5px solid #333;
+max-height: 200px;
+opacity: 1;
+transform: translateY(0);
+}
+
+.filterPanel select {
+background: #1a1a1a;
+outline: none;
+color: white;
+border: none;
+/* width: 100%; */
+}
+
+/* ================= BOTTOM ROW ================= */
+
+.bottomRow {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 8px;
+width: 100%;
+margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+.bottomRow {
+justify-content: flex-end;
+}
+}
+
+.dateBtn {
+display: flex;
+align-items: center;
+gap: 6px;
+background: #4a4a4a;
+border: none;
+color: #fff;
+padding: 6px 10px;
+cursor: pointer;
+font-size: 12px;
+font-weight: 500;
+transition: background 0.2s;
+white-space: nowrap;
+}
+
+.dateBtn:hover {
+background: #5a5a5a;
+}
+
+@media (min-width: 768px) {
+.dateBtn {
+font-size: 13px;
+padding: 8px 14px;
+}
+}
+
+.calIcon {
+font-size: 14px;
+}
+
+/* ================= CARDS ================= */
+
+.cardBody {
+display: grid;
+grid-template-columns: 1fr;
+gap: 12px;
+}
+
+@media (min-width: 600px) {
+.cardBody {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (min-width: 992px) {
+.cardBody {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+.card {
+min-height: 500px;
+border: 1px solid gray;
+display: flex;
+flex-direction: column;
+}
+
+/* ================= IMAGE ================= */
+
+.imgSec {
+width: 100%;
+height: 250px;
+position: relative;
+}
+
+@media (min-width: 768px) {
+.imgSec {
+height: 60%;
+}
+}
+
+.bookCardImg {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+/* ================= CARD DETAIL ================= */
+
+.cardDetail {
+padding: 20px;
+background: rgb(0 0 0 / 60%);
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 100px;
+}
+
+.heading {
+font-size: 14px;
+}
+
+@media (min-width: 768px) {
+.heading {
+font-size: 16px;
+}
+}
+
+.infoBtn {
+background: transparent;
+border: none;
+color: #fff;
+cursor: pointer;
+font-size: 18px;
+}
+
+/* ================= POPUP ================= */
+
+.infoOverlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+
+background: rgba(0, 0, 0, 0.7);
+display: flex;
+align-items: center;
+justify-content: center;
+
+z-index: 9999;
+}
+
+.infoPopup {
+width: 90vw;
+max-height: 80vh;
+background: #1a1a1a;
+border-radius: 12px;
+padding: 30px;
+color: white;
+position: relative;
+overflow-y: auto;
+
+transform: scale(0.9);
+opacity: 0;
+animation: popupIn 0.3s ease forwards;
+}
+
+@media (min-width: 768px) {
+.infoPopup {
+width: 70vw;
+height: 70vh;
+}
+}
+
+@keyframes popupIn {
+to {
+transform: scale(1);
+opacity: 1;
+}
+}
+
+.closeBtn {
+position: absolute;
+bottom: 20px;
+right: 20px;
+
+background: var(--gold-primary);
+border: none;
+color: black;
+padding: 8px 18px;
+border-radius: 6px;
+cursor: pointer;
+font-weight: 600;
+}
+
+/* ================= SLOTS ================= */
+
+.dateSec {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 5px;
+padding: 5px;
+}
+
+@media (min-width: 600px) {
+.dateSec {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+@media (min-width: 992px) {
+.dateSec {
+grid-template-columns: repeat(4, 1fr);
+}
+}
+
+.slotBtn {
+background: transparent;
+border: 1px solid gray;
+color: var(--gold-primary);
+font-size: 14px;
+padding: 6px;
+font-weight: 500;
+}
+
+@media (min-width: 768px) {
+.slotBtn {
+font-size: 1.1rem;
+}
+}
+
+.slots {
+color: #fff;
+font-size: 0.7rem;
+}
+
+/* ================= DATE BAR ================= */
+
+.dateBar {
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #000;
+border-radius: 8px;
+position: relative;
+}
+
+.navBtn {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: transparent;
+color: #fff;
+border: none;
+width: 32px;
+height: 32px;
+cursor: pointer;
+font-size: 30px;
+}
+
+.navBtn:first-of-type {
+left: 10px;
+}
+
+.navBtn:last-of-type {
+right: 10px;
+}
+
+.dateText {
+font-size: 14px;
+font-weight: 600;
+color: white;
+}
