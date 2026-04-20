@@ -289,7 +289,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./WaiverForm.module.css";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -298,6 +298,8 @@ export default function WaiverForm() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
+  const [termsChecked, setTermsChecked] = useState(false);
 
   // Allow any language, at least 3 characters
   const nameRegex = /^.{3,}$/;
@@ -309,6 +311,39 @@ export default function WaiverForm() {
   const { t, isArabic } = useLanguage();
   const participants = Array.from({ length: count }, (_, i) => i + 1);
   const today = new Date().toISOString().split("T")[0];
+
+  useEffect(() => {
+    const headerEl = document.querySelector("header");
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHeaderOpacity = headerEl?.style.opacity || "";
+    const previousHeaderVisibility = headerEl?.style.visibility || "";
+    const previousHeaderPointerEvents = headerEl?.style.pointerEvents || "";
+
+    if (!hasAcceptedTerms) {
+      document.body.style.overflow = "hidden";
+      if (headerEl) {
+        headerEl.style.opacity = "0";
+        headerEl.style.visibility = "hidden";
+        headerEl.style.pointerEvents = "none";
+      }
+    } else {
+      document.body.style.overflow = previousBodyOverflow;
+      if (headerEl) {
+        headerEl.style.opacity = previousHeaderOpacity;
+        headerEl.style.visibility = previousHeaderVisibility;
+        headerEl.style.pointerEvents = previousHeaderPointerEvents;
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      if (headerEl) {
+        headerEl.style.opacity = previousHeaderOpacity;
+        headerEl.style.visibility = previousHeaderVisibility;
+        headerEl.style.pointerEvents = previousHeaderPointerEvents;
+      }
+    };
+  }, [hasAcceptedTerms]);
 
   const validate = () => {
     let newErrors = {};
@@ -345,6 +380,7 @@ export default function WaiverForm() {
     e.preventDefault();
     const formEl = e.currentTarget;
 
+    if (!hasAcceptedTerms) return;
     if (!validate()) return;
 
     try {
@@ -426,13 +462,17 @@ export default function WaiverForm() {
   return (
     <div className={styles.wrap}>
       <form onSubmit={handleSubmit}>
-        <div className={styles.formCard}>
+        <div
+          className={`${styles.formCard} ${
+            !hasAcceptedTerms ? styles.formCardHiddenBehindPopup : ""
+          }`}
+        >
           {/* Header */}
           <div className={styles.formHeader}>
             <h2 className={styles.formTitle}>
               {isArabic
-                ? "الإقرار الرقمي والملاحظات"
-                : "Digital Waiver & Feedback"}
+                ? "الإقرار والتسجيل"
+                : "Waiver and Registration"}
             </h2>
             {/* <p className={styles.formSub}>
               {isArabic
@@ -458,7 +498,7 @@ export default function WaiverForm() {
                   value={count}
                   onChange={(e) => setCount(Number(e.target.value))}
                 >
-                  {[1, 2, 3, 4, 5, 6].map((n) => (
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
                     <option key={n} value={n}>
                       {n}
                     </option>
@@ -644,6 +684,77 @@ export default function WaiverForm() {
           </div>
         </div>
       </form>
+
+      {!hasAcceptedTerms && (
+        <div className={styles.termsOverlay}>
+          <div className={styles.termsModal}>
+            <h3 className={styles.termsTitle}>
+              {isArabic ? "الشروط والأحكام" : "Terms and Conditions"}
+            </h3>
+
+            <p className={styles.termsIntro}>
+              {isArabic
+                ? "يرجى قراءة الشروط والأحكام التالية والموافقة عليها قبل المتابعة:"
+                : "Please read and agree to the following terms and conditions before making your payment:"}
+            </p>
+
+            <ul className={styles.termsList}>
+              <li>
+                <strong>{isArabic ? "العناية بالممتلكات:" : "Property Care:"}</strong>{" "}
+                {isArabic
+                  ? "أوافق على التعامل مع جميع الأدوات والأثاث والأجهزة الكهربائية بعناية، وأتحمل مسؤولية أي أضرار متعمدة أو ناتجة عن سوء الاستخدام."
+                  : "I agree to treat all props, furniture, and electrical objects with care and that I will be liable for damages if I cause any damage willfully or due to misconduct."}
+              </li>
+              <li>
+                <strong>{isArabic ? "الأجهزة الإلكترونية:" : "Electronic Devices:"}</strong>{" "}
+                {isArabic
+                  ? "أفهم أن الهواتف المحمولة والكاميرات وأجهزة التسجيل ممنوعة منعًا باتًا داخل غرفة اللعب، وسيتم توفير خزائن لحفظ المتعلقات الشخصية."
+                  : "I understand that cell phones, cameras, and recording devices are strictly prohibited inside the game room and that lockers will be provided to store my personal belongings."}
+              </li>
+              <li>
+                <strong>{isArabic ? "مشاركة الأطفال:" : "Children's Participation:"}</strong>{" "}
+                {isArabic
+                  ? "أفهم أن الأطفال دون سن 10 سنوات يجب أن يكون معهم شخص بالغ واحد على الأقل في كل غرفة (ولا يُسمح لهم بدخول غرفة The Butcher)."
+                  : "I understand that children below 10 are required to have at least one adult per room (and not allowed in The Butcher room)."}
+              </li>
+              <li>
+                <strong>{isArabic ? "الطعام والمشروبات:" : "Food and Drinks:"}</strong>{" "}
+                {isArabic
+                  ? "أفهم أن الطعام والمشروبات ممنوعة داخل غرفة/غرف اللعب."
+                  : "I understand that food and drinks are prohibited inside the game room(s)."}
+              </li>
+              <li>
+                <strong>{isArabic ? "إخلاء المسؤولية:" : "Release of Liability:"}</strong>{" "}
+                {isArabic
+                  ? "أقر بأن مشاركتي في تجربة غرفة الهروب طوعية، وأتحمل جميع المخاطر المرتبطة بها. أُخلي مسؤولية Enigma Escape Games وملاكها وموظفيها ووكلائها من أي إصابة أو خسارة أو ضرر قد يحدث نتيجة مشاركتي. جميع المدفوعات غير قابلة للاسترداد. كما أوافق على الإفصاح عن أي حالة قلبية أو حمل لموظفي Enigma Escape Games."
+                  : "I acknowledge that I am participating in this escape room experience voluntarily and assume all risks associated with the experience. I release and hold harmless Enigma Escape Games, its owners, employees, and agents from any and all liability for any injury, loss, or damage that may occur as a result of my participation in the experience. Any payments made are NOT refundable. I also agree to declare any heart condition or pregnancy to the Enigma Escape Games Staff."}
+              </li>
+            </ul>
+
+            <label className={styles.termsCheckRow}>
+              <input
+                type="checkbox"
+                checked={termsChecked}
+                onChange={(e) => setTermsChecked(e.target.checked)}
+              />
+              <span>
+                {isArabic
+                  ? "لقد قرأت ووافقت على الشروط والأحكام."
+                  : "I have read and agree to the terms and conditions."}
+              </span>
+            </label>
+
+            <button
+              type="button"
+              className={styles.termsAgreeBtn}
+              disabled={!termsChecked}
+              onClick={() => setHasAcceptedTerms(true)}
+            >
+              {isArabic ? "موافقة ومتابعة" : "Agree and Continue"}
+            </button>
+          </div>
+        </div>
+      )}
 
       {success && (
         <div className={styles.successToast}>

@@ -266,6 +266,111 @@
   z-index: 60;
 }
 
+.termsOverlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 16px;
+  z-index: 120;
+}
+
+.termsModal {
+  width: min(860px, 100%);
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  background: linear-gradient(180deg, #0f1622 0%, #0a1019 100%);
+  border: 1px solid var(--waiver-border);
+  border-radius: 14px;
+  padding: clamp(18px, 2vw, 28px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  margin: 0 auto;
+}
+
+.termsTitle {
+  margin: 0 0 10px;
+  color: var(--gold-primary);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 700;
+}
+
+.termsIntro {
+  margin: 0 0 14px;
+  color: var(--waiver-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.termsList {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+  color: #dbe5f8;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+[dir="rtl"] .termsList {
+  padding-left: 0;
+  padding-right: 20px;
+}
+
+.termsCheckRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--waiver-text);
+  font-size: 0.92rem;
+}
+
+.termsCheckRow input {
+  margin-top: 2px;
+}
+
+.termsAgreeBtn {
+  margin-top: 14px;
+  min-height: 44px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #101010;
+  background: linear-gradient(180deg, var(--waiver-accent) 0%, #dbad00 100%);
+}
+
+.termsAgreeBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.formCardHiddenBehindPopup {
+  filter: blur(8px);
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .termsOverlay {
+    padding: 48px 12px;
+  }
+
+  .termsModal {
+    max-height: calc(100vh - 96px);
+    border-radius: 12px;
+  }
+}
+
 @media (max-width: 992px) {
   .row3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));

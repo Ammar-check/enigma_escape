@@ -460,18 +460,20 @@ margin: 0 auto;
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(260px, 260px));
+  justify-content: center;
   gap: 22px;
 }
 
 .vrCard {
   position: relative;
   display: block;
+  width: min(260px, 100%);
   border: 2px solid rgba(255, 255, 255, 0.65);
   background: #090909;
   overflow: hidden;
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
 }
 
 .vrCard:hover {
@@ -482,7 +484,8 @@ margin: 0 auto;
 
 .vrImageWrap {
   position: relative;
-  aspect-ratio: 3 / 5;
+  width: 100%;
+  height: 400px;
 }
 
 .vrCardImage {
@@ -541,13 +544,9 @@ margin: 0 auto;
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 15%, rgba(0, 0, 0, 0.5) 100%);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.vrCard:hover .vrCardOverlay {
+  background: rgba(0, 0, 0, 0.15);
   opacity: 1;
+  transition: opacity 0.25s ease, background 0.25s ease;
 }
 
 .vrCard:hover .vrCardImage {
@@ -581,6 +580,22 @@ margin: 0 auto;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.vrCard:hover .vrBookButton {
+  opacity: 1;
+}
+
+.vrCardGrid:hover .vrCard {
+  opacity: 0.45;
+  filter: blur(2px);
+}
+
+.vrCardGrid:hover .vrCard:hover {
+  opacity: 1;
+  filter: none;
 }
 
 .comingSoonPage {
@@ -650,7 +665,7 @@ margin: 0 auto;
   }
 
   .vrCardGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(260px, 260px));
     gap: 16px;
   }
 }
@@ -661,7 +676,7 @@ margin: 0 auto;
   }
 
   .vrCardGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(260px, 260px);
   }
 
   .vrPlayersTag {

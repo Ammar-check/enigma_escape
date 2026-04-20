@@ -143,7 +143,7 @@
     "id": 1,
     "nameEn":"Dragon Power",
     "nameAr": "برج التنين",
-    "image": "/vr-room/Dragon-Tower-Dramatic-1.png",
+    "image": "/vr-room/Dragon-Tower-Dramatic-1.jpg",
     "players": "2-4",
     "descriptionEn": "Once upon a time, a group of weary travelers stumbled upon a small coastal town. Tired from their long journey, they sought refuge at the local inn. Little did they know, the village was under the rule of a wicked alchemist who lived in isolation in his fortress, known as Dragon Tower. Though the alchemist protected the villagers from fearsome dragons, his price was steep every year, he would offer the dragons a sacrifice, sending thieves and murderers to the top of his tower to be devoured. This year, however, there were no criminals to offer, and the dragons are still hungry. The alchemist, desperate, accused the travelers of being foreign spies and sentenced them to death. Can these brave adventurers escape the clutches of Dragon Tower before the clock strikes six and the dragons return for their annual feast?",
     "descriptionAr": "في وقت من الزمان ، وصل مجموعة من المسافرين المتعبين إلى بلدة صغيرة على ساحل البحر. تعبوا من الرحلات الطويلة، فطلبوا الراحة في النزل المحلي. لكنهم لم يعلموا أن القرية كانت تحت حكم كيميائي شرير يعيش في عزلة داخل قلعته الصغيرة المعروفة باسم برج التنين. كان الكيميائي يحمي أهل القرية من التنانين المخيفة، لكن الثمن كان باهظًا فكل عام، كان يقدم التنانين قربانًا من اللصوص والقتلة، يرسلهم إلى قمة برجه ليُلتهموا. لكن للأسف، لم يكن هناك جريمة في القرية هذا العام، والتنانين لا تزال جائعة. فاتهم الكيميائي المسافرين بأنهم جواسيس أجانب وأصدر حكمًا بالإعدام عليهم. هل سيتمكن هؤلاء المغامرون الشجعان من الهروب من قبضة برج التنين قبل أن تدق الساعة السادسة ويعود التنانين من أجل قربانهم السنوي؟"
@@ -161,7 +161,7 @@
     "id": 3,
     "nameEn":"Pirates Plague",
     "nameAr": "طاعون القراصنة",
-    "image": "/vr-room/Pirates-Plague-Dramatic-3.png",
+    "image": "/vr-room/Pirates-Plague-Dramatic-3.jpg",
     "players": "2-4",
     "descriptionEn": "You and your pirate crew have been struck by a terrible curse, transforming you into fishmen! The only hope for a cure lies within a long-lost island temple but time is running out. Your crew has contracted the dreaded “Pelagic Plague,” a disease that slowly mutates its victims into fish-like monsters. Legend has it that the only cure is the heart of a kraken, but krakens are thought to be extinct! Rumors speak of a hidden temple on a remote island, said to house the last kraken heart. However, the waters surrounding the island are teeming with plague-stricken foes eager for a fight. Act quickly! Time is short, and if you fail, your crew’s transformation will become permanent, sealing your fate forever!",
     "descriptionAr": "أنت وطاقم قراصنتك قد أصبتم بلعنة رهيبة حوّلتكم إلى رجال من أسماك! الأمل الوحيد في العلاج من الممكن أن يكون داخل معبد جزيرة مفقودة لكن الوقت ينفد بسرعة. طاقمك مصاب بمرض رهيب يُدعى “طاعون القراصنة”، وهو مرض يُحوِّل ضحاياه تدريجيًا إلى وحوش تشبه الأسماك. تقول الأساطير إن العلاج الوحيد هو قلب كراكن، لكن الكراكن يُعتقد أنه انقرض! تشير الشائعات إلى وجود معبد مخفي على جزيرة نائية يحتوي على آخر قلب كراكن. لكن المياه المحيطة بالجزيرة مليئة بالمصابين بالطاعون الذين يبحثون عن قتال. أسرعوا! الوقت يداهمكم، وإذا فشلتم، ستصبح لعنة طاقمكم دائمة، ويحكم عليكم بالهلاك الأبدي!"
@@ -170,7 +170,7 @@
     "id": 4,
     "nameEn":"Runway Train",
     "nameAr": "القطار الهارب",
-    "image": "/vr-room/Runaway-Train-Screenshot-4.png",
+    "image": "/vr-room/Runaway-Train-Screenshot-4.jpg",
     "players": "2-4",
     "descriptionEn": "You and your fellow ninja trainees are about to complete your journey toward mastery. One final challenge stands in your way: climbing the thousand steps to the temple atop the mountain and conquering the trials that await. Only after overcoming these challenges and defeating your master will you earn the title of true ninja. Tonight, your destiny will be decided. But the path will be far from easy. Your master has set three trials before you: the Tests of Combat, Stealth, and Spirit. Master these skills, overcome the trials, and only then will you be ready to face your master and prove your worth.",
     "descriptionAr": "أنت وزملاؤك من المتدربين النينجا على وشك إكمال رحلتكم نحو الاحتراف. تحدي أخير يقف في طريقكم: صعود الألف درجة إلى المعبد على قمة الجبل وتجاوز التجارب التي تنتظركم هناك. فقط بعد التغلب على هذه التحديات وهزيمة معلمكم، ستنالون لقب النينجا الحقيقي. هذه الليلة، سيتم تحديد مصيركم. لكن الطريق لن يكون سهلاً. لقد وضع معلمكم أمامكم ثلاث تجارب: اختبارات القتال، والتخفي، والروح. بإتقان هذه المهارات وتجاوز التجارب، ستكونون مستعدين أخيرًا لمواجهة معلمكم وإثبات جدارتكم."
@@ -179,7 +179,7 @@
     "id": 5,
     "nameEn":"Depths of Osiris",
     "nameAr": "أعماق أوزوريس",
-    "image": "/vr-room/Depths-of-Osiris-Dramatic-5.png",
+    "image": "/vr-room/Depths-of-Osiris-Dramatic-5.jpg",
     "players": "2-4",
     "descriptionEn": "Plunge into the depths of the ocean with your team of explorers to uncover a long-lost ancient temple. Within its walls, you’ll discover vibrant marine life, hidden treasures, and some surprises that are far less welcoming! As the tranquil underwater world begins to turn against you, can you find a way to escape? Welcome to Oceanus five, the ultimate deep-sea exploration platform. After months of stalled progress, our team of underwater archaeologists has called on you and your crew of specialists to unlock the secrets of the lost temple of Osiris. Inside, the fabled artifact awaits, but the clock is ticking your oxygen is limited, and your wrist gauge will remind you how much time you have left. You’ll have two chances to contact the surface support vessel for assistance during your mission. Use them wisely. Good luck, aquanauts!",
     "descriptionAr": "عيش في أعماق المحيط مع فريقك من المستكشفين لاكتشاف معبد قديم مفقود منذ زمن. داخل جدرانه، ستجد حياة بحرية نابضة بالألوان وكنوزًا مخفية، ولكن أيضًا مفاجآت ليست بالترحيب نفسه! بينما يبدأ العالم الهادئ تحت الماء في الانقلاب ضدك، هل ستتمكن من العثور على طريق الهروب؟ مرحبًا بكم في أوشيانوس خمسة، منصة الاستكشاف تحت البحر الأكثر تقدمًا. بعد أشهر من التعثر، لجأ فريق علماء الآثار إليكم لكشف أسرار معبد أوزوريس. الأكسجين محدود والوقت ينفد، استخدموا فرص التواصل بحكمة. حظًا موفقًا!"
@@ -188,7 +188,7 @@
     "id": 6,
     "nameEn":"Ninga Trials",
     "nameAr": "متدربين النينجا",
-    "image": "/vr-room/Ninja-Trials-Screenshot-6.png",
+    "image": "/vr-room/Ninja-Trials-Screenshot-6.jpg",
     "players": "2-4",
     "descriptionEn": "Dr. Steem has escaped and is bent on revenge. He’s rigged his high-tech train with explosives and set it on a collision course with the town! Your mission is to catch up, board the train, defeat his steam-powered defenses, and stop him before disaster strikes.",
     "descriptionAr": "هرب الدكتور ستيم ويسعى للانتقام. لقد فخخ قطاره بالمتفجرات وأرسله نحو المدينة! مهمتكم هي اللحاق به، الصعود إلى القطار، تدمير دفاعاته، وإيقافه قبل وقوع الكارثة."
@@ -197,7 +197,7 @@
     "id": 7,
     "nameEn":"Time Travel Paradox",
     "nameAr": "مفارقة السفر عبر الزمن",
-    "image": "/vr-room/Time-Travel-Paradox-Dramatic-7.png",
+    "image": "/vr-room/Time-Travel-Paradox-Dramatic-7.jpg",
     "players": "2-4",
     "descriptionEn": "Rampaging robots have destroyed your ship, and rescue is minutes away! Fight off waves of laserbots using advanced weapons, gather energy crystals, and survive until help arrives in this fast-paced battle challenge.",
     "descriptionAr": "الروبوتات المهاجمة دمرت مركبتك، والمساعدة على بعد دقائق! قاتل موجات الروبوتات باستخدام أسلحة متطورة، واجمع الطاقة، واصمد حتى تصل النجدة في هذا التحدي السريع."
@@ -206,7 +206,7 @@
     "id": 8,
     "nameEn":"Space Station Tiberia",
     "nameAr": "محطة الفضاء تيبريا",
-    "image": "/vr-room/Space-Station-Tiberia-Dramatic-8.png",
+    "image": "/vr-room/Space-Station-Tiberia-Dramatic-8.jpg",
     "players": "2-4",
     "descriptionEn": "Space Station Tiberia is humanity’s last defense against a planet-destroying meteor. After a radiation storm, systems have failed. Repair the station and activate the defense system before Earth is wiped out.",
     "descriptionAr": "محطة تيبريا هي خط الدفاع الأخير ضد نيزك مدمر. بعد عاصفة إشعاعية تعطلت الأنظمة. أصلحوا المحطة وفعّلوا نظام الدفاع قبل أن تُدمر الأرض."
@@ -215,11 +215,12 @@
     "id": 9,
     "nameEn":"Lasorbots",
     "nameAr": "الروبوتات المهاجمة",
-    "image": "/vr-room/Laserbots-Dramatic-9.png",
+    "image": "/vr-room/Laserbots-Dramatic-9.jpg",
     "players": "2-4",
     "descriptionEn": "A rogue scientist has stolen a time machine and stranded your team in the age of dinosaurs. Travel through time, survive prehistoric dangers, and stop him before he destroys the timeline forever.",
     "descriptionAr": "عالم شرير سرق آلة الزمن وترككم في عصر الديناصورات. سافروا عبر الزمن، ونجوا من الأخطار، وأوقفوه قبل أن يدمر خط الزمن بالكامل."
   }
+  
 ],
   "gallery": [
     { "id": 1, "src": "/gallary-img/gal-1.jpg" },
@@ -452,5 +453,84 @@
       "icon": "bi-globe"
     },
     { "platform": "tiktok", "url": "https://tiktok.com", "icon": "bi-tiktok" }
+  ],
+  "bookingCard": [
+    {
+      "id": 1,
+      "title": "The Butcher",
+      "image": "/book-img/butcher.jpg",
+      "info": "Six people have disappeared in the neighborhood in the last two months. Police are expecting a serial killer, but no one has a clue who it could be…until now! You are a team of private investigators who got a tip that the local butcher may be responsible. You decided to gather evidence on the Butcher…But all you remember is getting to his door…and now you’re trapped in a tiny wooden cell with a pounding headache trying to understand what’s going on! Now you need to escape before the butcher sends you to the slaughterhouse!",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 2,
+      "title": "The Lost City",
+      "image": "/book-img/lostcity.jpg",
+      "info": "Investigate the haunted manor and uncover the truth behind Count Malum.",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 3,
+      "title": "Sherlock",
+      "image": "/book-img/sherlock.jpg",
+      "info": "Find the cure to a deadly pirate curse before your crew turns into monsters.",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 4,
+      "title": "VR Room",
+      "image": "/book-img/vrroom.jpg",
+      "info": "Introducing the next level of escape room adventure Enigma new VR Room! This immersive experience combines the thrill of traditional escape rooms with cutting-edge virtual reality, bringing players into a world where anything is possible..",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    },
+    {
+      "id": 5,
+      "title": "Mind Shield",
+      "image": "/book-img/mindshield.jpg",
+      "info": "Repair the station and stop a meteor from destroying Earth.",
+      "availability": {
+    "2026-04-17": ["1:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-18": ["12:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-19": ["6:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-20": ["10:00", "12:00", "15:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-21": ["11:00", "14:00","1:00", "12:00", "15:00","1:00"],
+    "2026-04-22": ["09:00", "13:00", "18:00","1:00", "12:00", "15:00","1:00"]
+  }
+    }
   ]
+
+  
 }
+
+
+
+
+
