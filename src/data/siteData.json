@@ -141,7 +141,7 @@
   "vrRoomCards": [
   {
     "id": 1,
-    "nameEn":"Dragon Power",
+    "nameEn":"Dragon Tower",
     "nameAr": "برج التنين",
     "image": "/vr-room/Dragon-Tower-Dramatic-1.jpg",
     "players": "2-4",
@@ -186,7 +186,7 @@
   },
   {
     "id": 6,
-    "nameEn":"Ninga Trials",
+    "nameEn":"Ninja Trials",
     "nameAr": "متدربين النينجا",
     "image": "/vr-room/Ninja-Trials-Screenshot-6.jpg",
     "players": "2-4",

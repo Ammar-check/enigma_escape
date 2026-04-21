@@ -112,7 +112,7 @@ export default function RoomDetailClient({ room }) {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              style={{ color: room.color }}
+              style={{ color: '#ffd700' }}
             >
               {room.nameEn}
             </motion.h1>

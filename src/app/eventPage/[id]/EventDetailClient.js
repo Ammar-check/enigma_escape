@@ -1,11 +1,17 @@
 "use client"
 
 import { useLanguage } from '@/context/LanguageContext'
+import siteData from '@/data/siteData.json'
 import styles from './EventDetailClient.module.css'
 
 const EventDetailClient = () => {
 
   const { t, isArabic } = useLanguage();
+  const formatArabicDigits = (value) =>
+    value.replace(/\d/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[Number(digit)]);
+  const displayPhone = isArabic
+    ? formatArabicDigits(siteData.contactInfo.phone)
+    : siteData.contactInfo.phone;
 
   return (
     <section className={styles.eventPageSec}>
@@ -16,7 +22,7 @@ const EventDetailClient = () => {
 
         <div className={styles.eventContact}>
             <span style={{fontWeight:'bold',fontSize:'1.5rem'}}>{isArabic?"تواصل معنا على":"Contact us at"}</span>
-            <h1 className={styles.contactNum}>+966 58 386 3748</h1>
+            <h1 className={styles.contactNum}>{displayPhone}</h1>
             <p className={styles.para}>{isArabic?"للمزيد من التفاصيل أو لطلب عرض سعر مخصص لفعاليتك القادمة":"for more details or to request a customized quotation for your next event."}</p>
         </div>
         </div>

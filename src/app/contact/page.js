@@ -29,6 +29,8 @@ const itemVariants = {
 export default function ContactPage() {
   const { t, isArabic } = useLanguage();
   const { contactInfo, contactForm } = siteData;
+  const formatArabicDigits = (value) =>
+    value.replace(/\d/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[Number(digit)]);
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -132,7 +134,7 @@ export default function ContactPage() {
                   <Image style={{ transform: 'rotate(15deg)' }} src='/smartphone.svg' width={30} height={30} alt='smartphone icon' />
                   <div>
                     <h5>{t('phone')}</h5>
-                    <p>{contactInfo.phone}</p>
+                    <p>{isArabic ? formatArabicDigits(contactInfo.phone) : contactInfo.phone}</p>
                   </div>
                 </motion.div>
 

@@ -51,6 +51,8 @@ const comingSoonVariants = {
 
 export default function Home() {
   const { t, isArabic } = useLanguage();
+  const formatArabicDigits = (value) =>
+    value.replace(/\d/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[Number(digit)]);
   const heroRef = useRef(null);
   const contactRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -350,7 +352,7 @@ export default function Home() {
                   <Image style={{ transform: 'rotate(15deg)' }} src='/smartphone.svg' width={30} height={30} alt='smartphone icon' />
                   <div>
                     <h5>{t('phone')}</h5>
-                    <p>{contactInfo.phone}</p>
+                    <p>{isArabic ? formatArabicDigits(contactInfo.phone) : contactInfo.phone}</p>
                   </div>
                 </motion.div>
 
