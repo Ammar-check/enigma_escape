@@ -76,7 +76,7 @@ margin: 0 auto;
 .bookBtn {
   font-size: 1.2rem;
   padding: 10px 26px;
-  margin-top: 20px;
+  margin-top: 50px;
   border:2px solid var(--gold-primary) !important;
   color: #ffff !important;
   /* border: none !important; */
