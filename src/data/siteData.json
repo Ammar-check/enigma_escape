@@ -64,7 +64,7 @@
       "nameEn": "/vr-rooms-original.png",
       "nameAr": "/alarab (1).png",
       "image": "/New-Project-6.png",
-      "players": "2-6",
+      "players": "4",
       "duration": "60",
       "hasLivePerformers": false,
       "genre": null,
@@ -82,7 +82,7 @@
       "nameAr": "/outdoorArabic.png",
       "image": "/Rounded-Rectangle-3-copy.svg",
       "players": "2-6",
-      "duration": "60",
+      "duration": "75",
       "hasLivePerformers": false,
       "genre": null,
       "difficulty": null,
@@ -97,45 +97,371 @@
   "reviews": [
     {
       "id": 1,
-      "textEn": "I have had a wonderful time at ENIGMA ESCAPE GAMES it was amazing and loved their treatment please give me free tickets.",
-      "textAr": "لقد قضيت وقتاً رائعاً في إنجما لغرف الهروب، كان مذهلاً وأحببت معاملتهم.",
-      "author": "Chris Wood",
-      "image": "https://picsum.photos/seed/chris/100/100"
+      "textEn": "Best escape room in khobar. Most involving and intriguing! 100% recommend.",
+      "textAr": "أفضل غرفة هروب في الخبر. تجربة مشوقة وممتعة جدًا! أنصح بها 100%.",
+      "author": "Farhan",
+      "image": "https://ui-avatars.com/api/?name=Farhan&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
     },
     {
       "id": 2,
-      "textEn": "Amazing stuff keep going",
-      "textAr": "أشياء مذهلة، استمروا",
-      "author": "Stephan Smith",
-      "image": "https://picsum.photos/seed/stephan/100/100"
+      "textEn": "It's an amazing experience! I hope everyone gives the game a chance to enjoy it immensely. Well done to them, and I hope they have even better things coming next.",
+      "textAr": "تجربيه عجيبه اتمنى من الكل انه يعطي اللعبه فرصه ممتعه لدرجه عاااليه ويعطيهم العافيه والقادم افضل عندهم",
+      "author": "ARTHUR MORGEN",
+      "image": "https://ui-avatars.com/api/?name=Arthur+Morgen&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
     },
     {
       "id": 3,
-      "textEn": "I love your work. Keep going!",
-      "textAr": "أحب عملكم. استمروا!",
-      "author": "David Biln",
-      "image": "https://picsum.photos/seed/david/100/100"
+      "textEn": "It was really amazing and I visited a lot but this was the best one of them.",
+      "textAr": "كانت تجربة رائعة جدًا، وقد زرت أماكن كثيرة لكن هذا كان الأفضل بينها.",
+      "author": "Abdullah Aljamaan",
+      "image": "https://ui-avatars.com/api/?name=Abdullah+Aljamaan&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
     },
     {
       "id": 4,
-      "textEn": "Best escape room experience in Saudi Arabia! The puzzles were challenging but fair, and the atmosphere was incredible.",
-      "textAr": "أفضل تجربة غرفة هروب في المملكة العربية السعودية! كانت الألغاز صعبة ولكن عادلة، والأجواء كانت لا تصدق.",
-      "author": "Sarah Ahmed",
-      "image": "https://picsum.photos/seed/sarah/100/100"
+      "textEn": "جربنا غرفة butcher كانت تجربه جميله حبيت تنوع الألغاز ومستوياتها. حبيت كيف الألغاز تخلينا غصب نتعاون حتى لو كل واحد فينا ضايع. وإثاره الرعب بين فتره وفتره على قد ما يوترنا على ما قد ما يخلينا نركز اكثر عشان نطلع بسرعه. شكرا مره وان شاء الله نرجع في مغامره جديده. وبس عندي ملاحظه عالتكييف كان كتمه بزياده وحر.",
+      "textAr": "جربنا غرفة butcher كانت تجربه جميله حبيت تنوع الألغاز ومستوياتها. حبيت كيف الألغاز تخلينا غصب نتعاون حتى لو كل واحد فينا ضايع. وإثاره الرعب بين فتره وفتره على قد ما يوترنا على ما قد ما يخلينا نركز اكثر عشان نطلع بسرعه. شكرا مره وان شاء الله نرجع في مغامره جديده. وبس عندي ملاحظه عالتكييف كان كتمه بزياده وحر.",
+      "author": "Asoom",
+      "image": "https://ui-avatars.com/api/?name=Asoom&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
     },
     {
       "id": 5,
-      "textEn": "Our team building event was a huge success! The staff was professional and the rooms were well-designed.",
-      "textAr": "كان حدث بناء الفريق لدينا ناجحاً للغاية! كان الموظفون محترفين والغرف مصممة بشكل جيد.",
-      "author": "Mohammed Ali",
-      "image": "https://picsum.photos/seed/mohammed/100/100"
+      "textEn": "Very nice experience and great customer service, one of the best escape rooms in KSA.",
+      "textAr": "تجربة جميلة جدًا وخدمة عملاء ممتازة، ومن أفضل غرف الهروب في السعودية.",
+      "author": "mkh36",
+      "image": "https://ui-avatars.com/api/?name=mkh36&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
     },
     {
       "id": 6,
-      "textEn": "The Butcher room was terrifying! Exactly what we wanted. Will definitely come back for more.",
-      "textAr": "غرفة الجزار كانت مرعبة! بالضبط ما أردناه. سنعود بالتأكيد لمزيد.",
-      "author": "Fatima Hassan",
-      "image": "https://picsum.photos/seed/fatima/100/100"
+      "textEn": "والله تجربه رهيبه وجامده وانصح الجميع يجرب خاصتا الجزار",
+      "textAr": "والله تجربه رهيبه وجامده وانصح الجميع يجرب خاصتا الجزار",
+      "author": "Hani Aljalal",
+      "image": "https://ui-avatars.com/api/?name=Hani+Aljalal&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 7,
+      "textEn": "Excellent and special experience with the family. Very friendly and professional staff. Totally recommend the place.",
+      "textAr": "تجربة ممتازة ومميزة مع العائلة. الطاقم ودود واحترافي جدًا. أوصي بالمكان بشدة.",
+      "author": "Mohammed Alhussain",
+      "image": "https://ui-avatars.com/api/?name=Mohammed+Alhussain&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 8,
+      "textEn": "من افضل اماكن الاسكيب روم الي دخلتها و الطاقم متعاون",
+      "textAr": "من افضل اماكن الاسكيب روم الي دخلتها و الطاقم متعاون",
+      "author": "Turki 171",
+      "image": "https://ui-avatars.com/api/?name=Turki+171&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 9,
+      "textEn": "Very nice. We went to The butcher, it was very suspenseful but very fun. The place is clean and well organized and the staff are very friendly. Great experience overall.",
+      "textAr": "جميلة جدًا. دخلنا غرفة الجزار وكانت مليئة بالحماس لكنها ممتعة جدًا. المكان نظيف ومنظم والطاقم ودود للغاية. تجربة رائعة بشكل عام.",
+      "author": "Nehad Aldossary",
+      "image": "https://ui-avatars.com/api/?name=Nehad+Aldossary&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 10,
+      "textEn": "اول زياره لي وابداً ماندمت ان جيت هالمكان. لعبنا لعبة الجزار وكانت تجربة رعب وتحقيق ألغاز في قمة الروعة. كمية الضحك والتشويق كانت شي ثاني، والموظفات قمة في الأخلاق والرقي. قررت أرجع وأختم كل الألعاب. شكرًا لكم على تجربة ما تنسى.",
+      "textAr": "اول زياره لي وابداً ماندمت ان جيت هالمكان. لعبنا لعبة الجزار وكانت تجربة رعب وتحقيق ألغاز في قمة الروعة. كمية الضحك والتشويق كانت شي ثاني، والموظفات قمة في الأخلاق والرقي. قررت أرجع وأختم كل الألعاب. شكرًا لكم على تجربة ما تنسى.",
+      "author": "Fatimah",
+      "image": "https://ui-avatars.com/api/?name=Fatimah&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 11,
+      "textEn": "it was an amazing experience I had so much funn",
+      "textAr": "كانت تجربة رائعة جدًا واستمتعت كثيرًا.",
+      "author": "Lena Ghamdi",
+      "image": "https://ui-avatars.com/api/?name=Lena+Ghamdi&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 12,
+      "textEn": "كان من أمتع الأماكن الي ممكن تزورونها شرحو لنا كل شي والمعامله جدا رائعه",
+      "textAr": "كان من أمتع الأماكن الي ممكن تزورونها شرحو لنا كل شي والمعامله جدا رائعه",
+      "author": "Ruba Ali",
+      "image": "https://ui-avatars.com/api/?name=Ruba+Ali&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 13,
+      "textEn": "One of the best experiences I have ever experienced. We came for the scary room and had an unforgettable, funny and intense time.",
+      "textAr": "من أفضل التجارب التي عشتها. جئنا للغرفة المرعبة وكانت تجربة لا تُنسى ومليئة بالضحك والحماس.",
+      "author": "Corina Homs",
+      "image": "https://ui-avatars.com/api/?name=Corina+Homs&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 14,
+      "textEn": "مكان ولا غلطة ما شاء الله كل شي رائع أنا خلصت شارلوك والجزار تجربة ممتعة",
+      "textAr": "مكان ولا غلطة ما شاء الله كل شي رائع أنا خلصت شارلوك والجزار تجربة ممتعة",
+      "author": "مها حمود",
+      "image": "https://ui-avatars.com/api/?name=%D9%85%D9%87%D8%A7+%D8%AD%D9%85%D9%88%D8%AF&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 15,
+      "textEn": "Visited their escape room today and it is AMAZING!! My only experiences have been in the US and this easily tops any other escape room I've been to! Definitely coming back!",
+      "textAr": "زرت غرفة الهروب عندهم اليوم وكانت مذهلة جدًا! تجاربي السابقة كانت في أمريكا، وهذه تتفوق بسهولة على كل ما جربته. بالتأكيد سأعود مرة أخرى!",
+      "author": "Sumayya Khatib",
+      "image": "https://ui-avatars.com/api/?name=Sumayya+Khatib&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 16,
+      "textEn": "جربت عندهم غرفة الجزار وكانت تجربة فعلا حماس وتجنن. إذا راعين الغاز وأحجيات بتستانسون عندهم حيل.",
+      "textAr": "جربت عندهم غرفة الجزار وكانت تجربة فعلا حماس وتجنن. إذا راعين الغاز وأحجيات بتستانسون عندهم حيل.",
+      "author": "لمو",
+      "image": "https://ui-avatars.com/api/?name=%D9%84%D9%85%D9%88&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 17,
+      "textEn": "to be honest its the best escape room in khobar! everything was amazing especially the themes inside sherlock holmes was fun and challenging.",
+      "textAr": "بصراحة هي أفضل غرفة هروب في الخبر! كل شيء كان رائعًا، خصوصًا الثيمات الداخلية. غرفة شيرلوك كانت ممتعة ومليئة بالتحدي.",
+      "author": "REAZXZ",
+      "image": "https://ui-avatars.com/api/?name=REAZXZ&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 18,
+      "textEn": "تجربة رائعة وجديدة فيها إبداع وتحدي. استقبال ممتاز.",
+      "textAr": "تجربة رائعة وجديدة فيها إبداع وتحدي. استقبال ممتاز.",
+      "author": "Aa A",
+      "image": "https://ui-avatars.com/api/?name=Aa+A&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 19,
+      "textEn": "The best new and upcoming Escape Room game in the Eastern Province! 3 rooms each with a different twist. Can't wait to beat all 3!",
+      "textAr": "أفضل لعبة غرفة هروب جديدة وصاعدة في المنطقة الشرقية! 3 غرف ولكل واحدة طابع مختلف. متحمس جدًا لإنهاء الثلاث كلها!",
+      "author": "Mohammed Al Darwish",
+      "image": "https://ui-avatars.com/api/?name=Mohammed+Al+Darwish&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 20,
+      "textEn": "المكان مميز والحجز مرتب جدًا وتفاصيل اللعبه عمييييقة ومستواها عالي شوي فتحتاجون تكونون مجموعة أكبر للحل. لكنها ممتعة وواقعية جدًا.",
+      "textAr": "المكان مميز والحجز مرتب جدًا وتفاصيل اللعبه عمييييقة ومستواها عالي شوي فتحتاجون تكونون مجموعة أكبر للحل. لكنها ممتعة وواقعية جدًا.",
+      "author": "Rawabi Alharthi",
+      "image": "https://ui-avatars.com/api/?name=Rawabi+Alharthi&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 21,
+      "textEn": "Visited their escape room today and it is AMAZING!! My only experiences have been in the US and this easily tops any other escape room I've been to!",
+      "textAr": "زرت غرفة الهروب عندهم اليوم وكانت مذهلة جدًا! تجاربي السابقة كانت في أمريكا، وهذه تتفوق بسهولة على أي غرفة هروب جربتها.",
+      "author": "Sumayya Khatib",
+      "image": "https://ui-avatars.com/api/?name=Sumayya+Khatib&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 22,
+      "textEn": "تجربيه عجيبه اتمنى من الكل انه يعطي اللعبه فرصه ممتعه لدرجه عاااليه ويعطيهم العافيه والقادم افضل عندهم",
+      "textAr": "تجربيه عجيبه اتمنى من الكل انه يعطي اللعبه فرصه ممتعه لدرجه عاااليه ويعطيهم العافيه والقادم افضل عندهم",
+      "author": "ARTHUR MORGEN",
+      "image": "https://ui-avatars.com/api/?name=Arthur+Morgen&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 23,
+      "textEn": "I've been to several escape rooms, but this is the best so far. They connected all rooms for a final quest. Fantastic and fun experience.",
+      "textAr": "جربت عدة غرف هروب، لكن هذه الأفضل حتى الآن. ربطوا كل الغرف بمهمة نهائية. تجربة رائعة وممتعة جدًا.",
+      "author": "Ameer Al Shobaiki",
+      "image": "https://ui-avatars.com/api/?name=Ameer+Al+Shobaiki&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 24,
+      "textEn": "اول زياره لي وابداً ماندمت ان جيت هالمكان. لعبنا لعبة الجزار وكانت تجربة رعب وتحقيق ألغاز في قمة الروعة. تجربة ما تنسى.",
+      "textAr": "اول زياره لي وابداً ماندمت ان جيت هالمكان. لعبنا لعبة الجزار وكانت تجربة رعب وتحقيق ألغاز في قمة الروعة. تجربة ما تنسى.",
+      "author": "Fatimah",
+      "image": "https://ui-avatars.com/api/?name=Fatimah&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 25,
+      "textEn": "Amazing unique escape rooms, the ideas were original unlike other escape rooms. Overall fun experience, can’t wait to try the other rooms.",
+      "textAr": "غرف هروب مميزة ومختلفة، والأفكار أصلية بعكس كثير من الأماكن الأخرى. تجربة ممتعة جدًا، ولا أستطيع الانتظار لتجربة باقي الغرف.",
+      "author": "Jalal Khalil",
+      "image": "https://ui-avatars.com/api/?name=Jalal+Khalil&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 26,
+      "textEn": "انا ماعرفها لكن عيالي كانو متحمسين لها. فيها ٣ مراحل وتختلف درجة صعوبتها وعلى رعب خفيف. يستاهلون خمس نجوم.",
+      "textAr": "انا ماعرفها لكن عيالي كانو متحمسين لها. فيها ٣ مراحل وتختلف درجة صعوبتها وعلى رعب خفيف. يستاهلون خمس نجوم.",
+      "author": "Qusai Algrainees",
+      "image": "https://ui-avatars.com/api/?name=Qusai+Algrainees&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 27,
+      "textEn": "Hi, went there last week and tried the Sherlock Holmes room with friends. Amazing experience, friendly staff, and very accurate technical puzzles.",
+      "textAr": "مرحبًا، ذهبت الأسبوع الماضي وجربت غرفة شيرلوك هولمز مع الأصدقاء. تجربة رائعة، طاقم ودود، وألغاز تقنية دقيقة جدًا.",
+      "author": "Roro'a Bas",
+      "image": "https://ui-avatars.com/api/?name=Roroa+Bas&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 28,
+      "textEn": "الغرف مرة جميلة فيها حماس وفيها رعب. الشباب المتواجدين كانوا جدا متواضعين. انصح بالزيارة وسوف اكرر زيارتي.",
+      "textAr": "الغرف مرة جميلة فيها حماس وفيها رعب. الشباب المتواجدين كانوا جدا متواضعين. انصح بالزيارة وسوف اكرر زيارتي.",
+      "author": "عبدالكريم العنزي",
+      "image": "https://ui-avatars.com/api/?name=%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85+%D8%A7%D9%84%D8%B9%D9%86%D8%B2%D9%8A&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 29,
+      "textEn": "The staff are so helpful and chill! We went to The Lost City and had plenty of fun. I would recommend this place, 10/10.",
+      "textAr": "الموظفون متعاونون جدًا ولطيفون! جربنا غرفة المدينة المفقودة واستمتعنا كثيرًا. أنصح بهذا المكان 10/10.",
+      "author": "Shahd Khan",
+      "image": "https://ui-avatars.com/api/?name=Shahd+Khan&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 30,
+      "textEn": "المكان ممتع جدا لعبنا غرفة الجزار وكانت مخيفة ومضحكة بنفس الوقت. الفكرة جدا مميزة عن بقية ألعاب الهروب.",
+      "textAr": "المكان ممتع جدا لعبنا غرفة الجزار وكانت مخيفة ومضحكة بنفس الوقت. الفكرة جدا مميزة عن بقية ألعاب الهروب.",
+      "author": "Bana_na CR7",
+      "image": "https://ui-avatars.com/api/?name=Bana_na+CR7&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 31,
+      "textEn": "Incredibly immersive experience with challenging puzzles and detailed set design. Great fun and perfect balance of difficulty and excitement.",
+      "textAr": "تجربة غامرة بشكل مذهل مع ألغاز مليئة بالتحدي وتصميم دقيق للتفاصيل. ممتعة جدًا وبها توازن ممتاز بين الصعوبة والإثارة.",
+      "author": "Mohamed Alaraimi",
+      "image": "https://ui-avatars.com/api/?name=Mohamed+Alaraimi&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 32,
+      "textEn": "من افضل الاماكن الي دخلتها كل شي كان مرتب والموظف اللي استقبلنا متقن شغله. تصميم غرفة بوتشر يفوز والتجربة مرعبة وممتعة.",
+      "textAr": "من افضل الاماكن الي دخلتها كل شي كان مرتب والموظف اللي استقبلنا متقن شغله. تصميم غرفة بوتشر يفوز والتجربة مرعبة وممتعة.",
+      "author": "reema khalid agneed",
+      "image": "https://ui-avatars.com/api/?name=reema+khalid+agneed&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 33,
+      "textEn": "I recently visited Enigma and had an absolutely fantastic experience! Clever puzzles, immersive atmosphere, and very friendly staff.",
+      "textAr": "زرت إنجما مؤخرًا وكانت تجربة رائعة جدًا! الألغاز ذكية، والأجواء غامرة، والطاقم ودود للغاية.",
+      "author": "Abdulrahman",
+      "image": "https://ui-avatars.com/api/?name=Abdulrahman&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 34,
+      "textEn": "لعبت شركات كثيرة بطريقة السكيب روم، وجربت الجزار باينيجما. اللعبة ممتعة جدا وطريقة البداية تدخلك جو جميل جدا.",
+      "textAr": "لعبت شركات كثيرة بطريقة السكيب روم، وجربت الجزار باينيجما. اللعبة ممتعة جدا وطريقة البداية تدخلك جو جميل جدا.",
+      "author": "Faisal Bubshait (Terminator Pro)",
+      "image": "https://ui-avatars.com/api/?name=Faisal+Bubshait&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 35,
+      "textEn": "Amazing experience. Really well prepped rooms and puzzles. Had a fun time with my wife. Highly recommended to try all of them.",
+      "textAr": "تجربة رائعة. الغرف والألغاز مجهزة بشكل ممتاز. قضيت وقتًا ممتعًا مع زوجتي. أنصح بشدة بتجربة جميع الغرف.",
+      "author": "aman Zubair",
+      "image": "https://ui-avatars.com/api/?name=aman+Zubair&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 36,
+      "textEn": "افضل من باقي السكيب روم جدا متقنه غرفة شارلك الجهاز المدمر. وتقدر تحدد مستوى الرعب وكانت تجربة ممتعة.",
+      "textAr": "افضل من باقي السكيب روم جدا متقنه غرفة شارلك الجهاز المدمر. وتقدر تحدد مستوى الرعب وكانت تجربة ممتعة.",
+      "author": "Huoraa Alshibini",
+      "image": "https://ui-avatars.com/api/?name=Huoraa+Alshibini&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 37,
+      "textEn": "Brilliantly crafted and incredibly fun! The Sherlock-themed escape room has a perfect balance of challenge and excitement for families.",
+      "textAr": "مصممة بإبداع وممتعة جدًا! غرفة الهروب بطابع شيرلوك فيها توازن مثالي بين التحدي والمتعة ومناسبة للعائلات.",
+      "author": "Narmin Nasirzada",
+      "image": "https://ui-avatars.com/api/?name=Narmin+Nasirzada&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 38,
+      "textEn": "A great experience overall. We did the Sherlock room and it was very challenging. Staff are super friendly, helpful, and professional.",
+      "textAr": "تجربة ممتازة بشكل عام. لعبنا غرفة شيرلوك وكانت مليئة بالتحدي. الطاقم ودود جدًا ومتعاون واحترافي.",
+      "author": "Ibrahim Hadi",
+      "image": "https://ui-avatars.com/api/?name=Ibrahim+Hadi&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 39,
+      "textEn": "حبيت المكان مرااا وتعامل الموظفين اكثر من رائع. دخلنا المدينة المفقودة وساعدونا كثير في حل اللغز.",
+      "textAr": "حبيت المكان مرااا وتعامل الموظفين اكثر من رائع. دخلنا المدينة المفقودة وساعدونا كثير في حل اللغز.",
+      "author": "KB",
+      "image": "https://ui-avatars.com/api/?name=KB&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 40,
+      "textEn": "Great customer service, we went through the butcher's room and it was really fun and tricky. You have to use teamwork to pass levels.",
+      "textAr": "خدمة عملاء ممتازة. جربنا غرفة الجزار وكانت ممتعة وصعبة بطريقة جميلة. لازم يكون فيه عمل جماعي لتجاوز المراحل.",
+      "author": "Seif Al-Azizi",
+      "image": "https://ui-avatars.com/api/?name=Seif+Al-Azizi&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 41,
+      "textEn": "وللامانة تجربة رهيبة جدا وحنجيه ثاني باذن الله. جربنا VR Train Railway.",
+      "textAr": "وللامانة تجربة رهيبة جدا وحنجيه ثاني باذن الله. جربنا VR Train Railway.",
+      "author": "Ahmad Alhusayni",
+      "image": "https://ui-avatars.com/api/?name=Ahmad+Alhusayni&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 42,
+      "textEn": "Amazing place! I enjoyed all the rooms, my favorite is the Lost City because the combinations of puzzles is unmatched.",
+      "textAr": "مكان رائع! استمتعت بكل الغرف، والمفضلة لدي هي المدينة المفقودة لأن تنوع الألغاز فيها لا مثيل له.",
+      "author": "Stayhumble",
+      "image": "https://ui-avatars.com/api/?name=Stayhumble&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 43,
+      "textEn": "تجربه ممتعه انصح فيها. انبسطت انا وخواتي. جربت السكيب روم الجزار وvr وكانت ممتعة جدًا، والموظف محترم ومتعاون.",
+      "textAr": "تجربه ممتعه انصح فيها. انبسطت انا وخواتي. جربت السكيب روم الجزار وvr وكانت ممتعة جدًا، والموظف محترم ومتعاون.",
+      "author": "V mohammed",
+      "image": "https://ui-avatars.com/api/?name=V+mohammed&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 44,
+      "textEn": "Amazing experience, had so much fun. Booked two rooms: The Butcher and Sherlock Doomsday Device. Overall amazing and highly recommended.",
+      "textAr": "تجربة رائعة واستمتعت جدًا. حجزنا غرفتين: الجزار وشيرلوك جهاز يوم القيامة. بشكل عام كانت مذهلة وأنصح بها بشدة.",
+      "author": "Allison Akiri",
+      "image": "https://ui-avatars.com/api/?name=Allison+Akiri&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 45,
+      "textEn": "There are a few escape rooms around the area. This one is very good, with clear audio clues and a team that actively asks for feedback.",
+      "textAr": "يوجد عدة غرف هروب في المنطقة، لكن هذه ممتازة جدًا. الإرشادات الصوتية واضحة، والفريق يهتم فعلًا بملاحظات الزوار.",
+      "author": "Mike Beltran",
+      "image": "https://ui-avatars.com/api/?name=Mike+Beltran&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
+    },
+    {
+      "id": 46,
+      "textEn": "From the moment I launched the VCR game, I knew I was about to experience something extraordinary. Stunning visuals and unforgettable memories.",
+      "textAr": "من اللحظة التي بدأت فيها لعبة الواقع الافتراضي، عرفت أنني مقبل على تجربة استثنائية. مؤثرات بصرية مذهلة وذكريات لا تُنسى.",
+      "author": "Ali Adam",
+      "image": "https://ui-avatars.com/api/?name=Ali+Adam&background=1a1a1a&color=ffd700&size=100",
+      "link": "https://maps.google.com"
     }
   ],
   "vrRoomCards": [
@@ -143,7 +469,7 @@
     "id": 1,
     "nameEn":"Dragon Tower",
     "nameAr": "برج التنين",
-    "image": "/vr-room/Dragon-Tower-Dramatic-1.jpg",
+    "image": "/vr-room/Dragon-Tower-Dramatic-1.jpeg",
     "players": "2-4",
     "descriptionEn": "Once upon a time, a group of weary travelers stumbled upon a small coastal town. Tired from their long journey, they sought refuge at the local inn. Little did they know, the village was under the rule of a wicked alchemist who lived in isolation in his fortress, known as Dragon Tower. Though the alchemist protected the villagers from fearsome dragons, his price was steep every year, he would offer the dragons a sacrifice, sending thieves and murderers to the top of his tower to be devoured. This year, however, there were no criminals to offer, and the dragons are still hungry. The alchemist, desperate, accused the travelers of being foreign spies and sentenced them to death. Can these brave adventurers escape the clutches of Dragon Tower before the clock strikes six and the dragons return for their annual feast?",
     "descriptionAr": "في وقت من الزمان ، وصل مجموعة من المسافرين المتعبين إلى بلدة صغيرة على ساحل البحر. تعبوا من الرحلات الطويلة، فطلبوا الراحة في النزل المحلي. لكنهم لم يعلموا أن القرية كانت تحت حكم كيميائي شرير يعيش في عزلة داخل قلعته الصغيرة المعروفة باسم برج التنين. كان الكيميائي يحمي أهل القرية من التنانين المخيفة، لكن الثمن كان باهظًا فكل عام، كان يقدم التنانين قربانًا من اللصوص والقتلة، يرسلهم إلى قمة برجه ليُلتهموا. لكن للأسف، لم يكن هناك جريمة في القرية هذا العام، والتنانين لا تزال جائعة. فاتهم الكيميائي المسافرين بأنهم جواسيس أجانب وأصدر حكمًا بالإعدام عليهم. هل سيتمكن هؤلاء المغامرون الشجعان من الهروب من قبضة برج التنين قبل أن تدق الساعة السادسة ويعود التنانين من أجل قربانهم السنوي؟"
@@ -152,7 +478,7 @@
     "id": 2,
     "nameEn":"Manor of Escape",
     "nameAr": "قصر الهروب",
-    "image": "/vr-room/Manor-of-Escape-Dramatic-2.png",
+    "image": "/vr-room/Manor-of-Escape-Dramatic-2.jpeg",
     "players": "2-4",
     "descriptionEn": "The sinister Count Malum's has been conducting dark experiments with dangerous creatures in his eerie manor. Your mission: infiltrate, uncover the truth, and make it out alive.The town s people can no longer endure Count Malum's reign of terror. Residents are vanishing, and chilling screams echo from his manor every night. Obsessed with his twisted theories about alternate dimensions, Malum s madness has spiraled out of control. The mayor has called upon your expert team to stop him before he unleashes more chaos.Time is running out you must capture Malum and halt his final experiment before midnight. Act quickly!",
     "descriptionAr": "*الكونت مالوم* الشرير يجري تجارب مظلمة مع مخلوقات خطيرة داخل قصره المخيف. مهمتكم: التسلل، كشف الحقيقة، والنجاة بحياتكم.لم يعد بإمكان سكان البلدة تحمل رعب الكونت مالوم. يختفي المواطنون، وتتعالى صرخات مرعبة من قصره كل ليلة. مهووسًا بنظرياته المشوهة حول الأبعاد البديلة، فقد الكونت عقله تمامًا. لقد طلب العمدة فريقكم المتخصص لإيقافه قبل أن يتسبب في مزيد من الفوضى. الوقت ينفد عليكم القبض على مالوم ووقف تجربته الأخيرة قبل منتصف الليل. تحركوا بسرعة!"
@@ -161,7 +487,7 @@
     "id": 3,
     "nameEn":"Pirates Plague",
     "nameAr": "طاعون القراصنة",
-    "image": "/vr-room/Pirates-Plague-Dramatic-3.jpg",
+    "image": "/vr-room/Pirates-Plague-Dramatic-3.jpeg",
     "players": "2-4",
     "descriptionEn": "You and your pirate crew have been struck by a terrible curse, transforming you into fishmen! The only hope for a cure lies within a long-lost island temple but time is running out. Your crew has contracted the dreaded “Pelagic Plague,” a disease that slowly mutates its victims into fish-like monsters. Legend has it that the only cure is the heart of a kraken, but krakens are thought to be extinct! Rumors speak of a hidden temple on a remote island, said to house the last kraken heart. However, the waters surrounding the island are teeming with plague-stricken foes eager for a fight. Act quickly! Time is short, and if you fail, your crew’s transformation will become permanent, sealing your fate forever!",
     "descriptionAr": "أنت وطاقم قراصنتك قد أصبتم بلعنة رهيبة حوّلتكم إلى رجال من أسماك! الأمل الوحيد في العلاج من الممكن أن يكون داخل معبد جزيرة مفقودة لكن الوقت ينفد بسرعة. طاقمك مصاب بمرض رهيب يُدعى “طاعون القراصنة”، وهو مرض يُحوِّل ضحاياه تدريجيًا إلى وحوش تشبه الأسماك. تقول الأساطير إن العلاج الوحيد هو قلب كراكن، لكن الكراكن يُعتقد أنه انقرض! تشير الشائعات إلى وجود معبد مخفي على جزيرة نائية يحتوي على آخر قلب كراكن. لكن المياه المحيطة بالجزيرة مليئة بالمصابين بالطاعون الذين يبحثون عن قتال. أسرعوا! الوقت يداهمكم، وإذا فشلتم، ستصبح لعنة طاقمكم دائمة، ويحكم عليكم بالهلاك الأبدي!"
@@ -170,7 +496,7 @@
     "id": 4,
     "nameEn":"Runway Train",
     "nameAr": "القطار الهارب",
-    "image": "/vr-room/Runaway-Train-Screenshot-4.jpg",
+    "image": "/vr-room/Runaway-Train-Screenshot-4.jpeg",
     "players": "2-4",
     "descriptionEn": "You and your fellow ninja trainees are about to complete your journey toward mastery. One final challenge stands in your way: climbing the thousand steps to the temple atop the mountain and conquering the trials that await. Only after overcoming these challenges and defeating your master will you earn the title of true ninja. Tonight, your destiny will be decided. But the path will be far from easy. Your master has set three trials before you: the Tests of Combat, Stealth, and Spirit. Master these skills, overcome the trials, and only then will you be ready to face your master and prove your worth.",
     "descriptionAr": "أنت وزملاؤك من المتدربين النينجا على وشك إكمال رحلتكم نحو الاحتراف. تحدي أخير يقف في طريقكم: صعود الألف درجة إلى المعبد على قمة الجبل وتجاوز التجارب التي تنتظركم هناك. فقط بعد التغلب على هذه التحديات وهزيمة معلمكم، ستنالون لقب النينجا الحقيقي. هذه الليلة، سيتم تحديد مصيركم. لكن الطريق لن يكون سهلاً. لقد وضع معلمكم أمامكم ثلاث تجارب: اختبارات القتال، والتخفي، والروح. بإتقان هذه المهارات وتجاوز التجارب، ستكونون مستعدين أخيرًا لمواجهة معلمكم وإثبات جدارتكم."
@@ -179,7 +505,7 @@
     "id": 5,
     "nameEn":"Depths of Osiris",
     "nameAr": "أعماق أوزوريس",
-    "image": "/vr-room/Depths-of-Osiris-Dramatic-5.jpg",
+    "image": "/vr-room/Depths-of-Osiris-Dramatic-5.jpeg",
     "players": "2-4",
     "descriptionEn": "Plunge into the depths of the ocean with your team of explorers to uncover a long-lost ancient temple. Within its walls, you’ll discover vibrant marine life, hidden treasures, and some surprises that are far less welcoming! As the tranquil underwater world begins to turn against you, can you find a way to escape? Welcome to Oceanus five, the ultimate deep-sea exploration platform. After months of stalled progress, our team of underwater archaeologists has called on you and your crew of specialists to unlock the secrets of the lost temple of Osiris. Inside, the fabled artifact awaits, but the clock is ticking your oxygen is limited, and your wrist gauge will remind you how much time you have left. You’ll have two chances to contact the surface support vessel for assistance during your mission. Use them wisely. Good luck, aquanauts!",
     "descriptionAr": "عيش في أعماق المحيط مع فريقك من المستكشفين لاكتشاف معبد قديم مفقود منذ زمن. داخل جدرانه، ستجد حياة بحرية نابضة بالألوان وكنوزًا مخفية، ولكن أيضًا مفاجآت ليست بالترحيب نفسه! بينما يبدأ العالم الهادئ تحت الماء في الانقلاب ضدك، هل ستتمكن من العثور على طريق الهروب؟ مرحبًا بكم في أوشيانوس خمسة، منصة الاستكشاف تحت البحر الأكثر تقدمًا. بعد أشهر من التعثر، لجأ فريق علماء الآثار إليكم لكشف أسرار معبد أوزوريس. الأكسجين محدود والوقت ينفد، استخدموا فرص التواصل بحكمة. حظًا موفقًا!"
@@ -188,7 +514,7 @@
     "id": 6,
     "nameEn":"Ninja Trials",
     "nameAr": "متدربين النينجا",
-    "image": "/vr-room/Ninja-Trials-Screenshot-6.jpg",
+    "image": "/vr-room/Ninja-Trials-Screenshot-6.jpeg",
     "players": "2-4",
     "descriptionEn": "Dr. Steem has escaped and is bent on revenge. He’s rigged his high-tech train with explosives and set it on a collision course with the town! Your mission is to catch up, board the train, defeat his steam-powered defenses, and stop him before disaster strikes.",
     "descriptionAr": "هرب الدكتور ستيم ويسعى للانتقام. لقد فخخ قطاره بالمتفجرات وأرسله نحو المدينة! مهمتكم هي اللحاق به، الصعود إلى القطار، تدمير دفاعاته، وإيقافه قبل وقوع الكارثة."
@@ -206,7 +532,7 @@
     "id": 8,
     "nameEn":"Space Station Tiberia",
     "nameAr": "محطة الفضاء تيبريا",
-    "image": "/vr-room/Space-Station-Tiberia-Dramatic-8.jpg",
+    "image": "/vr-room/Space-Station-Tiberia-Dramatic-8.jpeg",
     "players": "2-4",
     "descriptionEn": "Space Station Tiberia is humanity’s last defense against a planet-destroying meteor. After a radiation storm, systems have failed. Repair the station and activate the defense system before Earth is wiped out.",
     "descriptionAr": "محطة تيبريا هي خط الدفاع الأخير ضد نيزك مدمر. بعد عاصفة إشعاعية تعطلت الأنظمة. أصلحوا المحطة وفعّلوا نظام الدفاع قبل أن تُدمر الأرض."
@@ -215,7 +541,7 @@
     "id": 9,
     "nameEn":"Lasorbots",
     "nameAr": "الروبوتات المهاجمة",
-    "image": "/vr-room/Laserbots-Dramatic-9.jpg",
+    "image": "/vr-room/Laserbots-Dramatic-9.jpeg",
     "players": "2-4",
     "descriptionEn": "A rogue scientist has stolen a time machine and stranded your team in the age of dinosaurs. Travel through time, survive prehistoric dangers, and stop him before he destroys the timeline forever.",
     "descriptionAr": "عالم شرير سرق آلة الزمن وترككم في عصر الديناصورات. سافروا عبر الزمن، ونجوا من الأخطار، وأوقفوه قبل أن يدمر خط الزمن بالكامل."
