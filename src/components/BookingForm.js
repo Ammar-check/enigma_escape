@@ -8,21 +8,22 @@ import siteData from '@/data/siteData.json';
 import Link from "next/link";
 
 const BookingForm = () => {
+  const normalizeDate = (value) => {
+    const date = new Date(value);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  };
+
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState("");
   const dateRef = useRef(null);
   const [selectedInfo, setSelectedInfo] = useState(null);
 
 
-  const [selectedDate, setSelectedDate] = useState(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return today;
-  });
+  const [selectedDate, setSelectedDate] = useState(() => normalizeDate(new Date()));
 
   const isToday = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = normalizeDate(new Date());
     return selectedDate.getTime() === today.getTime();
   };
 
@@ -38,16 +39,6 @@ const BookingForm = () => {
     setSelectedDate(prev);
   };
 
-  const getSaudiDate = (date) => {
-  return new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Asia/Riyadh",
-    // weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(date);
-};
-
   const formatDateLocal = (date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -57,6 +48,12 @@ const BookingForm = () => {
 };
 
 const formattedDate = formatDateLocal(selectedDate);
+const displayDate = selectedDate.toLocaleDateString("en-GB", {
+  weekday: "short",
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+});
 
 
 const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.bookingCard.filter(
@@ -92,7 +89,7 @@ const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.booki
             <option value="The Butcher">The Butcher</option>
             <option value="Sherlock">Sherlock</option>
             <option value="The Lost City">The Lost City</option>
-            <option value="VR Rooms">VR Rooms</option>
+            <option value="VR Room">VR Room</option>
             <option value="Mind Shield">Mind Shield</option>
           </select>
         </div>
@@ -103,9 +100,7 @@ const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.booki
         <DatePicker
           selected={selectedDate}
           onChange={(date) => {
-            const picked = new Date(date);
-            picked.setHours(0, 0, 0, 0);
-            setSelectedDate(picked);
+            setSelectedDate(normalizeDate(date));
           }}
           minDate={new Date()}
           popperPlacement="bottom-start" // 👈 button ke neeche open hoga
@@ -177,12 +172,7 @@ const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.booki
 
   {/* Center Date */}
   <div className={styles.dateText}>
-    {selectedDate.toLocaleDateString("en-GB", {
-      weekday: "short",
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    })}
+    {displayDate}
   </div>
 
   {/* Next Button */}
@@ -193,19 +183,41 @@ const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.booki
 
 
     <div className={styles.dateSec}>
-      {card.availability?.[formattedDate]?.length > -1 ? (
-    card.availability[formattedDate].map((time, i) => (
-      <button key={i} className={styles.slotBtn}>
-        {time}
-        <br /><span className={styles.slots}>10 available</span>
-      </button>
-    ))
-  ) : (
-    <span>No slots available</span>
-  )}
+      {(() => {
+        const slots = card.availability?.[formattedDate] ?? card.slotTimes ?? [];
+        const availableCount = card.availableCount ?? 10;
+        if (slots.length === 0) {
+          return (
+            <span
+              className={styles.slots}
+              style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '10px' }}
+            >
+              No slots available
+            </span>
+          );
+        }
+        return slots.map((slot, i) => {
+          const slotData = typeof slot === "string" ? { time: slot, status: "available", available: availableCount } : slot;
+          const isFull = slotData.status === "full";
+          return (
+            <button
+              key={`${card.id}-${formattedDate}-${i}`}
+              className={`${styles.slotBtn} ${isFull ? styles.slotBtnFull : ""}`}
+              disabled={isFull}
+            >
+              {slotData.time}
+              <span className={styles.slots}>
+                {isFull ? "FULL" : `${slotData.available ?? availableCount} Available`}
+              </span>
+            </button>
+          );
+        });
+      })()}
     </div>
 
-   <div style={{textAlign:'center',margin:"5px 0"}}>View all dates <Link href=""><i className="bi bi-chevron-right" style={{color:'white'}}></i></Link></div>
+   <div className={styles.viewAllDates}>
+     <Link href="">View all dates <i className="bi bi-chevron-right"></i></Link>
+   </div>
 
 
     {/* POPUP */}
@@ -232,38 +244,6 @@ const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.booki
   </div>
 ))}
 
-      </div>
-
-       <div className={styles.bottomRow}>
-        {/* Pick Date */}
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => {
-            const picked = new Date(date);
-            picked.setHours(0, 0, 0, 0);
-            setSelectedDate(picked);
-          }}
-          minDate={new Date()}
-          popperPlacement="bottom-start" // 👈 button ke neeche open hoga
-          customInput={
-            <button className={styles.dateBtn}>
-              <span className={styles.calIcon}>&#128197;</span>
-              Pick date
-            </button>
-          }
-        />
-
-        {/* Previous — hidden when today */}
-        {!isToday() && (
-          <button className={styles.dateBtn} onClick={goPrev}>
-            &#8249; Previous days
-          </button>
-        )}
-
-        {/* Following */}
-        <button className={styles.dateBtn} onClick={goNext}>
-          Following days &#8250;
-        </button>
       </div>
     </div>
   );

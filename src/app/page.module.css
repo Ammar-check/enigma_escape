@@ -261,6 +261,8 @@ font-family: "Montserrat";
 .roomsSection > .container {
   position: relative;
   z-index: 1;
+  max-width: 1600px;
+  width: 96%;
 }
 
 .roomsList {

@@ -237,7 +237,6 @@ export default function Home() {
             {t('ourRooms')}
           </motion.h2>
 
-
           <motion.div
             className={styles.roomsList}
             variants={containerVariants}

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import RoomCard from '@/components/RoomCard';
 import siteData from '@/data/siteData.json';
 import Image from 'next/image';
+import BookingForm from '@/components/BookingForm';
 
 
 export default function RoomDetailClient({ room }) {
@@ -29,14 +30,36 @@ export default function RoomDetailClient({ room }) {
     );
   }
 
-  // Encode image URL to handle spaces in filenames
+  // Encode image/video URLs to handle spaces in filenames
   const encodedImage = encodeURI(room.image);
+  const roomHeroVideos = {
+    1: '/video/Sherlock_story.mp4',
+    2: '/video/VR Trailer .mp4',
+    3: '/video/Sherlock_story.mp4',
+    4: '/video/VR Trailer .mp4',
+    5: '/video/Sherlock_story.mp4',
+  };
+  const roomVideo = roomHeroVideos[room.id];
+  const encodedVideo = roomVideo ? encodeURI(roomVideo) : null;
 
   // Prevent hydration mismatch
   if (!mounted) {
     return (
       <div className={styles.hero} style={{ '--room-color': room.color }}>
-        <div className={styles.heroBg} style={{ backgroundImage: `url(${encodedImage})` }}></div>
+        {encodedVideo ? (
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          >
+            <source src={encodedVideo} type="video/mp4" />
+          </video>
+        ) : (
+          <div className={styles.heroBg} style={{ backgroundImage: `url(${encodedImage})` }}></div>
+        )}
         <div className={styles.heroOverlay}></div>
       </div>
     );
@@ -109,10 +132,23 @@ const comingSoonVariants = {
         className={styles.hero}
         style={{ '--room-color': room.color }}
       >
-        <div 
-          className={styles.heroBg}
-          style={{ backgroundImage: `url(${encodedImage})` }}
-        ></div>
+        {encodedVideo ? (
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          >
+            <source src={encodedVideo} type="video/mp4" />
+          </video>
+        ) : (
+          <div
+            className={styles.heroBg}
+            style={{ backgroundImage: `url(${encodedImage})` }}
+          ></div>
+        )}
         <div className={styles.heroOverlay}></div>
 
         <div className="container">
@@ -298,6 +334,7 @@ const comingSoonVariants = {
       {room.id === 4 ? (
         <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
           <div className="container">
+            <BookingForm />
             <motion.h2
               className={`section-title ${styles.vrRoomsTitle}`}
               variants={titleVariants}
@@ -372,6 +409,7 @@ const comingSoonVariants = {
       ) : (
         <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
           <div className="container">
+            <BookingForm />
             <motion.h2
               className="section-title"
               variants={titleVariants}
