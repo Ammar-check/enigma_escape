@@ -33,11 +33,11 @@ export default function RoomDetailClient({ room }) {
   // Encode image/video URLs to handle spaces in filenames
   const encodedImage = encodeURI(room.image);
   const roomHeroVideos = {
-    1: '/video/Sherlock_story.mp4',
-    2: '/video/VR Trailer .mp4',
+    1: '/video/Butcher Storytelling (1)-OPT.mp4',
+    2: '/video/The Lost City Storytelling Edit OPT.mp4',
     3: '/video/Sherlock_story.mp4',
     4: '/video/VR Trailer .mp4',
-    5: '/video/Sherlock_story.mp4',
+    5: '/video/Mindshield Storytelling Cc OPT.mp4',
   };
   const roomVideo = roomHeroVideos[room.id];
   const encodedVideo = roomVideo ? encodeURI(roomVideo) : null;
