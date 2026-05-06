@@ -10,15 +10,14 @@
   overflow: hidden;
 }
 .heroBg {
- 
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: contain;
-    background-repeat: no-repeat !important;
-    background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0px;
+  bottom: -150px;
+  background-size: contain;
+  background-repeat: no-repeat !important;
+  background-position: 53%;
 
 }
 
