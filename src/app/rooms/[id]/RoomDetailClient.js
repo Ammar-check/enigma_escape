@@ -334,7 +334,6 @@ const comingSoonVariants = {
       {room.id === 4 ? (
         <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
           <div className="container">
-            <BookingForm />
             <motion.h2
               className={`section-title ${styles.vrRoomsTitle}`}
               variants={titleVariants}
@@ -404,12 +403,12 @@ const comingSoonVariants = {
                 </motion.a>
               ))}
             </motion.div>
+            <BookingForm initialRoomId={room.id} />
           </div>
         </section>
       ) : (
         <section id="games-section" className={`section-padding ${styles.roomsPageSection}`}>
           <div className="container">
-            <BookingForm />
             <motion.h2
               className="section-title"
               variants={titleVariants}
@@ -443,6 +442,7 @@ const comingSoonVariants = {
                 </div>
               </motion.div>
             </motion.div>
+            <BookingForm initialRoomId={room.id} />
           </div>
         </section>
       )}

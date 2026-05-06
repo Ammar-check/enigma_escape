@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./BookingForm.module.css";
 import { useRef } from "react";
 import DatePicker from "react-datepicker";
@@ -7,7 +7,7 @@ import Image from "next/image";
 import siteData from '@/data/siteData.json';
 import Link from "next/link";
 
-const BookingForm = () => {
+const BookingForm = ({ initialRoomId = null }) => {
   const normalizeDate = (value) => {
     const date = new Date(value);
     date.setHours(0, 0, 0, 0);
@@ -15,7 +15,8 @@ const BookingForm = () => {
   };
 
   const [filterOpen, setFilterOpen] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState(initialRoomId ? String(initialRoomId) : "");
+  const [showAllRooms, setShowAllRooms] = useState(!initialRoomId);
   const dateRef = useRef(null);
   const [selectedInfo, setSelectedInfo] = useState(null);
 
@@ -56,9 +57,20 @@ const displayDate = selectedDate.toLocaleDateString("en-GB", {
 });
 
 
-const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.bookingCard.filter(
-  (card)=> card.title === selectedRoom
-)
+  useEffect(() => {
+    if (initialRoomId) {
+      setSelectedRoom(String(initialRoomId));
+      setShowAllRooms(false);
+    } else {
+      setSelectedRoom("");
+      setShowAllRooms(true);
+    }
+  }, [initialRoomId]);
+
+const filteredCard =
+  showAllRooms || selectedRoom === ""
+    ? siteData.bookingCard
+    : siteData.bookingCard.filter((card) => String(card.id) === selectedRoom);
 
 
   return (
@@ -86,13 +98,25 @@ const filteredCard = selectedRoom === "" ? siteData.bookingCard : siteData.booki
             }}
           >
             <option value="">All Rooms</option>
-            <option value="The Butcher">The Butcher</option>
-            <option value="Sherlock">Sherlock</option>
-            <option value="The Lost City">The Lost City</option>
-            <option value="VR Room">VR Room</option>
-            <option value="Mind Shield">Mind Shield</option>
+            {siteData.bookingCard.map((card) => (
+              <option key={card.id} value={String(card.id)}>
+                {card.title}
+              </option>
+            ))}
           </select>
         </div>
+        {initialRoomId && !showAllRooms && (
+          <button
+            type="button"
+            className={styles.viewAllRoomsBtn}
+            onClick={() => {
+              setShowAllRooms(true);
+              setSelectedRoom("");
+            }}
+          >
+            View all rooms
+          </button>
+        )}
       </div>
 
       <div className={styles.bottomRow}>
