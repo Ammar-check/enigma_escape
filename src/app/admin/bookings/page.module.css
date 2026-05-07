@@ -303,6 +303,23 @@
   border-color: rgba(212,168,75,0.3);
 }
 
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deleteActionBtn {
+  border-color: rgba(244,67,54,0.3);
+  color: #ff8a80;
+}
+
+.deleteActionBtn:hover {
+  background: rgba(244,67,54,0.12);
+  border-color: rgba(244,67,54,0.5);
+  color: #ff8a80;
+}
+
 /* Modal */
 .modalOverlay {
   position: fixed;

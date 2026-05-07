@@ -49,6 +49,13 @@ export default function BookingsPage() {
     setSelectedBooking(null);
   };
 
+  const deleteBooking = (id) => {
+    setBookings((prev) => prev.filter((booking) => booking.id !== id));
+    if (selectedBooking?.id === id) {
+      setSelectedBooking(null);
+    }
+  };
+
   const toggleNotification = (id, type) => {
     setBookings(bookings.map((b) =>
       b.id === id ? { ...b, [type]: !b[type] } : b
@@ -241,12 +248,21 @@ export default function BookingsPage() {
                     </div>
                   </td>
                   <td>
-                    <button
-                      className={styles.actionBtn}
-                      onClick={() => setSelectedBooking(b)}
-                    >
-                      <i className="bi bi-eye-fill"></i>
-                    </button>
+                    <div className={styles.actionGroup}>
+                      <button
+                        className={styles.actionBtn}
+                        onClick={() => setSelectedBooking(b)}
+                      >
+                        <i className="bi bi-eye-fill"></i>
+                      </button>
+                      <button
+                        className={`${styles.actionBtn} ${styles.deleteActionBtn}`}
+                        onClick={() => deleteBooking(b.id)}
+                        title="Delete booking"
+                      >
+                        <i className="bi bi-trash3-fill"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
