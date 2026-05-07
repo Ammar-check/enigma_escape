@@ -2,7 +2,7 @@
 .eventPageSec {
     height: 150vh;
     background: url('/gallary-img/gal-3.jpg');
-    background-size: contain;
+    background-size: 60% auto;
     background-repeat: no-repeat;
     background-position: center;
     margin-top: -150px;
