@@ -1,0 +1,62 @@
+.pageWrap {
+  min-height: 100vh;
+  padding: 120px 20px 60px;
+  background: #09090f;
+  color: #fff;
+}
+
+.card {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  background: #12121c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 30px;
+}
+
+.subtitle {
+  margin: 8px 0 18px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.summary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.summary p {
+  margin: 8px 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.printBtn,
+.downloadBtn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #fff;
+}
+
+.printBtn {
+  background: #2d3147;
+}
+
+.downloadBtn {
+  background: #f35d5e;
+}

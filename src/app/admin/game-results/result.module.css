@@ -43,6 +43,29 @@
   color: rgba(255,255,255,0.7);
 }
 
+.tabsRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tabBtn {
+  border: 1px solid rgba(212,168,75,0.25);
+  background: #111111;
+  color: rgba(255,255,255,0.75);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.tabBtnActive {
+  border-color: rgba(212,168,75,0.45);
+  background: rgba(212,168,75,0.14);
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
 /* Controls */
 .controls {
   display: flex;
@@ -314,6 +337,47 @@
 
 .cancelBtn:hover { background: rgba(244,67,54,0.2); }
 
+.noResults {
+  text-align: center;
+  color: rgba(255,255,255,0.45);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  border: 1px solid rgba(212,168,75,0.25);
+  background: #111111;
+  color: rgba(255,255,255,0.8);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.pageBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.88rem;
+}
+
+.pageJumpInput {
+  width: 80px;
+  background: #111111;
+  border: 1px solid rgba(212,168,75,0.2);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: white;
+}
+
 
 @media (max-width:992px) {
   .page{
@@ -352,6 +416,10 @@
   .filters,
   .select {
     width: 100%;
+  }
+
+  .pagination {
+    justify-content: flex-start;
   }
 
   .table th,

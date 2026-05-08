@@ -179,6 +179,81 @@
   overflow-x: auto;
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  background: rgba(212,168,75,0.1);
+  color: var(--gold-primary);
+  border: 1px solid rgba(212,168,75,0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageNumberBtn {
+  min-width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pageNumberActive {
+  background: rgba(212,168,75,0.25);
+  color: var(--gold-primary);
+  border-color: rgba(212,168,75,0.7);
+}
+
+.pageDots {
+  color: rgba(255,255,255,0.5);
+  margin: 0 2px;
+}
+
+.pageJump {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageJumpInput {
+  width: 90px;
+  background: #111111;
+  border: 1px solid rgba(212,168,75,0.3);
+  border-radius: 8px;
+  color: white;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -421,6 +496,54 @@
 .modalSection {
   display: flex;
   flex-direction: column;
+}
+
+.editInput {
+  width: 100%;
+  background: #0e0e0e;
+  border: 1px solid rgba(212,168,75,0.2);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.editInput:focus {
+  border-color: rgba(212,168,75,0.6);
+}
+
+.editTextarea {
+  min-height: 80px;
+  resize: vertical;
+  width: 100%;
+  background: #0e0e0e;
+  border: 1px solid rgba(212,168,75,0.2);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .championBanner {

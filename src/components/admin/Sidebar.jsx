@@ -84,6 +84,7 @@ const menuItems = [
   { href: '/admin', label: 'Dashboard', icon: 'bi-speedometer2' },
   { href: '/admin/customers', label: 'Customers', icon: 'bi-people-fill' },
   { href: '/admin/bookings', label: 'Bookings', icon: 'bi-calendar-check' },
+  { href: '/admin/calendar', label: 'Calendar', icon: 'bi-calendar3' },
   { href: '/admin/manage-rooms', label: 'Manage Rooms', icon: 'bi-door-open-fill' },
   { href: '/admin/waivers', label: 'Waivers', icon: 'bi-file-earmark-text' },
   { href: '/admin/game-results', label: 'Game Results', icon: 'bi-trophy-fill' },

@@ -23,6 +23,79 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filterLabel {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.select {
+  background: #111111;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  color: white;
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.empty {
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 18px;
+}
+
+.noteBox {
+  background: #111111;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.noteTitle {
+  margin: 0;
+  color: var(--gold-primary);
+}
+
+.noteText {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.helpGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.helpCard {
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.helpCard h4 {
+  margin: 0;
+  color: white;
+}
+
+.helpCard p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+/* legacy below kept harmlessly */
 .roomTabs {
   display: flex;
   flex-wrap: wrap;
@@ -208,17 +281,13 @@
 }
 
 @media (max-width: 900px) {
-  .formGrid {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  .helpGrid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 520px) {
-  .formGrid {
+  .grid {
     grid-template-columns: 1fr;
-  }
-
-  .slotTop {
-    flex-direction: column;
   }
 }

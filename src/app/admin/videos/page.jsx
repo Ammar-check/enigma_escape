@@ -1,24 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './videos.module.css';
-
-const dummyVideos = [
-  { id: 1, name: 'Ahmed Al-Rashid', phone: '+966501234567', email: 'ahmed@email.com', room: 'Butcher', date: '2024-01-15', time: '2:00 PM', videoSent: false, sentAt: null },
-  { id: 2, name: 'Fatima Hassan', phone: '+966598765432', email: 'fatima@email.com', room: 'VR Rooms', date: '2024-01-15', time: '5:00 PM', videoSent: false, sentAt: null },
-  { id: 3, name: 'Khalid Ibrahim', phone: '+966512345678', email: 'khalid@email.com', room: 'Lost City', date: '2024-01-14', time: '11:00 AM', videoSent: true, sentAt: '2024-01-14 3:00 PM' },
-  { id: 4, name: 'Omar Abdullah', phone: '+966511223344', email: 'omar@email.com', room: 'Sherlock', date: '2024-01-14', time: '4:00 PM', videoSent: false, sentAt: null },
-  { id: 5, name: 'Layla Al-Saud', phone: '+966522334455', email: 'layla@email.com', room: 'Mindshield', date: '2024-01-13', time: '6:00 PM', videoSent: true, sentAt: '2024-01-13 8:00 PM' },
-];
+import { supabase } from '@/lib/supabase';
 
 export default function VideosPage() {
-  const [videos, setVideos] = useState(dummyVideos);
+  const [videos, setVideos] = useState([]);
   const [filterStatus, setFilterStatus] = useState('pending');
   const [filterRoom, setFilterRoom] = useState('all');
   const [filterDate, setFilterDate] = useState('');
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  const filtered = videos.filter((v) => {
+  const filtered = useMemo(() => videos.filter((v) => {
     const matchSearch =
       v.name.toLowerCase().includes(search.toLowerCase()) ||
       v.phone.includes(search);
@@ -29,22 +23,75 @@ export default function VideosPage() {
     const matchRoom = filterRoom === 'all' || v.room === filterRoom;
     const matchDate = !filterDate || v.date === filterDate;
     return matchSearch && matchStatus && matchRoom && matchDate;
-  });
+  }), [videos, search, filterStatus, filterRoom, filterDate]);
+
+  const roomOptions = useMemo(
+    () => Array.from(new Set(videos.map((video) => video.room).filter(Boolean))),
+    [videos]
+  );
+
+  useEffect(() => {
+    const loadVideos = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('customers')
+        .select('id, full_name, first_name, last_name, primary_phone, phone_mobile, email, rooms, last_visit, video_requested, video_sent, updated_at')
+        .or('video_requested.eq.true,video_sent.eq.true')
+        .order('updated_at', { ascending: false });
+
+      if (error) {
+        console.error('Videos load error:', error);
+        setLoading(false);
+        return;
+      }
+
+      const mapped = (data || []).map((customer) => {
+        const rooms = Array.isArray(customer.rooms) ? customer.rooms : [];
+        const name = customer.full_name || `${customer.first_name || ''} ${customer.last_name || ''}`.trim() || 'Unknown';
+        const dateSource = customer.last_visit || customer.updated_at;
+        const dt = dateSource ? new Date(dateSource) : null;
+        return {
+          id: customer.id,
+          name,
+          phone: customer.primary_phone || customer.phone_mobile || '—',
+          email: customer.email || '—',
+          room: rooms.join(', ') || '—',
+          date: dt ? dt.toISOString().slice(0, 10) : '',
+          time: dt ? dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—',
+          videoSent: Boolean(customer.video_sent),
+          sentAt: customer.video_sent && customer.updated_at ? new Date(customer.updated_at).toLocaleString() : null,
+        };
+      });
+      setVideos(mapped);
+      setLoading(false);
+    };
+
+    loadVideos();
+  }, []);
 
   const markAsSent = (id) => {
-    const now = new Date().toLocaleString('en-US', {
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', minute: '2-digit'
-    });
-    setVideos(videos.map((v) =>
-      v.id === id ? { ...v, videoSent: true, sentAt: now } : v
-    ));
+    const updateVideo = async () => {
+      const { error } = await supabase.from('customers').update({ video_requested: true, video_sent: true }).eq('id', id);
+      if (error) {
+        console.error('Mark as sent failed:', error);
+        return;
+      }
+      const now = new Date().toLocaleString();
+      setVideos((prev) => prev.map((v) => (v.id === id ? { ...v, videoSent: true, sentAt: now } : v)));
+    };
+    updateVideo();
   };
 
   const markAsPending = (id) => {
-    setVideos(videos.map((v) =>
-      v.id === id ? { ...v, videoSent: false, sentAt: null } : v
-    ));
+    const updateVideo = async () => {
+      const { error } = await supabase.from('customers').update({ video_requested: true, video_sent: false }).eq('id', id);
+      if (error) {
+        console.error('Mark as pending failed:', error);
+        return;
+      }
+      setVideos((prev) => prev.map((v) => (v.id === id ? { ...v, videoSent: false, sentAt: null } : v)));
+    };
+    updateVideo();
   };
 
   const pendingCount = videos.filter((v) => !v.videoSent).length;
@@ -117,7 +164,7 @@ export default function VideosPage() {
             className={styles.select}
           >
             <option value="all">All Rooms</option>
-            {['Butcher', 'Sherlock', 'Lost City', 'VR Rooms', 'Mindshield', 'Outdoor Escape'].map((r) => (
+            {roomOptions.map((r) => (
               <option key={r} value={r}>{r}</option>
             ))}
           </select>
@@ -132,7 +179,12 @@ export default function VideosPage() {
       </div>
 
       {/* Cards */}
-      {filtered.length === 0 ? (
+      {loading ? (
+        <div className={styles.empty}>
+          <i className="bi bi-hourglass-split"></i>
+          <p>Loading video queue...</p>
+        </div>
+      ) : filtered.length === 0 ? (
         <div className={styles.empty}>
           <i className="bi bi-camera-video-off"></i>
           <p>No videos found</p>

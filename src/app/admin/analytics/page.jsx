@@ -1,37 +1,106 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import styles from './anylatics.module.css';
-
-const monthlyData = [
-  { month: 'Aug', customers: 45, bookings: 52, videos: 18 },
-  { month: 'Sep', customers: 62, bookings: 71, videos: 24 },
-  { month: 'Oct', customers: 88, bookings: 95, videos: 31 },
-  { month: 'Nov', customers: 74, bookings: 83, videos: 27 },
-  { month: 'Dec', customers: 110, bookings: 125, videos: 45 },
-  { month: 'Jan', customers: 95, bookings: 108, videos: 38 },
-];
-
-const roomData = [
-  { room: 'The Butcher', bookings: 98, wins: 42, losses: 56, color: '#e53935' },
-  { room: 'Sherlock', bookings: 85, wins: 51, losses: 34, color: '#8e24aa' },
-  { room: 'Lost City', bookings: 76, wins: 38, losses: 38, color: '#1e88e5' },
-  { room: 'VR Rooms', bookings: 112, wins: 89, losses: 23, color: '#00acc1' },
-  { room: 'Mindshield', bookings: 54, wins: 21, losses: 33, color: '#d4a84b' },
-  { room: 'Outdoor Escape', bookings: 41, wins: 28, losses: 13, color: '#43a047' },
-];
-
-const maxBookings = Math.max(...monthlyData.map((d) => d.bookings));
-const maxRoomBookings = Math.max(...roomData.map((d) => d.bookings));
+import { supabase } from '@/lib/supabase';
 
 export default function AnalyticsPage() {
   const [activeMetric, setActiveMetric] = useState('bookings');
+  const [monthlyData, setMonthlyData] = useState([]);
+  const [roomData, setRoomData] = useState([]);
+  const [totals, setTotals] = useState({
+    totalCustomers: 0,
+    totalBookings: 0,
+    totalVideosRequested: 0,
+    totalVideosSent: 0,
+    totalChampions: 0,
+    arabicCount: 0,
+    englishCount: 0,
+  });
+  const maxBookings = useMemo(() => Math.max(...monthlyData.map((d) => d.bookings), 1), [monthlyData]);
+  const maxRoomBookings = useMemo(() => Math.max(...roomData.map((d) => d.bookings), 1), [roomData]);
 
-  const totalCustomers = 1284;
-  const totalBookings = monthlyData.reduce((a, b) => a + b.bookings, 0);
-  const totalVideosRequested = 183;
-  const totalVideosSent = 141;
-  const totalChampions = 87;
+  useEffect(() => {
+    const loadAnalytics = async () => {
+      const monthBuckets = [];
+      for (let i = 5; i >= 0; i -= 1) {
+        const d = new Date();
+        d.setMonth(d.getMonth() - i);
+        monthBuckets.push({
+          key: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`,
+          month: d.toLocaleDateString('en-US', { month: 'short' }),
+          customers: 0,
+          bookings: 0,
+          videos: 0,
+        });
+      }
+
+      const [customersRes, bookingsRes] = await Promise.all([
+        supabase.from('customers').select('id, created_at, status, is_champion, video_requested, video_sent, language, rooms'),
+        supabase.from('bookings').select('id, created_at, start_at, tour, status'),
+      ]);
+
+      const customers = customersRes.data || [];
+      const bookings = bookingsRes.data || [];
+
+      const monthMap = new Map(monthBuckets.map((bucket) => [bucket.key, { ...bucket }]));
+      customers.forEach((customer) => {
+        if (!customer.created_at) return;
+        const dt = new Date(customer.created_at);
+        const key = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}`;
+        const bucket = monthMap.get(key);
+        if (bucket) {
+          bucket.customers += 1;
+          if (customer.video_requested) bucket.videos += 1;
+        }
+      });
+      bookings.forEach((booking) => {
+        const when = booking.start_at || booking.created_at;
+        if (!when) return;
+        const dt = new Date(when);
+        const key = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}`;
+        const bucket = monthMap.get(key);
+        if (bucket) bucket.bookings += 1;
+      });
+
+      const roomStats = {};
+      bookings.forEach((booking) => {
+        const room = booking.tour || 'Unknown';
+        if (!roomStats[room]) roomStats[room] = { room, bookings: 0, wins: 0, losses: 0 };
+        roomStats[room].bookings += 1;
+        if (booking.status === 'checked_in' || booking.status === 'completed' || booking.status === 'win' || booking.status === 'booked') {
+          roomStats[room].wins += 1;
+        } else {
+          roomStats[room].losses += 1;
+        }
+      });
+
+      const palette = ['#e53935', '#8e24aa', '#1e88e5', '#00acc1', '#d4a84b', '#43a047', '#ff7043', '#5c6bc0'];
+      const roomList = Object.values(roomStats)
+        .sort((a, b) => b.bookings - a.bookings)
+        .slice(0, 8)
+        .map((room, index) => ({ ...room, color: palette[index % palette.length] }));
+
+      const arabicCount = customers.filter((customer) => String(customer.language || '').toLowerCase().startsWith('ar')).length;
+      const englishCount = customers.filter((customer) => String(customer.language || '').toLowerCase().startsWith('en')).length;
+
+      setTotals({
+        totalCustomers: customers.length,
+        totalBookings: bookings.length,
+        totalVideosRequested: customers.filter((customer) => customer.video_requested).length,
+        totalVideosSent: customers.filter((customer) => customer.video_sent).length,
+        totalChampions: customers.filter((customer) => customer.is_champion || customer.status === 'champion').length,
+        arabicCount,
+        englishCount,
+      });
+      setMonthlyData(monthBuckets.map((bucket) => monthMap.get(bucket.key) || bucket));
+      setRoomData(roomList);
+    };
+
+    loadAnalytics();
+  }, []);
+
+  const { totalCustomers, totalBookings, totalVideosRequested, totalVideosSent, totalChampions, arabicCount, englishCount } = totals;
 
   const exportCSV = () => {
     const headers = ['Month', 'Customers', 'Bookings', 'Videos'];
@@ -192,7 +261,7 @@ export default function AnalyticsPage() {
                 <circle
                   cx="50" cy="50" r="35" fill="none"
                   stroke="#4caf50" strokeWidth="12"
-                  strokeDasharray={`${(totalVideosSent / totalVideosRequested) * 220} 220`}
+                  strokeDasharray={`${(totalVideosSent / Math.max(totalVideosRequested, 1)) * 220} 220`}
                   strokeDashoffset="55"
                   strokeLinecap="round"
                   style={{ transition: 'stroke-dasharray 1s ease' }}
@@ -200,7 +269,7 @@ export default function AnalyticsPage() {
               </svg>
               <div className={styles.donutCenter}>
                 <span className={styles.donutPct}>
-                  {Math.round((totalVideosSent / totalVideosRequested) * 100)}%
+                  {Math.round((totalVideosSent / Math.max(totalVideosRequested, 1)) * 100)}%
                 </span>
                 <span className={styles.donutLabel}>Sent</span>
               </div>
@@ -222,17 +291,27 @@ export default function AnalyticsPage() {
             <h3 className={styles.chartTitle}>Language Split</h3>
             <div className={styles.langSplit}>
               <div className={styles.langBar}>
-                <div className={styles.langFillAr} style={{ width: '63%' }}></div>
-                <div className={styles.langFillEn} style={{ width: '37%' }}></div>
+                <div
+                  className={styles.langFillAr}
+                  style={{ width: `${Math.round((arabicCount / Math.max(arabicCount + englishCount, 1)) * 100)}%` }}
+                ></div>
+                <div
+                  className={styles.langFillEn}
+                  style={{ width: `${Math.round((englishCount / Math.max(arabicCount + englishCount, 1)) * 100)}%` }}
+                ></div>
               </div>
               <div className={styles.langLegend}>
                 <div className={styles.legendItem}>
                   <span className={styles.legendDot} style={{ background: '#d4a84b' }}></span>
-                  <span>Arabic — 63%</span>
+                  <span>
+                    Arabic — {Math.round((arabicCount / Math.max(arabicCount + englishCount, 1)) * 100)}%
+                  </span>
                 </div>
                 <div className={styles.legendItem}>
                   <span className={styles.legendDot} style={{ background: '#1e88e5' }}></span>
-                  <span>English — 37%</span>
+                  <span>
+                    English — {Math.round((englishCount / Math.max(arabicCount + englishCount, 1)) * 100)}%
+                  </span>
                 </div>
               </div>
             </div>

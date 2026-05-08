@@ -1,0 +1,137 @@
+.pageWrap {
+  min-height: 100vh;
+  padding: 120px 20px 60px;
+  background: #09090f;
+  color: #fff;
+}
+
+.card {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  background: #12121c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 8px 0 20px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.summary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.summary h3 {
+  margin: 0 0 10px;
+}
+
+.summary p {
+  margin: 4px 0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.termsBox {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  max-height: 340px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 14px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.termsTitle {
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.termsBox ul {
+  margin: 0 0 12px;
+  padding-inline-start: 18px;
+}
+
+.termsBox li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.agreeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.backBtn,
+.confirmBtn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.backBtn {
+  background: #2d3147;
+  color: #fff;
+}
+
+.confirmBtn {
+  background: #f35d5e;
+  color: #fff;
+}
+
+.confirmBtn:disabled,
+.backBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 10px;
+  color: #ff8d8d;
+}
+
+@media (max-width: 700px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

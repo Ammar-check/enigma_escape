@@ -1,0 +1,204 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-left: 240px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  color: var(--gold-primary);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.printBtn,
+.controlBtn {
+  border: 1px solid rgba(212, 168, 75, 0.35);
+  background: rgba(212, 168, 75, 0.12);
+  color: var(--gold-primary);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dateInput {
+  background: #111;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.message {
+  color: #ff9b9b;
+}
+
+.empty {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.roomsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.roomColumn {
+  background: #111;
+  border: 1px solid rgba(212, 168, 75, 0.15);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roomTitle {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.noSlots {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.88rem;
+}
+
+.slotCard {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: #161616;
+  color: #fff;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.slotCard:hover {
+  border-color: rgba(212, 168, 75, 0.4);
+}
+
+.slotFull {
+  border-color: rgba(244, 67, 54, 0.5);
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.slotTime {
+  font-weight: 700;
+}
+
+.slotMeta {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.slotFlag {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ff9b9b;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+  padding: 12px;
+}
+
+.modal {
+  width: min(1120px, 96vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: #111;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.closeBtn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modalSummary {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 10px 0;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table th {
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 992px) {
+  .page {
+    margin-left: 0;
+    margin-top: 50px;
+  }
+  .roomsGrid {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .roomsGrid {
+    grid-template-columns: 1fr;
+  }
+}

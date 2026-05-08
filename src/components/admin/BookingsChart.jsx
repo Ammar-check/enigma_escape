@@ -2,28 +2,28 @@
 
 import styles from './BookingsChart.module.css';
 
-const data = [
-  { day: 'Mon', bookings: 8 },
-  { day: 'Tue', bookings: 12 },
-  { day: 'Wed', bookings: 6 },
-  { day: 'Thu', bookings: 15 },
-  { day: 'Fri', bookings: 20 },
-  { day: 'Sat', bookings: 24 },
-  { day: 'Sun', bookings: 18 },
+const fallbackData = [
+  { day: 'Mon', bookings: 0 },
+  { day: 'Tue', bookings: 0 },
+  { day: 'Wed', bookings: 0 },
+  { day: 'Thu', bookings: 0 },
+  { day: 'Fri', bookings: 0 },
+  { day: 'Sat', bookings: 0 },
+  { day: 'Sun', bookings: 0 },
 ];
 
-const max = Math.max(...data.map(d => d.bookings));
-
-export default function BookingsChart() {
+export default function BookingsChart({ data = fallbackData, total = 0, breakdown = [] }) {
+  const chartData = data.length > 0 ? data : fallbackData;
+  const max = Math.max(...chartData.map((d) => d.bookings), 1);
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h3 className={styles.title}>Bookings This Week</h3>
-        <span className={styles.total}>103 total</span>
+        <span className={styles.total}>{total} total</span>
       </div>
 
       <div className={styles.chart}>
-        {data.map((d) => (
+        {chartData.map((d) => (
           <div key={d.day} className={styles.barGroup}>
             <span className={styles.barValue}>{d.bookings}</span>
             <div className={styles.barWrapper}>
@@ -37,21 +37,15 @@ export default function BookingsChart() {
         ))}
       </div>
 
-      {/* Room breakdown */}
       <div className={styles.breakdown}>
-        {[
-          { room: 'Butcher', count: 28, color: '#e53935' },
-          { room: 'Sherlock', count: 22, color: '#8e24aa' },
-          { room: 'Lost City', count: 19, color: '#1e88e5' },
-          { room: 'VR', count: 24, color: '#00acc1' },
-          { room: 'Mindshield', count: 10, color: '#d4a84b' },
-        ].map((r) => (
+        {breakdown.map((r) => (
           <div key={r.room} className={styles.breakdownItem}>
             <span className={styles.breakdownDot} style={{ background: r.color }}></span>
             <span className={styles.breakdownRoom}>{r.room}</span>
             <span className={styles.breakdownCount}>{r.count}</span>
           </div>
         ))}
+        {breakdown.length === 0 && <span className={styles.breakdownRoom}>No booking breakdown yet.</span>}
       </div>
     </div>
   );

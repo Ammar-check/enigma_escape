@@ -1,20 +1,12 @@
 import styles from './VideoQueue.module.css';
 
-const videos = [
-  { id: 1, name: 'Ahmed Al-Rashid', room: 'Butcher', time: '2:00 PM', date: 'Today', sent: false },
-  { id: 2, name: 'Sara Mohammed', room: 'Sherlock', time: '3:30 PM', date: 'Today', sent: false },
-  { id: 3, name: 'Khalid Ibrahim', room: 'VR', time: '11:00 AM', date: 'Today', sent: true },
-  { id: 4, name: 'Fatima Hassan', room: 'Lost City', time: '5:00 PM', date: 'Today', sent: false },
-];
-
-export default function VideoQueue() {
+export default function VideoQueue({ videos = [] }) {
+  const pendingCount = videos.filter((v) => !v.sent).length;
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h3 className={styles.title}>Video Queue</h3>
-        <span className={styles.pending}>
-          {videos.filter(v => !v.sent).length} pending
-        </span>
+        <span className={styles.pending}>{pendingCount} pending</span>
       </div>
 
       <div className={styles.list}>
@@ -35,6 +27,7 @@ export default function VideoQueue() {
             </button>
           </div>
         ))}
+        {videos.length === 0 && <div className={styles.item}>No video requests pending.</div>}
       </div>
 
       <a href="/admin/videos" className={styles.viewAll}>View full queue →</a>
