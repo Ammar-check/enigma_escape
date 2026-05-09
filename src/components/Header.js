@@ -131,7 +131,7 @@ export default function Header() {
             {/* Logo - Center */}
             <Link href="/" className={styles.logo}>
               <div className={styles.logoWrapper}>
-                <Image src="/logo-enigma-yellow.webp" alt="Enigma Logo" width={180} height={70} />
+                <Image src="/logo-enigma-yellow.webp" alt="Enigma Logo" width={260} height={100} />
               </div>
             </Link>
 

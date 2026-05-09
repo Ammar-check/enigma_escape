@@ -192,6 +192,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 20px;
   transition: transform 0.3s ease;
 }
 
@@ -201,6 +202,7 @@
 
 .logoWrapper img {
   display: block;
+  width: 220px;
   height: auto;
 }
 
@@ -786,7 +788,8 @@ border-radius: 28px;
   }
 
   .logoWrapper img {
-   width: 76px;
+   width: 30px;
+   padding-top: 20px;
     margin-right: 90px;
   }
  
@@ -866,7 +869,7 @@ border-radius: 28px;
   }
 
   .logoWrapper img {
-    width: 65px;
+    width: 60px;
   }
 
   .mobileToggle {
@@ -921,7 +924,7 @@ border-radius: 28px;
   }
 
   .logoWrapper img {
-    width: 52px;
+    width: 50px;
     margin-right: 0;
   }
 

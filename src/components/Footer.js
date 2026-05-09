@@ -2,16 +2,12 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Footer.module.css';
 import Image from 'next/image';
-import Divider from './Divider';
 
 export default function Footer() {
   const { t, isArabic } = useLanguage();
-  const pathname = usePathname();
-  const isHome = pathname === '/';
 
   const socialLinks = [
     { icon: 'bi-instagram', href: 'https://www.instagram.com/enigmaescapeksa', label: 'Instagram' },
@@ -22,9 +18,6 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      {/* Full-width line above the logo (hidden on homepage) */}
-      {!isHome && <Divider className={styles.topLine} />}
-
       <div className="container pt-5">
         {/* Logo */}
         <motion.div 

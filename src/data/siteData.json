@@ -63,7 +63,7 @@
       "id": 4,
       "nameEn": "/vr-rooms-original.png",
       "nameAr": "/alarab (1).png",
-      "image": "/New-Project-6.png",
+      "image": "/vr-room/vr rooms.webp",
       "players": "4",
       "duration": "60",
       "hasLivePerformers": false,
@@ -523,7 +523,7 @@
     "id": 7,
     "nameEn":"Time Travel Paradox",
     "nameAr": "مفارقة السفر عبر الزمن",
-    "image": "/vr-room/Time-Travel-Paradox-Dramatic-7.jpg",
+    "image": "/vr-room/Time Travel Paradox.webp",
     "players": "2-4",
     "descriptionEn": "Rampaging robots have destroyed your ship, and rescue is minutes away! Fight off waves of laserbots using advanced weapons, gather energy crystals, and survive until help arrives in this fast-paced battle challenge.",
     "descriptionAr": "الروبوتات المهاجمة دمرت مركبتك، والمساعدة على بعد دقائق! قاتل موجات الروبوتات باستخدام أسلحة متطورة، واجمع الطاقة، واصمد حتى تصل النجدة في هذا التحدي السريع."
@@ -833,7 +833,7 @@
     {
       "id": 4,
       "title": "VR Room",
-      "image": "/New-Project-6.png",
+      "image": "/vr-room/vr rooms.webp",
       "info": "Introducing the next level of escape room adventure Enigma new VR Room! This immersive experience combines the thrill of traditional escape rooms with cutting-edge virtual reality, bringing players into a world where anything is possible..",
       "slotTimes": [
         { "time": "14:20", "status": "available", "available": 10 },
