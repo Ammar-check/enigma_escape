@@ -6,6 +6,7 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   margin-top: 30px;
+  scroll-margin-top: 140px;
 }
 
 .roomCard:hover {
@@ -125,15 +126,10 @@
 .card3 .roomImage {
    object-position: left center;
 }
-/* .card4 .roomImage {
-  width: 105%;
-  height: 105%;
-   object-position: left bottom;
-   transform: translateY(-20px);
+
+.card4 .roomImage {
+  object-position: right bottom;
 }
-.card4 .roomImage:hover {
-  scale: 1.17;
-} */
 
 .card2 .roomName{
     width: 400px;
@@ -161,6 +157,15 @@
     width: 500px;
     height: 150px;
     transform: translate(0,50px);
+}
+.card5 .roomName{
+    width: 500px;
+    height: 230px;
+    transform: translateY(5px);
+}
+.card5 .EnNameImg{
+    object-fit: contain;
+    object-position: top left;
 }
 .card5 .roomNameAr{
     width: 500px;
@@ -212,22 +217,23 @@
 .roomBookBtn {
   margin-top: 40px;
   font-size: 16px;
-  line-height: 15px;
-text-transform: uppercase;
-  padding: 8px 20px;
+  line-height: 18px;
+  text-transform: uppercase;
+  padding: 14px 28px;
   z-index: 4;
   background: var(--gold-primary) !important;
   color: var(--dark-bg) !important;
   border: none !important;
   flex-shrink: 0;
-  font-weight: 100;
-  border-radius: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  border-radius: 22px;
 }
 
 [dir='rtl'] .roomBookBtn{
   font-family: 'Myriad',sans-serif;
-  font-weight: 500;
-  padding: 5px 24px;
+  font-weight: 800;
+  padding: 14px 28px;
   font-size: 1rem;
 }
 .roomDetails {

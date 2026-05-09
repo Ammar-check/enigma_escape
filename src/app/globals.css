@@ -30,6 +30,87 @@
   font-display: swap;
 }
 
+/* Myriad Pro family */
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('/fonts/myriad-pro/MyriadPro-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('/fonts/myriad-pro/MYRIADPRO-REGULAR.OTF') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('/fonts/myriad-pro/MYRIADPRO-SEMIBOLD.OTF') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('/fonts/myriad-pro/MYRIADPRO-SEMIBOLDIT.OTF') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('/fonts/myriad-pro/MYRIADPRO-BOLD.OTF') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('/fonts/myriad-pro/MYRIADPRO-BOLDIT.OTF') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro Cond';
+  src: url('/fonts/myriad-pro/MYRIADPRO-COND.OTF') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro Cond';
+  src: url('/fonts/myriad-pro/MYRIADPRO-CONDIT.OTF') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro Cond';
+  src: url('/fonts/myriad-pro/MYRIADPRO-BOLDCOND.OTF') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro Cond';
+  src: url('/fonts/myriad-pro/MYRIADPRO-BOLDCONDIT.OTF') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Reey';
   src: url('/fonts/Reey-Regular.otf') format('opentype');
@@ -47,6 +128,11 @@
 }
 
 :root {
+  /* Bootstrap palette (borders / accents) */
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+
   /* Colors */
   --dark-bg: #0a0a0a;
   --dark-secondary: #1a1a1a;
@@ -140,9 +226,8 @@ p, span, a, li, label, input, textarea, button {
   color: var(--dark-bg);
   border-radius: 50px;
   box-shadow: 0 2px 15px rgba(212, 168, 75, 0.3);
-  font-weight: 600;
+  font-weight: 800;
   border: none;
-  
 }
 
 .btn-gold:hover {

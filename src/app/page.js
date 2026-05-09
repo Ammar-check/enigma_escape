@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import RoomCard from '@/components/RoomCard';
+import Divider from '@/components/Divider';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
 const containerVariants = {
@@ -213,14 +214,10 @@ export default function Home() {
           }}
         ></motion.div>
 
-        {/* Circuit Divider - White color */}
-        <div className={styles.heroCircuitDivider}>
-          {/* <div className={styles.circuitLine}></div> */}
-          {/* <img src='layer-homeDiv.svg' alt='home layer svg' style={{width:'100%',marginBottom:'10px'}}/> */}
-          <div className={styles.circuitDot}></div>
-        </div>
-        
         {/* <img src='/home-second-bg.svg' alt='' style={{width:'100%',position:'absolute',left:0,top:'513px'}} /> */}
+
+        {/* Gradient divider line at the bottom of the hero section */}
+        <Divider className={styles.heroBottomDivider} />
       </section>
        
       {/* Our Rooms Section */}
@@ -285,6 +282,9 @@ export default function Home() {
             />
           </svg>
         </motion.div> */}
+
+        {/* Gradient divider line above the Contact Us heading */}
+        <Divider className={styles.contactTopDivider} />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
 

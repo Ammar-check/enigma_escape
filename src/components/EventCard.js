@@ -43,10 +43,10 @@ export default function EventCard({ event }) {
             {isArabic ? event.titleAr : event.titleEn}
           </h3>
         </div>
-        <div className={styles.eventBookBtn} style={{background:'var(--gold-primary)',borderRadius:'50px'}}>
-          <a 
-            href="" 
-            target="_blank" 
+        <div className={styles.eventBookBtn}>
+          <a
+            href=""
+            target="_blank"
             rel="noopener noreferrer"
             className="btn btn-gold"
           >

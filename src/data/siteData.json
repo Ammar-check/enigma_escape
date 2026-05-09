@@ -784,7 +784,7 @@
     {
       "id": 1,
       "title": "The Butcher",
-      "image": "/book-img/butcher.jpg",
+      "image": "/index-Recovered_03.png",
       "info": "Six people have disappeared in the neighborhood in the last two months. Police are expecting a serial killer, but no one has a clue who it could be…until now! You are a team of private investigators who got a tip that the local butcher may be responsible. You decided to gather evidence on the Butcher…But all you remember is getting to his door…and now you’re trapped in a tiny wooden cell with a pounding headache trying to understand what’s going on! Now you need to escape before the butcher sends you to the slaughterhouse!",
       "slotTimes": [
         { "time": "14:00", "status": "full" },
@@ -801,7 +801,7 @@
     {
       "id": 2,
       "title": "The Lost City",
-      "image": "/book-img/lostcity.jpg",
+      "image": "/lost-city.png",
       "info": "Investigate the haunted manor and uncover the truth behind Count Malum.",
       "slotTimes": [
         { "time": "14:15", "status": "available", "available": 10 },
@@ -817,7 +817,7 @@
     {
       "id": 3,
       "title": "Sherlock",
-      "image": "/book-img/sherlock.jpg",
+      "image": "/New-Project-5.png",
       "info": "Find the cure to a deadly pirate curse before your crew turns into monsters.",
       "slotTimes": [
         { "time": "14:30", "status": "available", "available": 10 },
@@ -833,7 +833,7 @@
     {
       "id": 4,
       "title": "VR Room",
-      "image": "/book-img/vrroom.jpg",
+      "image": "/New-Project-6.png",
       "info": "Introducing the next level of escape room adventure Enigma new VR Room! This immersive experience combines the thrill of traditional escape rooms with cutting-edge virtual reality, bringing players into a world where anything is possible..",
       "slotTimes": [
         { "time": "14:20", "status": "available", "available": 10 },
@@ -850,7 +850,7 @@
     {
       "id": 5,
       "title": "Mind Shield",
-      "image": "/book-img/mindshield.jpg",
+      "image": "/Rounded-Rectangle-3-copy.svg",
       "info": "Repair the station and stop a meteor from destroying Earth.",
       "slotTimes": [
         { "time": "16:00", "status": "available", "available": 10 },

@@ -75,8 +75,6 @@
     0 0 10px rgba(212, 168, 75, 0.6),
     0 0 20px rgba(212, 168, 75, 0.4),
     0 0 40px rgba(212, 168, 75, 0.2);
-  /* text-shadow: 0 0 50px rgba(255, 255, 255, 0.5); */
-  /* text-shadow: 0 0 8px rgba(212, 168, 75, 0.6), 0 0 15px rgba(212, 168, 75, 0.3); */
 }
 
 [dir="rtl"] .heroNumber {
@@ -88,7 +86,7 @@
 .heroMinutes {
   /* font-family: 'Orbitron', sans-serif; */
   font-family: 'Skygraze', sans-serif;
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: 300;
   letter-spacing: 15px;
   color: #ffff82;
@@ -100,7 +98,7 @@
 
 [dir="rtl"] .heroMinutes {
   font-family: var(--font-arabic);
-  font-size: 4rem;
+  font-size: 6rem;
   letter-spacing: 5px;
 }
 
@@ -152,19 +150,13 @@
 }
 
 .heroSubtitle {
-  /* font-family: var(--font-english); */
-  /* font-family: 'Skygraze', sans-serif; */
-  /* font-size: 1.2rem;
-  letter-spacing: 5px;
-  color: #ffffff;
-  margin-top: 20px; */
   font-size: 2.3rem;
-line-height: 15px;
-text-transform: uppercase;
-color: #ffffff;
-font-weight: 100;
-font-family: "Montserrat";
-/* text-align: center; */
+  line-height: 15px;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 300;
+  font-family: 'Myriad Pro', 'Montserrat', sans-serif;
+  padding-bottom: 30px;
 }
 
 [dir="rtl"] .heroSubtitle {
@@ -187,48 +179,6 @@ font-family: "Montserrat";
 [dir="rtl"] .heroGlow {
   right: auto;
   left: 20%;
-}
-
-/* Hero Circuit Divider - White */
-.heroCircuitDivider {
-  position: absolute;
-  bottom: 17px;
-  left: 0;
-  right: 0;
-  height: 60px;
-  z-index: 10;
-}
-
-.circuitLine {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%2300bfff' stroke-width='4' fill='none'/%3E%3C/svg%3E") center no-repeat;
-  background-size: 100% auto;
-
-}
-
-.circuitDot {
-  position: absolute;
-  left: 0;
-  bottom: 53px;
-  width: 8px;
-  height: 8px;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 15px #ffffff, 0 0 30px #ffffff;
-  animation: circuitPulse 2s ease-in-out infinite;
-}
-
-@keyframes circuitPulse {
-  0%, 100% {
-    box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
-  }
-  50% {
-    box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff;
-  }
 }
 
 /* Rooms Section with Background */
@@ -370,6 +320,23 @@ font-family: "Montserrat";
   height: 60px;
 }
 
+/* Gradient divider at the bottom of the hero section */
+.heroBottomDivider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+}
+
+/* Gradient divider above the Contact Us heading */
+.contactTopDivider {
+  position: relative;
+  z-index: 5;
+  margin-bottom: 40px;
+  display: none;
+}
+
 
 .contactInfo {
   padding-right: 30px;
@@ -440,10 +407,11 @@ font-family: "Montserrat";
   margin: 50px 0 0 0;
   border-radius: 0;
   overflow: hidden;
-  box-shadow: none;
   border: 2px solid #ffffff;
   padding: 20px;
   background: transparent;
+  box-sizing: border-box;
+  box-shadow: none;
 }
 
 .mapWrapper iframe {
@@ -464,11 +432,11 @@ font-family: "Montserrat";
   }
 
   .heroNumber {
-    font-size: 9rem;
+    font-size: 9.5rem;
   }
 
   .heroMinutes {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-family: 'Skygraze', sans-serif;
   }
 
@@ -544,22 +512,17 @@ font-family: "Montserrat";
   }
 
   .heroNumber {
-    font-size: 6rem;
+    font-size: 8.5rem;
   }
 
   .heroMinutes {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
     letter-spacing: 8px;
     margin-bottom: 20px;
   }
 
   .heroGlow {
     display: none;
-  }
-
-  .circuitDot {
-    animation: none;
-    box-shadow: none;
   }
 
   .contactSection {
@@ -611,18 +574,17 @@ font-family: "Montserrat";
   }
 
   .mapWrapper {
-    margin: 30px 0 0 0;
+    margin: 30px calc(50% - 50vw) 0;
     padding: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border: 2px solid #ffffff;
+    border-image: none;
   }
 
   .mapWrapper iframe {
     height: 250px;
   }
-  .heroCircuitDivider {
-
-  bottom: -20px;
- 
-}
 }
 
 @media (max-width: 576px) {
@@ -631,11 +593,11 @@ font-family: "Montserrat";
   }
 
   .heroNumber {
-    font-size: 4.5rem;
+    font-size: 6.5rem;
   }
 
   .heroMinutes {
-    font-size: 1.6rem;
+    font-size: 2.4rem;
     letter-spacing: 6px;
     margin-top: 5px;
   }
@@ -659,10 +621,6 @@ font-family: "Montserrat";
 
   .contactSection {
     padding: 30px 0 40px 0;
-  }
-
-  .whiteDivider {
-    /* margin-bottom: 25px; */
   }
 
   .whiteDivider svg {
@@ -701,11 +659,11 @@ font-family: "Montserrat";
 }
 
   .heroNumber {
-    font-size: 5.5rem;
+    font-size: 7.5rem;
   }
 
   .heroMinutes {
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     letter-spacing: 4px;
     margin-top: 0px;
   }
@@ -731,18 +689,23 @@ font-family: "Montserrat";
 
 
   .mapWrapper {
-    margin: 20px 0 0 0;
+    margin: 20px calc(50% - 50vw) 0;
     padding: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border-width: 2px;
+    border-image: linear-gradient(
+        90deg,
+        var(--bs-blue, #0d6efd),
+        var(--bs-indigo, #6610f2),
+        var(--bs-purple, #6f42c1)
+      )
+      1;
   }
 
   .mapWrapper iframe {
     height: 200px;
   }
-
-    .heroCircuitDivider {
-
-  bottom: -38px;
-}
 
 .comingSoonContent h3 {
  font-size: 1.5rem;
@@ -776,10 +739,6 @@ font-family: "Montserrat";
    max-height: 120px;
 }
 
- .heroCircuitDivider {
-  bottom: -44px;
-}
-
 }
 
 @media (max-width: 280px) {
@@ -790,11 +749,11 @@ font-family: "Montserrat";
   }
 
   .heroNumber {
-    font-size: 4rem;
+    font-size: 4.5rem;
   }
 
   .heroMinutes {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     letter-spacing: 2px;
   }
 

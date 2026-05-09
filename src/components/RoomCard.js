@@ -32,6 +32,7 @@ export default function RoomCard({ room, showDetails = true, index = 0 }) {
 
   return (
     <motion.div
+      id={`room-${room.id}`}
       className={`${styles.roomCard} ${styles[`card${index+1}`]}`}
       initial={{ opacity: 0, x: -100 }}
   whileInView={{ opacity: 1, x: 0 }}

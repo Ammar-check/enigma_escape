@@ -5,8 +5,24 @@
   background-position: bottom;
   background-size: cover;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   margin-top: -60px;
+  z-index: 40;
+}
+
+/* Override bootstrap utilities only inside the footer */
+.footer :global(.pt-5) {
+  padding-top: 8rem !important;
+}
+
+/* Make the footer container full-width on mobile */
+@media (max-width: 768px) {
+  .footer :global(.container) {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .footer::before {
@@ -18,46 +34,11 @@
   z-index: 1;
 }
 
-.circuitDivider {
-  height: 60px;
+.topLine {
+  margin-top: 30px;
+  margin-bottom: 0;
   position: relative;
-}
-
-.circuitLine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0 30 L100 30 L120 10 L300 10 L320 30 L500 30 L520 50 L700 50 L720 30 L900 30 L920 10 L1100 10 L1120 30 L1200 30' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E") center no-repeat;
-  background-size: 100% auto;
-}
-
-.circuitDot {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-[dir="rtl"] .circuitDot {
-  left: auto;
-  right: 0;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
-  }
+  z-index: 50;
 }
 
 .logoSection {

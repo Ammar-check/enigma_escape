@@ -1,17 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Footer.module.css';
 import Image from 'next/image';
+import Divider from './Divider';
 
 export default function Footer() {
   const { t, isArabic } = useLanguage();
   const pathname = usePathname();
-  const isHomepage = pathname === '/';
-  
+  const isHome = pathname === '/';
+
   const socialLinks = [
     { icon: 'bi-instagram', href: 'https://www.instagram.com/enigmaescapeksa', label: 'Instagram' },
     { icon: 'bi-google', href: 'https://google.com', label: 'Google' },
@@ -21,13 +22,8 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      {/* Circuit Divider - Hidden on homepage */}
-      {!isHomepage && (
-        <div className={styles.circuitDivider}>
-          {/* <div className={styles.circuitLine}></div> */}
-          <div className={styles.circuitDot}></div>
-        </div>
-      )}
+      {/* Full-width line above the logo (hidden on homepage) */}
+      {!isHome && <Divider className={styles.topLine} />}
 
       <div className="container pt-5">
         {/* Logo */}
@@ -69,9 +65,6 @@ export default function Footer() {
             </motion.a>
           ))}
         </motion.div>
-
-        {/* Divider Line */}
-        <hr className={styles.dividerLine} />
 
         {/* Copyright */}
         <motion.div 

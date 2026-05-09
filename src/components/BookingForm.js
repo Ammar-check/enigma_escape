@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./BookingForm.module.css";
 import { useRef } from "react";
 import DatePicker from "react-datepicker";
@@ -37,14 +37,16 @@ const BookingForm = ({ initialRoomId = null }) => {
   };
 
   const goNext = () => {
+    const step = isSingleRoomMode ? 6 : 1;
     const next = new Date(selectedDate);
-    next.setDate(next.getDate() + 1);
+    next.setDate(next.getDate() + step);
     setSelectedDate(next);
   };
 
   const goPrev = () => {
+    const step = isSingleRoomMode ? 6 : 1;
     const prev = new Date(selectedDate);
-    prev.setDate(prev.getDate() - 1);
+    prev.setDate(prev.getDate() - step);
     setSelectedDate(prev);
   };
 
@@ -80,6 +82,34 @@ const filteredCard =
     ? siteData.bookingCard
     : siteData.bookingCard.filter((card) => String(card.id) === selectedRoom);
 
+// Determines whether we are in "single-room mode": that means a specific
+// room is selected (either via the route's initialRoomId or the filter
+// dropdown) AND the user has NOT toggled "All rooms".
+const isSingleRoomMode =
+  !showAllRooms && selectedRoom !== "" && filteredCard.length === 1;
+
+// Build the list of (card, date) entries we want to render. In all-rooms
+// mode we show one card per room for the currently selected date. In
+// single-room mode we show 6 cards — one per day for the next 6 days —
+// all for the same room.
+const SINGLE_ROOM_DAYS = 6;
+const cardsToRender = useMemo(() => {
+  if (!isSingleRoomMode) {
+    return filteredCard.map((card) => ({ card, date: selectedDate }));
+  }
+
+  const card = filteredCard[0];
+  const week = [];
+  for (let i = 0; i < SINGLE_ROOM_DAYS; i += 1) {
+    const d = new Date(selectedDate);
+    d.setDate(d.getDate() + i);
+    d.setHours(0, 0, 0, 0);
+    week.push({ card, date: d });
+  }
+  return week;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [isSingleRoomMode, selectedRoom, showAllRooms, selectedDate.getTime()]);
+
   const getRoomSlugById = (id) => {
     const map = {
       1: "the-butcher",
@@ -104,15 +134,16 @@ const filteredCard =
 
   useEffect(() => {
     const loadSlots = async () => {
-      const activeCards = filteredCard || [];
-      if (activeCards.length === 0) {
+      if (cardsToRender.length === 0) {
         setSlotAvailability({});
         return;
       }
 
       const nextAvailability = {};
       await Promise.all(
-        activeCards.map(async (card) => {
+        cardsToRender.map(async ({ card, date }) => {
+          const dateString = formatDateLocal(date);
+          const key = `${card.id}_${dateString}`;
           const roomSlug = getRoomSlugById(card.id);
           const roomNames = getRoomTourNamesById(card.id);
           const roomMatchers = [...roomNames, roomSlug, card.title].filter(Boolean);
@@ -122,27 +153,27 @@ const filteredCard =
               .from("room_slots")
               .select("slot_date,start_time,end_time,capacity,is_blocked,price_2,price_3,price_4,price_5,price_6,price_7,price_8")
               .eq("room_slug", roomSlug)
-              .eq("slot_date", formattedDate)
+              .eq("slot_date", dateString)
               .order("start_time", { ascending: true }),
             supabase
               .from("bookings")
               .select("start_at,participants,adults,tour")
               .or(roomOrFilter)
-              .gte("start_at", `${formattedDate}T00:00:00`)
-              .lt("start_at", `${formattedDate}T23:59:59`),
+              .gte("start_at", `${dateString}T00:00:00`)
+              .lt("start_at", `${dateString}T23:59:59`),
           ]);
 
           if (slotError || bookingError) {
-            nextAvailability[card.id] = [];
+            nextAvailability[key] = [];
             return;
           }
 
-          nextAvailability[card.id] = (slotData || []).map((slot) => {
+          nextAvailability[key] = (slotData || []).map((slot) => {
             const bookedPlayers = (bookingData || []).reduce((sum, booking) => {
               if (!booking.start_at) return sum;
               const bookingDate = getDatePart(booking.start_at);
               const bookingTime = getTimePart(booking.start_at);
-              if (bookingDate === formattedDate && isInSlotRange(bookingTime, slot.start_time, slot.end_time)) {
+              if (bookingDate === dateString && isInSlotRange(bookingTime, slot.start_time, slot.end_time)) {
                 return sum + Number(booking.participants || booking.adults || 0);
               }
               return sum;
@@ -174,7 +205,7 @@ const filteredCard =
 
     loadSlots();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formattedDate, selectedRoom, showAllRooms]);
+  }, [cardsToRender]);
 
   useEffect(() => {
     if (!selectedSlotBooking) return;
@@ -263,8 +294,17 @@ const filteredCard =
       </div>
 
       <div className={styles.cardBody}>
-        {filteredCard.map((card) => (
-  <div key={card.id} className={styles.card}>
+        {cardsToRender.map(({ card, date }, cardIndex) => {
+          const cardDateString = formatDateLocal(date);
+          const cardDisplayDate = date.toLocaleDateString("en-GB", {
+            weekday: "short",
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          });
+          const cardSlotKey = `${card.id}_${cardDateString}`;
+          return (
+  <div key={`${card.id}-${cardDateString}`} className={styles.card}>
     
     <div className={styles.imgSec}>
       <Image
@@ -298,30 +338,38 @@ const filteredCard =
     </div>
     
     <div className={styles.dateBar}>
-  {/* Prev Button */}
-  <button
-    className={styles.navBtn}
-    onClick={goPrev}
-    style={{ visibility: isToday() ? "hidden" : "visible" }} // 👈 no shift
-  >
-    &#8249;
-  </button>
+  {/* Prev Button — only shown for the global date (first card / non-week view) */}
+  {!isSingleRoomMode ? (
+    <button
+      className={styles.navBtn}
+      onClick={goPrev}
+      style={{ visibility: isToday() ? "hidden" : "visible" }}
+    >
+      &#8249;
+    </button>
+  ) : (
+    <span className={styles.navBtn} style={{ visibility: "hidden" }}>&#8249;</span>
+  )}
 
-  {/* Center Date */}
+  {/* Center Date — each card shows its own date in single-room mode */}
   <div className={styles.dateText}>
-    {displayDate}
+    {cardDisplayDate}
   </div>
 
-  {/* Next Button */}
-  <button className={styles.navBtn} onClick={goNext}>
-    &#8250;
-  </button>
+  {/* Next Button — only shown for the global date (first card / non-week view) */}
+  {!isSingleRoomMode ? (
+    <button className={styles.navBtn} onClick={goNext}>
+      &#8250;
+    </button>
+  ) : (
+    <span className={styles.navBtn} style={{ visibility: "hidden" }}>&#8250;</span>
+  )}
 </div>
 
 
     <div className={styles.dateSec}>
       {(() => {
-        const slotsFromBackend = slotAvailability[card.id] || [];
+        const slotsFromBackend = slotAvailability[cardSlotKey] || [];
         const slots = slotsFromBackend;
         const availableCount = card.availableCount ?? 10;
         if (slots.length === 0) {
@@ -339,13 +387,13 @@ const filteredCard =
           const isFull = slotData.status === "full";
           return (
             <button
-              key={`${card.id}-${formattedDate}-${i}`}
+              key={`${card.id}-${cardDateString}-${i}`}
               className={`${styles.slotBtn} ${isFull ? styles.slotBtnFull : ""}`}
               disabled={isFull}
               onClick={() => {
                 if (isFull) return;
                 setSelectedAdults(2);
-                setSelectedSlotBooking({ card, slot: slotData, date: displayDate, dbDate: formattedDate });
+                setSelectedSlotBooking({ card, slot: slotData, date: cardDisplayDate, dbDate: cardDateString });
               }}
             >
               {slotData.time}
@@ -363,130 +411,132 @@ const filteredCard =
    </div>
 
 
-    {/* POPUP */}
-    {selectedInfo?.id === card.id && (
-      <div className={styles.infoOverlay}>
-        <div className={styles.infoPopup}>
-
-          <h1>{card.title}</h1>
-          <hr />
-          <p style={{display:'flex',gap:'20px',}}>
-            <Image src={card.image} width={250} height={250} alt="info card image" />
-            {card.info}</p>
-
-          <button
-            className={styles.closeBtn}
-            onClick={() => setSelectedInfo(null)}
-          >
-            OK
-          </button>
-        </div>
-      </div>
-    )}
-
-    {selectedSlotBooking?.card?.id === card.id && (
-      <div className={styles.infoOverlay}>
-        <div className={styles.bookingPopup}>
-          {(() => {
-            const availableSeats = Number(selectedSlotBooking.slot?.available ?? 0);
-            const maxSelectableAdults = Math.min(8, availableSeats);
-            const selectableAdults = [2, 3, 4, 5, 6, 7, 8].filter((value) => value <= maxSelectableAdults);
-            const notEnoughSeats = availableSeats < selectedAdults;
-            return (
-              <>
-          <h2 className={styles.bookingPopupTitle}>{selectedSlotBooking.card.title}</h2>
-          <p className={styles.bookingPopupDate}>
-            <i className="bi bi-clock-history"></i> {selectedSlotBooking.date} {selectedSlotBooking.slot.time}
-          </p>
-          <hr className={styles.bookingPopupDivider} />
-          <div className={styles.bookingPopupRows}>
-            <div className={styles.bookingPopupRow}>
-              <span>Adults</span>
-              <div className={styles.adultsControl}>
-                <button
-                  onClick={() => setSelectedAdults((prev) => Math.max(2, prev - 1))}
-                  type="button"
-                  disabled={selectableAdults.length === 0}
-                >
-                  -
-                </button>
-                <select
-                  value={selectedAdults}
-                  onChange={(e) => setSelectedAdults(Number(e.target.value))}
-                  disabled={selectableAdults.length === 0}
-                >
-                  {selectableAdults.length === 0 ? (
-                    <option value={selectedAdults}>{selectedAdults}</option>
-                  ) : (
-                    selectableAdults.map((value) => (
-                      <option key={value} value={value}>{value}</option>
-                    ))
-                  )}
-                </select>
-                <button
-                  onClick={() => setSelectedAdults((prev) => Math.min(maxSelectableAdults, prev + 1))}
-                  type="button"
-                  disabled={selectableAdults.length === 0}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            <div className={styles.bookingPopupRow}>
-              <span>Available</span>
-              <span>{selectedSlotBooking.slot.available}</span>
-            </div>
-            <div className={styles.bookingPopupRow}>
-              <span>Price</span>
-              <span>
-                {(selectedSlotBooking.slot.prices?.[selectedAdults] ?? 0).toLocaleString()} SAR
-              </span>
-            </div>
-          </div>
-          {notEnoughSeats && (
-            <p className={styles.bookingSeatWarning}>Not enough seats for selected adults.</p>
-          )}
-          <div className={styles.bookingPopupActions}>
-            <button
-              className={styles.bookingCancelBtn}
-              onClick={() => {
-                setSelectedSlotBooking(null);
-              }}
-              type="button"
-            >
-              Cancel
-            </button>
-            <button
-              className={styles.bookingConfirmBtn}
-              type="button"
-              disabled={notEnoughSeats || availableSeats < 2}
-              onClick={() => {
-                if (notEnoughSeats || availableSeats < 2) return;
-                const room = selectedSlotBooking.card.title;
-                const roomSlug = getRoomSlugById(selectedSlotBooking.card.id);
-                const date = selectedSlotBooking.dbDate || formattedDate;
-                const time = selectedSlotBooking.slot.time;
-                const adults = String(selectedAdults);
-                const price = String(selectedSlotBooking.slot.prices?.[selectedAdults] ?? 0);
-                const query = new URLSearchParams({ room, roomSlug, date, time, adults, price });
-                setSelectedSlotBooking(null);
-                router.push(`/booking/checkout?${query.toString()}`);
-              }}
-            >
-              Book
-            </button>
-          </div>
-              </>
-            );
-          })()}
-        </div>
-      </div>
-    )}
-    
   </div>
-))}
+          );
+        })}
 
       </div>
+
+      {/* Info popup — rendered once globally */}
+      {selectedInfo && (
+        <div className={styles.infoOverlay}>
+          <div className={styles.infoPopup}>
+            <h1>{selectedInfo.title}</h1>
+            <hr />
+            <p style={{display:'flex',gap:'20px',}}>
+              <Image src={selectedInfo.image} width={250} height={250} alt="info card image" />
+              {selectedInfo.info}
+            </p>
+
+            <button
+              className={styles.closeBtn}
+              onClick={() => setSelectedInfo(null)}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Booking popup — rendered once globally */}
+      {selectedSlotBooking && (
+        <div className={styles.infoOverlay}>
+          <div className={styles.bookingPopup}>
+            {(() => {
+              const availableSeats = Number(selectedSlotBooking.slot?.available ?? 0);
+              const maxSelectableAdults = Math.min(8, availableSeats);
+              const selectableAdults = [2, 3, 4, 5, 6, 7, 8].filter((value) => value <= maxSelectableAdults);
+              const notEnoughSeats = availableSeats < selectedAdults;
+              return (
+                <>
+                  <h2 className={styles.bookingPopupTitle}>{selectedSlotBooking.card.title}</h2>
+                  <p className={styles.bookingPopupDate}>
+                    <i className="bi bi-clock-history"></i> {selectedSlotBooking.date} {selectedSlotBooking.slot.time}
+                  </p>
+                  <hr className={styles.bookingPopupDivider} />
+                  <div className={styles.bookingPopupRows}>
+                    <div className={styles.bookingPopupRow}>
+                      <span>Adults</span>
+                      <div className={styles.adultsControl}>
+                        <button
+                          onClick={() => setSelectedAdults((prev) => Math.max(2, prev - 1))}
+                          type="button"
+                          disabled={selectableAdults.length === 0}
+                        >
+                          -
+                        </button>
+                        <select
+                          value={selectedAdults}
+                          onChange={(e) => setSelectedAdults(Number(e.target.value))}
+                          disabled={selectableAdults.length === 0}
+                        >
+                          {selectableAdults.length === 0 ? (
+                            <option value={selectedAdults}>{selectedAdults}</option>
+                          ) : (
+                            selectableAdults.map((value) => (
+                              <option key={value} value={value}>{value}</option>
+                            ))
+                          )}
+                        </select>
+                        <button
+                          onClick={() => setSelectedAdults((prev) => Math.min(maxSelectableAdults, prev + 1))}
+                          type="button"
+                          disabled={selectableAdults.length === 0}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className={styles.bookingPopupRow}>
+                      <span>Available</span>
+                      <span>{selectedSlotBooking.slot.available}</span>
+                    </div>
+                    <div className={styles.bookingPopupRow}>
+                      <span>Price</span>
+                      <span>
+                        {(selectedSlotBooking.slot.prices?.[selectedAdults] ?? 0).toLocaleString()} SAR
+                      </span>
+                    </div>
+                  </div>
+                  {notEnoughSeats && (
+                    <p className={styles.bookingSeatWarning}>Not enough seats for selected adults.</p>
+                  )}
+                  <div className={styles.bookingPopupActions}>
+                    <button
+                      className={styles.bookingCancelBtn}
+                      onClick={() => {
+                        setSelectedSlotBooking(null);
+                      }}
+                      type="button"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className={styles.bookingConfirmBtn}
+                      type="button"
+                      disabled={notEnoughSeats || availableSeats < 2}
+                      onClick={() => {
+                        if (notEnoughSeats || availableSeats < 2) return;
+                        const room = selectedSlotBooking.card.title;
+                        const roomSlug = getRoomSlugById(selectedSlotBooking.card.id);
+                        const date = selectedSlotBooking.dbDate || formattedDate;
+                        const time = selectedSlotBooking.slot.time;
+                        const adults = String(selectedAdults);
+                        const price = String(selectedSlotBooking.slot.prices?.[selectedAdults] ?? 0);
+                        const query = new URLSearchParams({ room, roomSlug, date, time, adults, price });
+                        setSelectedSlotBooking(null);
+                        router.push(`/booking/checkout?${query.toString()}`);
+                      }}
+                    >
+                      Book
+                    </button>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -507,6 +507,7 @@ margin: 0 auto;
   z-index: 3;
   margin: 0 auto 28px;
   max-width: 1120px;
+  scroll-margin-top: 140px;
 }
 
 .vrCardGrid {

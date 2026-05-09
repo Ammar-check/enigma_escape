@@ -72,7 +72,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className={styles.heroTitle}>{t('aboutUs')}</h1>
+          <h1 className={styles.heroTitle} data-text={t('aboutUs')}>{t('aboutUs')}</h1>
         </motion.div>
       </section>
 

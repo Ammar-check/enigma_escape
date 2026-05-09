@@ -581,6 +581,11 @@ export default function WaiverForm() {
                         name={`birthday-${num - 1}`}
                         max={today}
                       />
+                      <span
+                        className={`${styles.error} ${styles.errorSlot} ${styles.errorHidden}`}
+                      >
+                        {" "}
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -86,6 +86,27 @@ export default function Header() {
     }
   };
 
+  const handleBookNowClick = (e) => {
+    if (pathname === '/') {
+      e.preventDefault();
+      const targetSection =
+        document.querySelector('#room-1') ||
+        document.querySelector('#games-section');
+      if (targetSection) {
+        const headerHeight = 140;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+        setMobileMenuOpen(false);
+      }
+    }
+  };
+
   const toggleDropdown = (label) => {
     setOpenDropdown(openDropdown === label ? null : label);
   };
@@ -98,10 +119,9 @@ export default function Header() {
         <div className="container">
           <div className={styles.topRowContent}>
             {/* Book Now Button */}
-            <a 
-              href="" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <a
+              href="/#room-1"
+              onClick={handleBookNowClick}
               className={`btn  ${styles.bookBtn} `}
               data-text={isArabic ? 'احجز الآن' : 'BOOK NOW'}
             >

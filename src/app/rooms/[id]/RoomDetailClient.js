@@ -181,9 +181,20 @@ const comingSoonVariants = {
             </motion.p>
 
             <motion.a
-              href=""
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#room-booking-form"
+              onClick={(e) => {
+                e.preventDefault();
+                const target = document.getElementById('room-booking-form');
+                if (!target) return;
+                const headerHeight = 140;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition =
+                  elementPosition + window.pageYOffset - headerHeight;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth',
+                });
+              }}
               className={`btn btn-gold ${styles.bookBtn}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -403,7 +414,9 @@ const comingSoonVariants = {
                 </motion.a>
               ))}
             </motion.div>
-            <BookingForm initialRoomId={room.id} />
+            <div id="room-booking-form" className={styles.bookingFormTopWrap}>
+              <BookingForm initialRoomId={room.id} />
+            </div>
           </div>
         </section>
       ) : (
