@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import styles from './page.module.css';
+import { ROOM_CATALOG } from '@/data/roomCatalog';
 
 const PAGE_SIZE = 30;
 
@@ -235,6 +236,7 @@ export default function BookingsPage() {
     cancelled: 0,
     total: 0,
   });
+  const generateBookingNumber = () => `${Date.now()}${Math.floor(Math.random() * 1000)}`;
 
   const fetchOverviewStats = async () => {
     const { supabase } = await import('@/lib/supabase');
@@ -313,6 +315,16 @@ export default function BookingsPage() {
     () => Array.from(new Set(bookings.map((booking) => booking.tour).filter((tour) => tour && tour !== '—'))),
     [bookings]
   );
+  const tourOptions = useMemo(
+    () =>
+      Array.from(
+        new Set([
+          ...ROOM_CATALOG.map((room) => room.name).filter(Boolean),
+          ...roomOptions,
+        ])
+      ),
+    [roomOptions]
+  );
 
   const getHistoryKey = (bookingId) => `booking_history_${bookingId}`;
   const readHistory = (bookingId) => {
@@ -377,7 +389,6 @@ export default function BookingsPage() {
     setIsCreatingBooking(false);
     setEditingBooking({
       id: booking.id,
-      booking_number: booking.bookingNumber === '—' ? '' : booking.bookingNumber,
       first_name: booking.name === 'Unknown' ? '' : booking.name.split(' ').slice(0, -1).join(' '),
       last_name: booking.name === 'Unknown' ? '' : booking.name.split(' ').slice(-1).join(' '),
       email_address: booking.email === '—' ? '' : booking.email,
@@ -387,7 +398,6 @@ export default function BookingsPage() {
       participants: booking.participants,
       adults: booking.adults,
       status: booking.status || 'booked',
-      source: booking.source === '—' ? '' : booking.source,
       total_gross: booking.totalGross,
       total_paid: booking.totalPaid,
       total_due: booking.totalDue,
@@ -398,7 +408,6 @@ export default function BookingsPage() {
   const openCreateModal = () => {
     setIsCreatingBooking(true);
     setEditingBooking({
-      booking_number: '',
       first_name: '',
       last_name: '',
       email_address: '',
@@ -408,7 +417,6 @@ export default function BookingsPage() {
       participants: 0,
       adults: 0,
       status: 'booked',
-      source: '',
       total_gross: 0,
       total_paid: 0,
       total_due: 0,
@@ -421,7 +429,6 @@ export default function BookingsPage() {
   const saveBooking = async () => {
     const { supabase } = await import('@/lib/supabase');
     const payload = {
-      booking_number: editingBooking.booking_number || null,
       first_name: editingBooking.first_name || null,
       last_name: editingBooking.last_name || null,
       email_address: (editingBooking.email_address || '').toLowerCase() || null,
@@ -431,7 +438,6 @@ export default function BookingsPage() {
       participants: Number(editingBooking.participants) || 0,
       adults: Number(editingBooking.adults) || 0,
       status: editingBooking.status || 'booked',
-      source: editingBooking.source || null,
       total_gross: Number(editingBooking.total_gross) || 0,
       total_paid: Number(editingBooking.total_paid) || 0,
       total_due: Number(editingBooking.total_due) || 0,
@@ -440,7 +446,11 @@ export default function BookingsPage() {
     let data;
     let error;
     if (isCreatingBooking) {
-      ({ data, error } = await supabase.from('bookings').insert(payload).select('*').single());
+      ({ data, error } = await supabase
+        .from('bookings')
+        .insert({ ...payload, booking_number: generateBookingNumber() })
+        .select('*')
+        .single());
     } else {
       ({ data, error } = await supabase.from('bookings').update(payload).eq('id', editingBooking.id).select('*').single());
     }
@@ -944,7 +954,7 @@ export default function BookingsPage() {
               {detailTab === 'notes' && (
                 <div className={styles.modalSection}>
                   <label className={styles.modalItem}>
-                    <span className={styles.modalLabel}>Notes / Alert</span>
+                    <span className={styles.modalLabel}>Message Text</span>
                     <textarea className={styles.editTextarea} value={selectedBooking.alert || ''} onChange={(e) => setSelectedBooking((prev) => ({ ...prev, alert: e.target.value }))} />
                   </label>
                   <div className={styles.modalActions}>
@@ -1000,7 +1010,7 @@ export default function BookingsPage() {
                 </div>
               </div>
               )}
-              {selectedBooking.alert && <div className={styles.modalSection}><span className={styles.modalLabel}>Alert</span><span className={styles.muted}>{selectedBooking.alert}</span></div>}
+              {selectedBooking.alert && <div className={styles.modalSection}><span className={styles.modalLabel}>Message Text</span><span className={styles.muted}>{selectedBooking.alert}</span></div>}
             </div>
           </div>
         </div>
@@ -1015,22 +1025,28 @@ export default function BookingsPage() {
             </div>
             <div className={styles.modalBody}>
               <div className={styles.modalGrid}>
-                <label className={styles.modalItem}><span className={styles.modalLabel}>Booking Number</span><input className={styles.editInput} value={editingBooking.booking_number} onChange={(e) => handleEditChange('booking_number', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>First Name</span><input className={styles.editInput} value={editingBooking.first_name} onChange={(e) => handleEditChange('first_name', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Last Name</span><input className={styles.editInput} value={editingBooking.last_name} onChange={(e) => handleEditChange('last_name', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Email</span><input className={styles.editInput} value={editingBooking.email_address} onChange={(e) => handleEditChange('email_address', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Phone</span><input className={styles.editInput} value={editingBooking.phone} onChange={(e) => handleEditChange('phone', e.target.value)} /></label>
-                <label className={styles.modalItem}><span className={styles.modalLabel}>Tour</span><input className={styles.editInput} value={editingBooking.tour} onChange={(e) => handleEditChange('tour', e.target.value)} /></label>
+                <label className={styles.modalItem}>
+                  <span className={styles.modalLabel}>Tour</span>
+                  <select className={styles.editInput} value={editingBooking.tour} onChange={(e) => handleEditChange('tour', e.target.value)}>
+                    <option value="">Select room/game</option>
+                    {tourOptions.map((tour) => (
+                      <option key={tour} value={tour}>{tour}</option>
+                    ))}
+                  </select>
+                </label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Product Code</span><input className={styles.editInput} value={editingBooking.product_code} onChange={(e) => handleEditChange('product_code', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Participants</span><input type="number" className={styles.editInput} value={editingBooking.participants} onChange={(e) => handleEditChange('participants', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Adults</span><input type="number" className={styles.editInput} value={editingBooking.adults} onChange={(e) => handleEditChange('adults', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Status</span><select className={styles.editInput} value={editingBooking.status} onChange={(e) => handleEditChange('status', e.target.value)}><option value="booked">booked</option><option value="checked_in">checked_in</option><option value="no_show">no_show</option><option value="canceled">canceled</option></select></label>
-                <label className={styles.modalItem}><span className={styles.modalLabel}>Source</span><input className={styles.editInput} value={editingBooking.source} onChange={(e) => handleEditChange('source', e.target.value)} /></label>
-                <label className={styles.modalItem}><span className={styles.modalLabel}>Total Gross</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_gross} onChange={(e) => handleEditChange('total_gross', e.target.value)} /></label>
+                <label className={styles.modalItem}><span className={styles.modalLabel}>Total Bill</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_gross} onChange={(e) => handleEditChange('total_gross', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Total Paid</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_paid} onChange={(e) => handleEditChange('total_paid', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Total Due</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_due} onChange={(e) => handleEditChange('total_due', e.target.value)} /></label>
               </div>
-              <label className={styles.modalItem}><span className={styles.modalLabel}>Alert</span><textarea className={styles.editTextarea} value={editingBooking.alert} onChange={(e) => handleEditChange('alert', e.target.value)} /></label>
+              <label className={styles.modalItem}><span className={styles.modalLabel}>Message Text</span><textarea className={styles.editTextarea} value={editingBooking.alert} onChange={(e) => handleEditChange('alert', e.target.value)} /></label>
               <div className={styles.modalActions}>
                 <button className={styles.secondaryBtn} onClick={() => setEditingBooking(null)}>Cancel</button>
                 <button className={styles.exportBtn} onClick={saveBooking}>{isCreatingBooking ? 'Create Booking' : 'Save Changes'}</button>

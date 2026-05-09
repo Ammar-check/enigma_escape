@@ -528,11 +528,13 @@ export default function WaiverForm() {
                           isArabic ? "أدخل الاسم الكامل" : "Enter full name"
                         }
                       />
-                      {errors[`name-${num - 1}`] && (
-                        <span className={styles.error}>
-                          {errors[`name-${num - 1}`]}
-                        </span>
-                      )}
+                      <span
+                        className={`${styles.error} ${styles.errorSlot} ${
+                          errors[`name-${num - 1}`] ? "" : styles.errorHidden
+                        }`}
+                      >
+                        {errors[`name-${num - 1}`] || " "}
+                      </span>
                     </div>
 
                     <div className={styles.field}>
@@ -542,11 +544,13 @@ export default function WaiverForm() {
                         type="email"
                         placeholder="email@example.com"
                       />
-                      {errors[`email-${num - 1}`] && (
-                        <span className={styles.error}>
-                          {errors[`email-${num - 1}`]}
-                        </span>
-                      )}
+                      <span
+                        className={`${styles.error} ${styles.errorSlot} ${
+                          errors[`email-${num - 1}`] ? "" : styles.errorHidden
+                        }`}
+                      >
+                        {errors[`email-${num - 1}`] || " "}
+                      </span>
                     </div>
                   </div>
 
@@ -558,11 +562,13 @@ export default function WaiverForm() {
                         type="tel"
                         placeholder="+966..."
                       />
-                      {errors[`phone-${num - 1}`] && (
-                        <span className={styles.error}>
-                          {errors[`phone-${num - 1}`]}
-                        </span>
-                      )}
+                      <span
+                        className={`${styles.error} ${styles.errorSlot} ${
+                          errors[`phone-${num - 1}`] ? "" : styles.errorHidden
+                        }`}
+                      >
+                        {errors[`phone-${num - 1}`] || " "}
+                      </span>
                     </div>
 
                     <div className={styles.field}>

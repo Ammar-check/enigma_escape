@@ -707,54 +707,6 @@ export default function CustomersPage() {
                   <span>{selectedCustomer.cancellations} / {selectedCustomer.noShows}</span>
                 </div>
                 <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Location</span>
-                  <span>{[selectedCustomer.city, selectedCustomer.country].filter(Boolean).join(', ') || '—'}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Address</span>
-                  <span>{[selectedCustomer.address1, selectedCustomer.address2].filter(Boolean).join(', ') || '—'}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>State / ZIP</span>
-                  <span>{`${selectedCustomer.stateProvince} / ${selectedCustomer.zipPostcode}`}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Date of Birth</span>
-                  <span>{selectedCustomer.dateOfBirth}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership</span>
-                  <span>{selectedCustomer.membershipEnrolled}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Member Until</span>
-                  <span>{selectedCustomer.memberUntil}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Rate</span>
-                  <span>{selectedCustomer.membershipRate}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Next Payment</span>
-                  <span>{selectedCustomer.membershipNextPayment}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Pause</span>
-                  <span>{selectedCustomer.membershipPausedFrom} / {selectedCustomer.membershipPausedUntil}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Mailing List</span>
-                  <span>{selectedCustomer.mailingList ? 'Yes' : 'No'}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Require Approval</span>
-                  <span>{selectedCustomer.requireApproval ? 'Yes' : 'No'}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Credit</span>
-                  <span>{selectedCustomer.credit}</span>
-                </div>
-                <div className={styles.modalItem}>
                   <span className={styles.modalLabel}>Status</span>
                   <span>{selectedCustomer.status}</span>
                 </div>
@@ -811,14 +763,6 @@ export default function CustomersPage() {
                   <input className={styles.editInput} value={editingCustomer.primary_phone} onChange={(e) => handleEditChange('primary_phone', e.target.value)} />
                 </label>
                 <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>City</span>
-                  <input className={styles.editInput} value={editingCustomer.city} onChange={(e) => handleEditChange('city', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Country</span>
-                  <input className={styles.editInput} value={editingCustomer.country} onChange={(e) => handleEditChange('country', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
                   <span className={styles.modalLabel}>Total Bookings</span>
                   <input
                     type="number"
@@ -841,71 +785,8 @@ export default function CustomersPage() {
                   <input type="number" className={styles.editInput} value={editingCustomer.no_shows} onChange={(e) => handleEditChange('no_shows', e.target.value)} />
                 </label>
                 <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Enrolled</span>
-                  <input
-                    className={styles.editInput}
-                    value={editingCustomer.membership_enrolled}
-                    onChange={(e) => handleEditChange('membership_enrolled', e.target.value)}
-                  />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Member Until</span>
-                  <input type="date" className={styles.editInput} value={editingCustomer.member_until || ''} onChange={(e) => handleEditChange('member_until', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Rate</span>
-                  <input className={styles.editInput} value={editingCustomer.membership_rate} onChange={(e) => handleEditChange('membership_rate', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Next Payment</span>
-                  <input
-                    type="date"
-                    className={styles.editInput}
-                    value={editingCustomer.membership_next_payment || ''}
-                    onChange={(e) => handleEditChange('membership_next_payment', e.target.value)}
-                  />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Paused From</span>
-                  <input
-                    type="date"
-                    className={styles.editInput}
-                    value={editingCustomer.membership_paused_from || ''}
-                    onChange={(e) => handleEditChange('membership_paused_from', e.target.value)}
-                  />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Membership Paused Until</span>
-                  <input
-                    type="date"
-                    className={styles.editInput}
-                    value={editingCustomer.membership_paused_until || ''}
-                    onChange={(e) => handleEditChange('membership_paused_until', e.target.value)}
-                  />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Address 1</span>
-                  <input className={styles.editInput} value={editingCustomer.address_1} onChange={(e) => handleEditChange('address_1', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Address 2</span>
-                  <input className={styles.editInput} value={editingCustomer.address_2} onChange={(e) => handleEditChange('address_2', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>State / Province</span>
-                  <input className={styles.editInput} value={editingCustomer.state_province} onChange={(e) => handleEditChange('state_province', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Zip / Postcode</span>
-                  <input className={styles.editInput} value={editingCustomer.zip_postcode} onChange={(e) => handleEditChange('zip_postcode', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
                   <span className={styles.modalLabel}>Gender</span>
                   <input className={styles.editInput} value={editingCustomer.gender} onChange={(e) => handleEditChange('gender', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Credit</span>
-                  <input type="number" step="0.01" className={styles.editInput} value={editingCustomer.credit} onChange={(e) => handleEditChange('credit', e.target.value)} />
                 </label>
                 <label className={styles.modalItem}>
                   <span className={styles.modalLabel}>Status</span>
@@ -940,17 +821,6 @@ export default function CustomersPage() {
                 <label className={styles.modalItem}>
                   <span className={styles.modalLabel}>Rooms (comma separated)</span>
                   <input className={styles.editInput} value={editingCustomer.rooms} onChange={(e) => handleEditChange('rooms', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Require Approval</span>
-                  <select
-                    className={styles.editInput}
-                    value={editingCustomer.require_approval ? 'yes' : 'no'}
-                    onChange={(e) => handleEditChange('require_approval', e.target.value === 'yes')}
-                  >
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
-                  </select>
                 </label>
               </div>
               <label className={styles.modalItem}>

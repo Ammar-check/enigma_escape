@@ -151,10 +151,16 @@
 }
 
 .selectCont {
-  background: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #0a1019;
   border: 1px solid var(--waiver-border);
   border-radius: 10px;
-  padding: 0 8px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -166,19 +172,23 @@
   color: #ffffff;
   border: 1px solid var(--waiver-border);
   border-radius: 10px;
+  height: 44px;
   min-height: 44px;
-  padding: 10px 12px;
+  padding: 0 12px;
   outline: none;
   font-family: var(--waiver-font);
   font-size: 0.93rem;
+  line-height: 1.2;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
 .field select {
   border: none;
   background: transparent;
-  min-height: 42px;
-  padding: 10px 4px;
+  height: 100%;
+  min-height: 0;
+  padding: 0 12px;
 }
 
 .field input::placeholder {
@@ -186,21 +196,27 @@
 }
 
 .field input:focus,
-.field select:focus,
 .countSelect:focus,
 .selectCont:focus-within {
   border-color: var(--waiver-border-focus);
   box-shadow: 0 0 0 3px rgba(74, 127, 230, 0.2);
 }
 
-.field select option,
-.countSelect option {
-  background: #0c121b;
-  color: var(--waiver-text);
+.field select:focus {
+  box-shadow: none;
 }
 
 .dateInput {
   color-scheme: dark;
+  height: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.field select option,
+.countSelect option {
+  background: #0c121b;
+  color: var(--waiver-text);
 }
 
 .dateInput::-webkit-calendar-picker-indicator {
@@ -212,6 +228,15 @@
   color: var(--waiver-error);
   font-size: 0.76rem;
   margin-top: 2px;
+}
+
+.errorSlot {
+  min-height: 16px;
+  display: block;
+}
+
+.errorHidden {
+  visibility: hidden;
 }
 
 .divider {
