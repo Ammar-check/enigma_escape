@@ -198,12 +198,65 @@ const mapDbBookingToUi = (b) => ({
   customerMemberUntil: b.customer_member_until || '—',
   customerMembershipRate: b.customer_membership_rate || '—',
   customerRequireApproval: Boolean(b.customer_require_approval),
+  roomTimesPlayed: b.room_times_played != null ? Number(b.room_times_played) : null,
+  favoriteRoom: (b.favorite_room || '').trim() || '—',
   createdBy: b.created_by || '—',
   createdAtSource: b.created_at_source || null,
   lastChangedBy: b.last_changed_by || '—',
   lastChangedAt: b.last_changed_at || null,
   alert: b.alert || b.customer_alert_message || '',
 });
+/** Prefer DB row after save; fall back to form values so preview matches admin selects when columns are missing. */
+const mergeRoomPrefsFromForm = (uiBooking, dbRow, formRoomTimesPlayed, formFavoriteRoom) => {
+  const rawTimes = dbRow?.room_times_played;
+  const fromDbTimes =
+    rawTimes != null && rawTimes !== '' ? Number(rawTimes) : null;
+  const roomTimesPlayed =
+    fromDbTimes != null && !Number.isNaN(fromDbTimes) ? fromDbTimes : formRoomTimesPlayed;
+
+  const fromDbFav = String(dbRow?.favorite_room ?? '').trim();
+  const favoriteRoom =
+    fromDbFav || (formFavoriteRoom ? String(formFavoriteRoom).trim() : '') || '—';
+
+  return { ...uiBooking, roomTimesPlayed, favoriteRoom };
+};
+const roomPrefsStashKey = (id) => `booking_admin_room_prefs:${id}`;
+const readRoomPrefsStash = (id) => {
+  if (id == null) return null;
+  try {
+    const raw = sessionStorage.getItem(roomPrefsStashKey(id));
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+};
+const writeRoomPrefsStash = (id, roomTimesPlayed, favoriteRoom) => {
+  if (id == null) return;
+  try {
+    if (roomTimesPlayed != null || (favoriteRoom && String(favoriteRoom).trim())) {
+      sessionStorage.setItem(
+        roomPrefsStashKey(id),
+        JSON.stringify({ roomTimesPlayed: roomTimesPlayed ?? null, favoriteRoom: favoriteRoom ? String(favoriteRoom).trim() : null })
+      );
+    } else {
+      sessionStorage.removeItem(roomPrefsStashKey(id));
+    }
+  } catch {
+    /* ignore quota / private mode */
+  }
+};
+const clearRoomPrefsStash = (id) => {
+  if (id == null) return;
+  try {
+    sessionStorage.removeItem(roomPrefsStashKey(id));
+  } catch {
+    /* ignore */
+  }
+};
+const rowHasPersistedRoomPrefs = (row) =>
+  (row?.room_times_played != null && row.room_times_played !== '') ||
+  String(row?.favorite_room ?? '').trim() !== '';
 const toCsvValue = (value) => {
   const raw = value == null ? '' : String(value);
   if (raw.includes(',') || raw.includes('"') || raw.includes('\n')) return `"${raw.replace(/"/g, '""')}"`;
@@ -288,7 +341,15 @@ export default function BookingsPage() {
         setImportMessage(`Load failed: ${error.message}`);
         return;
       }
-      setBookings((data || []).map(mapDbBookingToUi));
+      setBookings(
+        (data || []).map((row) => {
+          const ui = mapDbBookingToUi(row);
+          if (rowHasPersistedRoomPrefs(row)) return ui;
+          const stash = readRoomPrefsStash(ui.id);
+          if (!stash) return ui;
+          return mergeRoomPrefsFromForm(ui, row, stash.roomTimesPlayed ?? null, stash.favoriteRoom ?? null);
+        })
+      );
       setSelectedIds([]);
       setTotalCount(count || 0);
       await fetchOverviewStats();
@@ -324,6 +385,10 @@ export default function BookingsPage() {
         ])
       ),
     [roomOptions]
+  );
+  const favoriteRoomOptions = useMemo(
+    () => [...ROOM_CATALOG.map((room) => room.name)].sort((a, b) => a.localeCompare(b)),
+    []
   );
 
   const getHistoryKey = (bookingId) => `booking_history_${bookingId}`;
@@ -402,6 +467,8 @@ export default function BookingsPage() {
       total_paid: booking.totalPaid,
       total_due: booking.totalDue,
       alert: booking.alert || '',
+      room_times_played: booking.roomTimesPlayed == null ? '' : String(booking.roomTimesPlayed),
+      favorite_room: booking.favoriteRoom === '—' ? '' : booking.favoriteRoom,
     });
   };
 
@@ -421,14 +488,27 @@ export default function BookingsPage() {
       total_paid: 0,
       total_due: 0,
       alert: '',
+      room_times_played: '',
+      favorite_room: '',
     });
   };
 
   const handleEditChange = (field, value) => setEditingBooking((prev) => ({ ...prev, [field]: value }));
 
   const saveBooking = async () => {
+    if (!editingBooking) return;
     const { supabase } = await import('@/lib/supabase');
-    const payload = {
+
+    const roomTimesPlayed = (() => {
+      const raw = editingBooking.room_times_played;
+      if (raw === '' || raw == null) return null;
+      const n = Number.parseInt(String(raw), 10);
+      if (!Number.isInteger(n) || n < 1 || n > 10) return null;
+      return n;
+    })();
+    const favoriteRoom = String(editingBooking.favorite_room || '').trim() || null;
+
+    const corePayload = {
       first_name: editingBooking.first_name || null,
       last_name: editingBooking.last_name || null,
       email_address: (editingBooking.email_address || '').toLowerCase() || null,
@@ -443,30 +523,73 @@ export default function BookingsPage() {
       total_due: Number(editingBooking.total_due) || 0,
       alert: editingBooking.alert || null,
     };
+
+    const optionalPayload = {
+      room_times_played: roomTimesPlayed,
+      favorite_room: favoriteRoom,
+    };
+
+    const fullPayload = { ...corePayload, ...optionalPayload };
+    const optionalColumnError = (message) =>
+      /room_times_played|favorite_room|schema cache/i.test(String(message || ''));
+
     let data;
     let error;
+    let savedWithoutRoomPrefs = false;
+
     if (isCreatingBooking) {
+      const bookingNumber = generateBookingNumber();
       ({ data, error } = await supabase
         .from('bookings')
-        .insert({ ...payload, booking_number: generateBookingNumber() })
+        .insert({ ...fullPayload, booking_number: bookingNumber })
         .select('*')
         .single());
+      if (error && optionalColumnError(error.message)) {
+        ({ data, error } = await supabase
+          .from('bookings')
+          .insert({ ...corePayload, booking_number: bookingNumber })
+          .select('*')
+          .single());
+        savedWithoutRoomPrefs = !error;
+      }
+    } else if (!editingBooking.id) {
+      setImportMessage('Update failed: missing booking id.');
+      return;
     } else {
-      ({ data, error } = await supabase.from('bookings').update(payload).eq('id', editingBooking.id).select('*').single());
+      ({ data, error } = await supabase.from('bookings').update(fullPayload).eq('id', editingBooking.id).select('*').single());
+      if (error && optionalColumnError(error.message)) {
+        ({ data, error } = await supabase.from('bookings').update(corePayload).eq('id', editingBooking.id).select('*').single());
+        savedWithoutRoomPrefs = !error;
+      }
     }
+
     if (error) {
-      setImportMessage(`Update failed: ${error.message}`);
+      setImportMessage(`${isCreatingBooking ? 'Create' : 'Update'} failed: ${error.message}`);
       return;
     }
-    const updated = mapDbBookingToUi(data);
+    const updated = mergeRoomPrefsFromForm(mapDbBookingToUi(data), data, roomTimesPlayed, favoriteRoom);
+    if (savedWithoutRoomPrefs) {
+      writeRoomPrefsStash(updated.id, roomTimesPlayed, favoriteRoom);
+    } else {
+      clearRoomPrefsStash(updated.id);
+    }
     if (isCreatingBooking) {
       setBookings((prev) => [updated, ...prev]);
       appendHistory(updated.id, 'create', 'Booking created');
-      setImportMessage('Booking created successfully.');
+      setImportMessage(
+        savedWithoutRoomPrefs
+          ? 'Booking created. Add columns room_times_played and favorite_room on bookings to save room preferences.'
+          : 'Booking created successfully.'
+      );
     } else {
       setBookings((prev) => prev.map((booking) => (booking.id === updated.id ? updated : booking)));
+      setSelectedBooking((prev) => (prev?.id === updated.id ? updated : prev));
       appendHistory(updated.id, 'update', 'Booking updated');
-      setImportMessage('Booking updated successfully.');
+      setImportMessage(
+        savedWithoutRoomPrefs
+          ? 'Booking updated. Add columns room_times_played and favorite_room on bookings to save room preferences.'
+          : 'Booking updated successfully.'
+      );
     }
     setEditingBooking(null);
     setIsCreatingBooking(false);
@@ -486,7 +609,8 @@ export default function BookingsPage() {
         <p><strong>Status:</strong> ${booking.status}</p>
         <p><strong>Participants:</strong> ${booking.participants} (${booking.adults} adults)</p>
         <p><strong>Payment:</strong> Gross ${booking.totalGross} / Paid ${booking.totalPaid} / Due ${booking.totalDue}</p>
-        <p><strong>Address:</strong> ${booking.customerAddress}</p>
+        <p><strong>Times played rooms:</strong> ${booking.roomTimesPlayed != null ? booking.roomTimesPlayed : '—'}</p>
+        <p><strong>Favorite room:</strong> ${booking.favoriteRoom || '—'}</p>
         <p><strong>Alert/Notes:</strong> ${booking.alert || '-'}</p>
       </body></html>
     `;
@@ -712,33 +836,6 @@ export default function BookingsPage() {
       </div>
 
       <div className={styles.controls}>
-        <div className={styles.searchBox}>
-          <i className="bi bi-search"></i>
-          <input
-            type="text"
-            placeholder="Search booking #, customer, phone, email, tour..."
-            value={search}
-            onChange={async (e) => {
-              const next = e.target.value;
-              setSearch(next);
-              if (currentPage !== 1) setCurrentPage(1);
-              else await fetchBookings(1, next, filterRoom, filterStatus, filterDate);
-            }}
-            className={styles.searchInput}
-          />
-          {search && (
-            <button
-              className={styles.clearBtn}
-              onClick={async () => {
-                setSearch('');
-                if (currentPage !== 1) setCurrentPage(1);
-                else await fetchBookings(1, '', filterRoom, filterStatus, filterDate);
-              }}
-            >
-              <i className="bi bi-x-lg"></i>
-            </button>
-          )}
-        </div>
         <div className={styles.filters}>
           <select
             value={filterRoom}
@@ -786,6 +883,33 @@ export default function BookingsPage() {
             className={styles.select}
           />
         </div>
+        <div className={styles.searchBox}>
+          <i className="bi bi-search"></i>
+          <input
+            type="text"
+            placeholder="Search booking #, customer, phone, email, tour..."
+            value={search}
+            onChange={async (e) => {
+              const next = e.target.value;
+              setSearch(next);
+              if (currentPage !== 1) setCurrentPage(1);
+              else await fetchBookings(1, next, filterRoom, filterStatus, filterDate);
+            }}
+            className={styles.searchInput}
+          />
+          {search && (
+            <button
+              className={styles.clearBtn}
+              onClick={async () => {
+                setSearch('');
+                if (currentPage !== 1) setCurrentPage(1);
+                else await fetchBookings(1, '', filterRoom, filterStatus, filterDate);
+              }}
+            >
+              <i className="bi bi-x-lg"></i>
+            </button>
+          )}
+        </div>
       </div>
 
       <div className={styles.tableWrapper}>
@@ -795,6 +919,7 @@ export default function BookingsPage() {
               <th>
                 <input
                   type="checkbox"
+                  title="Select all on this page"
                   checked={filtered.length > 0 && filtered.every((booking) => selectedIds.includes(booking.id))}
                   onChange={(e) => {
                     if (e.target.checked) setSelectedIds(filtered.map((booking) => booking.id));
@@ -802,6 +927,7 @@ export default function BookingsPage() {
                   }}
                 />
               </th>
+              <th>Actions</th>
               <th>Booking #</th>
               <th>Customer</th>
               <th>Tour/Product</th>
@@ -810,7 +936,6 @@ export default function BookingsPage() {
               <th>Payment</th>
               <th>Source</th>
               <th>Status</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -829,14 +954,6 @@ export default function BookingsPage() {
                       }}
                     />
                   </td>
-                  <td><span className={styles.muted}>{b.bookingNumber}</span></td>
-                  <td><div className={styles.customerCell}><div className={styles.avatar}>{b.name.charAt(0)}</div><div><div className={styles.name}>{b.name}</div><div className={styles.muted}>{b.phone}</div></div></div></td>
-                  <td><div className={styles.dateCell}><span>{b.tour}</span><span className={styles.muted}>{b.productCode}</span></div></td>
-                  <td><div className={styles.dateCell}><span>{b.startAt ? new Date(b.startAt).toLocaleDateString() : '—'}</span><span className={styles.muted}>{b.startAt ? new Date(b.startAt).toLocaleTimeString() : '—'}</span></div></td>
-                  <td><span className={styles.players}><i className="bi bi-people-fill"></i> {b.participants} ({b.adults} adults)</span></td>
-                  <td><div className={styles.dateCell}><span>Gross: {b.totalGross}</span><span className={styles.muted}>Paid: {b.totalPaid} / Due: {b.totalDue}</span></div></td>
-                  <td><span className={styles.sourceBadge}>{b.source}</span></td>
-                  <td><span className={styles.statusBadge} style={{ background: (statusColors[b.status] || statusColors.booked).bg, color: (statusColors[b.status] || statusColors.booked).color }}>{b.status.toUpperCase()}</span></td>
                   <td>
                     <div className={styles.actionGroup}>
                       <button className={styles.actionBtn} onClick={() => setSelectedBooking(b)}><i className="bi bi-eye-fill"></i></button>
@@ -845,6 +962,14 @@ export default function BookingsPage() {
                       <button className={`${styles.actionBtn} ${styles.deleteActionBtn}`} onClick={() => deleteBooking(b.id)} title="Delete booking"><i className="bi bi-trash3-fill"></i></button>
                     </div>
                   </td>
+                  <td><span className={styles.muted}>{b.bookingNumber}</span></td>
+                  <td><div className={styles.customerCell}><div className={styles.avatar}>{b.name.charAt(0)}</div><div><div className={styles.name}>{b.name}</div><div className={styles.muted}>{b.phone}</div></div></div></td>
+                  <td><div className={styles.dateCell}><span>{b.tour}</span><span className={styles.muted}>{b.productCode}</span></div></td>
+                  <td><div className={styles.dateCell}><span>{b.startAt ? new Date(b.startAt).toLocaleDateString() : '—'}</span><span className={styles.muted}>{b.startAt ? new Date(b.startAt).toLocaleTimeString() : '—'}</span></div></td>
+                  <td><span className={styles.players}><i className="bi bi-people-fill"></i> {b.participants} ({b.adults} adults)</span></td>
+                  <td><div className={styles.dateCell}><span>Gross: {b.totalGross}</span><span className={styles.muted}>Paid: {b.totalPaid} / Due: {b.totalDue}</span></div></td>
+                  <td><span className={styles.sourceBadge}>{b.source}</span></td>
+                  <td><span className={styles.statusBadge} style={{ background: (statusColors[b.status] || statusColors.booked).bg, color: (statusColors[b.status] || statusColors.booked).color }}>{b.status.toUpperCase()}</span></td>
                 </tr>
               ))
             )}
@@ -901,7 +1026,8 @@ export default function BookingsPage() {
                 <div className={styles.modalItem}><span className={styles.modalLabel}>Financials</span><span>Net {selectedBooking.totalNet} / VAT {selectedBooking.vat}</span></div>
                 <div className={styles.modalItem}><span className={styles.modalLabel}>Prepaid</span><span>Credits {selectedBooking.prepaidCredits} / {selectedBooking.prepaidPackage}</span></div>
                 <div className={styles.modalItem}><span className={styles.modalLabel}>Private Event / Missing Waivers</span><span>{selectedBooking.privateEvent ? 'Yes' : 'No'} / {selectedBooking.missingWaivers}</span></div>
-                <div className={styles.modalItem}><span className={styles.modalLabel}>Customer Address</span><span>{selectedBooking.customerAddress}</span></div>
+                <div className={styles.modalItem}><span className={styles.modalLabel}>Times played rooms</span><span>{selectedBooking.roomTimesPlayed != null ? selectedBooking.roomTimesPlayed : '—'}</span></div>
+                <div className={styles.modalItem}><span className={styles.modalLabel}>Favorite room</span><span>{selectedBooking.favoriteRoom}</span></div>
                 <div className={styles.modalItem}><span className={styles.modalLabel}>Source</span><span>{selectedBooking.source}</span></div>
                 <div className={styles.modalItem}><span className={styles.modalLabel}>Created By</span><span>{selectedBooking.createdBy}</span></div>
                 <div className={styles.modalItem}><span className={styles.modalLabel}>Last Changed By</span><span>{selectedBooking.lastChangedBy}</span></div>
@@ -1045,11 +1171,29 @@ export default function BookingsPage() {
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Total Bill</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_gross} onChange={(e) => handleEditChange('total_gross', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Total Paid</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_paid} onChange={(e) => handleEditChange('total_paid', e.target.value)} /></label>
                 <label className={styles.modalItem}><span className={styles.modalLabel}>Total Due</span><input type="number" step="0.01" className={styles.editInput} value={editingBooking.total_due} onChange={(e) => handleEditChange('total_due', e.target.value)} /></label>
+                <label className={styles.modalItem}>
+                  <span className={styles.modalLabel}>How many times played rooms?</span>
+                  <select className={styles.editInput} value={editingBooking.room_times_played} onChange={(e) => handleEditChange('room_times_played', e.target.value)}>
+                    <option value="">Not set</option>
+                    {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                      <option key={n} value={String(n)}>{n}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className={styles.modalItem}>
+                  <span className={styles.modalLabel}>What is your favorite room?</span>
+                  <select className={styles.editInput} value={editingBooking.favorite_room} onChange={(e) => handleEditChange('favorite_room', e.target.value)}>
+                    <option value="">Select a room</option>
+                    {favoriteRoomOptions.map((name) => (
+                      <option key={name} value={name}>{name}</option>
+                    ))}
+                  </select>
+                </label>
               </div>
               <label className={styles.modalItem}><span className={styles.modalLabel}>Message Text</span><textarea className={styles.editTextarea} value={editingBooking.alert} onChange={(e) => handleEditChange('alert', e.target.value)} /></label>
               <div className={styles.modalActions}>
-                <button className={styles.secondaryBtn} onClick={() => setEditingBooking(null)}>Cancel</button>
-                <button className={styles.exportBtn} onClick={saveBooking}>{isCreatingBooking ? 'Create Booking' : 'Save Changes'}</button>
+                <button type="button" className={styles.secondaryBtn} onClick={() => setEditingBooking(null)}>Cancel</button>
+                <button type="button" className={styles.exportBtn} onClick={() => void saveBooking()}>{isCreatingBooking ? 'Create Booking' : 'Save Changes'}</button>
               </div>
             </div>
           </div>

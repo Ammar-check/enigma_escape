@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
 import styles from './EventCard.module.css';
+import roomCardStyles from './RoomCard.module.css';
 
 const cardVariants = {
   hidden: { opacity: 0, x: -100 },
@@ -44,14 +45,11 @@ export default function EventCard({ event }) {
           </h3>
         </div>
         <div className={styles.eventBookBtn}>
-          <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-gold"
+          <span
+            className={`btn btn-gold ${roomCardStyles.roomBookBtn} ${styles.eventBookBtnAlign}`}
           >
             {t('bookNow')}
-          </a>
+          </span>
         </div>
       </div>
       </Link>

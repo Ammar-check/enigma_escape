@@ -216,6 +216,7 @@ export default function CustomersPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const [importMessage, setImportMessage] = useState('');
+  const [selectedIds, setSelectedIds] = useState([]);
 
   const fetchCustomers = async (page = currentPage, searchTerm = search) => {
     setLoading(true);
@@ -456,10 +457,31 @@ export default function CustomersPage() {
         setImportMessage(`Delete failed: ${error.message}`);
         return;
       }
+      setSelectedIds((prev) => prev.filter((rowId) => rowId !== id));
+      setSelectedCustomer((prev) => (prev?.id === id ? null : prev));
       await fetchCustomers(currentPage, search);
     } catch (error) {
       console.error('Delete failure:', error);
       setImportMessage('Delete failed due to unexpected error.');
+    }
+  };
+
+  const deleteSelectedCustomers = async () => {
+    if (selectedIds.length === 0) return;
+    if (!confirm(`Delete ${selectedIds.length} selected customers?`)) return;
+    try {
+      const { supabase } = await import('@/lib/supabase');
+      const { error } = await supabase.from('customers').delete().in('id', selectedIds);
+      if (error) {
+        setImportMessage(`Bulk delete failed: ${error.message}`);
+        return;
+      }
+      setSelectedIds([]);
+      setSelectedCustomer((prev) => (prev && selectedIds.includes(prev.id) ? null : prev));
+      await fetchCustomers(currentPage, search);
+    } catch (error) {
+      console.error('Bulk delete failure:', error);
+      setImportMessage('Bulk delete failed due to unexpected error.');
     }
   };
 
@@ -470,9 +492,14 @@ export default function CustomersPage() {
           <h1 className={styles.pageTitle}>Customers</h1>
           <p className={styles.pageSub}>{loading ? 'Loading customers...' : `${totalCount} records found`}</p>
         </div>
-        <button className={styles.exportBtn} onClick={exportCSV}>
-          <i className="bi bi-download"></i> Export CSV
-        </button>
+        <div className={styles.actionGroup}>
+          <button className={styles.exportBtn} onClick={exportCSV}>
+            <i className="bi bi-download"></i> Export CSV
+          </button>
+          <button className={styles.exportBtn} onClick={deleteSelectedCustomers} disabled={selectedIds.length === 0}>
+            <i className="bi bi-trash3-fill"></i> Delete Selected ({selectedIds.length})
+          </button>
+        </div>
       </div>
 
       <div className={styles.importPanel}>
@@ -528,27 +555,58 @@ export default function CustomersPage() {
         <table className={styles.table}>
           <thead>
             <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  title="Select all on this page"
+                  checked={filtered.length > 0 && filtered.every((customer) => selectedIds.includes(customer.id))}
+                  onChange={(e) => {
+                    if (e.target.checked) setSelectedIds(filtered.map((customer) => customer.id));
+                    else setSelectedIds([]);
+                  }}
+                />
+              </th>
+              <th>Actions</th>
               <th>Customer</th>
               <th>Contact</th>
-              <th>Location</th>
               <th>Bookings</th>
-              <th>Membership</th>
               <th>Status</th>
               <th>Video</th>
               <th>Rooms</th>
-              <th>Approval</th>
               <th>Visits</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={11} className={styles.noResults}>No customers found</td>
+                <td colSpan={9} className={styles.noResults}>No customers found</td>
               </tr>
             ) : (
               filtered.map((customer) => (
                 <tr key={customer.id} className={styles.tableRow}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.includes(customer.id)}
+                      onChange={(e) => {
+                        if (e.target.checked) setSelectedIds((prev) => [...prev, customer.id]);
+                        else setSelectedIds((prev) => prev.filter((id) => id !== customer.id));
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <div className={styles.actions}>
+                      <button className={styles.actionBtn} onClick={() => setSelectedCustomer(customer)} title="View">
+                        <i className="bi bi-eye-fill"></i>
+                      </button>
+                      <button className={styles.actionBtn} onClick={() => openEditModal(customer)} title="Edit">
+                        <i className="bi bi-pencil-fill"></i>
+                      </button>
+                      <button className={`${styles.actionBtn} ${styles.deleteBtn}`} onClick={() => deleteCustomer(customer.id)} title="Delete">
+                        <i className="bi bi-trash-fill"></i>
+                      </button>
+                    </div>
+                  </td>
                   <td>
                     <div className={styles.customerCell}>
                       <div className={styles.avatar}>{customer.name.charAt(0)}</div>
@@ -565,18 +623,9 @@ export default function CustomersPage() {
                     </div>
                   </td>
                   <td>
-                    <span>{[customer.city, customer.country].filter((value) => value && value !== '—').join(', ') || '—'}</span>
-                  </td>
-                  <td>
                     <div className={styles.contactCell}>
                       <span>{customer.totalBookings} total</span>
                       <span className={styles.muted}>{customer.cancellations} cancels / {customer.noShows} no-shows</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div className={styles.contactCell}>
-                      <span>{customer.membershipEnrolled}</span>
-                      <span className={styles.muted}>Until: {customer.memberUntil}</span>
                     </div>
                   </td>
                   <td>
@@ -589,25 +638,9 @@ export default function CustomersPage() {
                     <span className={styles.muted}>{customer.rooms.length > 0 ? customer.rooms.join(', ') : '—'}</span>
                   </td>
                   <td>
-                    <span className={styles.muted}>{customer.requireApproval ? 'Required' : 'No'}</span>
-                  </td>
-                  <td>
                     <div className={styles.contactCell}>
                       <span>Last: {customer.lastVisit}</span>
                       <span className={styles.muted}>Next: {customer.nextVisit}</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div className={styles.actions}>
-                      <button className={styles.actionBtn} onClick={() => setSelectedCustomer(customer)} title="View">
-                        <i className="bi bi-eye-fill"></i>
-                      </button>
-                      <button className={styles.actionBtn} onClick={() => openEditModal(customer)} title="Edit">
-                        <i className="bi bi-pencil-fill"></i>
-                      </button>
-                      <button className={`${styles.actionBtn} ${styles.deleteBtn}`} onClick={() => deleteCustomer(customer.id)} title="Delete">
-                        <i className="bi bi-trash-fill"></i>
-                      </button>
                     </div>
                   </td>
                 </tr>
@@ -693,10 +726,6 @@ export default function CustomersPage() {
                 <div className={styles.modalItem}>
                   <span className={styles.modalLabel}>Email</span>
                   <span>{selectedCustomer.email}</span>
-                </div>
-                <div className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Gender</span>
-                  <span>{selectedCustomer.gender}</span>
                 </div>
                 <div className={styles.modalItem}>
                   <span className={styles.modalLabel}>Total Bookings</span>

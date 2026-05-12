@@ -438,9 +438,9 @@ const cardsToRender = useMemo(() => {
         </div>
       )}
 
-      {/* Booking popup — rendered once globally */}
+      {/* Booking popup — full-viewport layer above header; sheet from bottom */}
       {selectedSlotBooking && (
-        <div className={styles.infoOverlay}>
+        <div className={styles.bookingOverlay}>
           <div className={styles.bookingPopup}>
             {(() => {
               const availableSeats = Number(selectedSlotBooking.slot?.available ?? 0);
