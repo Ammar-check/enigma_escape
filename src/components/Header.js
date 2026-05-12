@@ -116,7 +116,7 @@ export default function Header() {
       <img src='/layer_4.png' className={styles.layerImg} style={{position:'absolute'}} alt='layer image'/>
       {/* Top Row */}
       <div className={styles.topRow}>
-        <div className="container">
+        <div className={styles.headerInner}>
           <div className={styles.topRowContent}>
             {/* Book Now Button */}
             <a
@@ -177,7 +177,7 @@ export default function Header() {
 
       {/* Bottom Row - Navigation */}
       <nav className={`${styles.bottomRow} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>
-        <div className="container">
+        <div className={styles.headerInner}>
           <ul className={styles.navLinks}>
             {navLinks.map((link) => (
               <li

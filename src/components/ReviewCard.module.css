@@ -63,12 +63,12 @@
   gap: 15px;
 }
 
-.authorImage {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
-  /* border: 2px solid var(--gold-primary); */
+.sourceLogo {
+  width: auto;
+  max-width: 100px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .authorName {
@@ -104,9 +104,9 @@
     font-size: 3rem;
   }
 
-  .authorImage {
-    width: 45px;
-    height: 45px;
+  .sourceLogo {
+    max-width: 84px;
+    height: 32px;
   }
 
   .quoteIcon {

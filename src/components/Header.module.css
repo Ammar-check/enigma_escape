@@ -24,6 +24,16 @@
   display: none;
 } */
 
+/* Full-width header content with horizontal inset */
+.headerInner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 60px;
+  padding-right: 60px;
+  box-sizing: border-box;
+}
+
 /* Top Row */
 .topRow {
   /* border-bottom: 1px solid rgba(212, 168, 75, 0.2); */
@@ -337,9 +347,11 @@
   padding: 12px 0;
   /* background: rgba(0, 0, 0, 0.35); */
   margin: 0 auto;
-width: 1170px;
-height: 56px;
-border-radius: 28px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 56px;
+  height: auto;
+  border-radius: 28px;
 }
 
 .navLinks {

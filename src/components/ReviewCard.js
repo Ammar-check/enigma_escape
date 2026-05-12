@@ -32,11 +32,16 @@ export default function ReviewCard({ review }) {
           {isArabic ? review.textAr : review.textEn}
         </p>
         <div className={styles.reviewAuthor}>
+          {/* Logo order matches review.id → /public/icon/{id}.png */}
           <Image
-            width={30} height={30}
-            src={review.image}
-            alt={review.author}
-            className={styles.authorImage}
+            width={40}
+            height={40}
+            src={`/icon/${review.id}.png`}
+            alt=""
+            className={styles.sourceLogo}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
           />
           <span className={styles.authorName}>{review.author}</span>
         </div>

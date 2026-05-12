@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -79,8 +79,14 @@ export default function Home() {
     offset: ['start start', 'end start'],
   });
 
-  const heroY = useTransform(heroProgress, [0, 1], [0, 200]);
-  const heroOpacity = useTransform(heroProgress, [0, 0.5], [1, 0]);
+  const reduceMotion = useReducedMotion();
+
+  /** Background moves slower than foreground — stronger range on desktop */
+  const heroBgParallax = useTransform(
+    heroProgress,
+    [0, 1],
+    reduceMotion === true ? [0, 0] : isMobile ? [0, 110] : [0, 340]
+  );
 
   const { contactInfo, contactForm } = siteData;
 
@@ -126,7 +132,11 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className={styles.hero} ref={heroRef}>
-        <motion.div className={styles.heroBg} style={isMobile ? undefined : { y: heroY }}></motion.div>
+        <motion.div
+          className={styles.heroBg}
+          style={{ y: heroBgParallax }}
+          aria-hidden
+        />
         <div className={styles.heroOverlay}></div>
 
         <div className="container">

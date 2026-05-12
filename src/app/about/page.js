@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
@@ -9,22 +9,7 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   const { t, isArabic } = useLanguage();
-  const containerRef = useRef(null);
   const [showVideo, setShowVideo] = useState(false);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
-  const stats = [
-    { number: '5+', labelEn: 'Escape Rooms', labelAr: 'غرف هروب' },
-    { number: '10K+', labelEn: 'Happy Players', labelAr: 'لاعب سعيد' },
-    { number: '60', labelEn: 'Minutes of Thrill', labelAr: 'دقيقة من الإثارة' },
-    { number: '4.9', labelEn: 'Star Rating', labelAr: 'تقييم نجوم' },
-  ];
 
   const aboutContent = {
     en: {
@@ -62,7 +47,7 @@ export default function AboutPage() {
   const content = isArabic ? aboutContent.ar : aboutContent.en;
 
   return (
-    <div className={styles.pageWrapper} ref={containerRef}>
+    <div className={styles.pageWrapper}>
       {/* Hero Section */}
       <section className={styles.heroBanner}>
         <div className={styles.heroOverlay}></div>
@@ -72,7 +57,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className={styles.heroTitle} data-text={t('aboutUs')}>{t('aboutUs')}</h1>
+          <h1 className={styles.heroTitle}>{t('aboutUs')}</h1>
         </motion.div>
       </section>
 

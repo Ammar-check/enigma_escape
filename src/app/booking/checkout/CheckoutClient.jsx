@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { supabase } from "@/lib/supabase";
 import styles from "./page.module.css";
 
 const termsEn = [
@@ -67,26 +66,26 @@ export default function CheckoutClient() {
     setLoading(true);
     setMessage("");
     try {
-      const bookingNumber = `${Date.now()}${Math.floor(Math.random() * 1000)}`;
-      const startAt = `${details.date}T${details.time}:00`;
-      const payload = {
-        booking_number: bookingNumber,
-        start_at: startAt,
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email_address: formData.email,
-        phone: formData.phone,
-        participants: details.adults,
-        adults: details.adults,
-        tour: details.room,
-        status: "booked",
-        total_gross: details.price,
-        total_paid: 0,
-        total_due: details.price,
-        alert: "Terms accepted by customer",
-      };
-      const { error } = await supabase.from("bookings").insert(payload);
-      if (error) throw error;
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          room: details.room,
+          date: details.date,
+          time: details.time,
+          adults: details.adults,
+          price: details.price,
+          status: "booked",
+        }),
+      });
+      const payloadJson = await res.json();
+      if (!res.ok) throw new Error(payloadJson.error || "Booking failed.");
+
+      const bookingNumber = payloadJson.bookingNumber;
 
       const query = new URLSearchParams({
         bookingNumber,
