@@ -15,14 +15,14 @@
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding-left: 60px;
-  padding-right: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
   box-sizing: border-box;
 }
 
 [dir='rtl'] .heroInner {
-  padding-left: 24px;
-  padding-right: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .heroBg {
@@ -433,13 +433,13 @@
 /* Responsive */
 @media (max-width: 1200px) {
   .heroInner {
-    padding-left: 60px;
+    padding-left: 20px;
     padding-right: 20px;
   }
 
   [dir='rtl'] .heroInner {
-    padding-right: 60px;
     padding-left: 20px;
+    padding-right: 20px;
   }
 
   .heroNumber {
@@ -464,13 +464,13 @@
   }
 
   .heroInner {
-    padding-left: 40px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   [dir='rtl'] .heroInner {
-    padding-right: 40px;
     padding-left: 20px;
+    padding-right: 20px;
   }
 
   .heroGlow {

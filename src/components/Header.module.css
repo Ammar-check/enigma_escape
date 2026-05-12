@@ -29,8 +29,8 @@
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
   box-sizing: border-box;
 }
 
@@ -212,8 +212,9 @@
 
 .logoWrapper img {
   display: block;
-  width: 220px;
+  width: 280px;
   height: auto;
+  max-width: min(360px, 42vw);
 }
 
 /* Language Selector */
@@ -344,12 +345,12 @@
 
 /* Bottom Row - Navigation */
 .bottomRow {
-  padding: 12px 0;
+  padding: 14px 0;
   /* background: rgba(0, 0, 0, 0.35); */
   margin: 0 auto;
   width: 100%;
   max-width: 100%;
-  min-height: 56px;
+  min-height: 64px;
   height: auto;
   border-radius: 28px;
 }
@@ -358,10 +359,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
+  gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+@media (min-width: 992px) {
+  .navLinks {
+    gap: 28px;
+  }
 }
 
 .navItem {
@@ -371,12 +378,12 @@
 .navLink {
   
   font-family: var(--font-english);
-  font-size: 0.7rem;
+  font-size: 1.08rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   color:#ffff;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 12px 18px;
   transition: all 0.3s ease;
   position: relative;
   display: block;
@@ -400,9 +407,9 @@
 
 [dir="rtl"] .navLink {
   font-family: var(--font-arabic);
-  font-size: 1.09rem;
-  padding: 3px 15px;
-  line-height: 35px;
+  font-size: 1.35rem;
+  padding: 10px 18px;
+  line-height: 1.35;
   font-weight: bold;
 }
 
@@ -540,7 +547,7 @@
   display: block;
   padding: 10px 20px;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.02rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
@@ -588,13 +595,14 @@
   }
 
   .logoWrapper img {
-    width: 140px;
+    width: 200px;
+    max-width: min(200px, 52vw);
     height: auto;
   }
 
   .langSelector {
     position: absolute;
-    right: 60px;
+    right: 20px;
     font-size: 0.75rem;
     padding: 5px 8px;
   }
@@ -800,14 +808,14 @@
   }
 
   .logoWrapper img {
-   width: 30px;
-   padding-top: 20px;
-    margin-right: 90px;
+    width: 124px;
+    padding-top: 8px;
+    margin-right: 0;
+    max-width: min(124px, 40vw);
   }
- 
 
   .langSelector {
-    right: 60px;
+    right: 20px;
   }
 
   .flagsContainer {
@@ -834,7 +842,8 @@
   }
 
   .logoWrapper img {
-    width: 70px;
+    width: 104px;
+    max-width: min(104px, 38vw);
   }
 
   .mobileToggle {
@@ -881,7 +890,8 @@
   }
 
   .logoWrapper img {
-    width: 60px;
+    width: 92px;
+    max-width: min(92px, 36vw);
   }
 
   .mobileToggle {
@@ -936,12 +946,13 @@
   }
 
   .logoWrapper img {
-    width: 50px;
+    width: 76px;
+    max-width: min(76px, 34vw);
     margin-right: 0;
   }
 
   .langSelector {
-    right: 34px;
+    right: 16px;
     padding: 0 3px;
     gap: 2px;
   }

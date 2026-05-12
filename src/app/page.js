@@ -139,7 +139,7 @@ export default function Home() {
         />
         <div className={styles.heroOverlay}></div>
 
-        <div className="container">
+        <div className={styles.heroInner}>
           <motion.div
             className={styles.heroContent}
             // style={{ opacity: heroOpacity }}
