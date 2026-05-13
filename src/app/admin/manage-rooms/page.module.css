@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-left: 240px;
 }
 
 .header {
@@ -43,8 +42,34 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
+  width: 100%;
+  align-items: stretch;
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .empty {
@@ -52,47 +77,6 @@
   border-radius: 10px;
   color: rgba(255, 255, 255, 0.6);
   padding: 18px;
-}
-
-.noteBox {
-  background: #111111;
-  border: 1px solid rgba(212, 168, 75, 0.2);
-  border-radius: 12px;
-  padding: 14px;
-}
-
-.noteTitle {
-  margin: 0;
-  color: var(--gold-primary);
-}
-
-.noteText {
-  margin: 6px 0 0;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.helpGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.helpCard {
-  background: #101010;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 12px;
-}
-
-.helpCard h4 {
-  margin: 0;
-  color: white;
-}
-
-.helpCard p {
-  margin: 6px 0 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.85rem;
 }
 
 /* legacy below kept harmlessly */
@@ -275,7 +259,6 @@
 
 @media (max-width: 992px) {
   .page {
-    margin-left: 0;
     margin-top: 50px;
   }
 }

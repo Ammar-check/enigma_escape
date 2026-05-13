@@ -8,6 +8,7 @@ import siteData from '@/data/siteData.json';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { slotAppliesOnDate } from "@/lib/slotWeekdays";
 
 const BookingForm = ({ initialRoomId = null }) => {
   const router = useRouter();
@@ -115,7 +116,7 @@ const cardsToRender = useMemo(() => {
       1: "the-butcher",
       2: "the-lost-city",
       3: "sherlock-doomsday-device",
-      4: "vr-room-1",
+      4: "vr-room",
       5: "outdoor-escape",
     };
     return map[id] || "the-butcher";
@@ -126,7 +127,28 @@ const cardsToRender = useMemo(() => {
       1: ["The Butcher", "the-butcher"],
       2: ["The Lost City", "the-lost-city"],
       3: ["Sherlock", "Sherlock & Doomsday Device", "sherlock-doomsday-device"],
-      4: ["VR Room", "VR Room 1", "vr-room-1"],
+      4: [
+        "VR Room",
+        "VR Room 1",
+        "VR Room 2",
+        "VR Room 3",
+        "VR Room 4",
+        "VR Room 5",
+        "VR Room 6",
+        "VR Room 7",
+        "VR Room 8",
+        "VR Room 9",
+        "vr-room",
+        "vr-room-1",
+        "vr-room-2",
+        "vr-room-3",
+        "vr-room-4",
+        "vr-room-5",
+        "vr-room-6",
+        "vr-room-7",
+        "vr-room-8",
+        "vr-room-9",
+      ],
       5: ["Mind Shield", "Outdoor Escape", "outdoor-escape"],
     };
     return map[id] || [];
@@ -151,7 +173,7 @@ const cardsToRender = useMemo(() => {
           const [{ data: slotData, error: slotError }, { data: bookingData, error: bookingError }] = await Promise.all([
             supabase
               .from("room_slots")
-              .select("slot_date,start_time,end_time,capacity,is_blocked,price_2,price_3,price_4,price_5,price_6,price_7,price_8")
+              .select("slot_date,start_time,end_time,capacity,is_blocked,price_2,price_3,price_4,price_5,price_6,price_7,price_8,repeat_weekdays")
               .eq("room_slug", roomSlug)
               .eq("slot_date", dateString)
               .order("start_time", { ascending: true }),
@@ -168,7 +190,8 @@ const cardsToRender = useMemo(() => {
             return;
           }
 
-          nextAvailability[key] = (slotData || []).map((slot) => {
+          const slotsForDay = (slotData || []).filter((slot) => slotAppliesOnDate(slot, dateString));
+          nextAvailability[key] = slotsForDay.map((slot) => {
             const bookedPlayers = (bookingData || []).reduce((sum, booking) => {
               if (!booking.start_at) return sum;
               const bookingDate = getDatePart(booking.start_at);

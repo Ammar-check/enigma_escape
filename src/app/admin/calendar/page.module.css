@@ -1,135 +1,440 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-left: 240px;
+  gap: 0;
+  font-family: var(--font-english, 'Montserrat', sans-serif);
 }
 
-.header {
+.toolbar {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
   gap: 12px;
+  margin-bottom: 12px;
+}
+
+.toolbarLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .title {
   margin: 0;
-  color: var(--gold-primary);
   font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: var(--gold-primary);
+  letter-spacing: 0.02em;
+}
+
+.titleDate {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .subtitle {
-  margin: 4px 0 0;
-  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.printBtn,
-.controlBtn {
+.toolbarRight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewToggle {
+  display: inline-flex;
+  border-radius: 6px;
+  overflow: hidden;
   border: 1px solid rgba(212, 168, 75, 0.35);
-  background: rgba(212, 168, 75, 0.12);
-  color: var(--gold-primary);
-  border-radius: 8px;
-  padding: 8px 12px;
+}
+
+.viewToggle button {
+  border: none;
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.controls {
+.viewToggle button:hover {
+  background: rgba(212, 168, 75, 0.12);
+  color: var(--gold-primary);
+}
+
+.viewToggleActive {
+  background: rgba(212, 168, 75, 0.22) !important;
+  color: var(--gold-primary) !important;
+}
+
+.searchInput {
+  min-width: 180px;
+  background: #111;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+}
+
+.navRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.navBtn,
+.printBtn,
+.icalBtn {
+  border: 1px solid rgba(212, 168, 75, 0.35);
+  background: rgba(212, 168, 75, 0.1);
+  color: var(--gold-primary);
+  border-radius: 6px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navBtn:hover,
+.printBtn:hover,
+.icalBtn:hover {
+  background: rgba(212, 168, 75, 0.2);
 }
 
 .dateInput {
   background: #111;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 8px 10px;
+  border-radius: 6px;
+  padding: 7px 10px;
+  color-scheme: dark;
+  font-size: 0.85rem;
 }
 
 .message {
-  color: #ff9b9b;
+  color: #ffb4b4;
+  font-size: 0.85rem;
+  margin: 0 0 10px;
 }
 
 .empty {
-  padding: 16px;
+  padding: 24px;
   border-radius: 10px;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.6);
+  border: 1px dashed rgba(212, 168, 75, 0.25);
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  font-size: 0.85rem;
 }
 
+/* ====== Grid ====== */
 .roomsGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  align-items: start;
+  background: transparent;
+}
+
+@media (min-width: 1400px) {
+  .roomsGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 }
 
 .roomColumn {
-  background: #111;
-  border: 1px solid rgba(212, 168, 75, 0.15);
-  border-radius: 10px;
-  padding: 10px;
+  background: transparent;
+  border-radius: 0;
+  overflow: hidden;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+}
+
+.roomHeader {
+  margin: 0;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: #2c5f8c;
+  border-radius: 4px 4px 0 0;
+}
+
+.slotsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.emptyColumnNote {
+  padding: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ====== Slot card (Bookeo-style) ====== */
+.slotCardWrap {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.slotTimeBar {
+  text-align: center;
+  padding: 6px 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  background: #2c5f8c;
+}
+
+.slotBody {
+  position: relative;
+  min-height: 64px;
+  padding: 8px 38px 8px 30px;
+  background: #fff;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+}
+
+.slotBodyBookedPartial {
+  background: rgb(95, 217, 134);
+  color: #0d3d1c;
+}
+
+.slotBodyBookedFull {
+  background: rgb(95, 217, 134);
+  color: #0d3d1c;
+}
+
+.slotBodyBlocked {
+  background: rgb(251, 171, 106);
+  color: #4a2300;
+}
+
+.slotBodyInner {
+  width: 100%;
+  text-align: center;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.statusDot {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #9ca3af;
+  background: #fff;
+}
+
+.statusDotFilled {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #1f7032;
+  background: #1f7032;
+}
+
+.statusDotBlocked {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #b8520d;
+  background: #b8520d;
+}
+
+.slotLinePrimary {
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.slotLineMeta {
+  color: rgba(31, 41, 55, 0.78);
+}
+
+.slotBodyBookedPartial .slotLineMeta,
+.slotBodyBookedFull .slotLineMeta {
+  color: rgba(13, 61, 28, 0.85);
+}
+
+.slotBodyBlocked .slotLineMeta {
+  color: rgba(74, 35, 0, 0.9);
+}
+
+.addSlotBtn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+  background: #4caf50;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.addSlotBtn:hover {
+  background: #2e7d32;
+}
+
+.addSlotBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.cancelMark {
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  font-size: 0.72rem;
+  color: rgba(31, 41, 55, 0.7);
+}
+
+/* ====== Rows view ====== */
+.rowsList {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.roomTitle {
-  margin: 0;
-  color: #fff;
-  font-size: 1rem;
+.rowItem {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.4fr) 1fr;
+  gap: 8px;
+  align-items: stretch;
 }
 
-.noSlots {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.88rem;
-}
-
-.slotCard {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background: #161616;
-  color: #fff;
-  text-align: left;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.slotCard:hover {
-  border-color: rgba(212, 168, 75, 0.4);
-}
-
-.slotFull {
-  border-color: rgba(244, 67, 54, 0.5);
-  background: rgba(244, 67, 54, 0.1);
-}
-
-.slotTime {
+.rowRoomLabel {
+  font-size: 0.78rem;
   font-weight: 700;
+  color: #fff;
+  padding: 8px 12px;
+  background: #2c5f8c;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
 }
 
-.slotMeta {
+/* ====== Footer ====== */
+.footerBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(212, 168, 75, 0.18);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
 }
 
-.slotFlag {
-  margin-top: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ff9b9b;
+.legendSwatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.legendEmpty {
+  background: #fff;
+}
+
+.legendPartial {
+  background: rgb(95, 217, 134);
+}
+
+.legendFull {
+  background: rgb(95, 217, 134);
+}
+
+.legendBlocked {
+  background: rgb(251, 171, 106);
+}
+
+.footerActions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ====== Bookings details modal ====== */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1200;
+  z-index: 9998;
   padding: 12px;
+  backdrop-filter: blur(2px);
 }
 
 .modal {
@@ -137,7 +442,7 @@
   max-height: 90vh;
   overflow: auto;
   background: #111;
-  border: 1px solid rgba(212, 168, 75, 0.2);
+  border: 1px solid rgba(212, 168, 75, 0.25);
   border-radius: 12px;
   padding: 14px;
 }
@@ -149,11 +454,18 @@
   gap: 8px;
 }
 
+.modalHeader h3 {
+  margin: 0;
+  color: var(--gold-primary);
+  font-size: 1rem;
+}
+
 .closeBtn {
   border: none;
   background: transparent;
   color: #fff;
   cursor: pointer;
+  padding: 6px;
 }
 
 .modalSummary {
@@ -162,6 +474,7 @@
   flex-wrap: wrap;
   color: rgba(255, 255, 255, 0.75);
   margin: 10px 0;
+  font-size: 0.88rem;
 }
 
 .tableWrap {
@@ -179,26 +492,30 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
   white-space: nowrap;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .table th {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+}
+
+.bookingLink {
+  margin-top: 8px;
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--gold-primary);
+  text-decoration: none;
+}
+
+.bookingLink:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 992px) {
   .page {
-    margin-left: 0;
     margin-top: 50px;
-  }
-  .roomsGrid {
-    grid-template-columns: repeat(2, minmax(180px, 1fr));
-  }
-}
-
-@media (max-width: 600px) {
-  .roomsGrid {
-    grid-template-columns: 1fr;
   }
 }

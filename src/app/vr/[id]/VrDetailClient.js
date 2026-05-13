@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './VrDetailClient.module.css';
+import roomCardStyles from '@/components/RoomCard.module.css';
 import Link from 'next/link';
 import siteData from '@/data/siteData.json';
 import Image from 'next/image';
@@ -45,6 +46,8 @@ export default function RoomDetailClient({ room }) {
     );
   }
 
+  const vrBookingUrl =
+    siteData.rooms.find((r) => r.id === 4)?.bookingUrl || siteData.bookingUrl;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -127,10 +130,10 @@ export default function RoomDetailClient({ room }) {
             </motion.p>
 
             <motion.a
-              href=""
+              href={vrBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`btn btn-gold ${styles.bookBtn}`}
+              className={`btn btn-gold ${roomCardStyles.roomBookBtn}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.3 }}

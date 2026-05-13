@@ -1,9 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './page.module.css';
 import { supabase } from '@/lib/supabase';
-import { ROOM_CATALOG } from '@/data/roomCatalog';
+import {
+  ROOM_CATALOG,
+  VR_CANONICAL_SLUG,
+  VR_LEGACY_SLUGS,
+} from '@/data/roomCatalog';
+import { slotAppliesOnDate } from '@/lib/slotWeekdays';
+import AdminBookSlotModal from '@/components/admin/calendar/AdminBookSlotModal';
 
 const toIsoDate = (date) => {
   const year = date.getFullYear();
@@ -21,15 +29,12 @@ const ROOM_ALIASES = {
   'the-butcher': ['the butcher', 'butcher'],
   'the-lost-city': ['the lost city', 'lost city'],
   'sherlock-doomsday-device': ['sherlock', 'doomsday', 'sherlock doomsday device'],
-  'vr-room-1': ['vr room', 'vr room 1'],
-  'vr-room-2': ['vr room', 'vr room 2'],
-  'vr-room-3': ['vr room', 'vr room 3'],
-  'vr-room-4': ['vr room', 'vr room 4'],
-  'vr-room-5': ['vr room', 'vr room 5'],
-  'vr-room-6': ['vr room', 'vr room 6'],
-  'vr-room-7': ['vr room', 'vr room 7'],
-  'vr-room-8': ['vr room', 'vr room 8'],
-  'vr-room-9': ['vr room', 'vr room 9'],
+  'vr-room': [
+    'vr room',
+    ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `vr room ${n}`),
+    'vr-room',
+    ...VR_LEGACY_SLUGS,
+  ],
   'outdoor-escape': ['outdoor escape', 'mind shield', 'mindshield'],
 };
 
@@ -43,12 +48,32 @@ const isBookingForRoom = (booking, room) => {
   return tour.includes(slug) || (compactName && tour.includes(compactName)) || aliases.some((alias) => tour.includes(alias));
 };
 
+const isCanceledStatus = (status) => {
+  const s = String(status || '').toLowerCase();
+  return s.includes('cancel');
+};
+
+function formatHeadingDate(iso) {
+  const [y, m, d] = String(iso).split('-').map(Number);
+  if (!y || !m || !d) return iso;
+  const dt = new Date(y, m - 1, d);
+  return dt.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
 export default function AdminCalendarPage() {
   const [selectedDate, setSelectedDate] = useState(() => toIsoDate(new Date()));
   const [roomSlotsMap, setRoomSlotsMap] = useState({});
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [viewMode, setViewMode] = useState('boxes');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [bookingContext, setBookingContext] = useState(null);
+  const [portalReady, setPortalReady] = useState(false);
+
+  useEffect(() => {
+    setPortalReady(true);
+  }, []);
 
   const rooms = useMemo(() => ROOM_CATALOG, []);
 
@@ -84,7 +109,12 @@ export default function AdminCalendarPage() {
       });
 
       safeSlots.forEach((slot) => {
-        const room = rooms.find((item) => item.slug === slot.room_slug);
+        if (!slotAppliesOnDate(slot, slot.slot_date)) return;
+        const normalizedSlug =
+          slot.room_slug === VR_CANONICAL_SLUG || VR_LEGACY_SLUGS.includes(slot.room_slug)
+            ? VR_CANONICAL_SLUG
+            : slot.room_slug;
+        const room = rooms.find((item) => item.slug === normalizedSlug);
         if (!room) return;
         const slotBookings = safeBookings.filter((booking) => {
           if (!booking.start_at) return false;
@@ -92,7 +122,9 @@ export default function AdminCalendarPage() {
           const bookingTime = getTimePart(booking.start_at);
           return bookingDate === slot.slot_date && isInSlotRange(bookingTime, slot.start_time, slot.end_time) && isBookingForRoom(booking, room);
         });
-        const bookedPlayers = slotBookings.reduce(
+        const activeBookings = slotBookings.filter((b) => !isCanceledStatus(b.status));
+        const canceledBookings = slotBookings.filter((b) => isCanceledStatus(b.status));
+        const bookedPlayers = activeBookings.reduce(
           (sum, booking) => sum + Number(booking.participants || booking.adults || 0),
           0
         );
@@ -103,7 +135,9 @@ export default function AdminCalendarPage() {
           ...slot,
           roomName: room.name,
           bookings: slotBookings,
-          bookingsCount: slotBookings.length,
+          activeBookings,
+          canceledBookings,
+          bookingsCount: activeBookings.length,
           bookedPlayers,
           availableSeats,
           isFull,
@@ -123,6 +157,45 @@ export default function AdminCalendarPage() {
     fetchCalendarData(selectedDate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate]);
+
+  const filteredRoomSlotsMap = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return roomSlotsMap;
+    const next = {};
+    rooms.forEach((room) => {
+      const slots = roomSlotsMap[room.slug] || [];
+      next[room.slug] = slots.filter((slot) => {
+        const timeStr = `${slot.start_time}-${slot.end_time}`.toLowerCase();
+        if (timeStr.includes(q)) return true;
+        return slot.bookings.some((b) => {
+          const name = `${b.first_name || ''} ${b.last_name || ''}`.toLowerCase();
+          return (
+            name.includes(q) ||
+            String(b.email_address || '').toLowerCase().includes(q) ||
+            String(b.phone || '').includes(q) ||
+            String(b.booking_number || b.id || '').toLowerCase().includes(q)
+          );
+        });
+      });
+    });
+    return next;
+  }, [roomSlotsMap, rooms, searchQuery]);
+
+  const rowsViewItems = useMemo(() => {
+    const items = [];
+    rooms.forEach((room) => {
+      (filteredRoomSlotsMap[room.slug] || []).forEach((slot) => {
+        items.push({ room, slot });
+      });
+    });
+    items.sort((a, b) => {
+      const ta = String(a.slot.start_time || '');
+      const tb = String(b.slot.start_time || '');
+      if (ta !== tb) return ta.localeCompare(tb);
+      return String(a.room.name).localeCompare(String(b.room.name));
+    });
+    return items;
+  }, [filteredRoomSlotsMap, rooms]);
 
   const shiftDate = (days) => {
     const date = new Date(selectedDate);
@@ -170,21 +243,154 @@ export default function AdminCalendarPage() {
     win.print();
   };
 
+  const downloadIcal = () => {
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Enigma Escape//Admin//EN'];
+    rooms.forEach((room) => {
+      (roomSlotsMap[room.slug] || []).forEach((slot) => {
+        const uid = `slot-${slot.id}@enigma-escape`;
+        const dt = selectedDate.replace(/-/g, '');
+        const st = String(slot.start_time || '00:00').replace(':', '');
+        const et = String(slot.end_time || '00:00').replace(':', '');
+        lines.push('BEGIN:VEVENT');
+        lines.push(`UID:${uid}`);
+        lines.push(`DTSTART:${dt}T${st.padEnd(6, '0')}00`);
+        lines.push(`DTEND:${dt}T${et.padEnd(6, '0')}00`);
+        lines.push(`SUMMARY:${room.name} ${slot.start_time}-${slot.end_time}`);
+        lines.push('END:VEVENT');
+      });
+    });
+    lines.push('END:VCALENDAR');
+    const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `enigma-calendar-${selectedDate}.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const headingDate = useMemo(() => formatHeadingDate(selectedDate), [selectedDate]);
+
+  const statusDotClass = (slot) => {
+    if (slot.is_blocked) return styles.statusDotBlocked;
+    if (slot.bookedPlayers > 0) return styles.statusDotFilled;
+    return styles.statusDot;
+  };
+
+  const slotBodyClass = (slot) => {
+    if (slot.is_blocked) return `${styles.slotBody} ${styles.slotBodyBlocked}`;
+    if (slot.isFull && slot.bookedPlayers > 0) return `${styles.slotBody} ${styles.slotBodyBookedFull}`;
+    if (slot.bookedPlayers > 0) return `${styles.slotBody} ${styles.slotBodyBookedPartial}`;
+    return styles.slotBody;
+  };
+
+  const renderSlotCard = (room, slot) => {
+    const startDisp = String(slot.start_time || '').slice(0, 5);
+    const hasBookings = slot.bookings.length > 0;
+    const primary = slot.activeBookings[0]
+      ? `${slot.activeBookings[0].first_name || ''} ${slot.activeBookings[0].last_name || ''}`.trim()
+      : '';
+
+    const openDetails = () => {
+      if (hasBookings) setSelectedSlot(slot);
+    };
+
+    const canBookMore = !slot.is_blocked && slot.availableSeats > 0;
+
+    return (
+      <div key={slot.id} className={styles.slotCardWrap}>
+        <div className={styles.slotTimeBar}>{startDisp}</div>
+        <div
+          className={slotBodyClass(slot)}
+          role={hasBookings ? 'button' : undefined}
+          tabIndex={hasBookings ? 0 : undefined}
+          onClick={hasBookings ? openDetails : undefined}
+          onKeyDown={hasBookings ? (e) => (e.key === 'Enter' ? openDetails() : null) : undefined}
+        >
+          <span className={statusDotClass(slot)} aria-hidden />
+          <div className={styles.slotBodyInner}>
+            {slot.is_blocked ? (
+              <>
+                <div className={styles.slotLinePrimary}>Blocked</div>
+                <div className={styles.slotLineMeta}>{slot.block_reason || '—'}</div>
+              </>
+            ) : primary ? (
+              <>
+                <div className={styles.slotLinePrimary}>{primary}</div>
+                <div className={styles.slotLineMeta}>{slot.bookedPlayers} booked</div>
+                <div className={styles.slotLineMeta}>{slot.availableSeats} available</div>
+              </>
+            ) : (
+              <>
+                <div className={styles.slotLineMeta}>{slot.bookedPlayers} booked</div>
+                <div className={styles.slotLineMeta}>{slot.availableSeats} available</div>
+              </>
+            )}
+          </div>
+          <button
+            type="button"
+            className={styles.addSlotBtn}
+            title={canBookMore ? 'Book seats for customer' : slot.is_blocked ? 'Slot is blocked' : 'No seats left'}
+            aria-label="Book seats for customer"
+            disabled={!canBookMore}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!canBookMore) return;
+              setBookingContext({ slot, room });
+            }}
+          >
+            <i className="bi bi-plus-lg" />
+          </button>
+          {slot.canceledBookings.length > 0 ? (
+            <span className={styles.cancelMark} title={`${slot.canceledBookings.length} canceled`}>
+              <i className="bi bi-x-circle" />
+            </span>
+          ) : null}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.page}>
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Calendar Sync</h1>
-          <p className={styles.subtitle}>All rooms, all slots, and booking details synced with backend.</p>
+      <div className={styles.toolbar}>
+        <div className={styles.toolbarLeft}>
+          <h1 className={styles.title}>
+            Group tours <span className={styles.titleDate}>· {headingDate}</span>
+          </h1>
+          <p className={styles.subtitle}>Live slots and bookings · admin can book seats for customers</p>
         </div>
-        <button className={styles.printBtn} onClick={printCalendar}>
-          <i className="bi bi-printer-fill"></i> Print Calendar
-        </button>
+        <div className={styles.toolbarRight}>
+          <div className={styles.viewToggle}>
+            <button
+              type="button"
+              className={viewMode === 'rows' ? styles.viewToggleActive : ''}
+              onClick={() => setViewMode('rows')}
+            >
+              Rows
+            </button>
+            <button
+              type="button"
+              className={viewMode === 'boxes' ? styles.viewToggleActive : ''}
+              onClick={() => setViewMode('boxes')}
+            >
+              Boxes
+            </button>
+          </div>
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search time or guest…"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Search slots"
+          />
+        </div>
       </div>
 
-      <div className={styles.controls}>
-        <button className={styles.controlBtn} onClick={() => shiftDate(-1)}>
-          <i className="bi bi-chevron-left"></i> Previous
+      <div className={styles.navRow}>
+        <button type="button" className={styles.navBtn} onClick={() => shiftDate(-1)} aria-label="Previous day">
+          <i className="bi bi-chevron-left" />
         </button>
         <input
           type="date"
@@ -192,96 +398,142 @@ export default function AdminCalendarPage() {
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
         />
-        <button className={styles.controlBtn} onClick={() => shiftDate(1)}>
-          Next <i className="bi bi-chevron-right"></i>
+        <button type="button" className={styles.navBtn} onClick={() => shiftDate(1)} aria-label="Next day">
+          <i className="bi bi-chevron-right" />
         </button>
       </div>
 
-      {message && <p className={styles.message}>{message}</p>}
+      {message ? <p className={styles.message}>{message}</p> : null}
 
       {loading ? (
-        <div className={styles.empty}>Loading calendar...</div>
+        <div className={styles.empty}>Loading calendar…</div>
+      ) : viewMode === 'rows' ? (
+        <div className={styles.rowsList}>
+          {rowsViewItems.length === 0 ? (
+            <div className={styles.empty}>No slots match this day or search.</div>
+          ) : (
+            rowsViewItems.map(({ room, slot }) => (
+              <div key={`${room.slug}-${slot.id}`} className={styles.rowItem}>
+                <div className={styles.rowRoomLabel}>{room.name}</div>
+                <div>{renderSlotCard(room, slot)}</div>
+              </div>
+            ))
+          )}
+        </div>
       ) : (
         <div className={styles.roomsGrid}>
           {rooms.map((room) => {
-            const slots = roomSlotsMap[room.slug] || [];
+            const slots = filteredRoomSlotsMap[room.slug] || [];
             return (
               <div key={room.slug} className={styles.roomColumn}>
-                <h3 className={styles.roomTitle}>{room.name}</h3>
-                {slots.length === 0 ? (
-                  <div className={styles.noSlots}>No slots for this date</div>
-                ) : (
-                  slots.map((slot) => (
-                    <button
-                      type="button"
-                      key={slot.id}
-                      className={`${styles.slotCard} ${slot.isFull ? styles.slotFull : ''}`}
-                      onClick={() => {
-                        if (slot.bookingsCount > 0) setSelectedSlot(slot);
-                      }}
-                    >
-                      <div className={styles.slotTime}>{slot.start_time} - {slot.end_time}</div>
-                      <div className={styles.slotMeta}>{slot.bookingsCount} booked</div>
-                      <div className={styles.slotMeta}>{slot.availableSeats} available</div>
-                      {slot.isFull ? <div className={styles.slotFlag}>FULL</div> : null}
-                    </button>
-                  ))
-                )}
+                <h2 className={styles.roomHeader}>{room.name}</h2>
+                <div className={styles.slotsStack}>
+                  {slots.length === 0 ? (
+                    <div className={styles.emptyColumnNote}>
+                      No slots for this day. Manage from{' '}
+                      <Link href={`/admin/manage-rooms/${room.slug}`} style={{ color: 'var(--gold-primary)' }}>
+                        {room.name}
+                      </Link>
+                      .
+                    </div>
+                  ) : (
+                    slots.map((slot) => renderSlotCard(room, slot))
+                  )}
+                </div>
               </div>
             );
           })}
         </div>
       )}
 
-      {selectedSlot && (
-        <div className={styles.modalOverlay} onClick={() => setSelectedSlot(null)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.modalHeader}>
-              <h3>
-                {selectedSlot.roomName} | {selectedSlot.start_time} - {selectedSlot.end_time}
-              </h3>
-              <button className={styles.closeBtn} onClick={() => setSelectedSlot(null)}>
-                <i className="bi bi-x-lg"></i>
-              </button>
-            </div>
-
-            <div className={styles.modalSummary}>
-              <span>Capacity: {selectedSlot.capacity}</span>
-              <span>Booked Players: {selectedSlot.bookedPlayers}</span>
-              <span>Available: {selectedSlot.availableSeats}</span>
-            </div>
-
-            <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>Booking #</th>
-                    <th>Customer</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Players</th>
-                    <th>Status</th>
-                    <th>Tour</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {selectedSlot.bookings.map((booking) => (
-                    <tr key={booking.id}>
-                      <td>{booking.booking_number || booking.id}</td>
-                      <td>{`${booking.first_name || ''} ${booking.last_name || ''}`.trim() || 'Unknown'}</td>
-                      <td>{booking.phone || '—'}</td>
-                      <td>{booking.email_address || '—'}</td>
-                      <td>{booking.participants || booking.adults || 0}</td>
-                      <td>{booking.status || 'booked'}</td>
-                      <td>{booking.tour || '—'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <div className={styles.footerBar}>
+        <div className={styles.legend}>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.legendEmpty}`} /> No bookings
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.legendPartial}`} /> Booked
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.legendBlocked}`} /> Blocked
+          </span>
         </div>
-      )}
+        <div className={styles.footerActions}>
+          <button type="button" className={styles.icalBtn} onClick={downloadIcal}>
+            <i className="bi bi-calendar-week" /> iCal
+          </button>
+          <button type="button" className={styles.printBtn} onClick={printCalendar}>
+            <i className="bi bi-printer-fill" /> Print
+          </button>
+        </div>
+      </div>
+
+      <AdminBookSlotModal
+        open={Boolean(bookingContext)}
+        onClose={() => setBookingContext(null)}
+        slot={bookingContext?.slot || null}
+        room={bookingContext?.room || null}
+        onBooked={async () => {
+          setBookingContext(null);
+          await fetchCalendarData(selectedDate);
+        }}
+      />
+
+      {portalReady && selectedSlot
+        ? createPortal(
+            <div className={styles.modalOverlay} onClick={() => setSelectedSlot(null)} role="dialog" aria-modal="true">
+              <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.modalHeader}>
+                  <h3>
+                    {selectedSlot.roomName} | {selectedSlot.start_time} - {selectedSlot.end_time}
+                  </h3>
+                  <button type="button" className={styles.closeBtn} onClick={() => setSelectedSlot(null)} aria-label="Close">
+                    <i className="bi bi-x-lg" />
+                  </button>
+                </div>
+
+                <div className={styles.modalSummary}>
+                  <span>Capacity: {selectedSlot.capacity}</span>
+                  <span>Booked: {selectedSlot.bookedPlayers}</span>
+                  <span>Available: {selectedSlot.availableSeats}</span>
+                </div>
+
+                <div className={styles.tableWrap}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th>Booking #</th>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Players</th>
+                        <th>Status</th>
+                        <th>Tour</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {selectedSlot.bookings.map((booking) => (
+                        <tr key={booking.id}>
+                          <td>{booking.booking_number || booking.id}</td>
+                          <td>{`${booking.first_name || ''} ${booking.last_name || ''}`.trim() || 'Unknown'}</td>
+                          <td>{booking.phone || '—'}</td>
+                          <td>{booking.email_address || '—'}</td>
+                          <td>{booking.participants || booking.adults || 0}</td>
+                          <td>{booking.status || 'booked'}</td>
+                          <td>{booking.tour || '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <Link href="/admin/bookings" className={styles.bookingLink}>
+                  Open bookings admin →
+                </Link>
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </div>
   );
 }

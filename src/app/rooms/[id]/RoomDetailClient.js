@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './page.module.css';
+import roomCardStyles from '@/components/RoomCard.module.css';
 import Link from 'next/link';
 import RoomCard from '@/components/RoomCard';
 import siteData from '@/data/siteData.json';
@@ -195,7 +196,7 @@ const comingSoonVariants = {
                   behavior: 'smooth',
                 });
               }}
-              className={`btn btn-gold ${styles.bookBtn}`}
+              className={`btn btn-gold ${roomCardStyles.roomBookBtn}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.3 }}

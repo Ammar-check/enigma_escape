@@ -13,9 +13,7 @@ export default function RoomCard({ room, slotCount = 0, blockedCount = 0 }) {
         <span>{slotCount} slots</span>
         <span>{blockedCount} blocked</span>
       </div>
-      <button type="button" className={styles.cta}>
-        BOOK NOW
-      </button>
+      <span className={styles.cta}>Add Slot</span>
     </Link>
   );
 }

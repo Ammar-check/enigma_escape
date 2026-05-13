@@ -1,84 +1,9 @@
-// 'use client';
-
-// import Link from 'next/link';
-// import { usePathname } from 'next/navigation';
-// import styles from './Sidebar.module.css';
-// import { useState } from 'react';
-
-
-// const menuItems = [
-//   { href: '/admin', label: 'Dashboard', icon: 'bi-speedometer2' },
-//   { href: '/admin/customers', label: 'Customers', icon: 'bi-people-fill' },
-//   { href: '/admin/bookings', label: 'Bookings', icon: 'bi-calendar-check' },
-//   { href: '/admin/waivers', label: 'Waivers', icon: 'bi-file-earmark-text' },
-//   { href: '/admin/game-results', label: 'Game Results', icon: 'bi-trophy-fill' },
-//   { href: '/admin/videos', label: 'Video Queue', icon: 'bi-camera-video-fill' },
-//   { href: '/admin/analytics', label: 'Analytics', icon: 'bi-bar-chart-fill' },
-// ];
-
-// export default function Sidebar() {
-//    const [isOpen,setIsOpen] = useState(false);
-//   const pathname = usePathname();
-  
-
-//   const handleLogout = () => {
-//   localStorage.removeItem('admin_auth');
-//   router.push('/admin/login');
-// };
-
-//   return (
-//     <>
-//   {/* {// ================== mobile overlay=========} */}
-//     {isOpen && <div className={styles.overlay} onClick={()=>setIsOpen(false)} />}
-
-//     <aside className={styles.sidebar}>
-//       {/* Logo */}
-//       <div className={styles.sidebarLogo}>
-//         <span>ENIGMA</span>
-//         <span className={styles.adminBadge}>ADMIN</span>
-//       </div>
-
-//       {/* Menu */}
-//       <nav className={styles.sidebarNav}>
-//         {menuItems.map((item) => (
-//           <Link
-//             key={item.href}
-//             href={item.href}
-//             className={`${styles.sidebarLink} ${pathname === item.href ? styles.active : ''}`}
-//           >
-//             <i className={`bi ${item.icon}`}></i>
-//             <span>{item.label}</span>
-//           </Link>
-//         ))}
-//       </nav>
-
-//       {/* Bottom */}
-//       <div className={styles.sidebarBottom}>
-//         <Link href="/" className={styles.sidebarLink}>
-//           <i className="bi bi-globe"></i>
-//           <span>View Website</span>
-//         </Link>
-//         <button className={styles.sidebarLink} onClick={handleLogout}>
-//   <i className="bi bi-box-arrow-right"></i>
-//   <span>Logout</span>
-// </button>
-//       </div>
-//     </aside>
-
-//     {/* Mobile Hamburger */}
-//       <button className={styles.mobileToggle} onClick={() => setIsOpen(true)}>
-//         <i className="bi bi-list"></i>
-//       </button>
-//     </>
-//   );
-// }
-
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation'; // ✅ ADDED useRouter
+import { usePathname, useRouter } from 'next/navigation';
 import styles from './Sidebar.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const menuItems = [
   { href: '/admin', label: 'Dashboard', icon: 'bi-speedometer2' },
@@ -93,39 +18,68 @@ const menuItems = [
   { href: '/admin/analytics', label: 'Analytics', icon: 'bi-bar-chart-fill' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ collapsed = false, onToggleCollapsed }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
-  const router = useRouter(); // ✅ ADDED router (was missing)
+  const router = useRouter();
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 992px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_auth');
     router.push('/admin/login');
   };
 
+  const closeMobile = () => {
+    if (isMobile) setIsOpen(false);
+  };
+
   return (
     <>
-      {/* ================== MOBILE OVERLAY ================== */}
-      {/* ✅ Overlay only shows when sidebar is open */}
       {isOpen && (
         <div
           className={styles.overlay}
-          onClick={() => setIsOpen(false)} // ✅ Close sidebar when clicking outside
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
         />
       )}
 
-      {/* ================== SIDEBAR ================== */}
       <aside
-        className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}
-        // ✅ IMPORTANT: Added styles.open dynamically
+        className={`${styles.sidebar} ${isOpen ? styles.open : ''} ${
+          collapsed && !isMobile ? styles.collapsed : ''
+        }`}
       >
-        {/* Logo */}
-        <div className={styles.sidebarLogo}>
-          <span>ENIGMA</span>
-          <span className={styles.adminBadge}>ADMIN</span>
+        <div className={styles.sidebarHeader}>
+          <div className={styles.sidebarLogo}>
+            <span className={styles.logoCompact} aria-hidden="true">
+              E
+            </span>
+            <span className={styles.logoWord}>ENIGMA</span>
+            <span className={styles.adminBadge}>ADMIN</span>
+          </div>
+
+          {!isMobile && (
+            <button
+              type="button"
+              className={styles.collapseToggle}
+              onClick={() => onToggleCollapsed?.()}
+              aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              title={collapsed ? 'Expand' : 'Collapse'}
+            >
+              <i
+                className={`bi ${collapsed ? 'bi-chevron-double-right' : 'bi-chevron-double-left'}`}
+              />
+            </button>
+          )}
         </div>
 
-        {/* Menu */}
         <nav className={styles.sidebarNav}>
           {menuItems.map((item) => (
             <Link
@@ -134,36 +88,49 @@ export default function Sidebar() {
               className={`${styles.sidebarLink} ${
                 pathname === item.href ? styles.active : ''
               }`}
-              onClick={() => setIsOpen(false)} 
-              // ✅ Auto close sidebar when clicking link (mobile UX fix)
+              title={item.label}
+              onClick={closeMobile}
             >
-              <i className={`bi ${item.icon}`}></i>
-              <span>{item.label}</span>
+              <i className={`bi ${item.icon}`} aria-hidden="true" />
+              <span className={styles.navLabel}>{item.label}</span>
             </Link>
           ))}
         </nav>
 
-        {/* Bottom */}
         <div className={styles.sidebarBottom}>
-
+          <Link
+            href="/"
+            className={styles.sidebarLink}
+            title="View website"
+            onClick={closeMobile}
+          >
+            <i className="bi bi-globe" aria-hidden="true" />
+            <span className={styles.navLabel}>View Website</span>
+          </Link>
           <button
+            type="button"
             className={styles.sidebarLink}
             onClick={handleLogout}
+            title="Logout"
           >
-            <i className="bi bi-box-arrow-right"></i>
-            <span>Logout</span>
+            <i className="bi bi-box-arrow-right" aria-hidden="true" />
+            <span className={styles.navLabel}>Logout</span>
           </button>
         </div>
       </aside>
 
-      {/* ================== MOBILE HAMBURGER ================== */}
       <button
+        type="button"
         className={styles.mobileToggle}
-        onClick={() => setIsOpen(!isOpen)} // ✅ Open sidebar
+        onClick={() => setIsOpen((o) => !o)}
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
-        {isOpen?<i className="bi bi-x"></i>:<i className="bi bi-list"></i>}
+        {isOpen ? (
+          <i className="bi bi-x-lg" aria-hidden="true" />
+        ) : (
+          <i className="bi bi-list" aria-hidden="true" />
+        )}
       </button>
-      
     </>
   );
 }

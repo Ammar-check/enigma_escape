@@ -276,7 +276,6 @@ export default function CustomersPage() {
       primary_phone: customer.phone === '—' ? '' : customer.phone,
       city: customer.city === '—' ? '' : customer.city,
       country: customer.country === '—' ? '' : customer.country,
-      gender: customer.gender === '—' ? '' : customer.gender,
       total_bookings: customer.totalBookings || 0,
       cancellations: customer.cancellations || 0,
       no_shows: customer.noShows || 0,
@@ -321,7 +320,6 @@ export default function CustomersPage() {
         primary_phone: String(editingCustomer.primary_phone || '').trim() || null,
         city: String(editingCustomer.city || '').trim() || null,
         country: String(editingCustomer.country || '').trim() || null,
-        gender: String(editingCustomer.gender || '').trim() || null,
         total_bookings: Number(editingCustomer.total_bookings) || 0,
         cancellations: Number(editingCustomer.cancellations) || 0,
         no_shows: Number(editingCustomer.no_shows) || 0,
@@ -812,10 +810,6 @@ export default function CustomersPage() {
                 <label className={styles.modalItem}>
                   <span className={styles.modalLabel}>No Shows</span>
                   <input type="number" className={styles.editInput} value={editingCustomer.no_shows} onChange={(e) => handleEditChange('no_shows', e.target.value)} />
-                </label>
-                <label className={styles.modalItem}>
-                  <span className={styles.modalLabel}>Gender</span>
-                  <input className={styles.editInput} value={editingCustomer.gender} onChange={(e) => handleEditChange('gender', e.target.value)} />
                 </label>
                 <label className={styles.modalItem}>
                   <span className={styles.modalLabel}>Status</span>

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-left: 240px;
 }
 
 .header {
@@ -57,6 +56,12 @@
   border: 1px solid rgba(212, 168, 75, 0.2);
   border-radius: 10px;
   padding: 10px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.filters label {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
 }
 
 .filters input {
@@ -65,6 +70,28 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
   padding: 7px 8px;
+}
+
+.filters .dateInput {
+  color-scheme: dark;
+  min-height: 38px;
+  padding-right: 10px;
+}
+
+.filters .dateInput::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 1;
+  width: 20px;
+  height: 20px;
+}
+
+.filters .dateInput::-webkit-datetime-edit-fields-wrapper,
+.filters .dateInput::-webkit-datetime-edit-text,
+.filters .dateInput::-webkit-datetime-edit-month-field,
+.filters .dateInput::-webkit-datetime-edit-day-field,
+.filters .dateInput::-webkit-datetime-edit-year-field {
+  color: #fff;
 }
 
 .tourName {
@@ -234,7 +261,6 @@
 
 @media (max-width: 992px) {
   .page {
-    margin-left: 0;
     margin-top: 50px;
   }
 }

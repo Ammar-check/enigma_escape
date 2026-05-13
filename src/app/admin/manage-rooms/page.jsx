@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import styles from './page.module.css';
 import { supabase } from '@/lib/supabase';
-import { ROOM_CATALOG } from '@/data/roomCatalog';
+import { ROOM_CATALOG, mergeVrRoomSlugForAdminStats } from '@/data/roomCatalog';
 import RoomCard from '@/components/admin/rooms/RoomCard';
 
 export default function ManageRoomsPage() {
@@ -24,9 +24,10 @@ export default function ManageRoomsPage() {
       }
       const stats = {};
       (data || []).forEach((slot) => {
-        if (!stats[slot.room_slug]) stats[slot.room_slug] = { total: 0, blocked: 0 };
-        stats[slot.room_slug].total += 1;
-        if (slot.is_blocked) stats[slot.room_slug].blocked += 1;
+        const key = mergeVrRoomSlugForAdminStats(slot.room_slug);
+        if (!stats[key]) stats[key] = { total: 0, blocked: 0 };
+        stats[key].total += 1;
+        if (slot.is_blocked) stats[key].blocked += 1;
       });
       setSlotStats(stats);
       setLoading(false);
@@ -77,27 +78,6 @@ export default function ManageRoomsPage() {
       {loading && (
         <div className={styles.empty}>Loading room slots...</div>
       )}
-      <div className={styles.noteBox}>
-        <h3 className={styles.noteTitle}>VR Rooms</h3>
-        <p className={styles.noteText}>
-          VR Room 1 to VR Room 9 are included. Open any VR card to add/edit time slots,
-          block specific slots, and manage booking visibility.
-        </p>
-      </div>
-      <div className={styles.helpGrid}>
-        <div className={styles.helpCard}>
-          <h4>BOOK NOW</h4>
-          <p>Each room card opens a dedicated slot management page.</p>
-        </div>
-        <div className={styles.helpCard}>
-          <h4>Slots</h4>
-          <p>Add multiple timeframes per day and set seat capacity.</p>
-        </div>
-        <div className={styles.helpCard}>
-          <h4>Block Booking</h4>
-          <p>Mark any slot blocked for maintenance or private events.</p>
-        </div>
-      </div>
     </div>
   );
 }

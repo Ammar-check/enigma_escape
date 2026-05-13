@@ -10,4 +10,18 @@
   flex: 1;
   padding: 30px;
   overflow-y: auto;
+  margin-left: 240px;
+  min-height: 100vh;
+  transition: margin-left 0.25s ease;
+}
+
+.adminMainCollapsed {
+  margin-left: 72px;
+}
+
+@media (max-width: 992px) {
+  .adminMain,
+  .adminMainCollapsed {
+    margin-left: 0;
+  }
 }

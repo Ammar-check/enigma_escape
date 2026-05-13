@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import siteData from '@/data/siteData.json';
 import styles from './page.module.css';
 import Image from 'next/image';
+import { submitContactMessage } from '@/lib/contactMessages';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -51,28 +52,20 @@ export default function ContactPage() {
     setStatus({ type: '', text: '' });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
+      const result = await submitContactMessage(formData);
+      if (!result.ok) {
         setStatus({ type: 'error', text: result.error || 'Failed to send message.' });
         return;
       }
-
-      setStatus({ type: 'success', text: result.message || 'Message sent successfully.' });
+      setStatus({ type: 'success', text: 'Message sent successfully.' });
       setFormData({
         fullName: '',
         phone: '',
         email: '',
         message: '',
       });
-    } catch {
-      setStatus({ type: 'error', text: 'Network error. Please try again.' });
+    } catch (err) {
+      setStatus({ type: 'error', text: err?.message || 'Network error. Please try again.' });
     } finally {
       setLoading(false);
     }

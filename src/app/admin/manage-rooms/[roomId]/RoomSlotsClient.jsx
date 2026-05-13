@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './page.module.css';
 import { supabase } from '@/lib/supabase';
-import { ROOM_MAP } from '@/data/roomCatalog';
+import { ROOM_MAP, VR_ALL_SLOT_SLUGS, VR_CANONICAL_SLUG } from '@/data/roomCatalog';
+import { saveRoomSlot } from '@/lib/adminRoomSlotSave';
 import SlotFormModal from '@/components/admin/rooms/SlotFormModal';
 
 export default function RoomSlotsClient({ roomId }) {
@@ -21,29 +22,41 @@ export default function RoomSlotsClient({ roomId }) {
   const [editingSlot, setEditingSlot] = useState(null);
   const [message, setMessage] = useState('');
 
-  const toIsoDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
-
-  const loadData = async () => {
+  const loadData = async (dateOverride) => {
     if (!roomId) return;
+    const dateForQuery = dateOverride ?? selectedDate;
     setLoading(true);
+    const isUnifiedVr = roomId === VR_CANONICAL_SLUG;
+    const slotSlugFilter = isUnifiedVr
+      ? supabase
+          .from('room_slots')
+          .select('*')
+          .in('room_slug', VR_ALL_SLOT_SLUGS)
+          .eq('slot_date', dateForQuery)
+          .order('start_time', { ascending: true })
+      : supabase
+          .from('room_slots')
+          .select('*')
+          .eq('room_slug', roomId)
+          .eq('slot_date', dateForQuery)
+          .order('start_time', { ascending: true });
+
+    const bookingTourFilter = isUnifiedVr
+      ? [
+          'tour.ilike.%VR Room%',
+          'tour.ilike.%vr room%',
+          'tour.ilike.%vr-room%',
+        ].join(',')
+      : `tour.ilike.%${room?.name || ''}%,tour.ilike.%${roomId}%`;
+
     const [{ data: slotData, error: slotError }, { data: bookingData, error: bookingError }] = await Promise.all([
-      supabase
-        .from('room_slots')
-        .select('*')
-        .eq('room_slug', roomId)
-        .eq('slot_date', selectedDate)
-        .order('start_time', { ascending: true }),
+      slotSlugFilter,
       supabase
         .from('bookings')
         .select('id, first_name, last_name, participants, adults, start_at, end_at, status, phone, email_address, tour')
-        .or(`tour.ilike.%${room?.name || ''}%,tour.ilike.%${roomId}%`)
-        .gte('start_at', `${selectedDate}T00:00:00`)
-        .lt('start_at', `${selectedDate}T23:59:59`),
+        .or(bookingTourFilter)
+        .gte('start_at', `${dateForQuery}T00:00:00`)
+        .lt('start_at', `${dateForQuery}T23:59:59`),
     ]);
 
     if (slotError) setMessage(`Slots load failed: ${slotError.message}`);
@@ -87,97 +100,21 @@ export default function RoomSlotsClient({ roomId }) {
   }, [bookings]);
 
   const saveSlot = async (form) => {
-    if (!form.slot_date || !form.start_time || !form.end_time) {
-      setMessage('Please select date, start time, and end time.');
-      return;
-    }
-    if (form.end_time <= form.start_time) {
-      setMessage('End time must be later than start time.');
-      return;
-    }
-
-    const payload = {
-      room_slug: roomId,
-      room_name: room?.name || roomId,
-      slot_date: form.slot_date,
-      start_time: form.start_time,
-      end_time: form.end_time,
-      capacity: Number(form.capacity) || 1,
-      price_2: Number(form.price_2) || 0,
-      price_3: Number(form.price_3) || 0,
-      price_4: Number(form.price_4) || 0,
-      price_5: Number(form.price_5) || 0,
-      price_6: Number(form.price_6) || 0,
-      price_7: Number(form.price_7) || 0,
-      price_8: Number(form.price_8) || 0,
-      is_blocked: Boolean(form.is_blocked),
-      block_reason: form.block_reason || null,
-    };
-
-    if (form.id) {
-      const { error } = await supabase.from('room_slots').update(payload).eq('id', form.id);
-      if (error) {
-        setMessage(`Update failed: ${error.message}`);
-        return;
-      }
-      setMessage('Slot updated.');
-    } else {
-      if (form.apply_daily_until && form.repeat_until_date) {
-        if (form.repeat_until_date < form.slot_date) {
-          setMessage('Repeat until date must be same or after slot date.');
-          return;
-        }
-
-        const { data: existingRows, error: existingError } = await supabase
-          .from('room_slots')
-          .select('slot_date,start_time,end_time')
-          .eq('room_slug', roomId)
-          .eq('start_time', form.start_time)
-          .eq('end_time', form.end_time)
-          .gte('slot_date', form.slot_date)
-          .lte('slot_date', form.repeat_until_date);
-
-        if (existingError) {
-          setMessage(`Create failed: ${existingError.message}`);
-          return;
-        }
-
-        const existingDates = new Set((existingRows || []).map((row) => row.slot_date));
-        const start = new Date(form.slot_date);
-        const end = new Date(form.repeat_until_date);
-        const rowsToInsert = [];
-        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-          const slotDate = toIsoDate(d);
-          if (existingDates.has(slotDate)) continue;
-          rowsToInsert.push({
-            ...payload,
-            slot_date: slotDate,
-          });
-        }
-
-        if (rowsToInsert.length > 0) {
-          const { error } = await supabase.from('room_slots').insert(rowsToInsert);
-          if (error) {
-            setMessage(`Create failed: ${error.message}`);
-            return;
-          }
-          const skipped = Math.max(Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1 - rowsToInsert.length, 0);
-          setMessage(`Added ${rowsToInsert.length} slots${skipped > 0 ? `, skipped ${skipped} existing` : ''}.`);
-        } else {
-          setMessage('No new slots added (all dates already had this slot).');
-        }
-      } else {
-        const { error } = await supabase.from('room_slots').insert(payload);
-        if (error) {
-          setMessage(`Create failed: ${error.message}`);
-          return;
-        }
-        setMessage('Slot added.');
-      }
-    }
+    const result = await saveRoomSlot({
+      supabase,
+      form,
+      roomId,
+      room,
+      VR_CANONICAL_SLUG,
+      VR_ALL_SLOT_SLUGS,
+      setMessage,
+    });
+    if (!result.ok) return;
+    const refreshDate = result.refreshDate ?? selectedDate;
+    setSelectedDate((prev) => (result.refreshDate && String(result.refreshDate).length >= 10 ? result.refreshDate : prev));
     setModalOpen(false);
     setEditingSlot(null);
-    await loadData();
+    await loadData(refreshDate);
   };
 
   const removeSlot = async (slotId) => {
@@ -230,8 +167,14 @@ export default function RoomSlotsClient({ roomId }) {
       <div className={styles.filters}>
         <label>Tour:</label>
         <span className={styles.tourName}>{room.name}</span>
-        <label>Date:</label>
-        <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+        <label htmlFor="room-slots-date">Date:</label>
+        <input
+          id="room-slots-date"
+          type="date"
+          className={styles.dateInput}
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
       </div>
 
       {message && <p className={styles.message}>{message}</p>}
@@ -293,9 +236,9 @@ export default function RoomSlotsClient({ roomId }) {
       )}
 
       <div className={styles.detailsSection}>
-        <h2 className={styles.sectionTitle}>Room Booking Details</h2>
+        <h2 className={styles.sectionTitle}>Room Booking History</h2>
         <p className={styles.sectionSubtitle}>
-          {room.name} - {selectedDate} customer bookings summary and details.
+          {room.name} — customer bookings for {selectedDate}.
         </p>
 
         <div className={styles.statsGrid}>
@@ -354,6 +297,7 @@ export default function RoomSlotsClient({ roomId }) {
         onClose={() => { setModalOpen(false); setEditingSlot(null); }}
         onSave={saveSlot}
         initialData={editingSlot}
+        defaultSlotDate={selectedDate}
       />
     </div>
   );

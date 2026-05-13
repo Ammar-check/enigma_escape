@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
+import { fetchContactMessages } from '@/lib/contactMessages';
 
 export default function ContactMessagesPage() {
   const [messages, setMessages] = useState([]);
@@ -13,19 +14,16 @@ export default function ContactMessagesPage() {
 
     async function loadMessages() {
       try {
-        const response = await fetch('/api/contact', { cache: 'no-store' });
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.error || 'Failed to load contact messages.');
+        const result = await fetchContactMessages();
+        if (!mounted) return;
+        if (!result.ok) {
+          setError(result.error || 'Failed to load contact messages.');
+          return;
         }
-
-        if (mounted) {
-          setMessages(result.data || []);
-        }
+        setMessages(result.data || []);
       } catch (err) {
         if (mounted) {
-          setError(err.message || 'Failed to load contact messages.');
+          setError(err?.message || 'Failed to load contact messages.');
         }
       } finally {
         if (mounted) {

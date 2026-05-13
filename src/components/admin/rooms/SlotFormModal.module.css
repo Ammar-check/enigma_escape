@@ -11,7 +11,9 @@
 
 .modal {
   width: 100%;
-  max-width: 680px;
+  max-width: 720px;
+  max-height: 92vh;
+  overflow-y: auto;
   border-radius: 14px;
   background: #101010;
   border: 1px solid rgba(212, 168, 75, 0.25);
@@ -57,6 +59,83 @@
   filter: invert(1) brightness(1.2);
   cursor: pointer;
   opacity: 1;
+}
+
+.fieldSpan2 {
+  grid-column: 1 / -1;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sectionTitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-primary);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.35;
+}
+
+.modeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+}
+
+.radio input {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.weekdayRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.weekdayChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  user-select: none;
+}
+
+.weekdayChip input {
+  accent-color: var(--gold-primary);
+  cursor: pointer;
+}
+
+.field input[type='checkbox'] {
+  width: auto;
+  min-height: auto;
 }
 
 .actions {

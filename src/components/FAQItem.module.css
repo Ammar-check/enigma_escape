@@ -2,24 +2,20 @@
    break-inside: avoid;
   margin-bottom: 15px;
   background: rgba(26, 26, 26, 0.8);
-  /* border: 1px solid var(--dark-border); */
-  border: 1px solid rgb(0, 123, 253);
-  /* border-radius: 10px; */
+  border: 1px solid #ffffff;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 .faqItem:hover {
   background-color: black;
-  border: 1px solid rgba(0, 123, 253,0.3);
-  /* border-color: rgba(212, 168, 75, 0.3); */
-  box-shadow: 0 0 30px rgba(0, 123, 253, 0.3);
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.2);
 }
 
 .faqItem.active {
-  /* border-color: var(--gold-primary); */
-  border-color: rgba(0, 123, 253,0.3);
-  box-shadow: 0 5px 20px rgba(212, 168, 75, 0.15);
+  border-color: #ffffff;
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.15);
 }
 
 .faqQuestion {
