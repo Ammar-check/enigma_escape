@@ -136,7 +136,19 @@ export default function Home() {
           className={styles.heroBg}
           style={{ y: heroBgParallax }}
           aria-hidden
-        />
+        >
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label=""
+          >
+            <source src="/video/Quick%20Opener3.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
         <div className={styles.heroOverlay}></div>
 
         <div className={styles.heroInner}>
@@ -149,26 +161,6 @@ export default function Home() {
           >
             {isArabic ? (
               <>
-                <motion.div
-                  className={styles.heroImageWrapper}
-                  // initial={{ opacity: 0, scale: 0.5 }}
-                  // animate={{ opacity: 1, scale: 1 }}
-                  // transition={{
-                  //   type: 'spring',
-                  //   stiffness: 100,
-                  //   damping: 10,
-                  //   delay: 0.5
-                  // }}
-                >
-                  <Image
-                    src="/60-Minutes_Arabic-2.png"
-                    alt="٦٠ دقيقة"
-                    width={350}
-                    height={200}
-                    className={styles.heroArabicImage}
-                    priority
-                  />
-                </motion.div>
                 <motion.p
                   className={styles.heroSubtitle}
                   initial={{ opacity: 0 }}

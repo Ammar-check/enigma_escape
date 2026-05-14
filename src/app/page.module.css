@@ -31,9 +31,18 @@
   right: 0;
   top: -12%;
   height: 124%;
-  background: url('/Home-Page_Background.webp') center center / cover no-repeat;
+  overflow: hidden;
   will-change: transform;
   pointer-events: none;
+}
+
+.heroVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .heroOverlay {
@@ -112,19 +121,7 @@
   letter-spacing: 5px;
 }
 
-.heroImageWrapper {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.heroArabicImage {
-  width: auto;
-  height: auto;
-  width: 550px;
-  height: 300px;
-  object-fit: contain;
-}
-.heroArabicSub{
+.heroArabicSub {
   width: auto;
   height: auto;
   width: 250px;
@@ -133,28 +130,14 @@
 }
 
 @media (max-width: 768px) {
-  .heroContent{
+  .heroContent {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .heroArabicImage {
-    max-width: 330px;
-    max-height: 190px;
-  }
-  .heroArabicSub{
+  .heroArabicSub {
     width: 250px;
     transform: translateX(80px);
-  
-    
-  }
-}
-
-@media (max-width: 576px) {
-  .heroArabicImage {
-    max-width: 220px;
-    max-height: 130px;
-    /* transform: translateX(-40px); */
   }
 }
 
@@ -739,23 +722,11 @@
     min-height: 100vh;
   }
 
-  [dir="rtl"] .heroContent{
-    
+  [dir="rtl"] .heroContent {
     display: flex;
-     flex-direction: column;
+    flex-direction: column;
     align-items: end;
   }
-
-  .heroArabicImage {
-     max-width: 160px;
-    max-height: 120px;
-  }
-  .heroArabicSub{
-    transform: translateX(70px);
-    max-width: 160px;
-   max-height: 120px;
-}
-
 }
 
 @media (max-width: 280px) {
@@ -777,11 +748,6 @@
   .heroSubtitle {
     font-size: 0.7rem;
     letter-spacing: 1px;
-  }
-
-  .heroArabicImage {
-    max-width: 140px;
-    max-height: 90px;
   }
 
   .heroArabicSub {
